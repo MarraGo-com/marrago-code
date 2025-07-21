@@ -1,5 +1,6 @@
 // /src/theme/index.ts
 import { PaletteMode } from '@mui/material';
+import { colors } from '../site';
 
 // This function returns the theme options for a given mode (light or dark)
 export const getThemeOptions = (mode: PaletteMode) => ({
@@ -9,10 +10,10 @@ export const getThemeOptions = (mode: PaletteMode) => ({
       ? {
           // palette values for light mode
           primary: {
-            main: '#004AAD', // Majorelle Blue
+            main: colors.primaryColor ||'#004AAD', // Majorelle Blue
           },
           secondary: {
-            main: '#E07A5F', // Terracotta Orange
+            main: colors.secondaryColor ||'#E07A5F', // Terracotta Orange
           },
           background: {
             default: '#F8F9FA',
