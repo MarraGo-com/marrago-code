@@ -54,7 +54,13 @@ export default async function BlogHighlightsSection() {
     <Box sx={{ py: { xs: 8, md: 12 }, bgcolor: 'background.paper' }}>
       <Container maxWidth="lg">
         <Box sx={{ textAlign: 'center', mb: 8 }}>
-          <MainHeading titleKey='title' t={t}  sx={{ fontWeight: 'bold', mb: 2 }}/>
+          <MainHeading 
+            titleKey='title' 
+            variant="h2"
+            component="h2"
+            t={t}  
+            sx={{ fontWeight: 'bold', mb: 2 }}
+          />
           <Typography variant="h6" component="p" sx={{ color: 'text.secondary', maxWidth: '600px', mx: 'auto' }}>
             {t('subtitle')}
           </Typography>

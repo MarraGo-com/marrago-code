@@ -1,14 +1,13 @@
-// -------------------------------------------------------------------------
-// 1. UPDATED FILE: /src/components/sections/SocialProofSection.tsx
-// This component now uses a more robust filter for light/dark modes.
-// -------------------------------------------------------------------------
+// /src/components/sections/SocialProofSection.tsx
 'use client';
 
 import React from 'react';
 import { Box, Typography, Container } from '@mui/material';
 import { useTranslations } from 'next-intl';
+import { siteConfig } from '@/config/site';
+// --- 1. Import next/image ---
+import Image from 'next/image';
 
-// Use the new, professional SVG icons and names
 const partnerLogos = [
   { name: 'Award Winner', url: '/images/logo-award.svg' },
   { name: 'Expert Guide', url: '/images/logo-guide.svg' },
@@ -44,31 +43,34 @@ export default function SocialProofSection() {
           }}
         >
           {partnerLogos.map((logo) => (
+            // --- 2. Create a styled wrapper Box ---
             <Box
               key={logo.name}
-              component="img"
-              src={logo.url}
-              alt={`${logo.name} logo`}
               sx={{
-                // Using the larger height you suggested
+                position: 'relative', // Required for the 'fill' prop on next/image
+                width: { xs: 120, sm: 150 },
                 height: { xs: 60, sm: 80 },
-                width: 'auto',
-                
-                // --- THIS IS THE CORRECTED FILTER LOGIC ---
-                // In light mode, we make the logos grayscale.
-                // In dark mode, we invert them to appear white.
-                filter: (theme) => 
+                // --- 3. Apply all dynamic styles to the wrapper ---
+                filter: (theme) =>
                   theme.palette.mode === 'dark' ? 'brightness(0) invert(1)' : 'grayscale(100%)',
-
                 opacity: 0.7,
                 transition: 'all 0.3s ease-in-out',
                 '&:hover': {
                   opacity: 1,
-                  // On hover, we remove the filter to show the original colors
                   filter: 'none',
                 },
               }}
-            />
+            >
+              {/* --- 4. Place the next/image component inside --- */}
+              <Image
+                src={logo.url}
+                alt={`${logo.name} - ${siteConfig.siteName}`}
+                fill
+                style={{
+                  objectFit: 'contain', // Ensures the logo fits without being cropped or stretched
+                }}
+              />
+            </Box>
           ))}
         </Box>
       </Container>

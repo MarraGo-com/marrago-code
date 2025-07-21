@@ -20,6 +20,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '@/lib/firebase';
 import LogOutButton from '../auth/LogOutButton'; // We reuse the logout button 
 import { locations } from '@/config/locations';
+import Image from 'next/image';
 
 export default function Header() {
   const t = useTranslations('Header');
@@ -102,7 +103,16 @@ export default function Header() {
 
             <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: { xs: 'center', md: 'flex-start' } }}>
               <Link href="/" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center' }}>
-                <Box component="img" src="/favicon.ico" alt={t('siteTitle')} sx={{ height: 40, mr: 2 }} />
+                {/* --- 2. Replace the Box with the optimized Image component --- */}
+                <Image
+                  src="/favicon.ico"
+                  alt={t('siteTitle')}
+                  width={40}
+                  height={40}
+                  priority // Tells Next.js to preload this critical image
+                  style={{ marginRight: '1rem' }} // Use inline style for margin
+                />
+
                 <Typography variant="h6" component="div" sx={{ fontWeight: 'bold' }}>
                   {t('siteTitle')}
                 </Typography>

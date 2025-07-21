@@ -21,7 +21,11 @@ export default function WhyChooseUs() {
       bgcolor: 'background.default'
     }}>
       <Container maxWidth="lg">
-        <MainHeading titleKey='title' t={t} 
+        <MainHeading 
+         titleKey='title' 
+         component={'h2'}
+         variant='h2'
+         t={t} 
          sx={{ 
             textAlign: 'center', 
             fontWeight: 'bold', 

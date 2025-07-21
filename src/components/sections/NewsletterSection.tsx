@@ -48,7 +48,13 @@ export default function NewsletterSection() {
     <Box sx={{ py: { xs: 8, md: 12 }, bgcolor: 'background.paper' }}>
       <Container maxWidth="md">
         <Box sx={{ textAlign: 'center' }}>
-          <MainHeading titleKey='title' t={t}  sx={{ fontWeight: 'bold', mb: 2 }}/>
+          <MainHeading 
+            titleKey='title' 
+            variant="h2"
+            component="h2"
+            t={t}  
+            sx={{ fontWeight: 'bold', mb: 2 }}
+            />
           <Typography sx={{ color: 'text.secondary', mb: 4, maxWidth: '500px', mx: 'auto' }}>
             {t('subtitle')}
           </Typography>

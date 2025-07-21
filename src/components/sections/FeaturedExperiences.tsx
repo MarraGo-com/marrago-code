@@ -17,7 +17,13 @@ export default function FeaturedExperiences() {
   return (
     <Box sx={{ py: { xs: 8, md: 12 }, bgcolor: 'background.paper' }}>
       <Container maxWidth="lg">
-        <MainHeading titleKey='title' t={t} sx={{ textAlign: 'center', fontWeight: 'bold', mb: 8, color: 'text.primary' }}/>
+        <MainHeading 
+          titleKey='title' 
+          t={t} 
+          variant="h2" 
+          component="h2" 
+          sx={{ textAlign: 'center', fontWeight: 'bold', mb: 8, color: 'text.primary' }}
+         />
         
         {isLoading && ( <Box sx={{ display: 'flex', justifyContent: 'center' }}><CircularProgress /></Box> )}
         {isError && ( <Alert severity="error" sx={{ maxWidth: 'md', mx: 'auto' }}>{error ? error.message : t('genericError')}</Alert> )}
