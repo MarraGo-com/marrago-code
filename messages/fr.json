@@ -188,7 +188,8 @@
     "submitButton": "Envoyer la Demande",
     "successMessage": "Merci ! Votre demande de réservation a été envoyée. Nous vous contacterons sous peu pour confirmer.",
     "errorInvalidInput": "Veuillez sélectionner une date et un nombre de personnes valides.",
-    "errorGeneric": "Une erreur s'est produite. Veuillez réessayer."
+    "errorGeneric": "Une erreur s'est produite. Veuillez réessayer.",
+    "submitButtonPay": "Procéder au Paiement"
   },
   "BlogHighlights": {
     "title": "De Notre Journal",
@@ -208,6 +209,13 @@
     "submitButton": "S'abonner",
     "successMessage": "Merci pour votre abonnement !",
     "errorGeneric": "Une erreur s'est produite. Veuillez réessayer."
+  },
+  "BookingStatusPage": {
+    "successTitle": "Paiement Réussi !",
+    "successSubtitle": "Merci pour votre réservation. Un e-mail de confirmation vous a été envoyé avec tous les détails de votre prochaine aventure.",
+    "cancelledTitle": "Paiement Annulé",
+    "cancelledSubtitle": "Votre réservation n'a pas été complétée. Vous n'avez pas été facturé. Vous pouvez retourner à notre page d'expériences pour réessayer.",
+    "backButton": "Retour aux Expériences"
   }
 
 }

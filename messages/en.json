@@ -187,7 +187,8 @@
     "submitButton": "Submit Request",
     "successMessage": "Thank you! Your booking request has been sent. We will contact you shortly to confirm.",
     "errorInvalidInput": "Please select a valid date and number of guests.",
-    "errorGeneric": "Something went wrong. Please try again."
+    "errorGeneric": "Something went wrong. Please try again.",
+     "submitButtonPay": "Proceed to Payment"
   },
   "BlogHighlights": {
     "title": "From Our Journal",
@@ -207,6 +208,13 @@
     "submitButton": "Subscribe",
     "successMessage": "Thank you for subscribing!",
     "errorGeneric": "Something went wrong. Please try again."
+  },
+  "BookingStatusPage": {
+    "successTitle": "Payment Successful!",
+    "successSubtitle": "Thank you for your booking. A confirmation email has been sent to you with all the details of your upcoming adventure.",
+    "cancelledTitle": "Payment Cancelled",
+    "cancelledSubtitle": "Your booking was not completed. You have not been charged. You can return to our experiences page to try again.",
+    "backButton": "Back to Experiences"
   }
 
   

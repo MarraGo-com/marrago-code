@@ -1,17 +1,20 @@
-// /src/components/booking/StickyBookingWidget.tsx
+// -------------------------------------------------------------------------
+// UPDATED FILE: /src/components/booking/StickyBookingWidget.tsx
+// This component now correctly passes the 'price' prop to the BookingForm.
+// -------------------------------------------------------------------------
 'use client';
 
 import React from 'react';
 import { Paper, Typography, Divider, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import { useTranslations } from 'next-intl';
-import BookingForm from './BookingForm'; // We will reuse the form we already built
+import BookingForm from './BookingForm';
 
-// Import some icons for key highlights
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import PeopleIcon from '@mui/icons-material/People';
 import LanguageIcon from '@mui/icons-material/Language';
-import { Experience } from '@/types/experience';
+import { Experience } from '@/types/experience'; // Import the full Experience type
 
+// The props should accept the full experience object for flexibility
 interface BookingWidgetProps {
   experience: Experience;
   experienceId: string;
@@ -21,7 +24,6 @@ interface BookingWidgetProps {
 export default function StickyBookingWidget({ experience, experienceId, experienceTitle }: BookingWidgetProps) {
   const t_price = useTranslations('Price');
   
-  // Format the price string for display
   const formattedPrice = experience.price?.amount 
     ? `${t_price(experience.price.prefix)} ${experience.price.amount} ${experience.price.currency}`
     : t_price('contactUs');
@@ -31,27 +33,18 @@ export default function StickyBookingWidget({ experience, experienceId, experien
       elevation={6}
       sx={{
         p: 3,
-        position: 'sticky',
-        top: '100px', // The widget will stick 100px from the top of the viewport
         bgcolor: 'background.paper',
+        position: 'sticky',
+        top: '100px',
       }}
     >
-      <Typography variant="h4" component="p" sx={{ fontWeight: 'bold', 
-        fontSize: {
-          xs: '2rem',  // Mobile
-          sm: '2rem',  // Tablet
-          md: '2rem',  // Desktop
-          lg: '2.5rem',    // Large Desktop
-        } }}>
+      <Typography variant="h4" component="p" sx={{ fontWeight: 'bold' }}>
         {formattedPrice}
       </Typography>
       <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
         per person
       </Typography>
-
       <Divider sx={{ my: 2 }} />
-
-      {/* Key Highlights Section */}
       <List dense>
         <ListItem disablePadding>
           <ListItemIcon sx={{minWidth: '40px'}}><AccessTimeIcon fontSize="small" /></ListItemIcon>
@@ -66,13 +59,14 @@ export default function StickyBookingWidget({ experience, experienceId, experien
           <ListItemText primary="Languages" secondary="English, French" />
         </ListItem>
       </List>
-
       <Divider sx={{ my: 2 }} />
-
-      {/* We reuse the BookingForm component, which already contains the button and modal logic */}
+      
+      {/* --- THIS IS THE KEY FIX --- */}
+      {/* We now correctly pass the 'price' object from the experience prop down to the BookingForm */}
       <BookingForm 
         experienceId={experienceId}
         experienceTitle={experienceTitle}
+        price={experience.price}
       />
     </Paper>
   );

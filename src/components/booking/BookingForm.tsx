@@ -2,23 +2,34 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, CircularProgress, Alert, Snackbar, Box } from '@mui/material';
+import { 
+  Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, 
+  CircularProgress, Alert, Snackbar, Box 
+} from '@mui/material';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { useTranslations } from 'next-intl';
 
+// --- 1. Import the Stripe.js library ---
+import { loadStripe } from '@stripe/stripe-js';
+import { Experience } from '@/types/experience';
+
+// --- 2. Initialize Stripe with your PUBLIC key ---
+// This is safe to do in a client component.
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
+
+// --- 3. Update the props to include the price object ---
 interface BookingFormProps {
   experienceId: string;
   experienceTitle: string;
+  price: Experience['price']; // Use the price type from our central definition
 }
 
-export default function BookingForm({ experienceId, experienceTitle }: BookingFormProps) {
+export default function BookingForm({ experienceId, experienceTitle, price }: BookingFormProps) {
   const t = useTranslations('BookingForm');
   
   const [open, setOpen] = useState(false);
-  
-  // State for each form field
   const [customerName, setCustomerName] = useState('');
   const [customerEmail, setCustomerEmail] = useState('');
   const [requestedDate, setRequestedDate] = useState<Date | null>(null);
@@ -33,6 +44,7 @@ export default function BookingForm({ experienceId, experienceTitle }: BookingFo
 
   const handleCloseSnackbar = () => setFormStatus({ ...formStatus, open: false });
 
+  // --- 4. This is the new, upgraded handleSubmit function ---
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!requestedDate || numberOfGuests < 1) {
@@ -42,7 +54,8 @@ export default function BookingForm({ experienceId, experienceTitle }: BookingFo
     setLoading(true);
 
     try {
-      const response = await fetch('/api/bookings', {
+      // Step A: Create a 'pending' booking in our own database first.
+      const bookingResponse = await fetch('/api/bookings', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -54,29 +67,55 @@ export default function BookingForm({ experienceId, experienceTitle }: BookingFo
           numberOfGuests,
         }),
       });
+      const bookingData = await bookingResponse.json();
+      if (!bookingResponse.ok) {
+        throw new Error(bookingData.error || 'Failed to create booking request.');
+      }
+      const { id: bookingId } = bookingData;
 
-      const result = await response.json();
-      if (!response.ok) {
-        throw new Error(result.error || t('errorGeneric'));
+      // Step B: Now, create the Stripe Checkout session.
+      const checkoutResponse = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          experienceId,
+          experienceTitle,
+          price,
+          customerEmail,
+          bookingId, // We pass our internal booking ID to Stripe
+        }),
+      });
+      const checkoutData = await checkoutResponse.json();
+      if (!checkoutResponse.ok) {
+        throw new Error(checkoutData.error || 'Failed to create payment session.');
+      }
+      const { sessionId } = checkoutData;
+
+      // Step C: Redirect the user to Stripe's secure payment page.
+      const stripe = await stripePromise;
+      if (stripe) {
+        const { error } = await stripe.redirectToCheckout({ sessionId });
+        if (error) {
+          // This error will only be shown if the redirect fails.
+          throw new Error(error.message);
+        }
+      } else {
+        throw new Error('Stripe.js has not loaded yet.');
       }
 
-      setFormStatus({ open: true, message: t('successMessage'), severity: 'success' });
-      handleClose();
     } catch (err: unknown) {
       if (err instanceof Error) {
         setFormStatus({ open: true, message: err.message, severity: 'error' });
       } else {
         setFormStatus({ open: true, message: t('errorGeneric'), severity: 'error' });
       }
-    } finally {
-      setLoading(false);
+      setLoading(false); // Make sure to stop loading on error
     }
   };
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
-    // Reset form on close
     setCustomerName('');
     setCustomerEmail('');
     setRequestedDate(null);
@@ -131,7 +170,7 @@ export default function BookingForm({ experienceId, experienceTitle }: BookingFo
         <DialogActions>
           <Button onClick={handleClose}>{t('cancelButton')}</Button>
           <Button type="submit" variant="contained" disabled={loading}>
-            {loading ? <CircularProgress size={24} /> : t('submitButton')}
+            {loading ? <CircularProgress size={24} /> : t('submitButtonPay')}
           </Button>
         </DialogActions>
       </Dialog>
