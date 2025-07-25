@@ -60,7 +60,7 @@ export default function ExperienceDetails( {experience}: { experience: Experienc
                coverImage={experience.coverImage}
                // ✅ **FIX**: Passed the actual gallery images, with a fallback to an empty array
                galleryImages={experience.galleryImages || []}
-               altText={translation?.title || experience.title}
+               altText={translation?.title || experience.title || ''}
              />
             
              <Typography variant="body1" sx={{ mb: 4, color: 'text.secondary', fontSize: '1.1rem', lineHeight: 1.7 }}>
@@ -102,7 +102,7 @@ export default function ExperienceDetails( {experience}: { experience: Experienc
               <StickyBookingWidget 
                 experience={experience}
                 experienceId={experience.id}
-                experienceTitle={translation?.title || experience.title}
+                experienceTitle={translation?.title || experience.title || ''}
               />
             </Box>
           </Grid>

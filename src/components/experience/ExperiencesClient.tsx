@@ -7,11 +7,11 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'next/navigation';
 import {Grid, Box, Typography, Container, CircularProgress, Alert, SelectChangeEvent } from "@mui/material";
-import Header from "@/components/ui/Header";
-import Footer from "@/components/ui/Footer";
+// import Header from "@/components/ui/Header";
+// import Footer from "@/components/ui/Footer";
 import ExperienceCard from "@/components/ui/ExperienceCard";
 import FilterControls from '@/components/experience/FilterControls';
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { useExperiences } from '@/hooks/useExperiences';
 import { usePathname, useRouter } from '@/i18n/navigation';
 import MainHeading from '@/components/custom/MainHeading';
@@ -23,7 +23,6 @@ import { Experience } from '@/types/experience';
 
 export default function ExperiencesComponent() {
   const t = useTranslations('ExperiencesPage');
-  const locale = useLocale();
   const { data: allExperiences, isLoading, isError } = useExperiences();
   
   const router = useRouter();
@@ -91,7 +90,7 @@ export default function ExperiencesComponent() {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', bgcolor: 'background.default' }}>
-      <Header />
+      {/* <Header /> */}
       <main className="flex-grow">
         <Container maxWidth="lg" sx={{ py: { xs: 4, md: 8 } }}>
           <Box sx={{ textAlign: 'center', mb: 4 }}>
@@ -114,12 +113,9 @@ export default function ExperiencesComponent() {
           {processedExperiences && (
             <Grid container spacing={4}>
               {processedExperiences.map((exp: Experience) => {
-                const translation = exp.translations?.[locale] || exp.translations?.en;
-                const title = translation?.title || 'No Title';
-                const description = translation?.description || '';
                 return (
                   <Grid key={exp.id} size={{ xs: 12, sm: 6, md: 4 }}>
-                    <ExperienceCard id={exp.id} title={title} description={description} coverImage={exp.coverImage} price={exp.price} locationId={exp.locationId} />
+                    <ExperienceCard experience={exp}/>
                   </Grid>
                 );
               })}
@@ -131,7 +127,7 @@ export default function ExperiencesComponent() {
            )}
         </Container>
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </Box>
   );
 }

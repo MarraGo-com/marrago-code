@@ -1,6 +1,5 @@
 // /src/app/contact/page.tsx
-import Header from "@/components/ui/Header";
-import Footer from "@/components/ui/Footer";
+
 import ContactSection from "@/components/sections/ContactSection";
 import { Box } from "@mui/material";
 import { Metadata } from "next";
@@ -37,11 +36,11 @@ export default function ContactPage() {
       minHeight: '100vh',
       bgcolor: 'background.default'
     }}>
-      <Header />
+     {/*  <Header /> */}
       <main className="flex-grow">
         <ContactSection />
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </Box>
   );
 }

@@ -4,8 +4,7 @@
 // This page now imports and uses our new Client Component.
 // -------------------------------------------------------------------------
 import { Box, Typography, Container, Paper } from "@mui/material";
-import Header from "@/components/ui/Header";
-import Footer from "@/components/ui/Footer";
+
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { getTranslations } from "next-intl/server";
 import BackToExperiencesButton from "@/components/ui/BackToExperiencesButton"; // <-- Import the new button
@@ -15,7 +14,7 @@ export default async function BookingSuccessPage() {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', bgcolor: 'background.default' }}>
-      <Header />
+     {/*  <Header /> */}
       <main className="flex-grow">
         <Container maxWidth="sm" sx={{ py: { xs: 4, md: 8 }, textAlign: 'center' }}>
           <Paper sx={{ p: 4 }}>
@@ -30,7 +29,7 @@ export default async function BookingSuccessPage() {
           </Paper>
         </Container>
       </main>
-      <Footer />
+     {/*  <Footer /> */}
     </Box>
   );
 }

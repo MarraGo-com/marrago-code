@@ -215,6 +215,29 @@
     "cancelledTitle": "Payment Cancelled",
     "cancelledSubtitle": "Your booking was not completed. You have not been charged. You can return to our experiences page to try again.",
     "backButton": "Back to Experiences"
+  },
+  "MegaMenu": {
+    "destinationsTitle": "Destinations",
+    "stylesTitle": "Travel Styles",
+    "featuredTitle": "Featured Tour",
+    "styleAdventure": "Adventure",
+    "styleCultural": "Cultural",
+    "styleRelaxation": "Relaxation",
+    "styleFamily": "Family"
+  },
+  "ThemeSwitcher": {
+    "tooltip": "Customize Theme",
+    "panelTitle": "Theme Options",
+    "colorTitle": "Color Palette",
+    "paletteCoastal": "Coastal",
+    "paletteDesert": "Desert",
+    "paletteLuxe": "Luxe",
+    "fontTitle": "Typography",
+    "fontModern": "Modern",
+    "fontElegant": "Elegant",
+    "cardTitle": "Card Style",
+    "cardImmersive": "Immersive",
+    "cardClassic": "Classic"
   }
 
   

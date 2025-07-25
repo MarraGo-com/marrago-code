@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------
-// 1. NEW FILE: /src/lib/utils.ts
-// This is a new file for helper functions we can use across the project.
+// 2. UPDATED FILE: /src/lib/utils.ts
+// We are adding a helper function to create clean text summaries.
 // -------------------------------------------------------------------------
 /**
  * Strips Markdown syntax from a string and truncates it.
@@ -8,10 +8,10 @@
  * @param length - The desired length of the output string.
  * @returns A plain text string summary.
  */
-export function createSummary(markdown: string, length: number = 150): string {
+export function createSummary(markdown: string, length: number = 100): string {
   if (!markdown) return '';
 
-  // 1. Remove Markdown syntax using regular expressions
+  // This removes Markdown syntax using regular expressions
   const plainText = markdown
     .replace(/#{1,6}\s/g, '') // Headings
     .replace(/(\*\*|__)(.*?)\1/g, '$2') // Bold
@@ -21,7 +21,6 @@ export function createSummary(markdown: string, length: number = 150): string {
     .replace(/`{1,3}(.*?)`{1,3}/g, '$1') // Code
     .replace(/(\r\n|\n|\r)/gm, ' '); // Newlines
 
-  // 2. Truncate the text
   if (plainText.length <= length) {
     return plainText;
   }

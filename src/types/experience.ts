@@ -1,7 +1,7 @@
-// 1. NEW FILE: /src/types/experience.ts
-// Create a new 'types' folder in your 'src' directory for this file.
 // -------------------------------------------------------------------------
-// Define the shape of a single translation object
+// 1. UPDATED FILE: /src/types/experience.ts
+// We are ensuring the 'duration' field is part of our central type definition.
+// -------------------------------------------------------------------------
 export interface Translation {
   title: string;
   description: string;
@@ -11,26 +11,26 @@ export interface Translation {
   itinerary?: string;
 }
 
-// Define the shape of a gallery image object
 export interface GalleryImage {
     path: string;
     hidden: boolean;
 }
 
-// Define the comprehensive shape of our data
 export interface Experience {
   id: string;
-  title: string; // The English title for display in the table
   price: { amount: number; currency: string; prefix: string; };
   locationId: string;
   coverImage: string;
   galleryImages?: GalleryImage[];
-  description: string; // The English description
-  duration?: string; // e.g., "3 hours"
+  duration: string; // The duration of the experience
+  tags?: string[];
   translations: {
     en?: Translation;
     fr?: Translation;
-    // This allows for other languages to be added in the future
     [key: string]: Translation | undefined;
   };
+  // The title and description for display are prepared by the parent component
+  // and are not part of the core database type.
+  title?: string;
+  description?: string;
 }

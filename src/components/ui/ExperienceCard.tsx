@@ -1,75 +1,28 @@
-// /src/components/ui/ExperienceCard.tsx
+// -------------------------------------------------------------------------
+// 5. UPDATED FILE: /src/components/ui/ExperienceCard.tsx
+// This component is now a simple "switcher" that chooses which card style to render.
+// -------------------------------------------------------------------------
 'use client';
 
 import React from 'react';
-import { Card, CardContent, CardMedia, Typography, Button, CardActions } from '@mui/material';
-import { useTranslations } from 'next-intl';
-import { Link } from '@/i18n/navigation'; // <-- Use the i18n Link
-import { locations } from '@/config/locations';
+import { siteConfig } from '@/config/site';
+import { Experience } from '@/types/experience';
+import ImmersiveExperienceCard from '../cards/ImmersiveExperienceCard';
+import ClassicExperienceCard from '../cards/ClassicExperienceCard';
 
-// Update the props to match our new data structure
 interface ExperienceCardProps {
-  id: string;
-  title: string;
-  description: string;
-  coverImage: string;
-  price: {
-    amount: number;
-    currency: string;
-    prefix: string;
-  };
-  locationId: string;
+  experience: Experience;
 }
 
-export default function ExperienceCard({ id, title, description, coverImage, price, locationId }: ExperienceCardProps) {
-  const t = useTranslations('ExperienceCard');
-  const t_price = useTranslations('Price');
+export default function ExperienceCard({ experience }: ExperienceCardProps) {
+  // Read the card style from the central configuration file
+  const cardStyle = siteConfig.theme.cardStyle;
 
-  // Find the full location object based on the ID
-  const location = locations.find(loc => loc.id === locationId);
+  // Render the appropriate card component based on the configuration
+  if (cardStyle === 'classic') {
+    return <ClassicExperienceCard experience={experience} />;
+  }
 
-  // Format the price string for display
-  const formattedPrice = price?.amount 
-    ? `${t_price(price.prefix)} ${price.amount} ${price.currency}`
-    : t_price('contactUs');
-
-  return (
-    <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-      <CardMedia
-        component="img"
-        height="200"
-        image={coverImage}
-        alt={title}
-        sx={{ height: 192, objectFit: 'cover' }}
-      />
-      <CardContent sx={{ flexGrow: 1 }}>
-        {/* Display the location name if it exists */}
-        {location && (
-          <Typography variant="body2" color="text.secondary" gutterBottom>
-            {location.name}
-          </Typography>
-        )}
-        <Typography gutterBottom variant="h5" component="div">
-          {title}
-        </Typography>
-        <Typography variant="body2" color="text.secondary" sx={{
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            display: '-webkit-box',
-            WebkitLineClamp: '3',
-            WebkitBoxOrient: 'vertical',
-        }}>
-          {description}
-        </Typography>
-      </CardContent>
-      <CardActions sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', p: 2 }}>
-        <Typography variant="h6" color="primary">
-          {formattedPrice}
-        </Typography>
-        <Button size="small" variant="contained" component={Link} href={`/experiences/${id}`}>
-          {t('learnMoreButton')}
-        </Button>
-      </CardActions>
-    </Card>
-  );
+  // Default to the immersive style
+  return <ImmersiveExperienceCard experience={experience} />;
 }

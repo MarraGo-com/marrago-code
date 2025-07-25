@@ -1,28 +1,34 @@
-// src/components/ThemeRegistry.tsx
+// -------------------------------------------------------------------------
+// 1. UPDATED FILE: /src/providers/ThemeRegistry.tsx
+// This component now reads the theme settings dynamically from our new context.
+// -------------------------------------------------------------------------
 'use client';
+
 import React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 import CssBaseline from '@mui/material/CssBaseline';
-
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { getThemeOptions } from '@/config/theme';
+import { useThemeContext } from '@/contexts/ThemeContext'; // <-- 1. Import our new context hook
 
 export default function ThemeRegistry({ children }: { children: React.ReactNode }) {
-  // Check the user's system preference for dark mode
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  
+  // 2. Get the dynamic theme settings from the context
+  const { palette, font } = useThemeContext();
+  
+  const mode = prefersDarkMode ? 'dark' : 'light';
 
-  // Create a theme instance based on the preference.
-  // useMemo ensures the theme is only recreated when the mode changes.
+  // 3. The theme is now recreated whenever the mode, palette, or font changes.
   const theme = React.useMemo(
-    () => createTheme(getThemeOptions(prefersDarkMode ? 'dark' : 'light')),
-    [prefersDarkMode],
+    () => createTheme(getThemeOptions(mode, palette, font)),
+    [mode, palette, font],
   );
 
   return (
     <AppRouterCacheProvider options={{ enableCssLayer: true }}>
       <ThemeProvider theme={theme}>
-        {/* CssBaseline kickstarts an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
         {children}
       </ThemeProvider>

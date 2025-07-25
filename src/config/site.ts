@@ -1,5 +1,13 @@
 // /src/config/site.ts
 
+// Define the available palette names. This ensures type safety.
+export type PaletteName = 'coastalBlue' | 'desertSunset' | 'luxeNoir';
+// Define the available style options
+
+export type FontChoice = 'poppins' | 'lora';
+// --- NEW: Define the available style options ---
+export type CardStyle = 'immersive' | 'classic';
+
 // This is the new, single source of truth for all client-specific data.
 // When you get a new client, you will duplicate the template and edit only this file.
 export const LOCATIONS = [
@@ -42,9 +50,16 @@ export type SiteConfig = {
     primaryColor: string;
     secondaryColor: string;
   };
-
+ 
   // Content Specific
   locations: { id: string; name: string; }[];
+  // The theme property now just holds the name of the chosen palette.
+   theme: {
+    palette: PaletteName;
+    font: FontChoice;
+    cardStyle: CardStyle;
+    
+  };
 };
 
 // --- CONFIGURATION FOR YOUR FIRST CLIENT (YOUR BROTHER) ---
@@ -57,6 +72,12 @@ export const siteConfig: SiteConfig = {
   siteDescription: "Authentic, private trekking tours in the High Atlas Mountains, led by local Berber guides.",
   keywords: ["atlas mountains trek", "morocco hiking", "imlil guide", "berber village tour", "toubkal trek"],
   
+  theme: {
+    palette: 'desertSunset', // Options: 'coastalBlue', 'desertSunset', 'luxeNoir'
+    font: 'lora',       // Options: 'poppins' (modern), 'lora' (elegant)
+    cardStyle: 'immersive',  // Options: 'classic' (with overlay), 'modern' (clean)
+  },
+
   // Contact & Social
   contact: {
     email: "contact@hassan-treks.com",

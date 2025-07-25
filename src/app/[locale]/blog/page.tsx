@@ -4,8 +4,8 @@
 // -------------------------------------------------------------------------
 import {Grid, Box, Typography, Container } from "@mui/material";
 
-import Header from "@/components/ui/Header";
-import Footer from "@/components/ui/Footer";
+// import Header from "@/components/ui/Header";
+// import Footer from "@/components/ui/Footer";
 import ArticleCard from "@/components/blog/ArticleCard";
 import { getTranslations } from "next-intl/server";
 import { Metadata } from "next";
@@ -46,7 +46,7 @@ export default async function BlogPage() {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', bgcolor: 'background.default' }}>
-      <Header />
+      {/* <Header /> */}
       <main className="flex-grow">
         <Container maxWidth="lg" sx={{ py: { xs: 4, md: 8 } }}>
           <Box sx={{ textAlign: 'center', mb: 8 }}>
@@ -73,7 +73,7 @@ export default async function BlogPage() {
           )}
         </Container>
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </Box>
   );
 }

@@ -1,6 +1,6 @@
 // /src/app/about/page.tsx
-import Header from "@/components/ui/Header";
-import Footer from "@/components/ui/Footer";
+//import Header from "@/components/ui/Header";
+//import Footer from "@/components/ui/Footer";
 import AboutSection from "@/components/sections/AboutSection";
 import { Box } from "@mui/material";
 import { Metadata } from "next";
@@ -38,11 +38,11 @@ export default function AboutPage() {
       minHeight: '100vh',
       bgcolor: 'background.default' // <-- Uses the theme's background color
     }}>
-      <Header />
+      {/* <Header /> */}
       <main className="flex-grow">
         <AboutSection />
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </Box>
   );
 }

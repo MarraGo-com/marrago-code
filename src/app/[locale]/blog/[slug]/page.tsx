@@ -3,8 +3,8 @@
 // This page is now updated to render Markdown content.
 // -------------------------------------------------------------------------
 import { Box, Typography, Container } from "@mui/material";
-import Header from "@/components/ui/Header";
-import Footer from "@/components/ui/Footer";
+// import Header from "@/components/ui/Header";
+// import Footer from "@/components/ui/Footer";
 import { Metadata } from "next";
 import { notFound } from 'next/navigation';
 import ReactMarkdown from 'react-markdown'; // <-- 1. IMPORT THE MARKDOWN COMPONENT
@@ -77,7 +77,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', bgcolor: 'background.default' }}>
-      <Header />
+      {/* <Header /> */}
       <main className="flex-grow">
         <Container maxWidth="md" sx={{ py: { xs: 4, md: 8 } }}>
           <article>
@@ -119,7 +119,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
           </article>
         </Container>
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </Box>
   );
 }

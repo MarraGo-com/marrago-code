@@ -36,7 +36,8 @@ async function getExperiences(locale: string) {
         // Pass the structured price object and the correct locationId
         price: data.price || { amount: 0, currency: 'MAD', prefix: 'from' },
         locationId: data.locationId || 'unknown', // Pass the ID, not a string 'N/A'
-
+        tags: data.tags || [], // Ensure tags is an array
+        duration: data.duration || 'N/A', // Ensure duration is present
         coverImage: data.coverImage || '',
         galleryImages: data.galleryImages || [], // Ensure galleryImages is an array
         translations: data.translations || {},

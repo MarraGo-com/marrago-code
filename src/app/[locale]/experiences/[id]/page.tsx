@@ -4,8 +4,8 @@
 // This page now only needs to render the main layout and the refactored details component.
 // The review components will be moved inside the main details component later if needed.
 // -------------------------------------------------------------------------
-import Header from "@/components/ui/Header";
-import Footer from "@/components/ui/Footer";
+// import Header from "@/components/ui/Header";
+
 import ExperienceDetails from "@/components/sections/ExperienceDetails";
 import { Box, Container, Divider } from "@mui/material";
 import ReviewsList from "@/components/reviews/ReviewsList";
@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: { params: ExperienceMetadata 
   return generateDynamicPageMetadata({
     title: experience.translations?.[locale]?.title || experience.translations?.fr?.title || 'Experience Not Available',
     description: experience.translations?.[locale]?.description.substring(0, 160) + '...' || experience.translations?.fr?.description.substring(0, 160) + '...' ,
-    images: [{ src: experience.coverImage, alt: experience.title }],
+    images: [{ src: experience.coverImage || '', alt: experience.title || '' }],
     pathname: `/experiences/${id}`,
     url: process.env.NEXT_PUBLIC_API_URL || "https://upmerce.com", // Ensure you have this environment variable set
 
@@ -101,7 +101,7 @@ export default async function ExperienceDetailPage({ params }: { params: Params 
         overflowX: 'hidden',
       }
     }}>
-      <Header />
+      {/* <Header /> */}
       {/* ✅ **FIX:** Add the corresponding className here */}
       <main className="main-content flex-grow">
         <ExperienceDetails experience={experience} />
@@ -114,7 +114,7 @@ export default async function ExperienceDetailPage({ params }: { params: Params 
           </Container>
         )}
       </main>
-      <Footer />
+     {/*  <Footer /> */}
     </Box>
       </main>
     </>

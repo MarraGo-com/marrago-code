@@ -1,6 +1,6 @@
 // src/app/page.tsx
-import Header from "@/components/ui/Header";
-import Footer from "@/components/ui/Footer";
+// import Header from "@/components/ui/Header";
+// import Footer from "@/components/ui/Footer";
 import HeroSection from "@/components/sections/HeroSection";
 import FeaturedExperiences from "@/components/sections/FeaturedExperiences";
 import WhyChooseUs from "@/components/sections/WhyChooseUs"; // <-- IMPORT HERE
@@ -11,6 +11,7 @@ import NewsletterSection from "@/components/sections/NewsletterSection";
 import { Metadata } from "next";
 import { generateStaticPageMetadata } from "@/lib/metadata";
 import { getStaticPageMetadata } from "@/config/static-metadata";
+import AnimatedSection from "@/components/custom/AnimatedSection";
 
 
 
@@ -40,18 +41,40 @@ export async function generateMetadata({
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
-      <main className="flex-grow">
-        {/* The new, professional order based on our analysis */}
+      {/* <Header /> */}
+     <main className="flex-grow">
+        {/* The HeroSection doesn't need animation as it's visible on page load */}
         <HeroSection />
-        <SocialProofSection />
-        <FeaturedExperiences />
-        <WhyChooseUs />
-        <TestimonialsSection />
-        <BlogHighlightsSection />
-        <NewsletterSection />
+
+        {/* --- 2. Wrap each subsequent section with the AnimatedSection component --- */}
+        {/* We add a small, incremental delay to each one for a staggered effect. */}
+        
+        <AnimatedSection delay={0.2}>
+          <SocialProofSection />
+        </AnimatedSection>
+        
+        <AnimatedSection delay={0.3}>
+          <FeaturedExperiences />
+        </AnimatedSection>
+        
+        <AnimatedSection delay={0.3}>
+          <WhyChooseUs />
+        </AnimatedSection>
+        
+        <AnimatedSection delay={0.3}>
+          <TestimonialsSection />
+        </AnimatedSection>
+        
+        <AnimatedSection delay={0.3}>
+          <BlogHighlightsSection />
+        </AnimatedSection>
+        
+        <AnimatedSection delay={0.3}>
+          <NewsletterSection />
+        </AnimatedSection>
+
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

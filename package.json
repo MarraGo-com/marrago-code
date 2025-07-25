@@ -21,6 +21,7 @@
     "date-fns": "^4.1.0",
     "firebase": "^11.9.1",
     "firebase-admin": "^13.4.0",
+    "framer-motion": "^12.23.9",
     "leaflet": "^1.9.4",
     "next": "15.3.4",
     "next-intl": "^4.3.1",

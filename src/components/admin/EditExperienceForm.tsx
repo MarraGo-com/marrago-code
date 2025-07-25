@@ -47,6 +47,11 @@ export default function EditExperienceForm({ open, onClose, experience }: EditEx
   const [uploadingFiles, setUploadingFiles] = useState<{ name: string; progress: number }[]>([]);
   const [error, setError] = useState<string | null>(null);
 
+  // --- 1. NEW HANDLER for the tags field ---
+  const handleTagsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData(p => ({...p, tags: event.target.value }));
+  };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!experience) return;
@@ -144,6 +149,17 @@ export default function EditExperienceForm({ open, onClose, experience }: EditEx
               </Select>
             </FormControl>
         </Box>
+        {/* --- 2. NEW TEXTFIELD for tags --- */}
+        <TextField
+            name="tags"
+            label="Tags (comma-separated)"
+            fullWidth
+            value={formData.tags}
+            onChange={handleTagsChange}
+            helperText="e.g., Best Seller, New, Popular"
+            sx={{ mb: 2 }}
+        />
+        
         <Divider sx={{ my: 2 }}><Chip label="Cover Image" /></Divider>
         <TextField disabled margin="dense" label="Current Cover Image URL" type="text" fullWidth value={formData.coverImage} sx={{ mb: 1 }} />
         <Button variant="outlined" component="label" fullWidth disabled={isCompressing || loading}>

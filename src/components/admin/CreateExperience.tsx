@@ -39,7 +39,11 @@ export default function CreateExperience() {
   const [loading, setLoading] = useState(false);
   const [uploadingFiles, setUploadingFiles] = useState<{ name: string; progress: number }[]>([]);
   const [error, setError] = useState<string | null>(null);
-
+  
+  // --- HANDLER for the tags field ---
+  const handleTagsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData(p => ({...p, tags: event.target.value }));
+  };
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!coverImageFile) {
@@ -153,6 +157,16 @@ export default function CreateExperience() {
                 </Select>
                 </FormControl>
             </Box>
+            {/* --- THIS IS THE NEW TEXTFIELD for tags --- */}
+            <TextField
+                name="tags"
+                label="Tags (comma-separated)"
+                fullWidth
+                value={formData.tags}
+                onChange={handleTagsChange}
+                helperText="e.g., Best Seller, New, Popular"
+                sx={{ mb: 2 }}
+            />
             <Divider sx={{ my: 2 }}><Chip label="Cover Image" /></Divider>
             <Button variant="outlined" component="label" fullWidth disabled={isCompressing || loading}>
                 {isCompressing ? 'Compressing...' : 'Upload Cover Image (Required)'}

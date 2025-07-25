@@ -216,6 +216,29 @@
     "cancelledTitle": "Paiement Annulé",
     "cancelledSubtitle": "Votre réservation n'a pas été complétée. Vous n'avez pas été facturé. Vous pouvez retourner à notre page d'expériences pour réessayer.",
     "backButton": "Retour aux Expériences"
-  }
+  },
+  "MegaMenu": {
+    "destinationsTitle": "Destinations",
+    "stylesTitle": "Styles de Voyage",
+    "featuredTitle": "Circuit Vedette",
+    "styleAdventure": "Aventure",
+    "styleCultural": "Culturel",
+    "styleRelaxation": "Détente",
+    "styleFamily": "Famille"
+  },
+  "ThemeSwitcher": {
+  "tooltip": "Personnaliser le thème",
+  "panelTitle": "Options du thème",
+  "colorTitle": "Palette de couleurs",
+  "paletteCoastal": "Côtière",
+  "paletteDesert": "Désert",
+  "paletteLuxe": "Luxe",
+  "fontTitle": "Typographie",
+  "fontModern": "Moderne",
+  "fontElegant": "Élégant",
+  "cardTitle": "Style de la carte",
+  "cardImmersive": "Immersif",
+  "cardClassic": "Classique"
+}
 
 }

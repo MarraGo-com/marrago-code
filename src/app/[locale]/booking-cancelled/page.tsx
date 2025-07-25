@@ -3,8 +3,6 @@
 // This page is also updated to use the new button component.
 // -------------------------------------------------------------------------
 import { Box as CancelBox, Typography as CancelTypography, Container as CancelContainer, Paper as CancelPaper } from "@mui/material";
-import Header from "@/components/ui/Header";
-import Footer from "@/components/ui/Footer";
 import CancelIcon from '@mui/icons-material/Cancel';
 import { getTranslations } from "next-intl/server";
 import BackToExperiencesButton from "@/components/ui/BackToExperiencesButton"; // <-- Import the new button
@@ -14,7 +12,7 @@ export default async function BookingCancelledPage() {
 
   return (
     <CancelBox sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', bgcolor: 'background.default' }}>
-      <Header />
+      {/* <Header /> */}
       <main className="flex-grow">
         <CancelContainer maxWidth="sm" sx={{ py: { xs: 4, md: 8 }, textAlign: 'center' }}>
           <CancelPaper sx={{ p: 4 }}>
@@ -29,7 +27,7 @@ export default async function BookingCancelledPage() {
           </CancelPaper>
         </CancelContainer>
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </CancelBox>
   );
 }
