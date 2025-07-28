@@ -40,6 +40,7 @@ export default function TeamMemberCard({ image, name, title, bio }: TeamMemberCa
             src={image}
             alt={name}
             fill
+            loading="lazy"
             style={{ objectFit: 'cover' }}
             sizes="120px"
         />

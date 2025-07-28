@@ -22,7 +22,7 @@ export default function MegaMenuPanel() {
 
   const featuredTour = {
     title: t('featuredTitle'),
-    image: '/images/4x4-sahara.jpg',
+    image: '/images/4x4-sahara.webp',
     href: '/experiences/3tIyqvneqdbExbm0Ys94',
   };
 
@@ -96,6 +96,7 @@ export default function MegaMenuPanel() {
                    src={featuredTour.image}
                    alt={featuredTour.title}
                    fill
+                   loading='lazy'
                    style={{ objectFit: 'cover' }}
                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                  />

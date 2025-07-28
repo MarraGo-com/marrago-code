@@ -20,7 +20,7 @@ import Image from 'next/image';
 
 export default function AboutSection() {
   const t = useTranslations('AboutSection');
-  const aboutImageUrl = '/images/tagine-cooking2.jpg';
+  const aboutImageUrl = '/images/tagine-cooking2.webp';
 
   const values = [
     { icon: <PublicIcon fontSize="large" color="primary" />, title: t('value1_title'), description: t('value1_desc') },
@@ -30,9 +30,9 @@ export default function AboutSection() {
 
   // Sample data for the new team section
   const teamMembers = [
-    { image: '/images/hassan-al-fassi.png', name: t('team1_name'), title: t('team1_title'), bio: t('team1_bio') },
-    { image: '/images/fatim-zahra.png', name: t('team2_name'), title: t('team2_title'), bio: t('team2_bio') },
-    { image: '/images/youssef-adnani.png', name: t('team3_name'), title: t('team3_title'), bio: t('team3_bio') },
+    { image: '/images/hassan-al-fassi.webp', name: t('team1_name'), title: t('team1_title'), bio: t('team1_bio') },
+    { image: '/images/fatim-zahra.webp', name: t('team2_name'), title: t('team2_title'), bio: t('team2_bio') },
+    { image: '/images/youssef-adnani.webp', name: t('team3_name'), title: t('team3_title'), bio: t('team3_bio') },
   ];
 
   return (
@@ -70,6 +70,7 @@ export default function AboutSection() {
                 src={aboutImageUrl}
                 alt={t('imageAlt')}
                 fill // This makes the image fill its parent container
+                loading='lazy' // Lazy load the image
                 style={{ objectFit: 'cover' }} // This makes the image cover the area without distortion
                 sizes="(max-width: 768px) 100vw, 50vw"
               />

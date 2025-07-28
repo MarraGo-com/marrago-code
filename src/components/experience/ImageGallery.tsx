@@ -32,6 +32,7 @@ export default function ImageGallery({ coverImage, galleryImages = [], altText }
           src={coverImage}
           alt={altText}
           fill
+          loading="lazy"
           style={{ objectFit: 'cover' }}
           priority
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -50,6 +51,7 @@ export default function ImageGallery({ coverImage, galleryImages = [], altText }
               src={visibleImages[i].path} 
               alt={`thumbnail ${i + 1}`}
               fill
+              loading="lazy"
               style={{ objectFit: 'cover' }}
               sizes="80px"
             />
@@ -115,6 +117,7 @@ export default function ImageGallery({ coverImage, galleryImages = [], altText }
                 src={img.path} 
                 alt={`${altText} - view ${index + 1}`}
                 fill
+                loading="lazy"
                 style={{ objectFit: 'cover' }}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 priority={index === 0} // Prioritize loading the first image

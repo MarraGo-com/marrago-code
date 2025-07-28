@@ -42,7 +42,15 @@ export default function ClassicExperienceCard({ experience }: ExperienceCardProp
       }}
     >
       <Box sx={{ position: 'relative', height: 200, overflow: 'hidden' }}>
-        <Image src={experience.coverImage} alt={translation?.title || ''} fill style={{ objectFit: 'cover' }} sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw" className="transition-transform duration-500 ease-in-out group-hover:scale-110" />
+        <Image 
+           src={experience.coverImage}  
+           alt={translation?.title || ''} 
+           fill 
+           loading='lazy'
+           style={{ objectFit: 'cover' }} 
+           sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw" 
+           className="transition-transform duration-500 ease-in-out group-hover:scale-110" 
+           />
       </Box>
       <CardContent sx={{ flexGrow: 1, p: 2 }}>
         {location && (<Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>{location.name}</Typography>)}

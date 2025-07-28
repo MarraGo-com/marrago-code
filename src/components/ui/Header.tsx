@@ -114,7 +114,7 @@ export default function Header() {
 
               <Box sx={{ flexGrow: { xs: 1, md: 0 }, display: 'flex', justifyContent: { xs: 'center', md: 'flex-start' } }}>
                 <Link href="/" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center' }}>
-                  <Image src="/favicon.ico" alt={siteConfig.brandName} width={40} height={40} priority style={{ marginRight: '1rem' }} />
+                  <Image src="/favicon.ico"  alt={siteConfig.brandName} width={40} height={40} priority style={{ marginRight: '1rem' }} />
                   <Typography variant="h6" component="div" sx={{ fontWeight: 'bold' }}>
                     {siteConfig.siteName}
                   </Typography>

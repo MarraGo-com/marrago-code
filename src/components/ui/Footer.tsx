@@ -110,6 +110,7 @@ export default function Footer() {
             <Image 
               src="/upmerce.webp"
               alt="upmerce logo"
+              loading='lazy'
               width={20}
               height={20}
             />

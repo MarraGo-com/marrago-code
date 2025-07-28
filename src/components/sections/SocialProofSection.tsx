@@ -78,6 +78,7 @@ export default function SocialProofSection() {
                   src={logo.url}
                   alt={`${logo.name} - ${siteConfig.siteName}`}
                   fill
+                  loading='lazy'
                   style={{
                     objectFit: 'contain',
                   }}

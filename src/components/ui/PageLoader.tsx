@@ -35,6 +35,7 @@ export default function PageLoader() {
         <Image
           src="/favicon.ico" // Using your site's favicon as the logo
           alt={`${siteConfig.siteName} Logo`}
+          loading='lazy'
           width={80}
           height={80}
         />

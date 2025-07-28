@@ -102,6 +102,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
                 src={article.coverImage}
                 alt={translation?.title || article.title}
                 fill // Makes the image fill the parent container
+                loading="lazy" // Lazy load the image
                 style={{ objectFit: 'cover' }} // Ensures the image covers the area without distortion
                 priority // Preload this image as it's the LCP (Largest Contentful Paint)
               />
