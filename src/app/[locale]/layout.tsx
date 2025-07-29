@@ -54,12 +54,12 @@ export default async function RootLayout({
         {/* Preconnect hints to speed up connections */}
         <link rel="preconnect" href="https://tourism-template-prod.firebaseapp.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://firebasestorage.googleapis.com" crossOrigin="anonymous" />
-         <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(mainJsonLd),
-          }}
-        />
+          <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(mainJsonLd).replace(/</g, '\\u003c'),
+        }}
+      />
         {/* We now render the deferred stylesheets using our new Client Component */}
         <DeferredStylesheets />
       </head>

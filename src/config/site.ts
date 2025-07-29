@@ -74,7 +74,7 @@ export const siteConfig: SiteConfig = {
   // Brand & SEO
   brandName: "Hassan's Atlas Treks", // The official business name
   siteName: "Hassan's Atlas Treks", // The name displayed on the site
-  businessType: "Tour Operator",
+  businessType: "TravelAgency",
   addressLocality: "Imlil",
   addressRegion: "Souss-Massa",
   addressCountry: "MA", // ISO code for Morocco
