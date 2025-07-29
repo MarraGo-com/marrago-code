@@ -11,7 +11,6 @@ import LazyLoadSection from "@/components/custom/LazyLoadSection"; // <-- 1. Imp
 import { Metadata } from "next";
 import { getStaticPageMetadata } from "@/config/static-metadata";
 import { generateStaticPageMetadata } from "@/lib/metadata";
-import { siteConfig } from "@/config/site";
 
 type MetadataParams = Promise<{ locale: 'en' | 'fr' }>;
 
@@ -25,29 +24,9 @@ export async function generateMetadata({
   const { locale } = await params;
   const metadata = getStaticPageMetadata('homepage', locale);
 
-  // --- 3. Create the JSON-LD Structured Data object ---
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': siteConfig.businessType,
-    name: siteConfig.brandName,
-    url: url,
-    logo: `${url}${siteConfig.logo}`,
-    contactPoint: {
-      '@type': 'ContactPoint',
-      telephone: siteConfig.contact.phone,
-      contactType: 'Customer Service',
-      email: siteConfig.contact.email,
-    },
-    address: {
-        '@type': 'PostalAddress',
-        streetAddress: siteConfig.contact.address,
-        addressLocality: siteConfig.addressLocality || 'Agadir', // This can be made dynamic in siteConfig later
-        addressRegion: siteConfig.addressRegion ||'Souss-Massa',
-        addressCountry:siteConfig.addressCountry || 'MA'
-    }
-  };
+ 
   
-  const finalMetadata = generateStaticPageMetadata({
+  return generateStaticPageMetadata({
     title: metadata.title,
     description: metadata.description,
     images: [metadata.ogImage],
@@ -55,12 +34,6 @@ export async function generateMetadata({
     url: url, // Ensure you have this environment variable set
   });
  
-   // Inject the JSON-LD script into the page's head
-  finalMetadata.other = {
-    ...finalMetadata.other,
-    'script[type="application/ld+json"]': JSON.stringify(jsonLd)
-  };
-  return finalMetadata;
 }
 export default function Home() {
   return (

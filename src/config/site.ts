@@ -78,7 +78,7 @@ export const siteConfig: SiteConfig = {
   addressLocality: "Imlil",
   addressRegion: "Souss-Massa",
   addressCountry: "MA", // ISO code for Morocco
-  logo: "/logo.svg", // Path to the logo image
+  logo: "/favicon.ico", // Path to the logo image
   siteDescription: "Authentic, private trekking tours in the High Atlas Mountains, led by local Berber guides.",
   keywords: ["atlas mountains trek", "morocco hiking", "imlil guide", "berber village tour", "toubkal trek"],
   
@@ -200,3 +200,26 @@ export const metadataStore = {
     }
   }
 } as const;
+// --- 3. Create the JSON-LD Structured Data object as a function ---
+export function getMainJsonLd({url}: { url: string }) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': siteConfig.businessType,
+    name: siteConfig.brandName,
+    url: url,
+    logo: `${url}${siteConfig.logo}`,
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: siteConfig.contact.phone,
+      contactType: 'Customer Service',
+      email: siteConfig.contact.email,
+    },
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: siteConfig.contact.address,
+      addressLocality: siteConfig.addressLocality || 'Agadir', // This can be made dynamic in siteConfig later
+      addressRegion: siteConfig.addressRegion || 'Souss-Massa',
+      addressCountry: siteConfig.addressCountry || 'MA'
+    }
+  };
+}

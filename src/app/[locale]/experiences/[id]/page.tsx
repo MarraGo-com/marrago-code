@@ -85,12 +85,11 @@ export default async function ExperienceDetailPage({ params }: { params: Params 
     }),
   };
   return (
-    <>
-       <script
+      <section>
+        <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <main>
          <Box sx={{ 
       display: 'flex', 
       flexDirection: 'column', 
@@ -115,8 +114,7 @@ export default async function ExperienceDetailPage({ params }: { params: Params 
         )}
       </main>
      {/*  <Footer /> */}
-    </Box>
-      </main>
-    </>
+         </Box>
+      </section>
   );
 }

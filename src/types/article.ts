@@ -6,6 +6,9 @@
 export interface ArticleTranslation {
   title: string;
   content: string;
+  description: string;
+  locale: string; // e.g., 'en', 'fr'
+  slug: string; // Unique slug for the article in this locale
 }
 
 // Define the comprehensive shape of our article data

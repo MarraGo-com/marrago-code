@@ -65,18 +65,36 @@ export default async function ArticlePage({ params }: { params: Params }) {
   if (!article) {
     notFound();
   }
-
+  
   const translation = article.translations?.[locale] || article.translations?.en;
   const formattedDate = new Date(article.createdAt).toLocaleDateString(locale, {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
   });
-
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'TouristTrip',
+    name: translation?.title,
+    description: translation?.description?.substring(0, 5000), // Max length for description
+    image: article.coverImage,
+    offers: {
+      '@type': 'Offer',
+      price: '0', // Assuming no price for articles
+      priceCurrency: 'MAD',
+      availability: 'https://schema.org/InStock',
+    }
+    
+  };
   
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', bgcolor: 'background.default' }}>
+    <section> 
+         <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', bgcolor: 'background.default' }}>
       {/* <Header /> */}
       <main className="flex-grow">
         <Container maxWidth="md" sx={{ py: { xs: 4, md: 8 } }}>
@@ -122,5 +140,6 @@ export default async function ArticlePage({ params }: { params: Params }) {
       </main>
       {/* <Footer /> */}
     </Box>
+    </section>
   );
 }

@@ -8,7 +8,7 @@ import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
-import { siteConfig } from "@/config/site";
+import { getMainJsonLd, siteConfig } from "@/config/site";
 import { lora, poppins } from "@/config/theme";
 import PageTransition from "@/components/custom/PageTransition";
 import ThemeRegistry from "@/providers/ThemeRegistry";
@@ -40,8 +40,11 @@ export default async function RootLayout({
 
   const messages = await getMessages();
  // const fontClass = siteConfig.theme.font === 'lora' ? lora.variable : poppins.variable;
+   const url = process.env.NEXT_PUBLIC_API_URL || "https://upmerce.com"; // Ensure you have this environment variable set
 
-  return (
+ const mainJsonLd = getMainJsonLd({url});
+ 
+ return (
     <html lang={locale}>
       <head>
         <meta charSet="UTF-8" />
@@ -51,7 +54,12 @@ export default async function RootLayout({
         {/* Preconnect hints to speed up connections */}
         <link rel="preconnect" href="https://tourism-template-prod.firebaseapp.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://firebasestorage.googleapis.com" crossOrigin="anonymous" />
-        
+         <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(mainJsonLd),
+          }}
+        />
         {/* We now render the deferred stylesheets using our new Client Component */}
         <DeferredStylesheets />
       </head>
