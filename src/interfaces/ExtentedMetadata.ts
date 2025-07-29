@@ -21,4 +21,5 @@ export default interface ExtendedMetadata extends Metadata {
        app?: TwitterAppMetada;
      };
      appleWebApp? : AppleWebApp;
+     other?: Record<string, string>;
    }

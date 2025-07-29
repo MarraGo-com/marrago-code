@@ -30,6 +30,11 @@ export type SiteConfig = {
   // Brand & SEO
   brandName: string;
   siteName: string;
+  businessType: string; // e.g., 'Travel Agency', 'Tour Operator'
+  addressLocality?: string; // e.g., 'Agadir'
+  addressRegion?: string; // e.g., 'Souss-Massa'
+  addressCountry?: string; // e.g., 'MA' for Morocco
+  logo: string; // Path to the logo image, e.g., "/images/logo.png"
   siteDescription: string;
   keywords: string[];
   
@@ -69,6 +74,11 @@ export const siteConfig: SiteConfig = {
   // Brand & SEO
   brandName: "Hassan's Atlas Treks", // The official business name
   siteName: "Hassan's Atlas Treks", // The name displayed on the site
+  businessType: "Tour Operator",
+  addressLocality: "Imlil",
+  addressRegion: "Souss-Massa",
+  addressCountry: "MA", // ISO code for Morocco
+  logo: "/logo.svg", // Path to the logo image
   siteDescription: "Authentic, private trekking tours in the High Atlas Mountains, led by local Berber guides.",
   keywords: ["atlas mountains trek", "morocco hiking", "imlil guide", "berber village tour", "toubkal trek"],
   

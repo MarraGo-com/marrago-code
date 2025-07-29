@@ -26,7 +26,8 @@ export const ICONS= {
   };
   
   export const OTHER = {
-    custom: ['meta1', 'meta2'],
+  meta1: 'value1',
+  meta2: 'value2',
   };
   
   export const REFERRER = ""; 

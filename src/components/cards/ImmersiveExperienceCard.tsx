@@ -1,7 +1,4 @@
-// -------------------------------------------------------------------------
-// 3. NEW FILE: /src/components/cards/ImmersiveExperienceCard.tsx
-// This is your existing, beautiful "immersive" card design.
-// -------------------------------------------------------------------------
+// /src/components/cards/ImmersiveExperienceCard.tsx
 'use client';
 
 import React from 'react';
@@ -52,12 +49,14 @@ export default function ImmersiveExperienceCard({ experience }: ExperienceCardPr
           </Box>
         )}
         <Box sx={{ position: 'absolute', bottom: 16, left: 16 }}>
-            <Typography variant="h5" sx={{ color: 'white', fontWeight: 'bold' }}>{formattedPrice}</Typography>
+            {/* --- FIX 1: The price is now a <p> tag styled like an <h5> --- */}
+            <Typography variant="h5" component="p" sx={{ color: 'white', fontWeight: 'bold' }}>{formattedPrice}</Typography>
         </Box>
       </Box>
       <CardContent sx={{ flexGrow: 1, p: 2 }}>
         {location && (<Typography variant="body2" color="primary" sx={{ fontWeight: 'bold', mb: 1 }}>{location.name}</Typography>)}
-        <Typography gutterBottom variant="h6" component="div" sx={{ fontWeight: 'bold', color: 'text.primary', lineHeight: 1.3 }}>
+        {/* --- FIX 2: The title is now a semantically correct <h3> tag --- */}
+        <Typography gutterBottom variant="h6" component="h3" sx={{ fontWeight: 'bold', color: 'text.primary', lineHeight: 1.3 }}>
           {translation?.title}
         </Typography>
       </CardContent>

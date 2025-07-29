@@ -1,7 +1,4 @@
-// -------------------------------------------------------------------------
-// 2. UPDATED FILE: /src/components/ui/Footer.tsx
-// This component now uses the new AnimatedLink for a more professional feel.
-// -------------------------------------------------------------------------
+// /src/components/ui/Footer.tsx
 'use client';
 
 import React from 'react';
@@ -10,13 +7,13 @@ import { usePathname } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import AnimatedLink from './AnimatedLink'; // <-- 1. Import the new component
+import AnimatedLink from './AnimatedLink';
+import { siteConfig } from '@/config/site';
 
 // Import social media icons
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
-import { siteConfig } from '@/config/site';
 
 const InteractiveMap = dynamic(
   () => import('./InteractiveMap'),
@@ -36,8 +33,10 @@ export default function Footer() {
     <Box 
       component="footer" 
       sx={{ 
-        bgcolor: 'background.paper', 
-        color: 'text.secondary',
+        // --- THIS IS THE KEY FIX ---
+        // We now use our new, dedicated theme colors for better contrast.
+        bgcolor: 'footer.background', 
+        color: 'footer.text',
         py: { xs: 6, md: 8 },
         borderTop: 1,
         borderColor: 'divider'
@@ -54,11 +53,10 @@ export default function Footer() {
               {t('aboutText')}
             </Typography>
           </Grid>
-          <Grid  size={{ xs: 12, sm: 6, md: 4 }}>
-             <Typography variant="h6" sx={{ color: 'text.primary', fontWeight: 'bold', mb: 2 }}>
+          <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+            <Typography variant="h6" sx={{ color: 'text.primary', fontWeight: 'bold', mb: 2 }}>
               {t('linksTitle')}
             </Typography>
-            {/* --- 2. Use the new AnimatedLink component --- */}
             <Box component="nav" sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               <AnimatedLink href="/about">{t('aboutLink')}</AnimatedLink>
               <AnimatedLink href="/experiences">{t('experiencesLink')}</AnimatedLink>
@@ -66,8 +64,8 @@ export default function Footer() {
               <AnimatedLink href="/contact">{t('contactLink')}</AnimatedLink>
             </Box>
           </Grid>
-          <Grid  size={{ xs: 12, sm: 6, md: 4 }}>
-             <Typography variant="h6" sx={{ color: 'text.primary', fontWeight: 'bold', mb: 2 }}>
+          <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+            <Typography variant="h6" sx={{ color: 'text.primary', fontWeight: 'bold', mb: 2 }}>
               {t('contactTitle')}
             </Typography>
             <Typography variant="body2">{t('address')}</Typography>
@@ -100,7 +98,7 @@ export default function Footer() {
               display: 'inline-flex',
               alignItems: 'center',
               textDecoration: 'none',
-              color: 'text.secondary',
+              color: 'text.secondary', // This will inherit the corrected footer text color
               opacity: 0.7,
               transition: 'opacity 0.3s',
               '&:hover': { opacity: 1 }

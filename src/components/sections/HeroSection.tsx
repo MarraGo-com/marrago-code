@@ -13,35 +13,35 @@ export default function HeroSection() {
   const t = useTranslations('HeroSection');
   const theme = useTheme();
   
-  // --- 1. Detect if the user is on a mobile device ---
-  // We use MUI's `sm` breakpoint (600px) as the cutoff.
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const heroVideoUrl = '/videos/hero-video.mp4';
-  const heroImageUrl = '/images/hero-mobile-bg.webp'; // The new, optimized image
+  const heroImageUrl = '/images/hero-mobile-bg.webp';
 
   return (
     <Box
       sx={{
         position: 'relative',
+        // --- THIS IS THE KEY FIX ---
+        // We ensure the container has a defined height from the very first render.
+        // This reserves the space and prevents the content below it from "jumping".
         height: { xs: '90vh', md: '100vh' },
-        minHeight: 500,
+        minHeight: 500, // A fallback for very short screens
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         overflow: 'hidden',
+        // We set a background color as a fallback while the image/video loads
+        bgcolor: 'background.default',
       }}
     >
-      {/* --- 2. Conditionally render the background --- */}
-      {/* If the user is on mobile, we render the lightweight Image. */}
-      {/* If they are on desktop, we render the full video. */}
       {isMobile ? (
         <Image
           src={heroImageUrl}
           alt={t('title')}
           fill
           style={{ objectFit: 'cover' }}
-          priority // Crucial for mobile LCP performance
+          priority // This is crucial for LCP on mobile
           sizes="100vw"
         />
       ) : (
@@ -50,7 +50,7 @@ export default function HeroSection() {
           loop
           muted
           playsInline
-          poster={heroImageUrl} // Use the mobile image as a poster for faster initial load
+          poster={heroImageUrl} // Use the mobile image as a poster for faster initial paint
           style={{
             position: 'absolute',
             width: '100%',
@@ -70,7 +70,7 @@ export default function HeroSection() {
       {/* Overlay */}
       <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'linear-gradient(120deg, rgba(0,0,0,0.7) 40%, rgba(0,0,0,0.3) 100%)', zIndex: 1 }} />
       
-      {/* Content (remains the same) */}
+      {/* Content */}
       <Container maxWidth="md" sx={{ position: 'relative', zIndex: 2, textAlign: 'center', color: 'common.white' }}>
         <Typography variant="h2" component="h2" sx={{ fontWeight: 800, fontSize: { xs: '2.2rem', sm: '3rem', md: '4.5rem' }, mb: 3, textShadow: '0 4px 24px rgba(0,0,0,0.7)' }}>
           {t('title')}

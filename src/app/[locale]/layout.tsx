@@ -1,4 +1,7 @@
-// /src/app/[locale]/layout.tsx
+// -------------------------------------------------------------------------
+// 2. UPDATED FILE: /src/app/[locale]/layout.tsx
+// This file now imports and uses our new DeferredStylesheets component.
+// -------------------------------------------------------------------------
 import type { Metadata } from "next";
 import "@/app/globals.css";
 import { getMessages } from "next-intl/server";
@@ -14,6 +17,7 @@ import { ThemeContextProvider } from "@/contexts/ThemeContext";
 import Header from "@/components/ui/Header";
 import Footer from "@/components/ui/Footer";
 import ThemeSwitcher from "@/components/ui/ThemeSwitcher";
+import DeferredStylesheets from "@/components/custom/DeferredStylesheets"; // <-- Import the new component
 
 export const metadata: Metadata = {
   title: siteConfig.siteName,
@@ -22,14 +26,14 @@ export const metadata: Metadata = {
 
 type Props = {
   children: React.ReactNode;
-  params:  Promise<{ locale: string }>;
+  params: { locale: string };
 }
 
 export default async function RootLayout({
   children,
-  params ,
+  params: { locale },
 }: Readonly<Props>) {
-  const { locale } = await params;
+  
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
@@ -39,19 +43,17 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
-      {/* --- THIS IS THE KEY FIX --- */}
-      {/* We are adding preconnect hints and fixing the Leaflet CSS link */}
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/favicon.ico" />
         
-        {/* Preconnect hints to speed up connections to critical third-party domains */}
+        {/* Preconnect hints to speed up connections */}
         <link rel="preconnect" href="https://tourism-template-prod.firebaseapp.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://firebasestorage.googleapis.com" crossOrigin="anonymous" />
         
-        {/* The Leaflet CSS link, now without the 'integrity' attribute to prevent browser errors */}
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossOrigin=""/>
+        {/* We now render the deferred stylesheets using our new Client Component */}
+        <DeferredStylesheets />
       </head>
       <body className={`${poppins.variable} ${lora.variable}`}>
         <NextIntlClientProvider locale={locale} messages={messages}>
