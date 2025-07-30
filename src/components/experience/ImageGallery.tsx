@@ -34,6 +34,7 @@ export default function ImageGallery({ coverImage, galleryImages = [], altText }
           fill
           style={{ objectFit: 'cover' }}
           priority // Correctly prioritize this LCP image
+          fetchPriority='high'
           // --- THIS IS THE KEY FIX ---
           // This is a more accurate sizes prop for this specific layout.
           sizes="(max-width: 900px) 100vw, 58vw"
@@ -122,6 +123,7 @@ export default function ImageGallery({ coverImage, galleryImages = [], altText }
                 // --- THIS IS THE KEY FIX ---
                 // Only the first image is prioritized. The rest are lazy-loaded.
                 priority={index === 0}
+                fetchPriority={index === 0 ? 'high' : 'low'}
                 loading={index === 0 ? undefined : "lazy"}
               />
             </Box>

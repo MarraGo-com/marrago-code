@@ -38,6 +38,7 @@ export default function HeroSection() {
           fill
           style={{ objectFit: 'cover' }}
           priority // This correctly sets fetchpriority="high" for the image
+          fetchPriority='high'
           sizes="100vw"
         />
       ) : (

@@ -40,6 +40,7 @@ export default function PageLoader() {
           // --- THIS IS THE KEY FIX ---
           // We prioritize this image to ensure the loader appears quickly.
           priority 
+          fetchPriority='high'
         />
         <Typography variant="h6" sx={{ mt: 2, color: 'text.secondary' }}>
           Loading...

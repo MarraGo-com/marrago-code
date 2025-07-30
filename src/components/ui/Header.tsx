@@ -121,6 +121,7 @@ export default function Header() {
                     width={40} 
                     height={40} 
                     priority 
+                    fetchPriority='high'
                     style={{ marginRight: '1rem' }} 
                     sizes="40px"
                   />

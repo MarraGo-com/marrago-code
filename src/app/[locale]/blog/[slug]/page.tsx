@@ -124,6 +124,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
                   fill
                   style={{ objectFit: 'cover' }}
                   priority // Correctly prioritize this LCP image
+                  fetchPriority="high"
                   // --- THIS IS THE KEY FIX ---
                   // This tells the browser the image will be 100% of the screen width
                   // on small screens, but capped at 768px (the 'md' container width) on larger screens.
