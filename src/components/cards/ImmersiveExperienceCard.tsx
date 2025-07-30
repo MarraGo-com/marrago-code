@@ -41,7 +41,17 @@ export default function ImmersiveExperienceCard({ experience }: ExperienceCardPr
       }}
     >
       <Box sx={{ position: 'relative', height: 220, overflow: 'hidden' }}>
-        <Image src={experience.coverImage} loading='lazy' alt={translation?.title || ''} fill style={{ objectFit: 'cover' }} sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw" className="transition-transform duration-500 ease-in-out group-hover:scale-110" />
+        <Image 
+          src={experience.coverImage} 
+          loading='lazy' 
+          alt={translation?.title || ''} 
+          fill 
+          style={{ objectFit: 'cover' }} 
+          // --- THIS IS THE KEY FIX ---
+          // This new, more precise sizes prop tells Next.js exactly how our grid works.
+          sizes="(max-width: 600px) 90vw, (max-width: 900px) 45vw, 30vw" 
+          className="transition-transform duration-500 ease-in-out group-hover:scale-110" 
+        />
         <Box sx={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '70%', background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)' }} />
         {experience.tags && experience.tags.length > 0 && (
           <Box sx={{ position: 'absolute', top: 12, left: 12, bgcolor: 'primary.main', color: 'white', px: 1.5, py: 0.5, borderRadius: '20px', fontSize: '0.75rem', fontWeight: 'bold', zIndex: 1, }}>
@@ -49,13 +59,11 @@ export default function ImmersiveExperienceCard({ experience }: ExperienceCardPr
           </Box>
         )}
         <Box sx={{ position: 'absolute', bottom: 16, left: 16 }}>
-            {/* --- FIX 1: The price is now a <p> tag styled like an <h5> --- */}
             <Typography variant="h5" component="p" sx={{ color: 'white', fontWeight: 'bold' }}>{formattedPrice}</Typography>
         </Box>
       </Box>
       <CardContent sx={{ flexGrow: 1, p: 2 }}>
         {location && (<Typography variant="body2" color="primary" sx={{ fontWeight: 'bold', mb: 1 }}>{location.name}</Typography>)}
-        {/* --- FIX 2: The title is now a semantically correct <h3> tag --- */}
         <Typography gutterBottom variant="h6" component="h3" sx={{ fontWeight: 'bold', color: 'text.primary', lineHeight: 1.3 }}>
           {translation?.title}
         </Typography>

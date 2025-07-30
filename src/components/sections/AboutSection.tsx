@@ -56,12 +56,12 @@ export default function AboutSection() {
           </Grid>
           <Grid size={{ xs: 12, md: 6 }}>
             <Box sx={{ 
-              position: 'relative', // Required for the <Image> fill prop
+              position: 'relative',
               width: '100%',
               maxWidth: 450,
-              aspectRatio: '4/3', // Give the container a defined aspect ratio
+              aspectRatio: '4/3',
               borderRadius: 4,
-              overflow: 'hidden', // Hide any overflow from the image
+              overflow: 'hidden',
               boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
               mx: { xs: 'auto', md: '0' },
               ml: { md: 'auto' }
@@ -69,10 +69,12 @@ export default function AboutSection() {
               <Image
                 src={aboutImageUrl}
                 alt={t('imageAlt')}
-                fill // This makes the image fill its parent container
-                loading='lazy' // Lazy load the image
-                style={{ objectFit: 'cover' }} // This makes the image cover the area without distortion
-                sizes="(max-width: 768px) 100vw, 50vw"
+                fill
+                loading='lazy'
+                style={{ objectFit: 'cover' }}
+                // --- THIS IS THE KEY FIX ---
+                // This is a more accurate sizes prop for this specific layout.
+                sizes="(max-width: 900px) 90vw, 450px"
               />
             </Box>
           </Grid>

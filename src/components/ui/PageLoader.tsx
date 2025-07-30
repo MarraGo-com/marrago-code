@@ -32,12 +32,14 @@ export default function PageLoader() {
         transition={{ duration: 0.5, ease: 'easeInOut' }}
         style={{ textAlign: 'center' }}
       >
-        <Image
+         <Image
           src="/favicon.ico" // Using your site's favicon as the logo
           alt={`${siteConfig.siteName} Logo`}
-          loading='lazy'
           width={80}
           height={80}
+          // --- THIS IS THE KEY FIX ---
+          // We prioritize this image to ensure the loader appears quickly.
+          priority 
         />
         <Typography variant="h6" sx={{ mt: 2, color: 'text.secondary' }}>
           Loading...

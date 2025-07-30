@@ -15,12 +15,11 @@ import { useTranslations } from 'next-intl';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '@/lib/firebase';
 import LogOutButton from '../auth/LogOutButton';
-// Removed unused import 'locations'
 import Image from 'next/image';
 import AnimatedMenuIcon from './AnimatedMenuIcon';
 import MegaMenuPanel from './MegaMenuPanel';
 import { AnimatePresence } from 'framer-motion';
-import AnimatedLink from './AnimatedLink'; // <-- 1. Import the AnimatedLink component
+import AnimatedLink from './AnimatedLink';
 import { siteConfig } from '@/config/site';
 
 export default function Header() {
@@ -114,7 +113,17 @@ export default function Header() {
 
               <Box sx={{ flexGrow: { xs: 1, md: 0 }, display: 'flex', justifyContent: { xs: 'center', md: 'flex-start' } }}>
                 <Link href="/" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center' }}>
-                  <Image src="/favicon.ico"  alt={siteConfig.brandName} width={40} height={40} priority style={{ marginRight: '1rem' }} />
+                  <Image 
+                    src="/favicon.ico"  
+                    // --- THIS IS THE KEY FIX ---
+                    // The alt text is now empty, marking the image as decorative.
+                    alt="" 
+                    width={40} 
+                    height={40} 
+                    priority 
+                    style={{ marginRight: '1rem' }} 
+                    sizes="40px"
+                  />
                   <Typography variant="h6" component="div" sx={{ fontWeight: 'bold' }}>
                     {siteConfig.siteName}
                   </Typography>
@@ -134,8 +143,6 @@ export default function Header() {
                     {t('experiences')}
                   </Button>
                   
-                  {/* --- 2. THIS IS THE KEY FIX --- */}
-                  {/* We replace the standard Buttons with our new AnimatedLink component */}
                   {navLinks.map((link) => (
                     <AnimatedLink key={link.text} href={link.href}>
                       <Typography sx={{ fontWeight: 500 }}>{link.text}</Typography>

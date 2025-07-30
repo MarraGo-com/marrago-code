@@ -33,8 +33,6 @@ export default function Footer() {
     <Box 
       component="footer" 
       sx={{ 
-        // --- THIS IS THE KEY FIX ---
-        // We now use our new, dedicated theme colors for better contrast.
         bgcolor: 'footer.background', 
         color: 'footer.text',
         py: { xs: 6, md: 8 },
@@ -46,7 +44,9 @@ export default function Footer() {
         {/* --- TOP ROW: Information Columns --- */}
         <Grid container spacing={5} sx={{ mb: 6 }}>
           <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-            <Typography variant="h6" sx={{ color: 'text.primary', fontWeight: 'bold', mb: 2 }}>
+            {/* --- THIS IS THE KEY FIX --- */}
+            {/* The component is now a <p> tag for correct semantics */}
+            <Typography variant="h6" component="p" sx={{ color: 'text.primary', fontWeight: 'bold', mb: 2 }}>
               {siteConfig.siteName}
             </Typography>
             <Typography variant="body2">
@@ -54,7 +54,7 @@ export default function Footer() {
             </Typography>
           </Grid>
           <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-            <Typography variant="h6" sx={{ color: 'text.primary', fontWeight: 'bold', mb: 2 }}>
+            <Typography variant="h6" component="p" sx={{ color: 'text.primary', fontWeight: 'bold', mb: 2 }}>
               {t('linksTitle')}
             </Typography>
             <Box component="nav" sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -65,7 +65,7 @@ export default function Footer() {
             </Box>
           </Grid>
           <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-            <Typography variant="h6" sx={{ color: 'text.primary', fontWeight: 'bold', mb: 2 }}>
+            <Typography variant="h6" component="p" sx={{ color: 'text.primary', fontWeight: 'bold', mb: 2 }}>
               {t('contactTitle')}
             </Typography>
             <Typography variant="body2">{t('address')}</Typography>
@@ -98,7 +98,7 @@ export default function Footer() {
               display: 'inline-flex',
               alignItems: 'center',
               textDecoration: 'none',
-              color: 'text.secondary', // This will inherit the corrected footer text color
+              color: 'footer.text', // Inherits the corrected footer text color
               opacity: 0.7,
               transition: 'opacity 0.3s',
               '&:hover': { opacity: 1 }
@@ -111,6 +111,7 @@ export default function Footer() {
               loading='lazy'
               width={20}
               height={20}
+              sizes="20px"
             />
             <Typography variant="caption" sx={{ ml: 1, fontWeight: 'bold' }}>
               {t('agencyName')}

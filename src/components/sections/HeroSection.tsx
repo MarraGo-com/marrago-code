@@ -22,16 +22,12 @@ export default function HeroSection() {
     <Box
       sx={{
         position: 'relative',
-        // --- THIS IS THE KEY FIX ---
-        // We ensure the container has a defined height from the very first render.
-        // This reserves the space and prevents the content below it from "jumping".
         height: { xs: '90vh', md: '100vh' },
-        minHeight: 500, // A fallback for very short screens
+        minHeight: 500,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         overflow: 'hidden',
-        // We set a background color as a fallback while the image/video loads
         bgcolor: 'background.default',
       }}
     >
@@ -41,7 +37,7 @@ export default function HeroSection() {
           alt={t('title')}
           fill
           style={{ objectFit: 'cover' }}
-          priority // This is crucial for LCP on mobile
+          priority // This correctly sets fetchpriority="high" for the image
           sizes="100vw"
         />
       ) : (
@@ -50,7 +46,7 @@ export default function HeroSection() {
           loop
           muted
           playsInline
-          poster={heroImageUrl} // Use the mobile image as a poster for faster initial paint
+          poster={heroImageUrl}
           style={{
             position: 'absolute',
             width: '100%',
@@ -67,12 +63,12 @@ export default function HeroSection() {
         </video>
       )}
       
-      {/* Overlay */}
       <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'linear-gradient(120deg, rgba(0,0,0,0.7) 40%, rgba(0,0,0,0.3) 100%)', zIndex: 1 }} />
       
-      {/* Content */}
       <Container maxWidth="md" sx={{ position: 'relative', zIndex: 2, textAlign: 'center', color: 'common.white' }}>
-        <Typography variant="h2" component="h2" sx={{ fontWeight: 800, fontSize: { xs: '2.2rem', sm: '3rem', md: '4.5rem' }, mb: 3, textShadow: '0 4px 24px rgba(0,0,0,0.7)' }}>
+        {/* --- THIS IS THE KEY FIX --- */}
+        {/* We restore this to an h1, as it's the main heading for the homepage. */}
+        <Typography variant="h1" component="h1" sx={{ fontWeight: 800, fontSize: { xs: '2.2rem', sm: '3rem', md: '4.5rem' }, mb: 3, textShadow: '0 4px 24px rgba(0,0,0,0.7)' }}>
           {t('title')}
         </Typography>
         <Typography variant="h5" component="p" sx={{ mb: 5, maxWidth: 600, mx: 'auto', fontSize: { xs: '1rem', md: '1.25rem' }, textShadow: '0 2px 8px rgba(0,0,0,0.6)', fontWeight: 400 }}>

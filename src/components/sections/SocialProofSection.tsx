@@ -60,14 +60,14 @@ export default function SocialProofSection() {
           >
             {/* We render the list of logos twice to create the seamless loop */}
             {[...partnerLogos, ...partnerLogos].map((logo, index) => (
-              <Box
+               <Box
                 key={`${logo.name}-${index}`}
                 sx={{
                   position: 'relative',
                   width: { xs: 120, sm: 150 },
                   height: { xs: 60, sm: 80 },
-                  mx: { xs: 2, sm: 4 }, // Add horizontal margin for spacing
-                  flexShrink: 0, // Prevent logos from shrinking
+                  mx: { xs: 2, sm: 4 },
+                  flexShrink: 0,
                   filter: (theme) =>
                     theme.palette.mode === 'dark' ? 'brightness(0) invert(1)' : 'grayscale(100%)',
                   opacity: 0.7,
@@ -82,6 +82,9 @@ export default function SocialProofSection() {
                   style={{
                     objectFit: 'contain',
                   }}
+                  // --- THIS IS THE KEY FIX ---
+                  // We tell the browser the image will be at most 150px wide.
+                  sizes="150px"
                 />
               </Box>
             ))}

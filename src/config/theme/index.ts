@@ -24,7 +24,7 @@ interface PaletteConfig {
   secondary: string;
 }
 
-const palettes: Record<PaletteName, PaletteConfig> = {
+export const palettes: Record<PaletteName, PaletteConfig> = {
   coastalBlue: { primary: '#004AAD', secondary: '#E07A5F' },
   desertSunset: { primary: '#D95D39', secondary: '#4A4E69' },
   luxeNoir: { primary: '#D4AF37', secondary: '#F8F9FA' },

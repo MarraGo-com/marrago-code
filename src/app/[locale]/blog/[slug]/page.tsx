@@ -119,13 +119,16 @@ export default async function ArticlePage({ params }: { params: Params }) {
               mb: 4,
             }}>
               <Image
-                src={article.coverImage}
-                alt={translation?.title || article.title}
-                fill // Makes the image fill the parent container
-                loading="lazy" // Lazy load the image
-                style={{ objectFit: 'cover' }} // Ensures the image covers the area without distortion
-                priority // Preload this image as it's the LCP (Largest Contentful Paint)
-              />
+                  src={article.coverImage}
+                  alt={translation?.title || article.title}
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  priority // Correctly prioritize this LCP image
+                  // --- THIS IS THE KEY FIX ---
+                  // This tells the browser the image will be 100% of the screen width
+                  // on small screens, but capped at 768px (the 'md' container width) on larger screens.
+                  sizes="(max-width: 768px) 100vw, 768px"
+                />
             </Box>
             
             <Box sx={{

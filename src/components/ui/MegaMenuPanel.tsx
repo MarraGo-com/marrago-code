@@ -91,14 +91,16 @@ export default function MegaMenuPanel() {
              </Typography>
              <Card component={Link} href={featuredTour.href} elevation={0} sx={{ mt: 2, textDecoration: 'none', backgroundColor: 'transparent' }}>
                {/* --- Image Implementation --- */}
-               <Box sx={{ position: 'relative', width: '100%', height: '140px', borderRadius: 1, overflow: 'hidden' }}>
+              <Box sx={{ position: 'relative', width: '100%', height: '140px', borderRadius: 1, overflow: 'hidden' }}>
                  <Image
                    src={featuredTour.image}
                    alt={featuredTour.title}
                    fill
                    loading='lazy'
                    style={{ objectFit: 'cover' }}
-                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                   // --- THIS IS THE KEY FIX ---
+                   // This tells the browser the image will be at most around 400px wide.
+                   sizes="(max-width: 900px) 90vw, 400px"
                  />
                </Box>
                {/* --- End Image Implementation --- */}

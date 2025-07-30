@@ -32,10 +32,11 @@ export default function ImageGallery({ coverImage, galleryImages = [], altText }
           src={coverImage}
           alt={altText}
           fill
-          loading="lazy"
           style={{ objectFit: 'cover' }}
-          priority
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          priority // Correctly prioritize this LCP image
+          // --- THIS IS THE KEY FIX ---
+          // This is a more accurate sizes prop for this specific layout.
+          sizes="(max-width: 900px) 100vw, 58vw"
         />
       </Box>
     );
@@ -111,16 +112,17 @@ export default function ImageGallery({ coverImage, galleryImages = [], altText }
       <Slider {...settings}>
         {visibleImages.map((img, index) => (
           <div key={index}>
-            {/* --- FIX 2: Use Next/Image for main slides --- */}
             <Box sx={{ position: 'relative', width: '100%', height: {xs: 300, sm: 400, md: 500}, borderRadius: 2, overflow: 'hidden' }}>
               <Image
                 src={img.path} 
                 alt={`${altText} - view ${index + 1}`}
                 fill
-                loading="lazy"
                 style={{ objectFit: 'cover' }}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                priority={index === 0} // Prioritize loading the first image
+                sizes="(max-width: 900px) 100vw, 58vw"
+                // --- THIS IS THE KEY FIX ---
+                // Only the first image is prioritized. The rest are lazy-loaded.
+                priority={index === 0}
+                loading={index === 0 ? undefined : "lazy"}
               />
             </Box>
           </div>
