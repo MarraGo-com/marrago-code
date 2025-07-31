@@ -40,6 +40,10 @@ export default function HeroSection() {
           priority // This correctly sets fetchpriority="high" for the image
           fetchPriority='high'
           sizes="100vw"
+          // ✅ ENHANCEMENT: Adds a blurred placeholder.
+          // Next.js automatically generates a tiny, blurred version of your image to show while
+          // the full image loads. This significantly improves the perceived load time.
+          placeholder="blur" 
         />
       ) : (
         <video
