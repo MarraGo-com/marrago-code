@@ -23,7 +23,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/:path*',
-        headers: [
+         headers: [
           {
             key: 'X-Content-Type-Options',
             value: 'nosniff',
@@ -44,9 +44,11 @@ const nextConfig: NextConfig = {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=()',
           },
+          // --- THIS IS THE KEY FIX ---
+          // We have changed 'media-src' from 'none' to "'self'" to allow our hero video to play.
           {
             key: 'Content-Security-Policy',
-            value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' *.youtube.com *.google.com *.googletagmanager.com; child-src *.youtube.com *.google.com; style-src 'self' 'unsafe-inline' *.googleapis.com unpkg.com; img-src * blob: data:; media-src 'none'; connect-src *; font-src 'self' *.gstatic.com;",
+            value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' *.youtube.com *.google.com *.googletagmanager.com; child-src *.youtube.com *.google.com; style-src 'self' 'unsafe-inline' *.googleapis.com unpkg.com; img-src * blob: data:; media-src 'self'; connect-src *; font-src 'self' *.gstatic.com;",
           },
         ],
       },
