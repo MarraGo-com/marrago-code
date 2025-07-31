@@ -1,134 +1,58 @@
-import type { NextConfig } from 'next';
+import {NextConfig} from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
-
+ 
 const nextConfig: NextConfig = {
-  reactStrictMode: true, // Helps catch potential issues
- // swcMinify: true, // Enables faster builds with SWC
-  images: {
+    reactStrictMode: true,
+    images: {
+
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'firebasestorage.googleapis.com',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'lh3.googleusercontent.com',
-        port: '',
         pathname: '/**',
       },
       {
         protocol: 'https',
         hostname: 'images.pexels.com',
-        port: '',
         pathname: '/**',
-      },
+      }
     ],
+     minimumCacheTTL: 60 * 60 * 24 * 30, // Cache for 30 days
   },
-  async redirects() {
+  async headers() {
     return [
       {
-        source: '/old-route',
-        destination: '/new-route',
-        permanent: true,
+        source: '/:path*',
+        headers: [
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN',
+          },
+          {
+            key: 'X-XSS-Protection',
+            value: '1; mode=block',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'origin-when-cross-origin',
+          },
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=()',
+          },
+          {
+            key: 'Content-Security-Policy',
+            value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' *.youtube.com *.google.com *.googletagmanager.com; child-src *.youtube.com *.google.com; style-src 'self' 'unsafe-inline' *.googleapis.com unpkg.com; img-src * blob: data:; media-src 'none'; connect-src *; font-src 'self' *.gstatic.com;",
+          },
+        ],
       },
     ];
   },
-  async headers() {
-    console.log('Current Environment:', process.env.NODE_ENV);
-    return process.env.NODE_ENV === 'development'
-      ? [
-          {
-            source: '/:all*',
-            headers: [
-              {
-                key: 'Cache-Control',
-                value: 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0',
-              },
-            ],
-          },
-        ]
-      : [
-          {
-            source: '/:all*(js|css|jpg|jpeg|png|gif|svg|woff2|woff|ttf|eot)',
-            headers: [
-              {
-                key: 'Cache-Control',
-                value: 'public, max-age=31536000, immutable',
-              },
-            ],
-          },
-          {
-            source: '/:all*(html|json)',
-            headers: [
-              {
-                key: 'Cache-Control',
-                value: 'public, max-age=3600',
-              },
-            ],
-          },
-          {
-            source: '/video/:path*',
-            headers: [
-              {
-                key: 'Cache-Control',
-                value: 'public, max-age=31536000, immutable',
-              },
-            ],
-          },
-        ];
-  },
-  webpack(config, { isServer }) {
-    if (!isServer) {
-      // Enable modern JavaScript delivery
-      config.output.crossOriginLoading = 'anonymous';
-
-      // Ensure webpack handles module/nomodule split
-      if (config.optimization.splitChunks) {
-        config.optimization.splitChunks.chunks = 'all';
-        config.optimization.splitChunks.automaticNameDelimiter = '-';
-        config.optimization.splitChunks.cacheGroups = {
-            ...config.optimization.splitChunks.cacheGroups,
-            defaultVendors: {
-              test: /[\\/]node_modules[\\/]/,
-              priority: -10,
-              reuseExistingChunk: true,
-            },
-            default: {
-              minChunks: 2,
-              priority: -20,
-              reuseExistingChunk: true,
-            },
-        };
-      }
-
-
-      // Add modern JavaScript handling
-      config.module.rules.push({
-        test: /\.js$/,
-        exclude: /(node_modules)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              [
-                '@babel/preset-env',
-                {
-                  targets: '> 0.25%, not dead', // Modern browsers
-                  useBuiltIns: 'entry',
-                  corejs: 3,
-                },
-              ],
-            ],
-          },
-        },
-      });
-    }
-
-    return config;
-  },
 };
-
+ 
 const withNextIntl = createNextIntlPlugin();
 export default withNextIntl(nextConfig);

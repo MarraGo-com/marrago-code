@@ -8,9 +8,9 @@ import L from 'leaflet';
 
 // We create a single, constant icon instance to be reused.
 const DefaultIcon = L.icon({
-    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-    iconSize: [25, 41],
+    iconUrl: '/images/icons/marker.png',
+    shadowUrl: '/images/icons/marker-shadow.png',
+    iconSize: [50, 70],
     iconAnchor: [12, 41]
 });
 
