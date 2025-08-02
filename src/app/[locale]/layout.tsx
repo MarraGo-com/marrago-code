@@ -18,6 +18,7 @@ import Header from "@/components/ui/Header";
 import Footer from "@/components/ui/Footer";
 import ThemeSwitcher from "@/components/ui/ThemeSwitcher";
 import DeferredStylesheets from "@/components/custom/DeferredStylesheets"; // <-- Import the new component
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 
 export const metadata: Metadata = {
   title: siteConfig.siteName,
@@ -84,6 +85,12 @@ export default async function RootLayout({
             </ThemeContextProvider>
           </QueryProvider>
         </NextIntlClientProvider>
+
+         {/* --- 2. Add the Google Analytics component here --- */}
+         {/* It will only render in production if the ID is set */}
+         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
+           <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
+        )}
       </body>
     </html>
   );
