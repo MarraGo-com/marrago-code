@@ -3,20 +3,20 @@
 
 import React from 'react';
 import { Typography, Button, Container, Box } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
+// import { useTheme } from '@mui/material/styles';
+// import useMediaQuery from '@mui/material/useMediaQuery';
 import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
-import Image from 'next/image';
+// import Image from 'next/image';
 
 export default function HeroSection() {
   const t = useTranslations('HeroSection');
-  const theme = useTheme();
+ // const theme = useTheme();
   
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+ // const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const heroVideoUrl = '/videos/hero-video.mp4';
-  const heroImageUrl = '/images/hero-mobile-bg.webp';
+ // const heroVideoUrl = '/videos/hero-video.mp4';
+ // const heroImageUrl = '/images/hero-mobile-bg.webp';
 
   return (
     <Box
@@ -31,7 +31,7 @@ export default function HeroSection() {
         bgcolor: 'background.default',
       }}
     >
-      {isMobile ? (
+      {/* {isMobile ? (
         <Image
           src={heroImageUrl}
           alt={t('title')}
@@ -66,7 +66,7 @@ export default function HeroSection() {
           <source src={heroVideoUrl} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-      )}
+      )} */}
       
       <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'linear-gradient(120deg, rgba(0,0,0,0.7) 40%, rgba(0,0,0,0.3) 100%)', zIndex: 1 }} />
       

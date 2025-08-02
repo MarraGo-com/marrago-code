@@ -20,6 +20,10 @@ const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 const firestore = getFirestore(app);
 const auth = getAuth(app);
 const storage = getStorage(app); // <-- 2. INITIALIZE storage
-const analytics = getAnalytics(app);
+
+let analytics;
+if (typeof window !== "undefined") {
+  analytics = getAnalytics(app);
+}
 
 export { app, firestore, auth, storage, analytics }; // <-- 3. EXPORTS
