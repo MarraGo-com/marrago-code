@@ -52,6 +52,7 @@ export default async function RootLayout({
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="google-site-verification" content="KkDc8if2_1qyK5fkzjUIy1nLclqoPywyU3YmpDOUWjs" />
         <link rel="icon" href="/favicon.ico" />
         
         {/* Preconnect hints to speed up connections */}
