@@ -9,14 +9,18 @@ import {Grid, Box, Typography, Container } from "@mui/material";
 import ArticleCard from "@/components/blog/ArticleCard";
 import { getTranslations } from "next-intl/server";
 import { Metadata } from "next";
-import ResponsiveHeading from "@/components/custom/ResponsiveHeading";
 import { Article } from "@/types/article";
 import { getPublishedArticles } from "@/lib/data";
 import { getStaticPageMetadata } from "@/config/static-metadata";
 import { generateStaticPageMetadata } from "@/lib/metadata";
 
-
-
+import dynamic from "next/dynamic";
+import { ResponsiveHeadingProps } from "@/themes/default/custom/ResponsiveHeading";
+const theme = process.env.NEXT_PUBLIC_THEME || 'default';
+// const ResponsiveHeading = dynamic(() => import(`@/themes/${theme}/custom/ResponsiveHeading`));
+const ResponsiveHeading = dynamic<ResponsiveHeadingProps>(() =>
+  import(`@/themes/${theme}/custom/ResponsiveHeading`).then((mod) => mod.default)
+);
 // --- 2. This is the new, cleaner metadata function ---
 type MetadataParams = Promise<{ locale: 'en' | 'fr' }>;
 

@@ -7,7 +7,11 @@ import { Box, Typography, Container, Paper } from "@mui/material";
 
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { getTranslations } from "next-intl/server";
-import BackToExperiencesButton from "@/components/ui/BackToExperiencesButton"; // <-- Import the new button
+import dynamic from "next/dynamic";
+
+const theme = process.env.NEXT_PUBLIC_THEME || 'default';
+// Dynamically import Header and Footer components  
+const BackToExperiencesButton = dynamic(() => import(`@/themes/${theme}/ui/BackToExperiencesButton`));
 
 export default async function BookingSuccessPage() {
   const t = await getTranslations('BookingStatusPage');

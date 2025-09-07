@@ -9,6 +9,7 @@ export interface ArticleTranslation {
   description: string;
   locale: string; // e.g., 'en', 'fr'
   slug: string; // Unique slug for the article in this locale
+  author?: string; // Optional author field
 }
 
 // Define the comprehensive shape of our article data
@@ -19,7 +20,8 @@ export interface Article {
   status: 'published' | 'draft';
   coverImage: string;
   createdAt: string; // Serialized as an ISO string
-  updatedAt?: string | null; // Optional, serialized as an ISO string
+  updatedAt?: string | null; // Optional, serialized as an ISO string,
+  author: string;
   translations: {
     en?: ArticleTranslation;
     fr?: ArticleTranslation;

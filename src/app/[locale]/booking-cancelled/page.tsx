@@ -2,10 +2,15 @@
 // 3. UPDATED FILE: /src/app/[locale]/booking-cancelled/page.tsx
 // This page is also updated to use the new button component.
 // -------------------------------------------------------------------------
+
 import { Box as CancelBox, Typography as CancelTypography, Container as CancelContainer, Paper as CancelPaper } from "@mui/material";
 import CancelIcon from '@mui/icons-material/Cancel';
 import { getTranslations } from "next-intl/server";
-import BackToExperiencesButton from "@/components/ui/BackToExperiencesButton"; // <-- Import the new button
+import dynamic from "next/dynamic";
+
+const theme = process.env.NEXT_PUBLIC_THEME || 'default';
+// Dynamically import Header and Footer components  
+const BackToExperiencesButton = dynamic(() => import(`@/themes/${theme}/ui/BackToExperiencesButton`));
 
 export default async function BookingCancelledPage() {
   const t = await getTranslations('BookingStatusPage');

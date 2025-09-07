@@ -1,0 +1,376 @@
+<header id="header" class="header floating">
+        <div class="container tier-border">
+            <nav class="navbar navbar-expand-lg topnav">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#userAccountNavMobile" aria-controls="userAccountNavMobile" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+                    <a class="navbar-brand" href="/">
+                        <svg class="svg-icon"><use xlink:href="#lhw-horz-logo"></use></svg>
+                    </a>
+
+                <!-- Mobile Only Nav Items -->
+                <div class="user-icons">
+                        <a class="logoball" href="/login">
+                            <img class="svg-icon logoball" src="//static-new.lhw.com/-/media/Images/Loyalty/Global/Icons/user-unauthenticated.svg">
+                        </a>
+                    <a class="cart" href="/booking/shopping-cart">
+                            <svg class="svg-icon"><use xlink:href="#icon-cart"></use></svg>
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse alt-navbar-collapse" id="userAccountNav">
+                    <div class="navbar topnav mobile-expanded-nav">
+                        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#userAccountNav" aria-controls="userAccountNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="bar"></span>
+                            <span class="bar"></span>
+                        </button>
+                        <h6 class="nav-title">My Account</h6>
+                    </div>
+                    <div class="col user-info">
+                        <h8 class="welcome tier-color">Welcome Back</h8>
+                        <h4 class="name"></h4>
+
+
+                    </div>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link " href="/account/dashboard" data-tracking-id="my-dashboard">
+                                My Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="/account/reservations" data-tracking-id="my-reservations">
+                                My Reservations
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="/offers" data-tracking-id="special-offers">
+                                Special Offers
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="/account/profile" data-tracking-id="my-profile">
+                                My Profile
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="/leaders-club/about" data-tracking-id="about-leaders-club">
+                                About Leaders Club
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="extra-info">
+                        <p class="title">Customer Service</p>
+                        <p>US &amp; Canada 1-800-745-8883</p>
+                        <a href="/logout.ashx" class="btn btn-link btn-arrow btn-logout">Logout</a>
+                    </div>
+                </div>
+                <!-- End Mobile Only Nav Items -->
+
+                <div class="collapse navbar-collapse" id="userAccountNavMobile">
+                    <div class="navbar-wrapper">
+                        <div class="navbar topnav mobile-expanded-nav d-lg-none tier-border">
+                            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#userAccountNavMobile" aria-controls="userAccountNavMobile" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="bar"></span>
+                                <span class="bar"></span>
+                                <span class="bar"></span>
+                            </button>
+                                <a class="navbar-brand" href="/">
+                                    <svg class="svg-icon"><use xlink:href="#lhw-horz-logo"></use></svg>
+                                </a>
+                        </div>
+
+                        <!--AUTH-->
+                            <!--UNAUTH-->
+                            <ul class="navbar-nav secondary">
+                                <li class="nav-item customer-care">
+                                    <a class="nav-link" href="/customer-care">
+                                        <svg class="svg-icon"><use xlink:href="#icon-customer-care"></use></svg>
+                                        Help
+                                    </a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="dropdownLanguage" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <svg class="svg-icon"><use xlink:href="#icon-language"></use></svg>
+English                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right dropdown-language-toggle" aria-labelledby="dropdownLanguage">
+                                        <a href="https://www.lhw.com/" tabindex="0" class="dropdown-item active" data-lang="en">English</a>
+                                        <a href="https://jp.lhw.com/" tabindex="0" class="dropdown-item " data-lang="ja">日本語</a>
+                                        <a href="https://de.lhw.com/" tabindex="0" class="dropdown-item " data-lang="de">Deutsch</a>
+                                        <a href="https://fr.lhw.com/" tabindex="0" class="dropdown-item " data-lang="fr">Français</a>
+                                        <a href="https://it.lhw.com/" tabindex="0" class="dropdown-item " data-lang="it">Italiano</a>
+                                        <a href="https://es.lhw.com/" tabindex="0" class="dropdown-item " data-lang="es">Español</a>
+                                        <a href="https://www.lhw.cn" tabindex="0" class="dropdown-item " data-lang="cn">中文</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown login">
+                                    <a class="nav-link dropdown-toggle" href="#" id="dropdownLogin" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Log In
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right dropdown-login" aria-labelledby="dropdownLogin">
+<form action="/login" class="form" id="loginDropdownForm" method="post" novalidate="novalidate">
+    <input id="scController" name="scController" type="hidden" value="Login"><input id="scAction" name="scAction" type="hidden" value="LoginDropdown">
+    <h6 class="title">Log In</h6>
+    <div class="form-group">
+        <label for="Email">Email</label>
+        <span class="error-icon" id="EmailDropdownInputErrorIcon" style="display: none;"><svg class="svg-icon"><use xlink:href="#icon-error-triangle"></use></svg></span><input class="form-control" data-msg-complexemail="Please enter a valid email address." data-msg-email="Please enter a valid email address." data-msg-required="&lt;i /&gt;" data-rule-email="true" data-rule-required="true" id="EmailDropdownInput" name="EmailDropdownInput" tabindex="1" type="text" value=""> 
+        <span class="field-validation-valid" data-valmsg-for="EmailDropdownInput" data-valmsg-replace="true"></span>
+    </div>
+    <div class="form-group">
+        <label for="Password">Password</label>
+        <span class="error-icon" id="PasswordDropdownInputErrorIcon" style="display: none;"><svg class="svg-icon"><use xlink:href="#icon-error-triangle"></use></svg></span><a tabindex="0" class="password-toggle"><svg class="svg-icon"><use xlink:href="#icon-eye"></use></svg></a><input autocomplete="off" class="form-control" data-msg="&lt;i /&gt;" data-password-toggle="" id="PasswordDropdownInput" maxlength="16" name="PasswordDropdownInput" tabindex="2" type="password" data-hidden="true">
+        <span class="field-validation-valid" data-valmsg-for="PasswordDropdownInput" data-valmsg-replace="true"></span>
+        <a href="/login?fp=true" class="forgot-pass">Forgot your password?</a>
+    </div>
+    <div class="buttons">
+        <button type="submit" class="btn btn-primary btn-submit">
+            Log In
+        </button>
+    </div>
+    <p class="sign-up">
+        
+        Don't Have An Account? <a tabindex="3" href="/account/membership-signup">Join Now</a>
+    </p>
+</form>
+                                    </div>
+                                </li>
+                                <li class="nav-item sign-up">
+                                    
+                                    <a class="btn nav-btn" href="/account/membership-signup" tabindex="0">
+                                        Join Now
+                                    </a>
+                                </li>
+                                <li class="nav-item dropdown find-reservation">
+                                    <a class="nav-link" href="#" id="dropdownFindReservation" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <svg class="svg-icon"><use xlink:href="#icon-find-reservation"></use></svg>
+                                        <span>
+                                            Find a Reservation
+                                        </span>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right dropdown-find-reservation" aria-labelledby="dropdownFindReservation">
+                                        <form class="form">
+                                            <div class="form-group">
+                                                <p>Enter your Confirmation # below to locate your booking.</p>
+                                                <span class="error-icon" id="findReservationInputErrorIcon" style="display: none;"><svg class="svg-icon"><use xlink:href="#icon-error-triangle"></use></svg></span><input id="findReservationInput" type="text" class="form-control">
+                                            </div>
+                                            <div class="buttons">
+                                                <a id="findReservationButton" class="btn btn-primary" href="/find-reservation?cn=">Find</a>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </li>
+                                <li class="nav-item cart">
+                                    <a class="nav-link" href="/booking/shopping-cart">
+                                            <svg class="svg-icon"><use xlink:href="#icon-cart"></use></svg>
+                                    </a>
+                                </li>
+                            </ul>
+
+                        <ul class="navbar-nav primary">
+                            <li class="nav-item dropdown-wrapper">
+                                <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="dropdownFindHotel" data-tracking-id="find-a-hotel" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" disabled-href="">
+                                    Find a Hotel
+                                </a>
+                                <div class="dropdown-menu-wrapper dropdown-find-hotel" aria-labelledby="dropdownFindHotel">
+                                    <div class="dropdown-menu">
+                                        <div class="row d-none d-lg-flex">
+                                            <div class="col col-12 col-lg-4">
+                                                <a tabindex="0" data-toggle="modal" data-target="#modalPropertySearch" data-tracking-id="find-a-hotel-search-destinations">
+                                                    <img data-src="//static-new.lhw.com/-/media/Images/Loyalty/Global/Header/SD-LW1630_10064695_Beat_Brechb_Hl_Luzern_Tourismus_260x195.jpg" class="d-none d-lg-block lazy loaded" src="//static-new.lhw.com/-/media/Images/Loyalty/Global/Header/SD-LW1630_10064695_Beat_Brechb_Hl_Luzern_Tourismus_260x195.jpg" data-was-processed="true">
+                                                    <h8>Search Destinations</h8>
+                                                </a>
+                                            </div>
+                                            <div class="col col-12 col-lg-4">
+                                                <a href="/find-a-hotel" data-tracking-id="find-a-hotel-browse-by-map">
+                                                    <img data-src="//static-new.lhw.com/-/media/Images/Loyalty/Global/Header/browse-by-map.jpg" class="d-none d-lg-block lazy loaded" src="//static-new.lhw.com/-/media/Images/Loyalty/Global/Header/browse-by-map.jpg" data-was-processed="true">
+                                                    <h8>Browse By Map</h8>
+                                                </a>
+                                            </div>
+                                            <div class="col col-12 col-lg-4">
+                                                <a href="/find-a-hotel/browse-by-list" data-tracking-id="find-a-hotel-browse-by-list">
+                                                    <img data-src="//static-new.lhw.com/-/media/Images/Loyalty/Global/Header/browse-by-list-header-jk-place-260x195.png" class="d-none d-lg-block lazy loaded" src="//static-new.lhw.com/-/media/Images/Loyalty/Global/Header/browse-by-list-header-jk-place-260x195.png" data-was-processed="true">
+                                                    <h8>Browse By List</h8>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div id="headerPropertySearch" class="d-lg-none"><div class="property-search"><div class="row search-details"><div class="col col-location"><label for="location">Hotel, City Or Country</label> <input value="" name="location" placeholder="" type="text" class="form-control ui-autocomplete-input" autocomplete="off"></div> <div class="col col-datepickers"><div class="row"><div class="col col-checkin"><label for="checkin">Check-In</label> <div class="datepicker-active-icon custom-checkin-active"></div> <input name="checkin" type="text" class="checkin-calendar-alt form-control custom-checkin"> <div class="datepicker-wrapper checkin"><div class="checkin-calendar hasDatepicker" id="dp1756415527513"><div class="ui-datepicker-inline ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all ui-datepicker-multi ui-datepicker-multi-2" style="display: block; width: 34em;"><div class="ui-datepicker-group ui-datepicker-group-first"><div class="ui-datepicker-header ui-widget-header ui-helper-clearfix ui-corner-left"><a class="ui-datepicker-prev ui-corner-all ui-state-disabled" title="Prev"><span class="ui-icon ui-icon-circle-triangle-w">Prev</span></a><div class="ui-datepicker-title"><span class="ui-datepicker-month">August</span>&nbsp;<span class="ui-datepicker-year">2025</span></div></div><table class="ui-datepicker-calendar"><thead><tr><th scope="col" class="ui-datepicker-week-end"><span title="Sunday">Su</span></th><th scope="col"><span title="Monday">Mo</span></th><th scope="col"><span title="Tuesday">Tu</span></th><th scope="col"><span title="Wednesday">We</span></th><th scope="col"><span title="Thursday">Th</span></th><th scope="col"><span title="Friday">Fr</span></th><th scope="col" class="ui-datepicker-week-end"><span title="Saturday">Sa</span></th></tr></thead><tbody><tr><td class=" ui-datepicker-week-end ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">27</span></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">28</span></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">29</span></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">30</span></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">31</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">1</span></td><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">2</span></td></tr><tr><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">3</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">4</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">5</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">6</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">7</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">8</span></td><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">9</span></td></tr><tr><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">10</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">11</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">12</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">13</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">14</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">15</span></td><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">16</span></td></tr><tr><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">17</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">18</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">19</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">20</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">21</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">22</span></td><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">23</span></td></tr><tr><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">24</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">25</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">26</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">27</span></td><td class=" ui-datepicker-days-cell-over undefined ui-datepicker-current-day ui-datepicker-today" data-handler="selectDay" data-event="click" data-month="7" data-year="2025"><a class="ui-state-default ui-state-highlight ui-state-active ui-state-hover" href="#" aria-current="true" data-date="28">28</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="7" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="29">29</a></td><td class=" ui-datepicker-week-end undefined" data-handler="selectDay" data-event="click" data-month="7" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="30">30</a></td></tr><tr><td class=" ui-datepicker-week-end undefined" data-handler="selectDay" data-event="click" data-month="7" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="31">31</a></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">1</span></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">2</span></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">3</span></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">4</span></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">5</span></td><td class=" ui-datepicker-week-end ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">6</span></td></tr></tbody></table></div><div class="ui-datepicker-group ui-datepicker-group-last"><div class="ui-datepicker-header ui-widget-header ui-helper-clearfix ui-corner-right"><a class="ui-datepicker-next ui-corner-all" data-handler="next" data-event="click" title="Next"><span class="ui-icon ui-icon-circle-triangle-e">Next</span></a><div class="ui-datepicker-title"><span class="ui-datepicker-month">September</span>&nbsp;<span class="ui-datepicker-year">2025</span></div></div><table class="ui-datepicker-calendar"><thead><tr><th scope="col" class="ui-datepicker-week-end"><span title="Sunday">Su</span></th><th scope="col"><span title="Monday">Mo</span></th><th scope="col"><span title="Tuesday">Tu</span></th><th scope="col"><span title="Wednesday">We</span></th><th scope="col"><span title="Thursday">Th</span></th><th scope="col"><span title="Friday">Fr</span></th><th scope="col" class="ui-datepicker-week-end"><span title="Saturday">Sa</span></th></tr></thead><tbody><tr><td class=" ui-datepicker-week-end ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">31</span></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="1">1</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="2">2</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="3">3</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="4">4</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="5">5</a></td><td class=" ui-datepicker-week-end undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="6">6</a></td></tr><tr><td class=" ui-datepicker-week-end undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="7">7</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="8">8</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="9">9</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="10">10</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="11">11</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="12">12</a></td><td class=" ui-datepicker-week-end undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="13">13</a></td></tr><tr><td class=" ui-datepicker-week-end undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="14">14</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="15">15</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="16">16</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="17">17</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="18">18</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="19">19</a></td><td class=" ui-datepicker-week-end undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="20">20</a></td></tr><tr><td class=" ui-datepicker-week-end undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="21">21</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="22">22</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="23">23</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="24">24</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="25">25</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="26">26</a></td><td class=" ui-datepicker-week-end undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="27">27</a></td></tr><tr><td class=" ui-datepicker-week-end undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="28">28</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="29">29</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="30">30</a></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">1</span></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">2</span></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">3</span></td><td class=" ui-datepicker-week-end ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">4</span></td></tr><tr><td class=" ui-datepicker-week-end ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">5</span></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">6</span></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">7</span></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">8</span></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">9</span></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">10</span></td><td class=" ui-datepicker-week-end ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">11</span></td></tr></tbody></table></div><div class="ui-datepicker-row-break"></div></div></div></div></div> <div class="col col-checkout"><label for="checkout">Check-Out</label> <div class="datepicker-active-icon custom-checkout-active"></div> <input name="checkout" type="text" class="checkout-calendar-alt form-control custom-checkout"> <div class="datepicker-wrapper checkout"><div class="checkout-calendar hasDatepicker" id="dp1756415527514"><div class="ui-datepicker-inline ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all ui-datepicker-multi ui-datepicker-multi-2" style="display: block; width: 34em;"><div class="ui-datepicker-group ui-datepicker-group-first"><div class="ui-datepicker-header ui-widget-header ui-helper-clearfix ui-corner-left"><a class="ui-datepicker-prev ui-corner-all ui-state-disabled" title="Prev"><span class="ui-icon ui-icon-circle-triangle-w">Prev</span></a><div class="ui-datepicker-title"><span class="ui-datepicker-month">August</span>&nbsp;<span class="ui-datepicker-year">2025</span></div></div><table class="ui-datepicker-calendar"><thead><tr><th scope="col" class="ui-datepicker-week-end"><span title="Sunday">Su</span></th><th scope="col"><span title="Monday">Mo</span></th><th scope="col"><span title="Tuesday">Tu</span></th><th scope="col"><span title="Wednesday">We</span></th><th scope="col"><span title="Thursday">Th</span></th><th scope="col"><span title="Friday">Fr</span></th><th scope="col" class="ui-datepicker-week-end"><span title="Saturday">Sa</span></th></tr></thead><tbody><tr><td class=" ui-datepicker-week-end ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">27</span></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">28</span></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">29</span></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">30</span></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">31</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">1</span></td><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">2</span></td></tr><tr><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">3</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">4</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">5</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">6</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">7</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">8</span></td><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">9</span></td></tr><tr><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">10</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">11</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">12</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">13</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">14</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">15</span></td><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">16</span></td></tr><tr><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">17</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">18</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">19</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">20</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">21</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">22</span></td><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">23</span></td></tr><tr><td class=" ui-datepicker-week-end ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">24</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">25</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">26</span></td><td class=" ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">27</span></td><td class=" ui-datepicker-days-cell-over undefined ui-datepicker-current-day ui-datepicker-today" data-handler="selectDay" data-event="click" data-month="7" data-year="2025"><a class="ui-state-default ui-state-highlight ui-state-active ui-state-hover" href="#" aria-current="true" data-date="28">28</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="7" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="29">29</a></td><td class=" ui-datepicker-week-end undefined" data-handler="selectDay" data-event="click" data-month="7" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="30">30</a></td></tr><tr><td class=" ui-datepicker-week-end undefined" data-handler="selectDay" data-event="click" data-month="7" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="31">31</a></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">1</span></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">2</span></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">3</span></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">4</span></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">5</span></td><td class=" ui-datepicker-week-end ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">6</span></td></tr></tbody></table></div><div class="ui-datepicker-group ui-datepicker-group-last"><div class="ui-datepicker-header ui-widget-header ui-helper-clearfix ui-corner-right"><a class="ui-datepicker-next ui-corner-all" data-handler="next" data-event="click" title="Next"><span class="ui-icon ui-icon-circle-triangle-e">Next</span></a><div class="ui-datepicker-title"><span class="ui-datepicker-month">September</span>&nbsp;<span class="ui-datepicker-year">2025</span></div></div><table class="ui-datepicker-calendar"><thead><tr><th scope="col" class="ui-datepicker-week-end"><span title="Sunday">Su</span></th><th scope="col"><span title="Monday">Mo</span></th><th scope="col"><span title="Tuesday">Tu</span></th><th scope="col"><span title="Wednesday">We</span></th><th scope="col"><span title="Thursday">Th</span></th><th scope="col"><span title="Friday">Fr</span></th><th scope="col" class="ui-datepicker-week-end"><span title="Saturday">Sa</span></th></tr></thead><tbody><tr><td class=" ui-datepicker-week-end ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">31</span></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="1">1</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="2">2</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="3">3</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="4">4</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="5">5</a></td><td class=" ui-datepicker-week-end undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="6">6</a></td></tr><tr><td class=" ui-datepicker-week-end undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="7">7</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="8">8</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="9">9</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="10">10</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="11">11</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="12">12</a></td><td class=" ui-datepicker-week-end undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="13">13</a></td></tr><tr><td class=" ui-datepicker-week-end undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="14">14</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="15">15</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="16">16</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="17">17</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="18">18</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="19">19</a></td><td class=" ui-datepicker-week-end undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="20">20</a></td></tr><tr><td class=" ui-datepicker-week-end undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="21">21</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="22">22</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="23">23</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="24">24</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="25">25</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="26">26</a></td><td class=" ui-datepicker-week-end undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="27">27</a></td></tr><tr><td class=" ui-datepicker-week-end undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="28">28</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="29">29</a></td><td class=" undefined" data-handler="selectDay" data-event="click" data-month="8" data-year="2025"><a class="ui-state-default" href="#" aria-current="false" data-date="30">30</a></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">1</span></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">2</span></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">3</span></td><td class=" ui-datepicker-week-end ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">4</span></td></tr><tr><td class=" ui-datepicker-week-end ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">5</span></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">6</span></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">7</span></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">8</span></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">9</span></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">10</span></td><td class=" ui-datepicker-week-end ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled undefined"><span class="ui-state-default">11</span></td></tr></tbody></table></div><div class="ui-datepicker-row-break"></div></div></div></div></div></div></div> <div class="col col-rooms"><label for="rooms">Rooms</label> <select name="rooms" class="form-control custom-select"><option>1</option><option>2</option><option>3</option><option>4</option></select></div> <div class="col col-adults"><label for="adults">Adults</label> <select name="rooms" class="form-control custom-select"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option></select> <input readonly="readonly" class="form-control custom-select" style="display: none;"></div> <div class="col col-children"><label for="children">Children</label> <input name="children" type="text" readonly="readonly" class="form-control custom-select"></div> <div class="col col-num-guests"><label for="children">No. of Guests</label> <input name="numguests" type="text" readonly="readonly" class="form-control custom-select"></div> <div class="col col-button"><a tabindex="0" class="btn btn-sm btn-block btn-primary btn-submit">Search</a></div></div> <div class="room-list" style="display: none;"><hr> <span><div class="form-group"><div class="row"><div class="col col-room-name"><label>Room: 1</label></div> <div class="col col-adults-drop"><label for="adultsDrop">Adults</label> <select name="adultsDrop" class="form-control custom-select"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option></select></div> <div class="col col-children-drop"><label for="childrenDrop">Children</label> <select name="childrenDrop" class="form-control custom-select"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select></div> <div class="col col-child-ages" style="display: none;"><label>Age Of Child</label> <div class="row"></div></div></div></div></span> <div class="row"><div class="col col-button"><a class="btn btn-sm close-room-list">Close</a></div></div></div> <div class="row mobile-submit"><div class="col"><a tabindex="0" class="btn btn-sm btn-block btn-primary btn-submit">Search</a></div></div></div></div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown-wrapper dropdown-with-accordion">
+                                <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="dropdownGetInspired" data-tracking-id="get-inspired" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" disabled-href="">
+                                    Get Inspired
+                                </a>
+                                <div class="dropdown-menu-wrapper dropdown-get-inspired" aria-labelledby="dropdownGetInspired">
+                                    <div class="dropdown-menu">
+                                        <div class="row multi-level-links" id="collapse-get-inspired">
+                                            <div class="col col-12 d-lg-none">
+                                                <a href="/get-inspired" data-tracking-id="get-inspired-overview">
+                                                    Overview
+                                                </a>
+                                            </div>
+                                            <div class="col col-12">
+
+
+                                                    <div class="row">
+                                                        <div class="col-12 col-lg-4 level1">
+                                                            <a class="link-arrow mobile-link-singular" data-toggle="collapse" data-target="#newHotelsL2" data-tracking-id="get-inspired-new-hotels" href="/get-inspired/new-hotels" aria-expanded="false" aria-controls="newHotelsL2">
+                                                                <span class="link-align"><span class="arrow">Trending</span></span>
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-12 col-lg-8 level2">
+                                                            <div class="sub-menu collapse" id="newHotelsL2">
+                                                                <a href="/get-inspired/new-hotels" data-tracking-id="get-inspired-new-hotels-img">
+                                                                    <img data-src="//static-new.lhw.com/-/media/Images/Loyalty/Global/Header/Trending-Nayara-Gardens-Exterior-View_580x323.png" class="d-none d-lg-block lazy loaded" src="//static-new.lhw.com/-/media/Images/Loyalty/Global/Header/Trending-Nayara-Gardens-Exterior-View_580x323.png" data-was-processed="true">
+                                                                    <h8>Trending</h8>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div> <!-- newhotel -->
+                                                                                                    <div class="row">
+                                                        <div class="col-12 col-lg-4 level1">
+                                                            <a class="link-arrow" data-toggle="collapse" data-target="#collectionL2" data-tracking-id="get-inspired-collections" href="/get-inspired/collections" aria-expanded="false" aria-controls="collectionL2">
+                                                                <span class="link-align"><span class="arrow">Interests</span></span>
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-12 col-lg-4 level2">
+                                                            <div class="sub-menu collapse" id="collectionL2">
+                                                                    <a class="link-arrow" href="/collections/mediterranean-hotels/hotels" data-tracking-id="get-inspired-collections-ff4602e0-581f-45ab-a6f6-b441271c14b9">
+                                                                        <span>Mediterranean Hotels</span>
+                                                                    </a>
+                                                                    <a class="link-arrow" href="/collections/hotels-with-villas" data-tracking-id="get-inspired-collections-6630ff1e-94c6-47af-b503-0b7fddff93c3">
+                                                                        <span>Hotels With Villas</span>
+                                                                    </a>
+                                                                    <a class="link-arrow" href="/collections/best-family-escapes" data-tracking-id="get-inspired-collections-ea251d11-fbda-4d04-85cc-caf4ba53a801">
+                                                                        <span>Best Family Escapes</span>
+                                                                    </a>
+                                                                    <a class="link-arrow" href="/collections/leading-hidden-gems" data-tracking-id="get-inspired-collections-ab98c99a-a4bd-47b6-a8a9-eaeb33a89fde">
+                                                                        <span>Hidden Gems</span>
+                                                                    </a>
+                                                                    <a class="link-arrow" href="/collections/holiday-markets" data-tracking-id="get-inspired-collections-0b4a5d21-4cdf-47ed-be5e-75b4e34dcc7d">
+                                                                        <span>Best Holiday Markets</span>
+                                                                    </a>
+                                                                <a class="btn btn-link" href="/get-inspired/collections" data-tracking-id="get-inspired-collections-view-all">View All</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 col-lg-4 level3">
+                                                            <div class="sub-menu collapse" id="CollectionL3">
+
+                                                                <img data-src="//static-new.lhw.com/-/media/Images/Collections/Hotels-With-Villas/Banner-Hi_LW1921_80033070_Signature_picture_Tortuga_Bay_hotel-220x160.jpg" class="d-none d-lg-block lazy">
+                                                                <a class="btn btn-link" href="/collections/hotels-with-villas" data-tracking-id="get-inspired-collections-featured-6630ff1e-94c6-47af-b503-0b7fddff93c3">Hotels With Villas</a>
+                                                            </div>
+                                                        </div>
+                                                    </div> <!-- collections -->
+                                                                                                                                                    <div class="row">
+                                                        <div class="col-12 col-lg-4 level1">
+                                                            <a class="link-arrow mobile-link-singular" data-toggle="collapse" data-target="#destinationL2" data-tracking-id="get-inspired-destination-experiences" href="/stories/lhw-book-series" aria-expanded="false" aria-controls="destinationL2">
+                                                                <span class="link-align"><span class="arrow">The Book Series</span></span>
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-12 col-lg-8 level2">
+                                                            <div class="sub-menu collapse" id="destinationL2">
+                                                                <a href="/stories/lhw-book-series" data-tracking-id="get-inspired-destination-experiences-img">
+                                                                    <img data-src="//static-new.lhw.com/-/media/Images/Loyalty/Global/Header/LHWbook_Nav_580x323.jpg" class="d-none d-lg-block lazy">
+                                                                    <h8>The Book Series</h8>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div> <!-- destinations -->
+                                                                                                    <div class="row">
+                                                        <div class="col-12 col-lg-4 level1">
+                                                            <a class="link-arrow mobile-link-singular" data-toggle="collapse" data-target="#stacklaL2" data-tracking-id="get-inspired-stackla" href="/trending/stories" aria-expanded="false" aria-controls="stacklaL2">
+                                                                <span class="link-align"><span class="arrow">Stories</span></span>
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-12 col-lg-8 level2">
+                                                            <div class="sub-menu collapse" id="stacklaL2">
+                                                                <a href="/trending/stories" data-tracking-id="get-inspired-stackla-img">
+                                                                    <img data-src="//static-new.lhw.com/-/media/Images/Loyalty/Global/Header/STORIES_Camilla_580x323.jpg" class="d-none d-lg-block lazy">
+                                                                    <h8>Stories</h8>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div> <!-- stackla -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown-wrapper">
+                                <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="dropdownOffers" data-tracking-id="offers" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" disabled-href="">
+                                    Offers
+                                </a>
+                                <div class="dropdown-menu-wrapper dropdown-offers" aria-labelledby="dropdownOffers">
+                                    <div class="dropdown-menu">
+                                        <div class="row">
+                                                <div class="col col-12 col-lg-4">
+                                                    <a href="/offers/stay-for-4-pay-for-3" data-tracking-id="offers-a37e9f9b-f66c-4d59-87f4-2f535d36a376">
+                                                        <img data-src="//static-new.lhw.com/-/media/Images/Offers/L08-Stay-for-4-Pay-for-3/L0843260x190-1.jpg" class="d-none d-lg-block lazy loaded" src="//static-new.lhw.com/-/media/Images/Offers/L08-Stay-for-4-Pay-for-3/L0843260x190-1.jpg" data-was-processed="true">
+                                                        <h8>Best Available Rates: Stay for 4 Pay for 3</h8>
+                                                    </a>
+                                                </div>
+                                                <div class="col col-12 col-lg-4">
+                                                    <a href="/offers/suites-and-villas" data-tracking-id="offers-79df6973-a367-4116-913e-8ac7fdbb97fa">
+                                                        <img data-src="//static-new.lhw.com/-/media/Images/Offers/L06-Suites-and-Villas/L06Suites--Villas260x190-1.jpg" class="d-none d-lg-block lazy loaded" src="//static-new.lhw.com/-/media/Images/Offers/L06-Suites-and-Villas/L06Suites--Villas260x190-1.jpg" data-was-processed="true">
+                                                        <h8>Amplified Experiences: Suites &amp; Villas</h8>
+                                                    </a>
+                                                </div>
+                                                <div class="col col-12 col-lg-4">
+                                                    <a href="/offers/spa-inclusive" data-tracking-id="offers-1c1c4a43-f495-4340-bac5-c518c5760d05">
+                                                        <img data-src="//static-new.lhw.com/-/media/Images/Offers/L37-Spa-Inclusive/L37_Spa-Inc_260x190-(1).jpg" class="d-none d-lg-block lazy loaded" src="//static-new.lhw.com/-/media/Images/Offers/L37-Spa-Inclusive/L37_Spa-Inc_260x190-(1).jpg" data-was-processed="true">
+                                                        <h8>Amplified Experiences: Spa Inclusive</h8>
+                                                    </a>
+                                                </div>
+                                        </div>
+                                        <div class="dropdown-footer">
+                                            <a href="/offers" class="btn btn-link btn-arrow" data-tracking-id="offers-view-all">View All Offers</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown-wrapper">
+                                <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="dropdownLeadersClub" data-tracking-id="leaders-club" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" disabled-href="">
+                                    Leaders Club
+                                </a>
+                                <div class="dropdown-menu-wrapper dropdown-leaders-club" aria-labelledby="dropdownLeadersClub">
+                                    <div class="dropdown-menu">
+                                        <div class="row">
+                                                    <div class="col col-12 col-lg-4">
+                                                            <a href="/offer.aspx?oid=E672ACA6-B5C0-40EA-8056-4B21BC5490EC" data-tracking-id="leaders-club-9b4e7e62-e50a-4dda-b1b4-58d2cf5716d1">
+                                                                <img data-src="//static-new.lhw.com/-/media/Images/Navigation/Leaders-Club/240x130_LW1320_100227760.jpg" class="d-none d-lg-block lazy loaded" src="//static-new.lhw.com/-/media/Images/Navigation/Leaders-Club/240x130_LW1320_100227760.jpg" data-was-processed="true">
+                                                                <h8>Exclusive Room Rates</h8>
+                                                            </a>
+                                                        <p>Members save up to 20% on our best available room rates.</p>
+                                                    </div>
+                                                    <div class="col col-12 col-lg-4">
+                                                            <a href="/leaders-club/how-it-works" data-tracking-id="leaders-club-9fef10d7-f628-421e-89c3-8df47101873b">
+                                                                <img data-src="//static-new.lhw.com/-/media/Images/Navigation/Leaders-Club/240x130_LW7043_78773858.jpg" class="d-none d-lg-block lazy loaded" src="//static-new.lhw.com/-/media/Images/Navigation/Leaders-Club/240x130_LW7043_78773858.jpg" data-was-processed="true">
+                                                                <h8>How Leaders Club Works</h8>
+                                                            </a>
+                                                        <p>Learn how our members enhance every stay with Leaders Club.</p>
+                                                    </div>
+                                                    <div class="col col-12 col-lg-4">
+                                                            <a href="/leaders-club/benefits" data-tracking-id="leaders-club-cb3ce960-0143-4b20-a1ff-2670df7617a5">
+                                                                <img data-src="//static-new.lhw.com/-/media/Images/Navigation/Leaders-Club/240x130_GI_478169349.jpg" class="d-none d-lg-block lazy loaded" src="//static-new.lhw.com/-/media/Images/Navigation/Leaders-Club/240x130_GI_478169349.jpg" data-was-processed="true">
+                                                                <h8>Become a Member</h8>
+                                                            </a>
+                                                        <p>Make every journey more memorable with benefits designed to celebrate your passion for travel.</p>
+                                                    </div>
+                                        </div>
+                                            <div class="dropdown-footer">
+                                                <a href="/leaders-club/about" class="btn btn-link btn-arrow" data-tracking-id="leaders-club-learn-more">Learn more about Leaders Club</a>
+                                                <p>Don't have a Leaders Club account? <a href="/account/membership-signup" data-tracking-id="leaders-club-join-now">Join Now</a></p>
+                                            </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
