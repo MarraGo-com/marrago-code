@@ -1,7 +1,10 @@
 // /src/app/about/page.tsx
 //import Header from "@/components/ui/Header";
 //import Footer from "@/components/ui/Footer";
-import AboutSection from "@/components/sections/AboutSection";
+import dynamic from "next/dynamic";
+const theme = process.env.NEXT_PUBLIC_THEME || 'default';
+
+const AboutSection = dynamic(() => import(`@/themes/${theme}/sections/AboutSection`));
 import { Box } from "@mui/material";
 import { Metadata } from "next";
 import { getStaticPageMetadata } from "@/config/static-metadata";
@@ -24,7 +27,7 @@ export async function generateMetadata({
     description: metadata.description,
     images: [metadata.ogImage],
     pathname: metadata.pathname,
-    url: process.env.NEXT_PUBLIC_API_UR || "https://upmerce.com", // Ensure you have this environment variable set
+    url: process.env.NEXT_PUBLIC_API_URL || "https://upmerce.com", // Ensure you have this environment variable set
   });
 }
   

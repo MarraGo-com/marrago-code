@@ -1,10 +1,15 @@
 // /src/config/site.ts
 
+import { adventureConfig } from "./themes/adventure.config";
+import { defaultConfig } from "./themes/default.config";
+import { luxuryConfig } from "./themes/luxury.config";
+
 // Define the available palette names. This ensures type safety.
 export type PaletteName = 'coastalBlue' | 'desertSunset' | 'luxeNoir';
+export type ThemeName = 'default' | 'luxury' | 'adventure';
 // Define the available style options
 
-export type FontChoice = 'poppins' | 'lora';
+export type FontChoice = 'poppins' | 'lora'| 'cinzel-luxury'| 'pinyon-luxury' | 'oranienbaum-luxury';
 // --- NEW: Define the available style options ---
 export type CardStyle = 'immersive' | 'classic';
 
@@ -70,7 +75,47 @@ export type SiteConfig = {
 // --- CONFIGURATION FOR YOUR FIRST CLIENT (YOUR BROTHER) ---
 // We will fill this out using the new questionnaire.
 
+// --- BASE CONFIGURATION (Shared by ALL themes) ---
+const baseConfig = {
+  businessType: "TravelAgency",
+  addressCountry: "MA",
+  logo: "/favicon.ico",
+  addressLocality: "Imlil",
+  addressRegion: "Souss-Massa",
+//  keywords: keywords,
+  contact: {
+    email: "contact@upmerce-demo.com",
+    phone: "+212 600 000 000",
+    address: "Agadir, Morocco",
+  },
+  social: {
+    twitter: "https://twitter.com/upmerce",
+    instagram: "https://instagram.com/upmerce",
+    facebook: "https://facebook.com/upmerce",
+  },
+    colors,
+
+  // Content Specific
+     locations: LOCATIONS,
+};
+
+const themeConfigs: Record<ThemeName, Partial<SiteConfig>> = {
+  default: defaultConfig,
+  luxury: luxuryConfig,
+  adventure: adventureConfig,
+};
+
+// --- DYNAMIC EXPORT ---
+const currentTheme: ThemeName = (process.env.NEXT_PUBLIC_THEME as ThemeName) || 'default';
+
+
+// Build the final, correct siteConfig by merging the base with the selected theme
 export const siteConfig: SiteConfig = {
+  ...baseConfig,
+  ...(themeConfigs[currentTheme] as Partial<SiteConfig>),
+} as SiteConfig;
+
+/* export const siteConfig: SiteConfig = {
   // Brand & SEO
   brandName: "Hassan's Atlas Treks", // The official business name
   siteName: "Hassan's Atlas Treks", // The name displayed on the site
@@ -80,7 +125,7 @@ export const siteConfig: SiteConfig = {
   addressCountry: "MA", // ISO code for Morocco
   logo: "/favicon.ico", // Path to the logo image
   siteDescription: "Authentic, private trekking tours in the High Atlas Mountains, led by local Berber guides.",
-  keywords: ["atlas mountains trek", "morocco hiking", "imlil guide", "berber village tour", "toubkal trek"],
+//  keywords: ["atlas mountains trek", "morocco hiking", "imlil guide", "berber village tour", "toubkal trek"],
   
   theme: {
     palette: 'desertSunset', // Options: 'coastalBlue', 'desertSunset', 'luxeNoir'
@@ -106,7 +151,7 @@ export const siteConfig: SiteConfig = {
   // Content Specific
  locations: LOCATIONS,
   // Add more locations here as needed
-};
+}; */
 // static metadata for the site:
 export const metadataStore = {
   homepage: {

@@ -12,7 +12,7 @@
   "HeroSection": {
     "title": "Découvrez l'Âme du Maroc",
     "subtitle": "Voyages authentiques à travers les paysages époustouflants et la riche culture de la région de Souss-Massa.",
-    "button": "Explorez Nos Circuits"
+    "ctaButton": "Explorez Nos Circuits"
   },
   "FeaturedExperiences": {
     "title": "Expériences à la Une",
@@ -108,7 +108,11 @@
     "socialTitle": "Suivez-nous",
     "copyright": "© {year} Souss-Massa Tours. Tous droits réservés.",
     "poweredBy": "Site web par",
-    "agencyName": "Upmerce Solutions"
+    "agencyName": "Upmerce Solutions",   
+    "companyTitle": "Company",
+    "exploreTitle": "Explore",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
   },
   "LoginForm": {
     "title": "Connexion Admin",
@@ -226,7 +230,7 @@
     "styleRelaxation": "Détente",
     "styleFamily": "Famille"
   },
-  "ThemeSwitcher": {
+  "WhatsApp": {
   "tooltip": "Personnaliser le thème",
   "panelTitle": "Options du thème",
   "colorTitle": "Palette de couleurs",
@@ -239,6 +243,43 @@
   "cardTitle": "Style de la carte",
   "cardImmersive": "Immersif",
   "cardClassic": "Classique"
-}
+},
+  "TopHeader": {
+    "help": "Aide",
+    "login": "Connexion",
+    "joinNow": "S'inscrire",
+    "findReservationTooltip": "Entrez votre numéro de confirmation ci-dessous pour localiser votre réservation.",
+    "cartTooltip": "Voir votre panier"
+  },
+  "MainHeaderNav": {
+    "findHotel": "Trouver un Hôtel",
+    "getInspired": "S'inspirer",
+    "offers": "Offres",
+    "leadersClub": "Leaders Club"
+  },
+    "SearchBar": {
+    "destinationLabel": "Destination",
+    "destinationPlaceholder": "Hôtel, Ville ou Pays",
+    "checkInLabel": "Arrivée",
+    "checkOutLabel": "Départ",
+    "guestsLabel": "Voyageurs",
+    "searchButton": "Rechercher",
+    "adultsLabel": "Adultes",
+    "childrenLabel": "Enfants",
+    "roomsLabel": "Chambres"
+  },
+  "FilterControls": {
+    "locationLabel": "Destination",
+    "allLocations": "Toutes les destinations",
+    "sortLabel": "Trier par",
+    "sortDefault": "Défaut",
+    "sortPriceAsc": "Prix : Croissant",
+    "sortPriceDesc": "Prix : Décroissant"
+  },
+    "AgencyHero": {
+    "title": "Votre Aventure Commence Ici",
+    "subtitle": "Nous créons des sites web haute performance, prêts pour l'action, pour les meilleurs tours-opérateurs, agences d'excursion et guides d'aventure au Maroc.",
+    "ctaButton": "Découvrir Notre Méthode"
+  }
 
 }

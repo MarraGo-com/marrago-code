@@ -12,7 +12,7 @@
   "HeroSection": {
     "title": "Discover the Soul of Morocco",
     "subtitle": "Authentic journeys through the stunning landscapes and rich culture of the Souss-Massa region.",
-    "button": "Explore Our Tours"
+    "ctaButton": "Explore Our Tours"
   },
   "FeaturedExperiences": {
     "title": "Featured Experiences",
@@ -106,7 +106,11 @@
     "socialTitle": "Follow Us",
     "copyright": "© {year} Souss-Massa Tours. All Rights Reserved.",
     "poweredBy": "Website by",
-    "agencyName": "Upmerce Solutions"
+    "agencyName": "Upmerce Solutions",
+    "companyTitle": "Company",
+    "exploreTitle": "Explore",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service"
   }
   ,
   "LoginForm": {
@@ -225,7 +229,7 @@
     "styleRelaxation": "Relaxation",
     "styleFamily": "Family"
   },
-  "ThemeSwitcher": {
+  "WhatsApp": {
     "tooltip": "Customize Theme",
     "panelTitle": "Theme Options",
     "colorTitle": "Color Palette",
@@ -238,6 +242,43 @@
     "cardTitle": "Card Style",
     "cardImmersive": "Immersive",
     "cardClassic": "Classic"
+  },
+  "TopHeader": {
+    "help": "Help",
+    "login": "Log In",
+    "joinNow": "Join Now",
+     "findReservationTooltip": "Enter your Confirmation # below to locate your booking.",
+    "cartTooltip": "View your shopping cart"
+  },
+    "MainHeaderNav": {
+    "findHotel": "Find a Hotel",
+    "getInspired": "Get Inspired",
+    "offers": "Offers",
+    "leadersClub": "Leaders Club"
+  },
+    "SearchBar": {
+    "destinationLabel": "Destination",
+    "destinationPlaceholder": "Hotel, City or Country",
+    "checkInLabel": "Check-in",
+    "checkOutLabel": "Check-out",
+    "guestsLabel": "Guests",
+    "searchButton": "Search",
+    "adultsLabel": "Adults",
+    "childrenLabel": "Children",
+    "roomsLabel": "Rooms"
+  },
+  "FilterControls": {
+    "locationLabel": "Location",
+    "allLocations": "All Locations",
+    "sortLabel": "Sort By",
+    "sortDefault": "Default",
+    "sortPriceAsc": "Price: Low to High",
+    "sortPriceDesc": "Price: High to Low"
+  },
+  "AgencyHero": {
+    "title": "Your Adventure Awaits",
+    "subtitle": "We build high-performance, action-ready websites for Morocco's leading tour operators, excursion providers, and adventure guides.",
+    "ctaButton": "Discover Our Method"
   }
 
   

@@ -6,7 +6,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '@/lib/firebase';
 import { useAppRouter } from '@/hooks/router/useAppRouter'; // Corrected path
 import { Box, CircularProgress, Container } from '@mui/material';
-import LogOutButton from '@/components/auth/LogOutButton';
+// import LogOutButton from '@/components/auth/LogOutButton';
 import AdminSidebar from '@/components/admin/AdminSidebar';
 
 export default function AdminLayout({
@@ -71,9 +71,9 @@ export default function AdminLayout({
       <Box sx={{ display: 'flex' }}>
         <AdminSidebar />
         <Box component="main" sx={{ flexGrow: 1, p: 3, bgcolor: 'background.default', minHeight: '100vh' }}>
-          <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
+          {/* <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
             <LogOutButton />
-          </Box>
+          </Box> */}
           <Container maxWidth="xl">
             {children}
           </Container>
