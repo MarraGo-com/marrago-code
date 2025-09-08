@@ -19,7 +19,7 @@ export async function generateMetadata({
 }: { 
   params: MetadataParams 
 }): Promise<Metadata> {
-  // We simply call our helper with the page key and the current locale.
+  // We simply call our helper with the page key and the current locale...
   const url = process.env.NEXT_PUBLIC_API_URL || "https://upmerce.com"; // Ensure you have this environment variable set
   const { locale } = await params;
   const metadata = getStaticPageMetadata('homepage', locale);
