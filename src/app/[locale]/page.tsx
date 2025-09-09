@@ -39,7 +39,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       <main className="flex-grow">
-        {/* The HeroSection is always visible first, so it does not need to be lazy-loaded. */}
+        {/* The HeroSection is always visible first, so it does not need to be lazy-loaded.   */}
         <HeroSection />
 
         {/* --- 2. Wrap all "below-the-fold" sections with both LazyLoadSection and AnimatedSection --- */}
