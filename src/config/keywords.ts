@@ -4,6 +4,52 @@
  * searching for travel experiences in Morocco.
  */
 
+// --- SHARED KEYWORDS (Good for all themes) ---
+export const sharedKeywords: string[] = [
+  'web design agadir',
+  'freelance web developer morocco',
+  'website for tour operators',
+  'riad website design',
+  'increase direct bookings website',
+  'tourism web agency morocco',
+  'next.js developer agadir',
+  'professional website for guides',
+  'Upmerce Solutions',
+  // Darija
+  'تصايب سيت ويب فأكادير',
+  'برمجة مواقع فالمغرب',
+  'سيت ويب لوكالة أسفار',
+];
+
+
+// --- THEME-SPECIFIC KEYWORDS ---
+
+// Keywords for the "Default / Authentic" Theme
+export const defaultKeywords: string[] = [
+  'authentic moroccan adventures',
+  'berber village tour',
+  'imlil guide',
+  'cultural immersion morocco',
+  'local moroccan experiences',
+];
+
+// Keywords for the "Luxury & Serenity" Theme
+export const luxuryKeywords: string[] = [
+  'luxury riad marrakech',
+  'serene atlas escapes',
+  'bespoke morocco tours',
+  'premium desert camp',
+  'high-end moroccan travel',
+];
+
+// Keywords for the "Adventure & Action" Theme
+export const adventureKeywords: string[] = [
+  'morocco adventure travel',
+  'atlas mountains trek',
+  'sahara desert 4x4 tour',
+  'agadir surf camp website',
+  'active holidays morocco',
+];
 // --- English Keywords (25) ---
 const englishKeywords: string[] = [
     'morocco travel',

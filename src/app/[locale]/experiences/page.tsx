@@ -7,6 +7,10 @@ import { getStaticPageMetadata } from '@/config/static-metadata';
 import { generateStaticPageMetadata } from '@/lib/metadata';
 import ExperiencesComponent from '@/components/experience/ExperiencesClient';
 
+// --- DYNAMICALLY IMPORT THE CORRECT LAYOUT COMPONENT ---
+// const theme = process.env.NEXT_PUBLIC_THEME || 'default';
+// This will now load either your default layout or your new luxury one
+// const ExperiencesPageLayout = dynamic(() => import(`@/themes/${theme}/experiences/ExperiencesPageLayout`));
 // --- 2. This is the new, cleaner metadata function ---
 type MetadataParams = Promise<{ locale: 'en' | 'fr' }>;
 

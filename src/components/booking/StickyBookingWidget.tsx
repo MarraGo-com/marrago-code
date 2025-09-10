@@ -15,7 +15,7 @@ import LanguageIcon from '@mui/icons-material/Language';
 import { Experience } from '@/types/experience'; // Import the full Experience type
 
 // The props should accept the full experience object for flexibility
-interface BookingWidgetProps {
+export interface BookingWidgetProps {
   experience: Experience;
   experienceId: string;
   experienceTitle: string;

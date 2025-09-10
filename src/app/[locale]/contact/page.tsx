@@ -1,6 +1,9 @@
 // /src/app/contact/page.tsx
+import dynamic from "next/dynamic";
+const theme = process.env.NEXT_PUBLIC_THEME || 'default';
+const ContactSection = dynamic(() => import(`@/themes/${theme}/sections/ContactSection`));
+// 
 
-import ContactSection from "@/components/sections/ContactSection";
 import { Box } from "@mui/material";
 import { Metadata } from "next";
 import { getStaticPageMetadata } from "@/config/static-metadata";

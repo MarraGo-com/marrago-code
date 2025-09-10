@@ -1,16 +1,29 @@
 // /src/app/[locale]/page.tsx
-import HeroSection from "@/components/sections/HeroSection";
-import FeaturedExperiences from "@/components/sections/FeaturedExperiences";
-import WhyChooseUs from "@/components/sections/WhyChooseUs";
-import BlogHighlightsSection from "@/components/sections/BlogHighlightsSection";
-import SocialProofSection from "@/components/sections/SocialProofSection";
-import TestimonialsSection from "@/components/sections/TestimonialsSection";
-import NewsletterSection from "@/components/sections/NewsletterSection";
-import AnimatedSection from "@/components/custom/AnimatedSection";
+
+import dynamic from 'next/dynamic'
 import LazyLoadSection from "@/components/custom/LazyLoadSection"; // <-- 1. Import our new lazy load component
+// --- EDIT 2: Import the props type ---
+import type { AnimatedSectionProps } from '@/themes/default/custom/AnimatedSection';
 import { Metadata } from "next";
 import { getStaticPageMetadata } from "@/config/static-metadata";
 import { generateStaticPageMetadata } from "@/lib/metadata";
+// --- DYNAMIC THEME IMPORTS ---
+const theme = process.env.NEXT_PUBLIC_THEME || 'default';
+
+const HeroSection = dynamic(() => import(`@/themes/${theme}/sections/HeroSection`));
+const FeaturedExperiences = dynamic(() => import(`@/themes/${theme}/sections/FeaturedExperiences`));
+const WhyChooseUs = dynamic(() => import(`@/themes/${theme}/sections/WhyChooseUs`));
+const BlogHighlightsSection = dynamic(() => import(`@/themes/${theme}/sections/BlogHighlightsSection`));
+const SocialProofSection = dynamic(() => import(`@/themes/${theme}/sections/SocialProofSection`));
+const TestimonialsSection = dynamic(() => import(`@/themes/${theme}/sections/TestimonialsSection`));
+const NewsletterSection = dynamic(() => import(`@/themes/${theme}/sections/NewsletterSection`));
+// const Header = dynamic(() => import(`@/themes/${theme}/ui/Header`));
+// The AnimatedSection is part of the theme, so it's loaded dynamically too
+// const AnimatedSection = dynamic(() => import(`@/themes/${theme}/custom/AnimatedSection`));
+// --- EDIT 3: Apply the type to your dynamic component ---
+const AnimatedSection = dynamic<AnimatedSectionProps>(() =>
+  import(`@/themes/${theme}/custom/AnimatedSection`).then((mod) => mod.default)
+);
 
 type MetadataParams = Promise<{ locale: 'en' | 'fr' }>;
 
@@ -27,7 +40,8 @@ export async function generateMetadata({
  
   
   return generateStaticPageMetadata({
-    title: metadata.title,
+   // title: metadata.title,
+    title: 'Success is your destination - Ouazza Mustapha',
     description: metadata.description,
     images: [metadata.ogImage],
     pathname: metadata.pathname,
@@ -36,14 +50,14 @@ export async function generateMetadata({
  
 }
 export default function Home() {
-  return (
-    <div className="flex flex-col min-h-screen">
-      <main className="flex-grow">
-        {/* The HeroSection is always visible first, so it does not need to be lazy-loaded.   */}
-        <HeroSection />
+  //  const HEADER_HEIGHT = 90; // Define your header height in pixels
 
-        {/* --- 2. Wrap all "below-the-fold" sections with both LazyLoadSection and AnimatedSection --- */}
-        {/* The outer LazyLoadSection prevents rendering, the inner AnimatedSection handles the animation once rendered. */}
+  return (
+    <>
+      {/* <Header /> */}
+      <main>
+        {/* <Header/> */}
+        <HeroSection />
         
         <LazyLoadSection>
           <AnimatedSection delay={0.2}>
@@ -82,7 +96,6 @@ export default function Home() {
         </LazyLoadSection>
 
       </main>
-
-    </div>
+    </>
   );
 }

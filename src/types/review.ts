@@ -10,6 +10,9 @@ export interface Review {
   experienceId: string;
   isApproved: boolean;
   createdAt: string; // Serialized as an ISO string
+  author?: string;
+  location?: string;
+  avatar?: string; // URL to the author's avatar image
   // This field is added for convenience in the admin panel
   experienceTitle?: string; 
 }

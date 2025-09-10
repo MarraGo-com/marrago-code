@@ -33,4 +33,6 @@ export interface Experience {
   // and are not part of the core database type.
   title?: string;
   description?: string;
+  rating?: number;
+  reviewCount?: number;
 }

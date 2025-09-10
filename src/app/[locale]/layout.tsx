@@ -3,23 +3,38 @@
 // This file now imports and uses our new DeferredStylesheets component.
 // -------------------------------------------------------------------------
 import type { Metadata } from "next";
+import dynamic from 'next/dynamic'; // Import dynamic
 import "@/app/globals.css";
 import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { notFound } from 'next/navigation';
+import {notFound} from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { getMainJsonLd, siteConfig } from "@/config/site";
-import { lora, poppins } from "@/config/theme";
-import PageTransition from "@/components/custom/PageTransition";
 import ThemeRegistry from "@/providers/ThemeRegistry";
 import QueryProvider from "@/providers/QueryProvider";
 import { ThemeContextProvider } from "@/contexts/ThemeContext";
-import Header from "@/components/ui/Header";
-import Footer from "@/components/ui/Footer";
-import ThemeSwitcher from "@/components/ui/ThemeSwitcher";
+
 import DeferredStylesheets from "@/components/custom/DeferredStylesheets"; // <-- Import the new component
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
+import { PageTransitionProps } from "@/themes/default/custom/PageTransition";
+import { fontVariables } from "@/config/fonts";
+// import Header from "@/themes/default/ui/Header";
+import ConditionalHeader from "@/components/ui/ConditionalHeader";
 
+
+// --- DYNAMIC THEME IMPORTS ---
+// Get the current theme from the environment variable
+const theme = process.env.NEXT_PUBLIC_THEME || 'default';
+
+// Dynamically import components that are now part of the theme
+const Footer  = dynamic(() => import(`@/themes/${theme}/ui/Footer`));
+
+const WhatsApp = dynamic(() => import(`@/themes/${theme}/ui/WhatsApp`));
+
+// const PageTransition = dynamic(() => import(`@/themes/${theme}/custom/PageTransition`));
+const PageTransition = dynamic<PageTransitionProps>(() =>
+  import(`@/themes/${theme}/custom/PageTransition`).then((mod) => mod.default)
+);
 export const metadata: Metadata = {
   title: siteConfig.siteName,
   description: siteConfig.siteDescription,
@@ -46,7 +61,7 @@ export default async function RootLayout({
    const url = process.env.NEXT_PUBLIC_API_URL || "https://upmerce.com"; // Ensure you have this environment variable set
 
  const mainJsonLd = getMainJsonLd({url});
- 
+// const currentFont = fontMap[siteConfig.theme.font] || poppins;
  return (
     <html lang={locale}>
       <head>
@@ -67,13 +82,13 @@ export default async function RootLayout({
         {/* We now render the deferred stylesheets using our new Client Component */}
         <DeferredStylesheets />
       </head>
-      <body className={`${poppins.variable} ${lora.variable}`}>
+      <body className={fontVariables} >
         <NextIntlClientProvider locale={locale} messages={messages}>
           <QueryProvider>
             <ThemeContextProvider>
               <ThemeRegistry>
                 <div className="flex flex-col min-h-screen">
-                  <Header />
+                  <ConditionalHeader />
                   <main className="flex-grow">
                     <PageTransition>
                       {children}
@@ -81,7 +96,7 @@ export default async function RootLayout({
                   </main>
                   <Footer />
                 </div>
-                <ThemeSwitcher />
+                <WhatsApp />
               </ThemeRegistry>
             </ThemeContextProvider>
           </QueryProvider>

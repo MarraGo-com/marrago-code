@@ -5,15 +5,20 @@
 // The review components will be moved inside the main details component later if needed.
 // -------------------------------------------------------------------------
 // import Header from "@/components/ui/Header";
+import dynamic from "next/dynamic";
+const theme = process.env.NEXT_PUBLIC_THEME || 'default';
+// Dynamically import Header and Footer components
+// const ExperienceDetails = dynamic(() => import(`@/themes/${theme}/sections/ExperienceDetails`));
+const ExperienceDetails = dynamic<ExperienceDetailsProps>(() =>
+  import(`@/themes/${theme}/sections/ExperienceDetails`).then((mod) => mod.default)
+);
 
-import ExperienceDetails from "@/components/sections/ExperienceDetails";
-import { Box, Container, Divider } from "@mui/material";
-import ReviewsList from "@/components/reviews/ReviewsList";
-import LeaveReviewForm from "@/components/reviews/LeaveReviewForm";
 import { getExperienceById, getReviewSummary } from "@/lib/data";
 import { Experience } from "@/types/experience";
 import { Metadata } from "next";
 import { generateDynamicPageMetadata } from "@/lib/metadata";
+import { ExperienceDetailsProps } from "@/themes/default/sections/ExperienceDetails";
+import { notFound } from "next/navigation";
 
 async function getClientConfig() {
   return {
@@ -84,6 +89,10 @@ export default async function ExperienceDetailPage({ params }: { params: Params 
       },
     }),
   };
+  if (!experienceData) {
+    notFound();
+  }
+  // The page now only renders ONE component and passes all necessary data down
   return (
       <section>
         <script
@@ -92,31 +101,11 @@ export default async function ExperienceDetailPage({ params }: { params: Params 
           __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
         }}
       />
-         <Box sx={{ 
-      display: 'flex', 
-      flexDirection: 'column', 
-      minHeight: '100vh', 
-      bgcolor: 'background.default',
-      // ✅ **FIX:** Add this style to prevent horizontal scroll from child components
-      '& .main-content': {
-        overflowX: 'hidden',
-      }
-    }}>
-      {/* <Header /> */}
-      {/* ✅ **FIX:** Add the corresponding className here */}
-      <main className="main-content flex-grow">
-        <ExperienceDetails experience={experience} />
-        
-        {clientConfig?.plugins?.hasReviews && (
-          <Container maxWidth="lg" sx={{ pb: { xs: 8, md: 12 } }}>
-              <Divider sx={{ my: 8 }} />
-              <ReviewsList experienceId={id} />
-              <LeaveReviewForm experienceId={id} />
-          </Container>
-        )}
-      </main>
-     {/*  <Footer /> */}
-         </Box>
+          
+    <ExperienceDetails 
+        experience={experienceData} 
+        clientConfig={clientConfig} 
+    />
       </section>
   );
 }
