@@ -277,9 +277,9 @@
     "sortPriceDesc": "Prix : Décroissant"
   },
     "AgencyHero": {
-    "title": "Votre Aventure Commence Ici",
-    "subtitle": "Nous créons des sites web haute performance, prêts pour l'action, pour les meilleurs tours-opérateurs, agences d'excursion et guides d'aventure au Maroc.",
-    "ctaButton": "Découvrir Notre Méthode"
-  }
+  "title": "Votre Aventure Vous Attend",
+  "subtitle": "Surfez sur la côte Atlantique, randonnez dans les montagnes de l'Atlas ou explorez le désert du Sahara. Nous proposons des excursions authentiques, guidées par des experts, pour tous les amateurs de sensations fortes.",
+  "ctaButton": "Découvrez Nos Aventures"
+}
 
 }

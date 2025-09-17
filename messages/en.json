@@ -276,10 +276,10 @@
     "sortPriceDesc": "Price: High to Low"
   },
   "AgencyHero": {
-    "title": "Your Adventure Awaits",
-    "subtitle": "We build high-performance, action-ready websites for Morocco's leading tour operators, excursion providers, and adventure guides.",
-    "ctaButton": "Discover Our Method"
-  }
+  "title": "Your Adventure Awaits",
+  "subtitle": "Surf the Atlantic coast, trek the Atlas Mountains, or explore the Sahara desert. We offer authentic, expertly-guided excursions for every thrill-seeker.",
+  "ctaButton": "Explore Our Adventures"
+}
 
   
 }
