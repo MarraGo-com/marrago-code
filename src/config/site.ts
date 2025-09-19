@@ -70,6 +70,10 @@ export type SiteConfig = {
     cardStyle: CardStyle;
     
   };
+  ogImage?: {
+    src: string; // Should be a relative path from the /public folder
+    alt: string;
+  };
 };
 
 // --- CONFIGURATION FOR YOUR FIRST CLIENT (YOUR BROTHER) ---

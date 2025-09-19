@@ -12,4 +12,8 @@ keywords: [...sharedKeywords, ...adventureKeywords],
     font: 'lora',
     cardStyle: 'immersive',
   },
+  ogImage: {
+    src: "/images/og/og-adventure-theme.webp", // Use the adventure image we created
+    alt: "Authentic Morocco Adventures - Adventure Theme"
+  }
 };
