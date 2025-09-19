@@ -56,11 +56,16 @@ export function getStaticPageMetadata(
   const finalTitle = pageKey === 'homepage' 
     ? `${siteConfig.siteName} | ${content.title}` 
     : `${content.title} | ${siteConfig.siteName}`;
+  // If the page is 'homepage', use the theme-specific image from siteConfig.
+  // Otherwise, use the static image defined in metadataStore for that page.
+  const finalOgImage = pageKey === 'homepage' && siteConfig.ogImage
+    ? siteConfig.ogImage
+    : content.ogImage;  
 
   return {
     title: finalTitle,
     description: content.description,
-    ogImage: content.ogImage,
+    ogImage: finalOgImage,
     pathname: pathname
   };
 }
