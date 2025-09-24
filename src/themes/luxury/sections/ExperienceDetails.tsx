@@ -19,6 +19,7 @@ import dynamic from 'next/dynamic';
 import { ReviewsListProps } from '../reviews/ReviewsList';
 import { LeaveReviewFormProps } from '../reviews/LeaveReviewForm';
 import { BookingWidgetProps } from '@/components/booking/StickyBookingWidget';
+import Image from 'next/image';
 
 //////////////////////////////////////////////////////////////////////////
 // Dynamically import the new luxury review components
@@ -40,28 +41,41 @@ export default function ExperienceDetails({ experience, clientConfig }: Experien
   const location = locations.find(loc => loc.id === experience.locationId);
 
   return (
-    <Box sx={{ bgcolor: 'background.paper' }}>
-      {/* 1. Full-width, immersive cover image */}
+      <Box sx={{ bgcolor: 'background.paper' }}>
+      {/* 1. Full-width, immersive cover image - REFACTORED */}
       <Box sx={{ 
         position: 'relative', 
         width: '100%', 
         height: '70vh', 
         minHeight: '500px', 
-        display: 'flex', 
-        alignItems: 'flex-end',
-        justifyContent: 'center',
         color: 'white',
-        textAlign: 'center',
-        backgroundImage: `url(${experience.coverImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
       }}>
+        {/* --- THIS IS THE KEY CHANGE --- */}
+        <Image
+          src={experience.coverImage}
+          alt={translation?.title || experience.title || 'Cover image for the experience'}
+          fill
+          style={{ objectFit: 'cover' }}
+          priority // Tells Next.js to load this important image first
+        />
+        
+        {/* The overlay and text now sit on top of the Image component */}
         <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'linear-gradient(to top, rgba(0,0,0,0.8) 20%, transparent 60%)' }} />
-        <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 2, pb: 8 }}>
+        
+        <Box sx={{
+          position: 'relative', // Stacks on top of the overlay
+          zIndex: 2,
+          height: '100%',
+          display: 'flex',
+          alignItems: 'flex-end',
+          justifyContent: 'center',
+          textAlign: 'center',
+        }}>
+          <Container maxWidth="lg" sx={{ pb: 8 }}>
             <Typography 
-                variant="h2" 
-                component="h1" 
-                sx={{ fontWeight: 'bold' }}
+              variant="h2" 
+              component="h1" 
+              sx={{ fontWeight: 'bold' }}
             >
               {translation?.title || experience.title}
             </Typography>
@@ -71,7 +85,8 @@ export default function ExperienceDetails({ experience, clientConfig }: Experien
                 <Typography variant="body1">{location.name}</Typography>
               </Box>
             )}
-        </Container>
+          </Container>
+        </Box>
       </Box>
 
       {/* 2. Centered, single-column content layout */}

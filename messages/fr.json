@@ -158,7 +158,11 @@
   },
   "Price": {
     "from": "À partir de",
-    "contactUs": "Nous Contacter"
+    "contactUs": "Nous Contacter",
+    "perHalfDay": "par demi-journée",
+    "perDay": "par journée",
+    "perPerson": "par personne",
+    "perGroup": "par groupe"
   },
   "LeaveReviewForm": {
     "title": "Laissez un Avis",
