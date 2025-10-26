@@ -6,8 +6,10 @@ import Header  from "@/themes/default/ui/Header";
 // It's good practice to use dynamic imports here to keep your bundles small
 import dynamic from 'next/dynamic';
 import { useLocale } from 'next-intl';
-import { siteConfig } from '@/config/client-data';
-const theme = siteConfig.templateTheme || 'default';
+// import { siteConfig } from '@/config/client-data';
+// const theme = siteConfig.templateTheme || 'default';
+const theme = process.env.NEXT_PUBLIC_THEME || 'default';
+
 // Rename your existing large header component to HeroHeader or similar
 const HeroHeader = dynamic(() => import(`@/themes/${theme}/ui/Header`));
 

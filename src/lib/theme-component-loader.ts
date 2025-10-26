@@ -15,7 +15,8 @@ import { siteConfig } from '@/config/client-data';
 export function getComponentImport(componentName: string, subfolder: string = 'sections') {
   
   // Use 'default' if siteConfig.templateTheme is missing.
-  const theme = siteConfig.templateTheme || 'default'; 
+ // const theme = siteConfig.templateTheme || 'default'; 
+    const theme = process.env.NEXT_PUBLIC_THEME || 'default';
 
   // 1. Check for a client-specific override
   if (siteConfig.clientId) {

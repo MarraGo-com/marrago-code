@@ -9,10 +9,11 @@ import { usePathname, useRouter } from '@/i18n/navigation';
 import { Experience } from '@/types/experience';
 import dynamic from "next/dynamic";
 import { ExperiencesPageLayoutProps } from '@/themes/default/experiences/ExperiencesPageLayout';
-import { siteConfig } from '@/config/client-data';
+// import { siteConfig } from '@/config/client-data';
 
 // --- DYNAMICALLY IMPORT THE CORRECT LAYOUT COMPONENT ---
-const theme = siteConfig.templateTheme || 'default';
+// const theme = siteConfig.templateTheme || 'default';
+const theme = process.env.NEXT_PUBLIC_THEME || 'default';
 // const ExperiencesPageLayout = dynamic(() => import(`@/themes/${theme}/experiences/ExperiencesPageLayout`));
 
 // --- EDIT 2: Apply the type to your dynamic component ---
