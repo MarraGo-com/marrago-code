@@ -1,12 +1,11 @@
 // /src/app/manifest.ts
+import { siteConfig } from '@/config/client-data';
 import { MetadataRoute } from 'next'
-import { siteConfig } from '@/config/site'
-import { palettes } from '@/config/theme' // We need to import the color palettes
+
 
 export default function manifest(): MetadataRoute.Manifest {
   // Get the primary color from the currently selected theme palette
-  const themeColor = palettes[siteConfig.theme.palette]?.primary || '#004AAD';
-
+const primaryColor = siteConfig.colors.primaryColor || '#004AAD'; // Fallback to a default if somehow not set
   return {
     name: siteConfig.siteName,
     short_name: siteConfig.brandName,
@@ -14,7 +13,7 @@ export default function manifest(): MetadataRoute.Manifest {
     start_url: '/',
     display: 'standalone',
     background_color: '#FFFFFF',
-    theme_color: themeColor, // Use the dynamic theme color
+    theme_color: primaryColor, // Use the dynamic theme color
     icons: [
       {
         src: '/images/icons/icon-72x72.png',

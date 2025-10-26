@@ -1,34 +1,31 @@
-
 // -------------------------------------------------------------------------
 // 2. UPDATED FILE: /src/app/[locale]/experiences/[id]/page.tsx
-// This page now only needs to render the main layout and the refactored details component.
-// The review components will be moved inside the main details component later if needed.
 // -------------------------------------------------------------------------
-// import Header from "@/components/ui/Header";
 import dynamic from "next/dynamic";
-const theme = process.env.NEXT_PUBLIC_THEME || 'default';
-// Dynamically import Header and Footer components
-// const ExperienceDetails = dynamic(() => import(`@/themes/${theme}/sections/ExperienceDetails`));
-const ExperienceDetails = dynamic<ExperienceDetailsProps>(() =>
-  import(`@/themes/${theme}/sections/ExperienceDetails`).then((mod) => mod.default)
-);
-
 import { getExperienceById, getReviewSummary } from "@/lib/data";
 import { Experience } from "@/types/experience";
 import { Metadata } from "next";
 import { generateDynamicPageMetadata } from "@/lib/metadata";
 import { ExperienceDetailsProps } from "@/themes/default/sections/ExperienceDetails";
 import { notFound } from "next/navigation";
+import { siteConfig } from '@/config/client-data';
 
-async function getClientConfig() {
-  return {
-    plugins: { 
-      hasReviews: true,
-      hasBookingEngine: true,
-      hasBlog: true,
-      }
-  };
-}
+// --- ▼▼▼ CHANGES START HERE ▼▼▼ ---
+
+// 1. Import our server-side loader
+import { getComponentImport } from "@/lib/theme-component-loader";
+
+// 2. REMOVE the old 'theme' variable
+// const theme = process.env.NEXT_PUBLIC_THEME || 'default'; // <-- REMOVED
+
+// 3. Use getComponentImport to load the component
+// We keep the .then((mod) => mod.default) as it was in your original code
+const ExperienceDetails = dynamic<ExperienceDetailsProps>(() =>
+  getComponentImport('ExperienceDetails', 'sections')().then((mod) => mod.default)
+);
+
+// --- ▲▲▲ CHANGES END HERE ▲▲▲ ---
+
 
 // --- UPGRADED METADATA FUNCTION ---
 type ExperienceMetadata = Promise<{
@@ -37,27 +34,34 @@ type ExperienceMetadata = Promise<{
 }>;
 export async function generateMetadata({ params }: { params: ExperienceMetadata }): Promise<Metadata> {
   const {id, locale} = await params;
+
+  if (!siteConfig.hasExperiencesSection) {
+    return {
+      title: 'Not Found',
+      description: 'The experiences feature is currently disabled.',
+    };
+  }
+
   const experience = (await getExperienceById(id)) as Experience | null;
   if (!experience) { return { title: 'Experience Not Found' }; }
 
-
-
-// Use the fetched data to generate the metadata.
   return generateDynamicPageMetadata({
     title: experience.translations?.[locale]?.title || experience.translations?.fr?.title || 'Experience Not Available',
     description: experience.translations?.[locale]?.description.substring(0, 160) + '...' || experience.translations?.fr?.description.substring(0, 160) + '...' ,
     images: [{ src: experience.coverImage || '', alt: experience.title || '' }],
     pathname: `/experiences/${id}`,
-    url: process.env.NEXT_PUBLIC_API_URL || "https://upmerce.com", // Ensure you have this environment variable set
-
+    url: process.env.NEXT_PUBLIC_API_URL || "https://upmerce.com",
   });
 }
 
 type Params = Promise<{ id: string, locale: string }>;
 export default async function ExperienceDetailPage({ params }: { params: Params }) {
+  if (!siteConfig.hasExperiencesSection) {
+    notFound(); 
+  }
+
   const { id, locale } = await params;
   const experienceData = (await getExperienceById(id)) as Experience | null;
-  const clientConfig = await getClientConfig();
   
   const experience = {
     ...experienceData,
@@ -66,14 +70,13 @@ export default async function ExperienceDetailPage({ params }: { params: Params 
   } as Experience;
   const reviewSummary = await getReviewSummary(id);
   const translation = experience.translations?.[locale] || experience.translations?.en;
- // const siteUrl = process.env.NEXT_PUBLIC_API_URL || '';
-
+  
   // --- JSON-LD STRUCTURED DATA ---
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'TouristTrip',
     name: translation?.title,
-    description: translation?.description?.substring(0, 5000), // Max length for description
+    description: translation?.description?.substring(0, 5000),
     image: experience.coverImage,
     offers: {
       '@type': 'Offer',
@@ -92,20 +95,25 @@ export default async function ExperienceDetailPage({ params }: { params: Params 
   if (!experienceData) {
     notFound();
   }
-  // The page now only renders ONE component and passes all necessary data down
+
   return (
-      <section>
-        <script
+    <section>
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
         }}
       />
           
-    <ExperienceDetails 
-        experience={experienceData} 
-        clientConfig={clientConfig} 
-    />
-      </section>
+      <ExperienceDetails 
+          experience={experienceData}
+          clientConfig={{
+            plugins: {
+                hasReviews: siteConfig.hasReviewsSystem,
+                hasBookingEngine: siteConfig.hasBookingEngine,
+            }
+          }}
+      />
+    </section>
   );
 }

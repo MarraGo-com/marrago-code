@@ -1,25 +1,28 @@
-// /src/components/sections/ContactSection.tsx
 'use client';
 
 import React, { useState } from 'react';
 import { 
   Grid, Typography, Box, Container, TextField, Button, 
-  CircularProgress, Alert, Snackbar 
+  CircularProgress, Alert, Snackbar, Stack 
 } from '@mui/material';
-
+// Kept for UI-specific text like placeholders and errors
 import { useTranslations } from 'next-intl';
+// NEW: Import client data and locale hook for main content
+import { useLocale } from 'next-intl';
+import { siteConfig } from '@/config/client-data';
+
 import dynamic from 'next/dynamic';
 
-// ✅ This is the correct way to dynamically import a client-only component.
 const InteractiveMap = dynamic(
-  () => import('@/components/ui/InteractiveMap'), // Adjust path if needed
+  () => import('@/components/ui/InteractiveMap'),
   {
-    ssr: false, // This ensures it's only rendered on the client
-    loading: () => <div style={{ height: '400px', background: '#e0e0e0' }} /> // A placeholder while the map loads
+    ssr: false,
+    loading: () => <div style={{ height: '400px', background: '#e0e0e0' }} />
   }
 );
 
 export default function ContactSection() {
+  // `t` is still used for UI text (labels, alerts, button)
   const t = useTranslations('ContactSection');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -31,6 +34,10 @@ export default function ContactSection() {
     message: '',
     severity: 'success',
   });
+  
+  // NEW: Get content for title and subtitle
+  const locale = useLocale() as 'en' | 'fr' | 'ar';
+  const content = siteConfig.textContent[locale]?.contactPage || siteConfig.textContent.en.contactPage;
 
   const handleCloseSnackbar = (event?: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
@@ -41,7 +48,6 @@ export default function ContactSection() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log('Form submission initiated...');
     setLoading(true);
     setSnackbar({ ...snackbar, open: false });
 
@@ -75,52 +81,60 @@ export default function ContactSection() {
       <Box sx={{ py: { xs: 8, md: 12 }, bgcolor: 'background.default' }}>
         <Container maxWidth="lg">
           <Typography variant="h4" sx={{ textAlign: 'center', fontWeight: 'bold', mb: 8, color: 'text.primary' }}>
-            {t('title')}
+            {content.title}
           </Typography>
-          {/* --- THIS IS THE NEW TWO-COLUMN LAYOUT --- */}
           <Grid container spacing={6}>
-            {/* Left Column: Contact Info & Form */}
-            <Grid  size={{ xs: 12, sm: 6, md: 4 }}>
-              <Typography variant="h5" sx={{ fontWeight: '600', mb: 3, color: 'text.primary' }}>
-                {t('infoTitle')}
-              </Typography>
-              <Typography variant="body1" sx={{ mb: 4, color: 'text.secondary' }}>
-                {t('infoSubtitle')}
-              </Typography>
-              
-              {/* Contact Form */}
-              <Box component="form" onSubmit={handleSubmit} noValidate>
-                <Grid container spacing={2}>
-                  <Grid  size= {{ xs: 12, sm: 6 }}>
-                    <TextField required fullWidth label={t('formNameLabel')} name="name" value={name} onChange={(e) => setName(e.target.value)} />
+            <Grid size={{ xs: 12, md: 4 }}>
+              {/* REFINED: Wrapped content in a Stack for better spacing */}
+              <Stack spacing={3}>
+                {siteConfig.slogan && (
+                    <Typography 
+                        variant="h6" 
+                        component="p" 
+                        sx={{ color: 'primary.main', fontWeight: 600 }}
+                    >
+                        {siteConfig.slogan}
+                    </Typography>
+                )}
+                <Box>
+                    <Typography variant="h5" sx={{ fontWeight: '600', mb: 1, color: 'text.primary' }}>
+                        {content.infoTitle}
+                    </Typography>
+                    <Typography variant="body1" sx={{ color: 'text.secondary' }}>
+                        {content.infoSubtitle}
+                    </Typography>
+                </Box>
+                
+                <Box component="form" onSubmit={handleSubmit} noValidate>
+                  <Grid container spacing={2}>
+                    <Grid size={{ xs: 12, sm: 6 }}>
+                      <TextField required fullWidth label={t('formNameLabel')} name="name" value={name} onChange={(e) => setName(e.target.value)} />
+                    </Grid>
+                    <Grid size={{ xs: 12, sm: 6 }}>
+                      <TextField required fullWidth label={t('formEmailLabel')} name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    </Grid>
+                    <Grid size={{ xs: 12 }}>
+                      <TextField required fullWidth multiline rows={6} label={t('formMessageLabel')} name="message" value={message} onChange={(e) => setMessage(e.target.value)} />
+                    </Grid>
+                    <Grid size={{ xs: 12 }}>
+                      <Button type="submit" variant="contained" color="primary" size="large" disabled={loading}>
+                        {loading ? <CircularProgress size={24} /> : t('formSubmitButton')}
+                      </Button>
+                    </Grid>
                   </Grid>
-                  <Grid size= {{ xs: 12, sm: 6 }}>
-                    <TextField required fullWidth label={t('formEmailLabel')} name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                  </Grid>
-                  <Grid  size={{ xs: 12 }}>
-                    <TextField required fullWidth multiline rows={6} label={t('formMessageLabel')} name="message" value={message} onChange={(e) => setMessage(e.target.value)} />
-                  </Grid>
-                  <Grid  size= {{ xs: 12 }}>
-                    <Button type="submit" variant="contained" color="primary" size="large" disabled={loading}>
-                      {loading ? <CircularProgress size={24} /> : t('formSubmitButton')}
-                    </Button>
-                  </Grid>
-                </Grid>
-              </Box>
+                </Box>
+              </Stack>
             </Grid>
 
-            {/* Right Column: Interactive Map */}
-            <Grid  size={{ xs: 12, sm: 6, md: 8 }}>
+            <Grid size={{ xs: 12, md: 8 }}>
               <Box sx={{height: '100%', minHeight: 400}}>
-                {/* We use the coordinates for Biougra as our example */}
-                <InteractiveMap latitude={30.2167} longitude={-9.3667} />
+                <InteractiveMap latitude={siteConfig.contact.latitude || 0} longitude={siteConfig.contact.longitude || 0} />
               </Box>
             </Grid>
           </Grid>
         </Container>
       </Box>
 
-      {/* Snackbar component for notifications */}
       <Snackbar
         open={snackbar.open}
         autoHideDuration={6000}

@@ -1,24 +1,31 @@
-// /src/themes/luxury/sections/WhyChooseUs.tsx
+// /src/themes/luxury/sections/WhyChooseUs.tsx (UPDATED)
 'use client';
 
 import React from 'react';
 import { Grid, Box, Container, Typography } from '@mui/material';
-import { useTranslations } from 'next-intl';
-import MainHeading from '../../default/custom/MainHeading';
+// REMOVED: useTranslations is no longer needed
+// import { useTranslations } from 'next-intl';
 
-// Import icons from MUI
+// NEW: Import client data and locale hook
+import { useLocale } from 'next-intl';
+
+// UPDATED: Using MainHeadingUserContent to accept a direct title string
+import MainHeadingUserContent from '../../../components/custom/MainHeadingUserContent';
+
+// Import icons from MUI (these remain hardcoded as they are not in the data file)
 import MapIcon from '@mui/icons-material/Map';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import EditNoteIcon from '@mui/icons-material/EditNote';
+import { siteConfig } from '@/config/client-data';
 
-// A small helper component for each feature item
+// A small helper component for each feature item (structure remains the same)
 const FeatureItem = ({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) => (
-  <Grid  size={{ xs: 12, md: 4 }}>
+  // Using the required size={{...}} prop
+  <Grid size={{ xs: 12, md: 4 }}>
     <Box sx={{ textAlign: 'center' }}>
-            <Box sx={{ 
+      <Box sx={{ 
         mb: 3, 
         color: 'primary.main',
-        // This sets the font size for the icon inside
         '& .MuiSvgIcon-root': { fontSize: 48 } 
       }}>
         {icon}
@@ -26,11 +33,7 @@ const FeatureItem = ({ icon, title, description }: { icon: React.ReactNode, titl
       <Typography 
         variant="h5" 
         component="h3" 
-        sx={{ 
-         // fontFamily: 'lora, serif', 
-          fontWeight: 600, 
-          mb: 2 
-        }}
+        sx={{ fontWeight: 600, mb: 2 }}
       >
         {title}
       </Typography>
@@ -41,48 +44,50 @@ const FeatureItem = ({ icon, title, description }: { icon: React.ReactNode, titl
   </Grid>
 );
 
-
 export default function WhyChooseUs() {
-  const t = useTranslations('WhyChooseUs');
+  // REMOVED: const t = useTranslations('WhyChooseUs');
+
+  // NEW: Get content dynamically based on the current locale
+  const locale = useLocale() as 'en' | 'fr' | 'ar';
+  const content = siteConfig.textContent[locale]?.homepage || siteConfig.textContent.en.homepage;
+
+  // An array of icons to map to the features from the data file by index
+  const featureIcons = [
+    <MapIcon key="map" />,
+    <EditNoteIcon key="edit" />,
+    <SupportAgentIcon key="support" />,
+  ];
 
   return (
     <Box sx={{ 
       py: { xs: 8, md: 12 },
-      bgcolor: 'background.default' // Clean white background
+      bgcolor: 'background.default'
     }}>
       <Container maxWidth="lg">
-        <MainHeading 
-         titleKey='title' 
-         component={'h2'}
-         variant='h2'
-         t={t} 
-         sx={{ 
-           textAlign: 'center', 
-          // fontFamily: 'lora, serif',
-           fontWeight: 500,
-           mb: 10, // Increased margin for more space
-           color: 'text.primary'
-         }}
+        {/* UPDATED: Using MainHeadingUserContent and passing the direct title */}
+        <MainHeadingUserContent
+          title={content.whyChooseUsTitle}
+          component={'h2'}
+          variant='h2'
+          sx={{ 
+            textAlign: 'center', 
+            fontWeight: 500,
+            mb: 10,
+            color: 'text.primary'
+          }}
         />
 
-        {/* --- THIS IS THE KEY CHANGE --- */}
-        {/* We use a new, more elegant layout instead of the FeatureCard component */}
+        {/* UPDATED: Dynamically mapping over features from the client data file */}
         <Grid container spacing={8}>
-          <FeatureItem
-            icon={<MapIcon />}
-            title={t('feature1_title')}
-            description={t('feature1_desc')}
-          />
-          <FeatureItem
-            icon={<EditNoteIcon />}
-            title={t('feature2_title')}
-            description={t('feature2_desc')}
-          />
-          <FeatureItem
-            icon={<SupportAgentIcon />}
-            title={t('feature3_title')}
-            description={t('feature3_desc')}
-          />
+          {content.whyChooseUsFeatures.map((feature, index) => (
+            <FeatureItem
+              key={index}
+              // Assign icon based on the order in the array
+              icon={featureIcons[index % featureIcons.length]} 
+              title={feature.title}
+              description={feature.description}
+            />
+          ))}
         </Grid>
       </Container>
     </Box>

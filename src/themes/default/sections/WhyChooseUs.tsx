@@ -1,19 +1,37 @@
-// /src/components/sections/WhyChooseUs.tsx
-'use client'; // <-- Must be a client component to use the hook
+// /src/components/sections/WhyChooseUs.tsx (UPDATED)
+'use client'; 
 
 import React from 'react';
-import {Grid, Box, Container } from '@mui/material';
+import { Grid, Box, Container } from '@mui/material';
 import FeatureCard from '../ui/FeatureCard';
-import { useTranslations } from 'next-intl'; // <-- Import the hook
+// REMOVED: useTranslations is no longer needed
+// import { useTranslations } from 'next-intl';
 
-// Import icons from MUI
+// NEW: Import client data and locale hook
+import { useLocale } from 'next-intl';
+
+// UPDATED: Using MainHeadingUserContent to accept a direct title string
+
+// Import icons from MUI (these remain hardcoded)
 import MapIcon from '@mui/icons-material/Map';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import EditNoteIcon from '@mui/icons-material/EditNote';
-import MainHeading from '../custom/MainHeading';
+import MainHeadingUserContent from '@/components/custom/MainHeadingUserContent';
+import { siteConfig } from '@/config/client-data';
 
 export default function WhyChooseUs() {
-  const t = useTranslations('WhyChooseUs'); // <-- Initialize the hook
+  // REMOVED: const t = useTranslations('WhyChooseUs');
+
+  // NEW: Get content dynamically based on the current locale
+  const locale = useLocale() as 'en' | 'fr' | 'ar';
+  const content = siteConfig.textContent[locale]?.homepage || siteConfig.textContent.en.homepage;
+
+  // An array of icons to map to the features from the data file by index
+  const featureIcons = [
+    <MapIcon key="map" />,
+    <EditNoteIcon key="edit" />,
+    <SupportAgentIcon key="support" />,
+  ];
 
   return (
     <Box sx={{ 
@@ -21,44 +39,31 @@ export default function WhyChooseUs() {
       bgcolor: 'background.default'
     }}>
       <Container maxWidth="lg">
-        <MainHeading 
-         titleKey='title' 
-         component={'h2'}
-         variant='h2'
-         t={t} 
-         sx={{ 
+        {/* UPDATED: Using MainHeadingUserContent and passing the direct title */}
+        <MainHeadingUserContent
+          title={content.whyChooseUsTitle}
+          component={'h2'}
+          variant='h2'
+          sx={{ 
             textAlign: 'center', 
             fontWeight: 'bold', 
             mb: 8, 
             color: 'text.primary'
-          }}        />
+          }}
+        />
 
         <Grid container spacing={4}>
-          {/* We pass the translated text as props to the FeatureCard component */}
-          <Grid  size={{ xs: 12, md: 4 }}>
-            <FeatureCard
-              icon={<MapIcon />}
-              title={t('feature1_title')}
-              description={t('feature1_desc')}
-            />
-          </Grid>
-          
-          <Grid size={{ xs: 12, md: 4 }}>
-            <FeatureCard
-              icon={<EditNoteIcon />}
-              title={t('feature2_title')}
-              description={t('feature2_desc')}
-            />
-          </Grid>
-          
-          <Grid  size={{ xs: 12, md: 4 }}>
-            <FeatureCard
-              icon={<SupportAgentIcon />}
-              title={t('feature3_title')}
-              description={t('feature3_desc')}
-            />
-          </Grid>
-
+          {/* UPDATED: Dynamically mapping over features from the client data file */}
+          {content.whyChooseUsFeatures.map((feature, index) => (
+            <Grid key={index} size={{ xs: 12, md: 4 }}>
+              <FeatureCard
+                // Assign icon based on the order in the array
+                icon={featureIcons[index % featureIcons.length]} 
+                title={feature.title}
+                description={feature.description}
+              />
+            </Grid>
+          ))}
         </Grid>
       </Container>
     </Box>

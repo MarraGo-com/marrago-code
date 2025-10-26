@@ -9,9 +9,10 @@ import { usePathname, useRouter } from '@/i18n/navigation';
 import { Experience } from '@/types/experience';
 import dynamic from "next/dynamic";
 import { ExperiencesPageLayoutProps } from '@/themes/default/experiences/ExperiencesPageLayout';
+import { siteConfig } from '@/config/client-data';
 
 // --- DYNAMICALLY IMPORT THE CORRECT LAYOUT COMPONENT ---
-const theme = process.env.NEXT_PUBLIC_THEME || 'default';
+const theme = siteConfig.templateTheme || 'default';
 // const ExperiencesPageLayout = dynamic(() => import(`@/themes/${theme}/experiences/ExperiencesPageLayout`));
 
 // --- EDIT 2: Apply the type to your dynamic component ---
@@ -19,7 +20,7 @@ const ExperiencesPageLayout = dynamic<ExperiencesPageLayoutProps>(() =>
   import(`@/themes/${theme}/experiences/ExperiencesPageLayout`)
 );
 
-export default function ExperiencesComponent() {
+export default function ExperiencesClient() {
   // --- All of your "Engine" logic remains here, untouched ---
   const { data: allExperiences, isLoading, isError } = useExperiences();
   const router = useRouter();
@@ -28,6 +29,8 @@ export default function ExperiencesComponent() {
 
   const [selectedLocation, setSelectedLocation] = useState(searchParams.get('location') || 'all');
   const [sortOption, setSortOption] = useState(searchParams.get('sort') || 'default');
+  
+
 
   useEffect(() => {
     setSelectedLocation(searchParams.get('location') || 'all');
@@ -61,6 +64,7 @@ export default function ExperiencesComponent() {
   };
 
   const processedExperiences = useMemo(() => {
+  
     if (!allExperiences) return [];
     let experiences = [...allExperiences];
     if (selectedLocation !== 'all') {
@@ -76,7 +80,8 @@ export default function ExperiencesComponent() {
 
   // The component now passes all data and functions down to the dynamic layout
   return (
-    <ExperiencesPageLayout 
+    <>
+      <ExperiencesPageLayout 
       processedExperiences={processedExperiences}
       isLoading={isLoading}
       isError={isError}
@@ -85,5 +90,6 @@ export default function ExperiencesComponent() {
       selectedSort={sortOption}
       onSortChange={handleSortChange}
     />
+    </>
   );
 }

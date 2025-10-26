@@ -4,31 +4,39 @@
 import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
 import { Link } from '@/i18n/navigation';
-import { useTranslations } from 'next-intl';
+// import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import { siteConfig } from '@/config/site';
+import { siteConfig } from '@/config/client-data';
 
-// --- THIS IS THE KEY CHANGE ---
-// The 'isScrolled' prop is no longer needed and has been removed.
+// --- UPDATED INTERFACE ---
+interface NavLinkItem {
+  id?: string; // id is optional as not all links might need it (e.g., from header)
+  text: string;
+  href: string;
+}
+
 interface MainHeaderNavigationProps {
   textColor: string;
-  isMenuOpen: boolean;
+  isMenuOpen: boolean; // Keep this if still used for logo filter, otherwise remove
   setActiveMenu: (menu: string | null) => void;
+  navLinks: NavLinkItem[]; // NEW: Add navLinks prop
 }
 
 export default function MainHeaderNavigation({ 
   textColor,
-//  isMenuOpen, // This prop is still needed for the logo filter
-  setActiveMenu 
+ // isMenuOpen, // Keep this if still used for the logo filter
+  setActiveMenu,
+  navLinks // NEW: Destructure navLinks from props
 }: MainHeaderNavigationProps) {
-  const t = useTranslations('MainHeaderNav');
+//  const t = useTranslations('MainHeaderNav');
 
-  const navLinks = [
-    { id: 'find-hotel', text: t('findHotel'), href: '/experiences' },
-    { id: 'get-inspired', text: t('getInspired'), href: '/blog' },
-    { id: 'offers', text: t('offers'), href: '/#pricing' },
-    { id: 'leaders-club', text: t('leadersClub'), href: '/about' },
-  ];
+  // REMOVED: The internal navLinks array is no longer needed
+  // const navLinks = [
+  //   { id: 'find-hotel', text: t('findHotel'), href: '/experiences' },
+  //   { id: 'get-inspired', text: t('getInspired'), href: '/blog' },
+  //   { id: 'offers', text: t('offers'), href: '/#pricing' },
+  //   { id: 'leaders-club', text: t('leadersClub'), href: '/about' },
+  // ];
 
   return (
     <Box
@@ -51,14 +59,14 @@ export default function MainHeaderNavigation({
         {/* Left Side: Logo */}
         <Link href="/" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center' }}>
           <Image 
-            src="/favicon.ico" 
+            src= {siteConfig.logo} // Consider using siteConfig.logo here too for consistency
             alt={`${siteConfig.siteName} logo`}
             width={50} 
             height={50} 
             priority
             style={{ 
-              // We use isMenuOpen here to decide the filter
-            //  filter: textColor === 'common.white' && !isMenuOpen ? 'brightness(0) invert(1)' : 'none', 
+              // We use isMenuOpen here to decide the filter (if uncommented)
+              // filter: textColor === 'common.white' && !isMenuOpen ? 'brightness(0) invert(1)' : 'none', 
               transition: 'filter 0.3s ease-in-out' 
             }}
           />
@@ -78,11 +86,11 @@ export default function MainHeaderNavigation({
 
         {/* Right Side: All Navigation Links */}
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
-          {navLinks.map((link) => (
+          {navLinks.map((link) => ( // Now mapping over the prop `navLinks`
             <Button
-              key={link.id}
+              key={link.id || link.href} // Use id or href as key
               color="inherit"
-              onMouseEnter={() => setActiveMenu(link.id)}
+              onMouseEnter={() => setActiveMenu(link.id || link.href)} // Use id or href for active menu
               component={Link}
               href={link.href}
               sx={{ 

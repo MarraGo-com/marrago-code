@@ -15,7 +15,7 @@ export default function WhatsApp() {
   const t = useTranslations('WhatsApp');
   const [isOpen, setIsOpen] = useState(false);
   const { 
-    palette, setPalette, 
+   // palette, setPalette, 
     font, setFont, 
     cardStyle, setCardStyle 
   } = useThemeContext();
@@ -86,7 +86,7 @@ export default function WhatsApp() {
             <Typography variant="subtitle1" sx={{ fontWeight: 'bold', mb: 1 }}>{t('colorTitle')}</Typography>
             <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
               {palettes.map(p => (
-                <Button key={p.id} onClick={() => setPalette(p.id)} variant={palette === p.id ? 'contained' : 'outlined'} size="small">
+                <Button key={p.id} /* onClick={() => setPalette(p.id)} variant={palette === p.id ? 'contained' : 'outlined'} */ size="small">
                   {p.name}
                 </Button>
               ))}

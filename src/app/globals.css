@@ -13,7 +13,3 @@
 *::after {
   box-sizing: border-box;
 }
-
-
-/* We don't need to set body background/color here
-   because our MUI ThemeProvider in layout.tsx handles it. */

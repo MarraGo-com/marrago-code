@@ -2,6 +2,9 @@
 import { Box, Typography, Paper } from "@mui/material";
 import EditArticleForm from "@/components/admin/EditArticleForm";
 import { adminDb } from "@/lib/firebase-admin";
+import { notFound } from "next/navigation"; // <-- NEW: Import notFound
+import { siteConfig } from '@/config/client-data';
+import { getTranslations } from "next-intl/server"; // <-- NEW: Import getTranslations
 
 // This server-side function fetches the data for the specific article we want to edit.
 async function getArticle(id: string) {
@@ -45,13 +48,19 @@ export default async function EditArticlePage({
 }: { 
   params: Params
 }) {
+  // RECTIFICATION: If blog system is globally disabled, show 404
+  if (!siteConfig.hasBlogSystem) {
+    notFound(); 
+  }
+
   const { id } = await params; 
   const article = await getArticle(id);
+  const t = await getTranslations('admin.AdminBlogEditPage'); // Assuming you'd add this namespace
 
   if (!article) {
     return (
       <Box>
-        <Typography variant="h4">Article not found.</Typography>
+        <Typography variant="h4">{t('articleNotFound') || 'Article not found.'}</Typography> {/* RECTIFICATION: Use translation */}
       </Box>
     );
   }
@@ -59,7 +68,7 @@ export default async function EditArticlePage({
   return (
     <Box>
       <Typography variant="h4" component="h1" sx={{ mb: 4, fontWeight: 'bold' }}>
-        Edit Article
+        {t('editArticleTitle') || 'Edit Article'} {/* RECTIFICATION: Use translation */}
       </Typography>
       <Paper sx={{ p: 4, bgcolor: 'background.paper' }}>
         <EditArticleForm article={article} />

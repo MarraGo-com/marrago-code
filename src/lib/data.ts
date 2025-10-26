@@ -6,6 +6,7 @@ import 'server-only'; // This ensures this code only ever runs on the server
 import { cache } from 'react';
 import { adminDb } from '@/lib/firebase-admin';
 import { Article } from '@/types/article';
+import { Review } from '@/types/review';
 
 // FOR THE BLOG PAGE:
 
@@ -195,5 +196,27 @@ export const getReviewSummary = cache(async (experienceId: string) => {
   } catch (error) {
     console.error("Error fetching review summary:", error);
     return { reviewCount: 0, averageRating: 0 }; // Return a default value on error
+  }
+});
+export const getAllApprovedReviews = cache(async () => {
+  try {
+    console.log('Fetching all approved reviews from Firestore...');
+    const reviewsSnapshot = await adminDb.collection('reviews')
+      .where('isApproved', '==', true)
+      .orderBy('createdAt', 'desc')
+      .get();
+      
+    const reviews = reviewsSnapshot.docs.map(doc => {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        ...data,
+         createdAt: data.createdAt.toDate().toISOString(),
+      };
+    });
+    return reviews as Review[];
+  } catch (error) {
+    console.error("Error fetching all approved reviews:", error);
+    return [];
   }
 });

@@ -5,6 +5,7 @@ import React, { useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import { siteConfig } from '@/config/client-data';
 
 // We create a single, constant icon instance to be reused.
 const DefaultIcon = L.icon({
@@ -46,7 +47,7 @@ export default function InteractiveMap({ latitude, longitude }: InteractiveMapPr
       />
       <Marker position={[latitude, longitude]}>
         <Popup>
-          Souss-Massa Tours <br /> Our Location.
+          {siteConfig.brandName} <br /> Our Location.
         </Popup>
       </Marker>
     </MapContainer>

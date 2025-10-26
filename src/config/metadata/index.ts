@@ -1,3 +1,4 @@
+// src/config/metadata/index.ts
 export const FORMAT_DETECTION = {
     email: true,
     address: true,

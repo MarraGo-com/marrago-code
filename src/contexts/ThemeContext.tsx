@@ -1,54 +1,67 @@
 // /src/contexts/ThemeContext.tsx
 'use client';
 
-import React, { createContext, useState, useContext, ReactNode } from 'react';
-import { siteConfig, PaletteName, FontChoice, CardStyle } from '@/config/site';
+import React, {
+  createContext,
+  useState,
+  useContext,
+  ReactNode,
+  useMemo,
+} from 'react';
+import { siteConfig } from '@/config/client-data';
+import { CardStyle, FontChoice } from '@/config/types';
 
-// 1. Define the shape of the data that our context will hold.
-// It includes the current theme settings and functions to change them.
 interface ThemeContextType {
-  palette: PaletteName;
-  setPalette: (palette: PaletteName) => void;
+  primaryColor: string;
+  setPrimaryColor: (color: string) => void;
+  secondaryColor: string;
+  setSecondaryColor: (color: string) => void;
   font: FontChoice;
   setFont: (font: FontChoice) => void;
   cardStyle: CardStyle;
   setCardStyle: (style: CardStyle) => void;
 }
 
-// 2. Create the React Context.
-// We initialize it as undefined because it will only have a value inside the Provider.
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-// 3. Create the Provider component.
-// This component will wrap our application and manage the theme state.
 export function ThemeContextProvider({ children }: { children: ReactNode }) {
-  // Initialize the state with the default values from our central config file.
-  const [palette, setPalette] = useState<PaletteName>(siteConfig.theme.palette);
+  const [primaryColor, setPrimaryColor] = useState<string>(
+    siteConfig.colors.primaryColor
+  );
+  const [secondaryColor, setSecondaryColor] = useState<string>(
+    siteConfig.colors.secondaryColor
+  );
   const [font, setFont] = useState<FontChoice>(siteConfig.theme.font);
-  const [cardStyle, setCardStyle] = useState<CardStyle>(siteConfig.theme.cardStyle);
+  const [cardStyle, setCardStyle] = useState<CardStyle>(
+    siteConfig.theme.cardStyle
+  );
 
-  const value = {
-    palette,
-    setPalette,
-    font,
-    setFont,
-    cardStyle,
-    setCardStyle,
-  };
+  // Memoize the context value to prevent unnecessary re-renders
+  const value = useMemo(
+    () => ({
+      primaryColor,
+      setPrimaryColor,
+      secondaryColor,
+      setSecondaryColor,
+      font,
+      setFont,
+      cardStyle,
+      setCardStyle,
+    }),
+    [primaryColor, secondaryColor, font, cardStyle]
+  );
 
   return (
-    <ThemeContext.Provider value={value}>
-      {children}
-    </ThemeContext.Provider>
+    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
   );
 }
 
-// 4. Create a custom hook for easy access.
-// This is a professional pattern that makes using the context cleaner and safer.
 export function useThemeContext() {
   const context = useContext(ThemeContext);
   if (context === undefined) {
-    throw new Error('useThemeContext must be used within a ThemeContextProvider');
+    throw new Error(
+      'useThemeContext must be used within a ThemeContextProvider'
+    );
   }
   return context;
 }

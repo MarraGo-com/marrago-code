@@ -3,7 +3,8 @@ import { ARCHIVES, BOOKMARKS, CATEGORY, FORMAT_DETECTION, ICONS, ITUNES, OTHER }
 import { AUTHORS } from "@/config/metadata/authors";
 import { APP_LINKS, MEDIA, ROBOTS, VERIFICATION } from "@/config/metadata/robots";
 import { APP_NAME, CREATOR, TWITTER_CREATOR_ID, DEFAULT_LOCALE, GENERATOR, PLATEFORM, PUBLISHER, TWITTER_SITE_ID } from "../config/config";
-import { keywords } from "@/config/keywords";
+// keywords import removed: using siteConfig.keywords instead
+import { siteConfig } from '@/config/client-data';
 
 // --- TYPE DEFINITIONS ---
 
@@ -61,7 +62,7 @@ function _generateBaseMetadata({
     creator: CREATOR,
     publisher: PUBLISHER,
     referrer: 'origin-when-cross-origin',
-    keywords,
+    keywords : siteConfig.keywords,
     authors: AUTHORS,
     manifest: new URL('/manifest.webmanifest', url).toString(),
     category: CATEGORY,

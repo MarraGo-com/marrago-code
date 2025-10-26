@@ -8,6 +8,7 @@ export interface TeamMemberCardProps {
   image: string;
   name: string;
   title: string;
+  bio?: string;
 }
 
 export default function TeamMemberCard({ image, name, title }: TeamMemberCardProps) {

@@ -1,18 +1,23 @@
-// /src/themes/adventure/sections/ContactSection.tsx
 'use client';
 
 import React, { useState } from 'react';
 import {
   Grid, Typography, Box, Container, TextField, Button,
-  CircularProgress, Alert, Snackbar, Paper
+  CircularProgress, Alert, Snackbar, Paper, Stack
 } from '@mui/material';
 import { useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
+import { siteConfig } from '@/config/client-data';
+
 import dynamic from 'next/dynamic';
 
 // Import action-oriented icons
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import { Link } from '@/i18n/navigation';
+import { SiteConfig } from '@/config/site';
 
 const InteractiveMap = dynamic(
   () => import('@/components/ui/InteractiveMap'),
@@ -34,6 +39,10 @@ export default function ContactSection() {
     message: '',
     severity: 'success',
   });
+
+  const locale = useLocale() as 'en' | 'fr' | 'ar';
+  const content = siteConfig.textContent[locale]?.contactPage || siteConfig.textContent.en.contactPage;
+
 
   const handleCloseSnackbar = (event?: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
@@ -74,65 +83,94 @@ export default function ContactSection() {
 
   return (
     <>
-      <Box sx={{ position: 'relative', py: { xs: 8, md: 12 } }}>
-        {/* Full-width map background */}
-        <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
-          <InteractiveMap latitude={30.4278} longitude={-9.5981} />
-        </Box>
-        {/* Dark overlay for readability */}
-        <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', bgcolor: 'rgba(0,0,0,0.6)', zIndex: 2 }} />
-
-        <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 3 }}>
-            <Paper sx={{ p: { xs: 3, md: 5 }, borderRadius: 3, boxShadow: 12 }}>
-                 <Grid container spacing={5}>
-                    {/* Left Column: Contact Info */}
-                    <Grid size={{ xs: 12, md: 5 }}>
-                        <Typography variant="h3" sx={{ fontWeight: 'bold', mb: 3 }}>
-                            {t('infoTitle')}
-                        </Typography>
-                        <Typography variant="body1" sx={{ mb: 4, color: 'text.secondary' }}>
-                            {t('infoSubtitle')}
-                        </Typography>
-                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                <LocationOnIcon color="primary" sx={{ mr: 2 }} />
-                                <Typography>Agadir, Morocco</Typography>
-                            </Box>
-                            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                <PhoneIcon color="primary" sx={{ mr: 2 }} />
-                                <Typography>+212 123 456 789</Typography>
-                            </Box>
-                             <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                <EmailIcon color="primary" sx={{ mr: 2 }} />
-                                <Typography>contact@adventure.com</Typography>
-                            </Box>
+      <Box sx={{ bgcolor: 'background.paper', py: { xs: 8, md: 12 } }}>
+        <Container maxWidth="lg">
+          <Paper sx={{ p: { xs: 3, md: 5 }, borderRadius: 3, boxShadow: 12 }}>
+            <Grid container spacing={5}>
+              {/* Left Column: Contact Info */}
+              <Grid size={{ xs: 12, md: 5 }}>
+                <Stack spacing={3}>
+                  {siteConfig.slogan && (
+                    <Typography 
+                      variant="h6" 
+                      component="p" 
+                      sx={{ color: 'primary.main', fontWeight: 600 }}
+                    >
+                      {siteConfig.slogan}
+                    </Typography>
+                  )}
+                  <Typography variant="h3" sx={{ fontWeight: 'bold' }}>
+                    {content.infoTitle}
+                  </Typography>
+                  <Typography variant="body1" sx={{ color: 'text.secondary' }}>
+                    {content.infoSubtitle}
+                  </Typography>
+                  
+                  <Stack spacing={2}>
+                    {siteConfig.contact.address && (
+                      <Box sx={{ display: 'flex', alignItems: 'flex-start' }}>
+                        <LocationOnIcon color="primary" sx={{ mr: 2, mt: '2px' }} />
+                        <Typography>{siteConfig.contact.address}</Typography>
+                      </Box>
+                    )}
+                    {siteConfig.contact.phone && (
+                      <Link href={`tel:${siteConfig.contact.phone}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                          <PhoneIcon color="primary" sx={{ mr: 2 }} />
+                          <Typography>{siteConfig.contact.phone}</Typography>
                         </Box>
-                    </Grid>
-
-                    {/* Right Column: Contact Form */}
-                    <Grid size={{ xs: 12, md: 7 }}>
-                        <Box component="form" onSubmit={handleSubmit} noValidate>
-                            <Grid container spacing={2}>
-                                <Grid size={{ xs: 12, sm: 6 }}>
-                                    <TextField required fullWidth label={t('formNameLabel')} name="name" value={name} onChange={(e) => setName(e.target.value)} />
-                                </Grid>
-                                <Grid size={{ xs: 12, sm: 6 }}>
-                                    <TextField required fullWidth label={t('formEmailLabel')} name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                                </Grid>
-                                <Grid size={{ xs: 12 }}>
-                                    <TextField required fullWidth multiline rows={4} label={t('formMessageLabel')} name="message" value={message} onChange={(e) => setMessage(e.target.value)} />
-                                </Grid>
-                                <Grid size={{ xs: 12 }}>
-                                    <Button type="submit" variant="contained" color="primary" size="large" disabled={loading} sx={{ borderRadius: '50px', px: 4 }}>
-                                    {loading ? <CircularProgress size={24} /> : t('formSubmitButton')}
-                                    </Button>
-                                </Grid>
-                            </Grid>
+                      </Link>
+                    )}
+                    {siteConfig.contact.whatsappNumber && (
+                      <Link href={`https://wa.me/${siteConfig.contact.whatsappNumber.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
+                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                          <WhatsAppIcon color="primary" sx={{ mr: 2 }} />
+                          <Typography>{siteConfig.contact.whatsappNumber}</Typography>
                         </Box>
+                      </Link>
+                    )}
+                    {siteConfig.contact.email && (
+                      <Link href={`mailto:${siteConfig.contact.email}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                          <EmailIcon color="primary" sx={{ mr: 2 }} />
+                          <Typography>{siteConfig.contact.email}</Typography>
+                        </Box>
+                      </Link>
+                    )}
+                  </Stack>
+                </Stack>
+              </Grid>
+
+              {/* Right Column: Contact Form */}
+              <Grid size={{ xs: 12, md: 7 }}>
+                <Box component="form" onSubmit={handleSubmit} noValidate>
+                  <Grid container spacing={2}>
+                    <Grid size={{ xs: 12, sm: 6 }}>
+                      <TextField required fullWidth label={t('formNameLabel')} name="name" value={name} onChange={(e) => setName(e.target.value)} />
                     </Grid>
-                 </Grid>
-            </Paper>
+                    <Grid size={{ xs: 12, sm: 6 }}>
+                      <TextField required fullWidth label={t('formEmailLabel')} name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    </Grid>
+                    <Grid size={{ xs: 12 }}>
+                      <TextField required fullWidth multiline rows={4} label={t('formMessageLabel')} name="message" value={message} onChange={(e) => setMessage(e.target.value)} />
+                    </Grid>
+                    <Grid size={{ xs: 12 }}>
+                      <Button type="submit" variant="contained" color="primary" size="large" disabled={loading} sx={{ borderRadius: '50px', px: 4 }}>
+                        {loading ? <CircularProgress size={24} /> : t('formSubmitButton')}
+                      </Button>
+                    </Grid>
+                  </Grid>
+                </Box>
+              </Grid>
+            </Grid>
+          </Paper>
         </Container>
+      </Box>
+
+      {/* Map is now a separate, full-width section below the form */}
+      <Box sx={{ height: '50vh', minHeight: 400 }}>
+        {/* UPDATED: Using dynamic coordinates from siteConfig */}
+        <InteractiveMap latitude={(siteConfig as SiteConfig).contact.latitude || 0} longitude={(siteConfig as SiteConfig).contact.longitude || 0} />
       </Box>
 
       <Snackbar
@@ -148,3 +186,4 @@ export default function ContactSection() {
     </>
   );
 }
+

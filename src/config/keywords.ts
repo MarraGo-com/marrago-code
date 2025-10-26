@@ -4,23 +4,80 @@
  * searching for travel experiences in Morocco.
  */
 
+// src/config/site.ts (Updated sharedKeywords)
+
 // --- SHARED KEYWORDS (Good for all themes) ---
 export const sharedKeywords: string[] = [
-  'web design agadir',
-  'freelance web developer morocco',
-  'website for tour operators',
-  'riad website design',
-  'increase direct bookings website',
-  'tourism web agency morocco',
-  'next.js developer agadir',
-  'professional website for guides',
-  'Upmerce Solutions',
-  // Darija
-  'تصايب سيت ويب فأكادير',
-  'برمجة مواقع فالمغرب',
-  'سيت ويب لوكالة أسفار',
-];
+  // English Keywords - General Tourism
+  'Morocco travel',
+  'Morocco tours',
+  'Morocco trips',
+  'travel agency Morocco',
+  'tour operator Morocco',
+  'adventure travel Morocco',
+  'cultural tours Morocco',
+  'desert tours Morocco',
+  'Atlas Mountains tours',
+  'Sahara Desert experience',
+  'Marrakech tours',
+  'Fes tours',
+  'Casablanca tours',
+  'Agadir excursions',
+  'private tours Morocco',
+  'tailor-made Morocco trips',
+  'bespoke travel Morocco',
+  'Moroccan holidays',
+  'discover Morocco',
+  'explore Morocco',
+  'authentic Morocco',
+  'luxury Morocco tours',
+  'budget Morocco travel',
+  'family holidays Morocco',
+  'solo travel Morocco',
+  'group tours Morocco',
+  'Moroccan desert camp',
+  'camel trekking Sahara',
+  'local guides Morocco',
+  'Moroccan transport service',
+  'airport transfer Morocco',
+  'inter-city travel Morocco',
+  'Moroccan experiences',
+  'food tours Morocco',
+  'cooking classes Marrakech',
+  'wellness retreats Morocco',
+  'historical tours Morocco',
+  'city breaks Morocco',
+  'beach holidays Morocco', // e.g., Essaouira, Agadir
+  'eco-tourism Morocco',
+  'sustainable travel Morocco',
+  'Moroccan hospitality',
+  'sightseeing Morocco',
+  'travel guide Morocco',
+  'Morocco vacation packages',
 
+  
+  'Upmerce Solutions', // Your brand keyword
+
+  // Darija Keywords - General Tourism
+  'سفر للمغرب', // Travel to Morocco
+  'رحلات المغرب', // Morocco trips/journeys
+  'وكالة أسفار المغرب', // Travel agency Morocco
+  'جولات سياحية المغرب', // Tourist tours Morocco
+  'رحلات صحراوية المغرب', // Desert trips Morocco
+  'جبال الأطلس رحلات', // Atlas Mountains trips
+  'مراكش سياحة', // Marrakech tourism
+  'أكادير رحلات', // Agadir trips
+  'النقل السياحي المغرب', // Tourist transport Morocco
+  'دليل سياحي المغرب', // Morocco tourist guide
+  'تأجير سيارات بسائق المغرب', // Car rental with driver Morocco
+  'مغامرات المغرب', // Morocco adventures
+  'المغرب الفاسي', // Fes Morocco
+  'مكناس رحلات', // Meknes trips
+  'شفشاون سياحة', // Chefchaouen tourism
+  'الصويرة رحلات بحرية', // Essaouira sea trips
+
+ 
+];
 
 // --- THEME-SPECIFIC KEYWORDS ---
 

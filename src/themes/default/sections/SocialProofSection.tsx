@@ -1,10 +1,15 @@
-// /src/components/sections/SocialProofSection.tsx
+// /src/themes/default/sections/SocialProofSection.tsx (UPDATED)
 'use client';
 
 import React from 'react';
 import { Box, Typography, Container } from '@mui/material';
-import { useTranslations } from 'next-intl';
-import { siteConfig } from '@/config/site';
+// REMOVED: useTranslations is no longer needed
+// import { useTranslations } from 'next-intl';
+
+// NEW: Import client data and locale hook
+import { useLocale } from 'next-intl';
+
+import { siteConfig } from '@/config/client-data';
 import Image from 'next/image';
 
 const partnerLogos = [
@@ -15,7 +20,11 @@ const partnerLogos = [
 ];
 
 export default function SocialProofSection() {
-  const t = useTranslations('SocialProof');
+  // REMOVED: const t = useTranslations('SocialProof');
+
+  // NEW: Get content dynamically based on the current locale
+  const locale = useLocale() as 'en' | 'fr' | 'ar';
+  const content = siteConfig.textContent[locale]?.homepage || siteConfig.textContent.en.homepage;
 
   return (
     <Box sx={{ py: { xs: 6, md: 8 }, bgcolor: 'background.default' }}>
@@ -30,15 +39,14 @@ export default function SocialProofSection() {
             mb: 4,
           }}
         >
-          {t('title')}
+          {/* UPDATED: Using title from client data */}
+          {content.socialProofTitle}
         </Typography>
         
-        {/* --- THIS IS THE NEW ANIMATED SCROLLER --- */}
         <Box
           sx={{
             width: '100%',
             overflow: 'hidden',
-            // Add a subtle gradient mask on the edges for a fade-out effect
             maskImage: 'linear-gradient(to right, transparent, black 20%, black 80%, transparent)',
             WebkitMaskImage: 'linear-gradient(to right, transparent, black 20%, black 80%, transparent)',
           }}
@@ -47,20 +55,18 @@ export default function SocialProofSection() {
             sx={{
               display: 'flex',
               width: 'fit-content',
-              // Define the animation
               '@keyframes scroll': {
                 '0%': { transform: 'translateX(0)' },
-                '100%': { transform: 'translateX(-50%)' }, // Move by half the total width for a seamless loop
+                '100%': { transform: 'translateX(-50%)' },
               },
               animation: 'scroll 30s linear infinite',
               '&:hover': {
-                animationPlayState: 'paused', // Pause the animation on hover
+                animationPlayState: 'paused',
               },
             }}
           >
-            {/* We render the list of logos twice to create the seamless loop */}
             {[...partnerLogos, ...partnerLogos].map((logo, index) => (
-               <Box
+              <Box
                 key={`${logo.name}-${index}`}
                 sx={{
                   position: 'relative',
@@ -82,8 +88,6 @@ export default function SocialProofSection() {
                   style={{
                     objectFit: 'contain',
                   }}
-                  // --- THIS IS THE KEY FIX ---
-                  // We tell the browser the image will be at most 150px wide.
                   sizes="150px"
                 />
               </Box>

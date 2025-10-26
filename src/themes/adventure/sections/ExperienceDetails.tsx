@@ -14,13 +14,16 @@ import Itinerary from '@/components/experience/Itinerary';
 import ImageGallery from '@/components/experience/ImageGallery';
 import BookingForm from '@/components/booking/BookingForm'; // Import BookingForm directly
 import { Experience } from '@/types/experience';
+import ReviewsList from '@/components/reviews/ReviewsList';
+import LeaveReviewForm from '@/components/reviews/LeaveReviewForm';
 import { locations } from '@/config/locations';
 
 export type ExperienceDetailsProps = {
   experience: Experience;
+  clientConfig?: { plugins: { hasReviews?: boolean; hasBookingEngine?: boolean } };
 };
 
-export default function ExperienceDetails({ experience }: ExperienceDetailsProps) {
+export default function ExperienceDetails({ experience, clientConfig }: ExperienceDetailsProps) {
   const locale = useLocale();
 //  const t = useTranslations('ExperienceDetails');
   
@@ -102,6 +105,14 @@ export default function ExperienceDetails({ experience }: ExperienceDetailsProps
           </Grid>
         </Grid>
       </Container>
+      {/* Integrated reviews section */}
+      {clientConfig?.plugins?.hasReviews && (
+        <Container maxWidth="lg">
+          <Divider sx={{ my: 6 }} />
+          <ReviewsList experienceId={experience.id} />
+          <LeaveReviewForm experienceId={experience.id} />
+        </Container>
+      )}
     </Box>
   );
 }

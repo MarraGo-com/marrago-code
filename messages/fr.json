@@ -1,18 +1,25 @@
 {
   "Header": {
-    "siteTitle": "Souss-Massa Tours",
     "experiences": "Expériences",
-    "about": "À Propos",
+    "about": "À propos",
     "contact": "Contact",
     "blogLink": "Blog",
     "mobileMenuTitle": "Menu",
-    "allExperiences": "Voir Toutes les Expériences",
-    "login": "Connexion"
+    "allExperiences": "Voir toutes les expériences",
+    "login": "Connexion",
+    "experiencesLink": "Expériences",
+    "reviewsLink": "Avis",
+    "faqLink": "FAQ",
+    "reviews": "Avis",
+    "faq": "FAQ",
+    "linksTitle": "Liens",
+    "privacyPolicyLink": "Politique de confidentialité",
+    "termsOfUseLink": "Conditions d'utilisation"
   },
   "HeroSection": {
     "title": "Découvrez l'Âme du Maroc",
-    "subtitle": "Voyages authentiques à travers les paysages époustouflants et la riche culture de la région de Souss-Massa.",
-    "ctaButton": "Explorez Nos Circuits"
+    "subtitle": "Voyages authentiques à travers les paysages époustouflants et la riche culture de la région Souss-Massa.",
+    "ctaButton": "Découvrir nos circuits"
   },
   "FeaturedExperiences": {
     "title": "Expériences à la Une",
@@ -22,126 +29,130 @@
     "title": "Pourquoi Voyager Avec Nous ?",
     "feature1_title": "Guides Locaux Experts",
     "feature1_desc": "Nos guides sont nés et ont grandi au Maroc, vous offrant un aperçu et un accès inégalés à des expériences authentiques.",
-    "feature2_title": "Itinéraires Sur Mesure",
-    "feature2_desc": "Nous ne croyons pas au 'taille unique'. Chaque voyage est conçu autour de vos intérêts, de votre budget et de votre style.",
-    "feature3_title": "Assistance 24/7",
+    "feature2_title": "Itinéraires sur Mesure",
+    "feature2_desc": "Nous ne faisons pas de 'taille unique'. Chaque voyage est conçu autour de vos intérêts, votre budget et votre style de voyage.",
+    "feature3_title": "Assistance 24/7 pendant le voyage",
     "feature3_desc": "Voyagez en toute tranquillité. Notre équipe est disponible 24h/24 pour garantir que votre voyage se déroule sans encombre."
   },
- "AboutSection": {
+  "AboutSection": {
     "title": "Notre Histoire",
-    "subtitle": "Plus que de simples circuits, nous offrons des connexions authentiques avec le cœur du Maroc.",
-    "paragraph1": "Fondée par des experts locaux passionnés par le partage de la beauté authentique de la région de Souss-Massa, notre mission est de créer des souvenirs de voyage inoubliables. Nous croyons en un tourisme responsable qui soutient les communautés locales et met en valeur la riche culture et les paysages magnifiques de notre chez-nous.",
-    "paragraph2": "Des sommets majestueux de l'Atlas aux sables sereins du Sahara, chaque voyage avec nous est plus qu'des vacances—c'est une aventure tissée de véritables liens humains.",
-    "imageAlt": "Une scène vibrante d'un tajine marocain traditionnel en cours de préparation.",
+    "subtitle": "Plus que de simples circuits, nous offrons de véritables connexions au cœur du Maroc.",
+    "paragraph1": "Fondée par des experts locaux passionnés par le partage de la beauté authentique de la région Souss-Massa, notre mission est de créer des souvenirs de voyage inoubliables. Nous croyons en un tourisme responsable qui soutient les communautés locales et met en valeur la riche culture et les paysages magnifiques de notre région.",
+    "paragraph2": "Des sommets majestueux de l'Atlas aux sables sereins du Sahara, chaque voyage avec nous est plus qu'une vacance : c'est une aventure tissée de véritables liens humains.",
+    "imageAlt": "Une scène vibrante d'un tajine marocain traditionnel en préparation.",
     "valuesTitle": "Nos Valeurs Fondamentales",
-    "valuesSubtitle": "Ces principes guident chaque voyage que nous créons, garantissant une expérience authentique, respectueuse et inoubliable.",
+    "valuesSubtitle": "Ces principes guident chaque voyage que nous concevons, garantissant une expérience authentique, respectueuse et inoubliable.",
     "value1_title": "Authenticité",
     "value1_desc": "Nous vous connectons avec des personnes et des lieux réels, offrant un véritable avant-goût de la vie marocaine au-delà des sentiers touristiques habituels.",
     "value2_title": "Respect",
     "value2_desc": "Nos circuits sont conçus pour honorer les traditions locales, soutenir les communautés et préserver l'environnement délicat que nous explorons.",
     "value3_title": "Passion",
-    "value3_desc": "Nous aimons ce que nous faisons. Notre passion pour la culture et les paysages du Maroc est l'ingrédient magique de chaque voyage que nous planifions.",
-    "ctaTitle": "Prêt à Commencer Votre Aventure ?",
-    "ctaButton": "Contactez-Nous pour Planifier Votre Voyage",
-   
+    "value3_desc": "Nous aimons ce que nous faisons. Notre passion pour la culture et les landscapes du Maroc est l'ingrédient magique de chaque voyage que nous planifions.",
     "teamTitle": "Rencontrez Nos Guides Experts",
     "teamSubtitle": "Notre équipe est notre plus grand atout. Ce sont des experts locaux, des conteurs et votre lien personnel avec le cœur authentique du Maroc.",
     "team1_name": "Hassan Al-Fassi",
     "team1_title": "Guide de Montagne Principal",
-    "team1_bio": "Né dans les montagnes de l'Atlas, Hassan guide des randonnées depuis plus de 15 ans. Sa connaissance des sentiers locaux et de la culture berbère est inégalée.",
+    "team1_bio": "Né dans les montagnes de l'Atlas, Hassan guide des treks depuis plus de 15 ans. Sa connaissance des sentiers locaux et de la culture berbère est inégalée.",
     "team2_name": "Fatima Zahra",
-    "team2_title": "Experte Culturelle & Culinaire",
-    "team2_bio": "Fatima partage sa passion pour la cuisine et l'histoire marocaines, animant nos visites de villes et nos cours de cuisine avec chaleur et expertise.",
+    "team2_title": "Experte Culturelle et Culinaire",
+    "team2_bio": "Fatima partage sa passion pour la cuisine et l'histoire marocaines, animant nos visites de ville et nos cours de cuisine avec chaleur et expertise.",
     "team3_name": "Youssef Adnani",
     "team3_title": "Spécialiste du Désert du Sahara",
-    "team3_bio": "Issu d'une famille nomade, Youssef connaît le désert comme sa poche. Il dirige nos aventures en 4x4 et nos randonnées à dos de chameau."
-   
+    "team3_bio": "Issu d'une famille nomade, Youssef connaît le désert comme sa poche. Il dirige nos aventures en 4x4 et à dos de chameau.",
+    "ctaTitle": "Prêt à Commencer Votre Aventure ?",
+    "ctaButton": "Contactez-nous pour Planifier Votre Voyage"
   },
   "ExperienceCard": {
     "learnMoreButton": "En Savoir Plus"
   },
- "ExperienceDetails": {
-    "inquireButton": "Demande de Réservation",
+  "ExperienceDetails": {
+    "inquireButton": "Demander à Réserver",
     "includedTitle": "Ce qui est Inclus",
-    "notIncludedTitle": "Ce qui n'est pas Inclus",
+    "notIncludedTitle": "Ce qui n'est Pas Inclus",
     "importantInfoTitle": "Informations Importantes",
-    "itineraryTitle": "Itinéraire Détaillé" 
+    "itineraryTitle": "Itinéraire Détaillé"
   },
- "ExperienceFilters": {
+  "ExperienceFilters": {
     "locationLabel": "Filtrer par Lieu",
     "allLocations": "Tous les Lieux",
-    "sortLabel": "Trier par",
-    "sortDefault": "Par défaut",
+    "sortLabel": "Trier Par",
+    "sortDefault": "Défaut",
     "sortPriceAsc": "Prix : Croissant",
     "sortPriceDesc": "Prix : Décroissant"
   },
   "ExperiencesPage": {
     "title": "Nos Aventures",
-    "subtitle": "Parcourez notre collection complète de circuits organisés et d'expériences authentiques à travers la magnifique région de Souss-Massa.",
+    "subtitle": "Parcourez notre collection complète de circuits organisés et d'expériences authentiques à travers la magnifique région Souss-Massa.",
     "noResults": "Aucune expérience ne correspond à votre filtre actuel. Veuillez essayer une autre sélection."
   },
   "ContactSection": {
     "title": "Contactez-Nous",
     "infoTitle": "Informations de Contact",
-    "infoSubtitle": "Vous avez des questions ou êtes prêt à planifier votre aventure ? Contactez-nous ! Nous sommes là pour vous aider à créer le voyage parfait au Maroc.",
+    "infoSubtitle": "Vous avez des questions ou êtes prêt à planifier votre aventure ? Contactez-nous ! Nous sommes là pour vous aider à créer le voyage marocain parfait.",
     "address": "Biougra, Souss-Massa, Maroc",
     "phone": "+212 123 456 789",
     "email": "contact@souss-massatours.com",
     "formNameLabel": "Votre Nom",
-    "formEmailLabel": "Votre E-mail",
+    "formEmailLabel": "Votre Email",
     "formMessageLabel": "Votre Message",
     "formSubmitButton": "Envoyer le Message",
-    "alertSuccess": "Merci pour votre message ! Nous vous recontacterons sous peu."
+    "alertSuccess": "Merci pour votre message ! Nous vous répondrons sous peu."
   },
- "Footer": {
+  "Footer": {
     "siteTitle": "Souss-Massa Tours",
-    "aboutText": "Créateurs de voyages authentiques et inoubliables au cœur du Maroc. Découvrez la véritable région de Souss-Massa avec nos experts locaux.",
+    "aboutText": "Créer des voyages authentiques et inoubliables au cœur du Maroc. Découvrez la véritable région Souss-Massa avec des experts locaux.",
     "linksTitle": "Liens Rapides",
+    "contactUsTitle": "Contactez-Nous",
     "aboutLink": "À Propos",
     "experiencesLink": "Expériences",
+    "allRightsReserved": "Tous droits réservés.",
     "contactLink": "Contact",
     "blogLink": "Blog",
     "contactTitle": "Contact",
     "address": "Biougra, Souss-Massa, Maroc",
     "phone": "+212 123 456 789",
     "email": "contact@souss-massatours.com",
-    "socialTitle": "Suivez-nous",
+    "socialTitle": "Suivez-Nous",
     "copyright": "© {year} Souss-Massa Tours. Tous droits réservés.",
     "poweredBy": "Site web par",
-    "agencyName": "Upmerce Solutions",   
-    "companyTitle": "Company",
-    "exploreTitle": "Explore",
-    "privacyPolicy": "Privacy Policy",
-    "termsOfService": "Terms of Service"
+    "agencyName": "Upmerce Solutions",
+    "companyTitle": "Entreprise",
+    "exploreTitle": "Découvrir",
+    "privacyPolicy": "Politique de confidentialité",
+    "termsOfService": "Conditions d'utilisation",
+    "reviewsLink": "Avis",
+    "faqLink": "FAQ",
+    "privacyPolicyLink": "Politique de confidentialité",
+    "termsOfUseLink": "Conditions d'utilisation"
   },
   "LoginForm": {
     "title": "Connexion Admin",
-    "emailLabel": "Adresse E-mail",
-    "passwordLabel": "Mot de passe",
+    "emailLabel": "Adresse Email",
+    "passwordLabel": "Mot de Passe",
     "submitButton": "Se Connecter",
     "loadingButton": "Connexion en cours...",
     "error": "Échec de la connexion. Veuillez vérifier vos identifiants."
   },
   "LogOutButton": {
-    "buttonText": "Déconnexion",
+    "buttonText": "Se Déconnecter",
     "alertError": "Échec de la déconnexion."
   },
   "ExperienceForm": {
-    "createButton": "Ajouter une Expérience",
+    "createButton": "Ajouter une Nouvelle Expérience",
     "createDialogTitle": "Créer une Nouvelle Expérience",
     "editDialogTitle": "Modifier l'Expérience",
     "titleLabel": "Titre",
     "descriptionLabel": "Description",
     "priceLabel": "Prix (ex: 'À partir de 950 MAD')",
     "locationLabel": "Lieu",
-    "uploadButton": "Charger une Image de Couverture",
-    "uploadButtonOptional": "Charger une Nouvelle Image (Optionnel)",
-    "currentImageUrlLabel": "URL de l'Image Actuelle",
-    "fileSelected": "Fichier sélectionné : {fileName}",
-    "errorMissingImage": "Veuillez sélectionner une image de couverture à charger.",
+    "uploadButton": "Télécharger l'Image de Couverture",
+    "uploadButtonOptional": "Télécharger une Nouvelle Image de Couverture (Optionnel)",
+    "currentImageUrlLabel": "URL de l'Image de Couverture Actuelle",
+    "fileSelected": "Sélectionné : {fileName}",
+    "errorMissingImage": "Veuillez sélectionner une image de couverture à télécharger.",
     "cancelButton": "Annuler",
     "submitButtonCreate": "Créer l'Expérience",
-    "loadingButtonCreate": "Chargement {progress}%",
+    "loadingButtonCreate": "Téléchargement {progress}%",
     "submitButtonEdit": "Enregistrer les Modifications",
     "loadingButtonEdit": "Enregistrement..."
   },
@@ -152,7 +163,7 @@
     "headerActions": "Actions",
     "noItemsFound": "Aucune expérience trouvée.",
     "deleteDialogTitle": "Confirmer la Suppression",
-    "deleteDialogWarning": "Êtes-vous sûr de vouloir supprimer définitivement l'expérience : « {title} » ? Cette action est irréversible.",
+    "deleteDialogWarning": "Êtes-vous sûr de vouloir supprimer définitivement l'expérience : \"{title}\" ? Cette action est irréversible.",
     "cancelButton": "Annuler",
     "deleteButton": "Supprimer"
   },
@@ -160,99 +171,137 @@
     "from": "À partir de",
     "contactUs": "Nous Contacter",
     "perHalfDay": "par demi-journée",
-    "perDay": "par journée",
+    "perDay": "par jour",
     "perPerson": "par personne",
     "perGroup": "par groupe"
   },
   "LeaveReviewForm": {
-    "title": "Laissez un Avis",
+    "title": "Laisser un Avis",
     "nameLabel": "Votre Nom",
     "ratingLabel": "Votre Note",
     "reviewLabel": "Votre Avis",
-    "submitButton": "Soumettre l'Avis",
+    "submitButton": "Envoyer l'Avis",
     "successMessage": "Merci ! Votre avis a été soumis pour approbation.",
-    "errorRating": "Veuillez sélectionner une note en étoiles.",
-    "errorGeneric": "Une erreur s'est produite. Veuillez réessayer."
+    "errorRating": "Veuillez sélectionner une note (étoiles).",
+    "errorGeneric": "Une erreur est survenue. Veuillez réessayer."
   },
   "ReviewsList": {
     "title": "Avis des Clients",
     "noReviews": "Aucun avis pour le moment. Soyez le premier à partager votre expérience !"
   },
+  "ReviewsPage": {
+    "reviewsComingSoonTitle": "Avis Bientôt Disponibles !",
+    "reviewsComingSoonText": "Nous recueillons de précieux commentaires à partager avec vous bientôt. Revenez pour découvrir des expériences authentiques !",
+    "reviewsTitleDefault": "Ce que Disent Nos Clients",
+    "reviewDefaultComment1": "Une expérience fantastique du début à la fin. L'équipe était professionnelle et les sites inoubliables. Fortement recommandé !",
+    "reviewDefaultComment2": "Nous avons passé un excellent moment. Tout était bien organisé. Nous reviendrons pour un autre circuit l'année prochaine !",
+    "reviewsTitleAdventure": "Témoignages du Sentier",
+    "reviewAdventureComment1": "Une aventure absolutely épique ! Les guides connaissaient le terrain comme leur poche et étaient super encourageants. La vue depuis le sommet valait chaque pas.",
+    "reviewAdventureComment2": "Ce n'était pas seulement un circuit ; c'était une véritable expédition. J'ai repoussé mes limites de la meilleure façon possible. Sûr, excitant et 100% authentique.",
+    "reviewsTitleLuxury": "Paroles de Nos Estimés Clients",
+    "reviewLuxuryComment1": "La définition du voyage sur mesure. Chaque détail a été parfaitement exécuté. Le riad privé était une oasis et notre guide était incroyablement perspicace. Nous nous sommes sentis comme des rois.",
+    "reviewLuxuryComment2": "Notre expérience dans le désert était tout simplement magique. Le camp de luxe a dépassé toutes les attentes. C'était le mélange parfait de confort haut de gamme et de tranquillité profonde."
+  },
+  "FaqPage": {
+    "faqComingSoonTitle": "FAQ Bientôt Disponible !",
+    "faqComingSoonText": "Nous compilons une liste de questions fréquemment posées pour vous aider. Veuillez revenir bientôt !",
+    "faqTitleDefault": "Questions Fréquemment Posées",
+    "faqDefaultQuestion1": "Comment réserver un circuit ?",
+    "faqDefaultAnswer1": "Vous pouvez réserver directement via notre site web en sélectionnant le circuit désiré et en cliquant sur 'Réserver maintenant'. Vous pouvez également nous contacter par email ou WhatsApp, et notre équipe sera ravie de vous aider avec votre réservation.",
+    "faqDefaultQuestion2": "Quelle est votre politique d'annulation ?",
+    "faqDefaultAnswer2": "Nous offrons un remboursement complet pour les annulations faites au moins 7 jours avant la date du circuit. Les annulations faites 3 à 6 jours avant reçoivent un remboursement de 50%. Malheureusement, nous ne pouvons pas offrir de remboursement pour les annulations faites dans les 48 heures précédant le circuit.",
+    "faqDefaultQuestion3": "Quels moyens de paiement acceptez-vous ?",
+    "faqDefaultAnswer3": "Nous acceptons les principales cartes de crédit (Visa, MasterCard, American Express) via notre passerelle de paiement en ligne sécurisée. Nous acceptons également les virements bancaires et les paiements en espèces en Dirhams marocains (MAD) à l'arrivée pour certains circuits.",
+    "faqTitleAdventure": "Vos Questions Aventure, Répondues",
+    "faqAdventureQuestion1": "Quel niveau de forme physique est requis ?",
+    "faqAdventureAnswer1": "Nos circuits d'aventure vont de facile (marche légère) à intense (trek de plusieurs jours). Chaque page de circuit a une note de 'Difficulté'. Veuillez la lire attentivement pour vous assurer que le circuit correspond à votre niveau de forme physique. En cas de doute, contactez-nous !",
+    "faqAdventureQuestion2": "Ce circuit est-il sûr ?",
+    "faqAdventureAnswer2": "Votre sécurité est notre priorité absolue. Tous nos guides d'aventure sont certifiés en premiers secours et ont une vaste expérience du terrain local. Nous utilisons du matériel moderne et bien entretenu et suivons des protocoles de sécurité stricts.",
+    "faqAdventureQuestion3": "Que dois-je emporter pour un trek dans le désert ou en montagne ?",
+    "faqAdventureAnswer3": "Nous recommandons d'emporter plusieurs couches : des t-shirts respirants, une polaire chaude ou une veste pour les soirées, des chaussures de randonnée confortables, un chapeau, des lunettes de soleil et une crème solaire à indice de protection élevé. Une bouteille d'eau réutilisable est indispensable. Nous fournirons une liste détaillée à emporter lors de la réservation.",
+    "faqTitleLuxury": "Votre Voyage Sur Mesure : FAQ",
+    "faqLuxuryQuestion1": "Mon voyage peut-il être entièrement personnalisé ?",
+    "faqLuxuryAnswer1": "Absolument. La personnalisation est au cœur de notre service de luxe. Nous concevons des itinéraires de A à Z en fonction de vos intérêts, de votre rythme et de vos préférences. Considérez nos circuits listés comme une source d'inspiration, non comme des limitations.",
+    "faqLuxuryQuestion2": "Quel type d'hébergement utilisez-vous ?",
+    "faqLuxuryAnswer2": "Nous travaillons exclusivement avec une sélection d'hôtels 5 étoiles, de riads de luxe et de camps de désert haut de gamme réputés pour leur service exceptionnel, leur design exquis et leur caractère authentique. Nous privilégions les propriétés qui offrent à la fois confort et un véritable sens du lieu.",
+    "faqLuxuryQuestion3": "Qu'est-ce qui rend vos circuits privés différents ?",
+    "faqLuxuryAnswer3": "Nos circuits de luxe privés garantissent votre exclusivité. Vous disposerez d'un guide expert dédié et d'un véhicule privé haut de gamme climatisé (comme un Mercedes Classe V ou un Toyota Prado) pour votre groupe uniquement. Cela permet une flexibilité ultime pour ajuster votre emploi du temps, explorer des lieux hors des sentiers battus et voyager à votre propre rythme."
+  },
   "BlogPage": {
     "title": "Notre Journal",
-    "subtitle": "Guides de voyage, histoires et inspiration du cœur du Maroc.",
+    "subtitle": "Guides de voyage, récits et inspiration depuis le cœur du Maroc.",
     "noArticles": "Aucun article n'a encore été publié. Veuillez revenir bientôt !",
     "metaTitle": "Blog | Souss-Massa Tours",
-    "metaDescription": "Lisez nos derniers articles et guides de voyage sur l'exploration de la magnifique région de Souss-Massa au Maroc."
+    "metaDescription": "Lisez nos derniers articles et guides de voyage sur l'exploration de la magnifique région Souss-Massa au Maroc."
   },
   "BookingForm": {
-    "bookNowButton": "Réserver ce Circuit",
+    "bookNowButton": "Réserver Ce Circuit",
     "dialogTitle": "Demande de Réservation : {experienceTitle}",
-    "dateLabel": "Sélectionnez une Date",
+    "dateLabel": "Sélectionner une Date",
     "guestsLabel": "Nombre de Personnes",
     "nameLabel": "Votre Nom Complet",
-    "emailLabel": "Votre Adresse E-mail",
+    "emailLabel": "Votre Adresse Email",
     "cancelButton": "Annuler",
     "submitButton": "Envoyer la Demande",
     "successMessage": "Merci ! Votre demande de réservation a été envoyée. Nous vous contacterons sous peu pour confirmer.",
     "errorInvalidInput": "Veuillez sélectionner une date et un nombre de personnes valides.",
-    "errorGeneric": "Une erreur s'est produite. Veuillez réessayer.",
+    "errorGeneric": "Une erreur est survenue. Veuillez réessayer.",
     "submitButtonPay": "Procéder au Paiement"
   },
   "BlogHighlights": {
     "title": "De Notre Journal",
-    "subtitle": "Découvrez des conseils de voyage, des histoires culturelles et de l'inspiration pour votre prochaine aventure marocaine."
+    "subtitle": "Découvrez des conseils de voyage, des récits culturels et de l'inspiration pour votre prochaine aventure marocaine."
   },
   "SocialProof": {
-  "title": "Présenté Dans & Approuvé Par"
-},
-"Testimonials": {
-    "title": "Les Mots de Nos Voyageurs",
+    "title": "Vu Dans & Recommandé Par"
+  },
+  "Testimonials": {
+    "title": "Les Récits de Nos Voyageurs",
     "subtitle": "Découvrez ce que nos clients disent de leurs expériences inoubliables avec nous."
   },
   "Newsletter": {
-    "title": "Rejoignez Notre Aventure",
-    "subtitle": "Abonnez-vous à notre newsletter pour des conseils de voyage exclusifs, des offres spéciales et des histoires du cœur du Maroc.",
-    "emailLabel": "Votre Adresse E-mail",
+    "title": "Rejoignez Notre Voyage",
+    "subtitle": "Abonnez-vous à notre newsletter pour des conseils de voyage exclusifs, des offres spéciales et des récits du cœur du Maroc.",
+    "emailLabel": "Votre Adresse Email",
     "submitButton": "S'abonner",
     "successMessage": "Merci pour votre abonnement !",
-    "errorGeneric": "Une erreur s'est produite. Veuillez réessayer."
+    "errorGeneric": "Une erreur est survenue. Veuillez réessayer."
   },
   "BookingStatusPage": {
     "successTitle": "Paiement Réussi !",
-    "successSubtitle": "Merci pour votre réservation. Un e-mail de confirmation vous a été envoyé avec tous les détails de votre prochaine aventure.",
+    "successSubtitle": "Merci pour votre réservation. Un email de confirmation vous a été envoyé avec tous les détails de votre prochaine aventure.",
     "cancelledTitle": "Paiement Annulé",
-    "cancelledSubtitle": "Votre réservation n'a pas été complétée. Vous n'avez pas été facturé. Vous pouvez retourner à notre page d'expériences pour réessayer.",
+    "cancelledSubtitle": "Votre réservation n'a pas été finalisée. Vous n'avez pas été débité. Vous pouvez retourner à notre page d'expériences pour réessayer.",
     "backButton": "Retour aux Expériences"
   },
   "MegaMenu": {
     "destinationsTitle": "Destinations",
     "stylesTitle": "Styles de Voyage",
-    "featuredTitle": "Circuit Vedette",
+    "featuredTitle": "Circuit à la Une",
     "styleAdventure": "Aventure",
     "styleCultural": "Culturel",
     "styleRelaxation": "Détente",
     "styleFamily": "Famille"
   },
   "WhatsApp": {
-  "tooltip": "Personnaliser le thème",
-  "panelTitle": "Options du thème",
-  "colorTitle": "Palette de couleurs",
-  "paletteCoastal": "Côtière",
-  "paletteDesert": "Désert",
-  "paletteLuxe": "Luxe",
-  "fontTitle": "Typographie",
-  "fontModern": "Moderne",
-  "fontElegant": "Élégant",
-  "cardTitle": "Style de la carte",
-  "cardImmersive": "Immersif",
-  "cardClassic": "Classique"
-},
+    "tooltip": "Personnaliser le Thème",
+    "panelTitle": "Options du Thème",
+    "colorTitle": "Palette de Couleurs",
+    "paletteCoastal": "Côtière",
+    "paletteDesert": "Désert",
+    "paletteLuxe": "Luxe",
+    "fontTitle": "Typographie",
+    "fontModern": "Moderne",
+    "fontElegant": "Élégante",
+    "cardTitle": "Style de Carte",
+    "cardImmersive": "Immersif",
+    "cardClassic": "Classique"
+  },
   "TopHeader": {
     "help": "Aide",
     "login": "Connexion",
     "joinNow": "S'inscrire",
-    "findReservationTooltip": "Entrez votre numéro de confirmation ci-dessous pour localiser votre réservation.",
+    "findReservationTooltip": "Entrez votre n° de confirmation ci-dessous pour localiser votre réservation.",
     "cartTooltip": "Voir votre panier"
   },
   "MainHeaderNav": {
@@ -261,29 +310,64 @@
     "offers": "Offres",
     "leadersClub": "Leaders Club"
   },
-    "SearchBar": {
+  "SearchBar": {
     "destinationLabel": "Destination",
     "destinationPlaceholder": "Hôtel, Ville ou Pays",
     "checkInLabel": "Arrivée",
     "checkOutLabel": "Départ",
-    "guestsLabel": "Voyageurs",
+    "guestsLabel": "Personnes",
     "searchButton": "Rechercher",
     "adultsLabel": "Adultes",
     "childrenLabel": "Enfants",
     "roomsLabel": "Chambres"
   },
   "FilterControls": {
-    "locationLabel": "Destination",
-    "allLocations": "Toutes les destinations",
-    "sortLabel": "Trier par",
+    "locationLabel": "Lieu",
+    "allLocations": "Tous les Lieux",
+    "sortLabel": "Trier Par",
     "sortDefault": "Défaut",
     "sortPriceAsc": "Prix : Croissant",
     "sortPriceDesc": "Prix : Décroissant"
   },
-    "AgencyHero": {
-  "title": "Votre Aventure Vous Attend",
-  "subtitle": "Surfez sur la côte Atlantique, randonnez dans les montagnes de l'Atlas ou explorez le désert du Sahara. Nous proposons des excursions authentiques, guidées par des experts, pour tous les amateurs de sensations fortes.",
-  "ctaButton": "Découvrez Nos Aventures"
-}
-
+  "AgencyHero": {
+    "title": "Votre Aventure Vous Attend",
+    "subtitle": "Surfez la côte atlantique, randonnez dans les montagnes de l'Atlas ou explorez le désert du Sahara. Nous offrons des excursions authentiques, guidées par des experts, pour chaque amateur de sensations fortes.",
+    "ctaButton": "Découvrir Nos Aventures"
+  },
+  "BusinessTypes": {
+    "TravelAgency": "Agence de Voyage",
+    "TourOperator": "Tour Opérateur",
+    "TransportService": "Service de Transport",
+    "Other": "Autre"
+  },
+  "admin": {
+    "AdminSidebar": {
+      "adminPanel": "Panneau d'Administration",
+      "dashboard": "Tableau de Bord",
+      "experiences": "Expériences",
+      "blog": "Blog",
+      "bookings": "Réservations",
+      "reviews": "Avis",
+      "settings": "Paramètres"
+    },
+    "AdminBlogCreatePage": {
+      "createArticleTitle": "Créer un Nouvel Article"
+    },
+    "AdminBlogPage": {
+      "manageArticlesTitle": "Gérer les Articles de Blog"
+    },
+    "AdminBlogEditPage": {
+      "editArticleTitle": "Modifier l'Article",
+      "articleNotFound": "Article non trouvé."
+    },
+    "AdminBookingsPage": {
+      "manageBookingsTitle": "Gérer les Demandes de Réservation"
+    },
+    "AdminExperiencesPage": {
+      "manageExperiencesTitle": "Gérer les Expériences"
+    },
+    "AdminReviewsPage": {
+      "manageReviewsTitle": "Gérer les Avis Clients"
+    }
+  }
 }

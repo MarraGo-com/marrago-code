@@ -15,4 +15,5 @@ export interface Review {
   avatar?: string; // URL to the author's avatar image
   // This field is added for convenience in the admin panel
   experienceTitle?: string; 
+  comment?: string;
 }

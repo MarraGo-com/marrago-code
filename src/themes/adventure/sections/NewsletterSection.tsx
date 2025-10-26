@@ -1,16 +1,27 @@
-// /src/themes/adventure/sections/NewsletterSection.tsx
+// /src/themes/adventure/sections/NewsletterSection.tsx (UPDATED)
 'use client';
 
 import React, { useState } from 'react';
 import { Box, Typography, Container, TextField, Button, CircularProgress, Alert } from '@mui/material';
+// Kept for UI-specific text like placeholders and errors
 import { useTranslations } from 'next-intl';
-import MainHeading from '../../default/custom/MainHeading';
+// NEW: Import client data and locale hook for main content
+import { useLocale } from 'next-intl';
+
+// UPDATED: Use MainHeadingUserContent for direct title prop
+import MainHeadingUserContent from '../../../components/custom/MainHeadingUserContent';
+import { siteConfig } from '@/config/client-data';
 
 export default function NewsletterSection() {
+  // `t` is still used for UI text (label, button, errors)
   const t = useTranslations('Newsletter');
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+
+  // NEW: Get content for title and subtitle
+  const locale = useLocale() as 'en' | 'fr' | 'ar';
+  const content = siteConfig.textContent[locale]?.homepage || siteConfig.textContent.en.homepage;
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -31,7 +42,7 @@ export default function NewsletterSection() {
       }
 
       setStatus({ type: 'success', message: result.message });
-      setEmail(''); // Clear the form on success
+      setEmail('');
 
     } catch (err: unknown) {
       if (err instanceof Error) { 
@@ -46,33 +57,34 @@ export default function NewsletterSection() {
 
   return (
     <Box 
-        sx={{ 
-            position: 'relative',
-            py: { xs: 8, md: 12 }, 
-            backgroundImage: 'url(/images/taghazout-sunset2.webp)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            color: 'white',
-        }}
+      sx={{ 
+        position: 'relative',
+        py: { xs: 8, md: 12 }, 
+        backgroundImage: 'url(/images/taghazout-sunset2.webp)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        color: 'white',
+      }}
     >
       <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', bgcolor: 'rgba(0,0,0,0.7)', zIndex: 1 }} />
       
       <Container maxWidth="md" sx={{ position: 'relative', zIndex: 2 }}>
         <Box sx={{ textAlign: 'center' }}>
-          <MainHeading 
-            titleKey='title' 
+          {/* UPDATED: MainHeadingUserContent now gets title from client data */}
+          <MainHeadingUserContent 
+            title={content.newsletterTitle}
             variant="h2"
             component="h2"
-            t={t}  
             sx={{ 
-                fontWeight: 'bold', 
-                textTransform: 'uppercase',
-                textShadow: '0 2px 8px rgba(0,0,0,0.5)',
-                mb: 2 
+              fontWeight: 'bold', 
+              textTransform: 'uppercase',
+              textShadow: '0 2px 8px rgba(0,0,0,0.5)',
+              mb: 2 
             }}
-            />
+          />
+          {/* UPDATED: Typography now gets subtitle from client data */}
           <Typography sx={{ color: 'rgba(255,255,255,0.9)', mb: 4, maxWidth: '500px', mx: 'auto' }}>
-            {t('subtitle')}
+            {content.newsletterSubtitle}
           </Typography>
           <Box 
             component="form" 
@@ -90,37 +102,23 @@ export default function NewsletterSection() {
             <TextField
               required
               fullWidth
-              label={t('emailLabel')}
+              label={t('emailLabel')} // Kept using `t` for label
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               variant="filled"
               sx={{
-                  bgcolor: 'rgba(255,255,255,0.1)',
-                  borderRadius: 1,
-                  '& .MuiInputLabel-root': { 
-                      color: 'rgba(255,255,255,0.7)',
-                  },
-                  '& .MuiInputLabel-root.Mui-focused': {
-                      color: 'white',
-                  },
-                  // ## THIS IS THE FIX ##
-                  // This adds more space between the shrunken label and the input text.
-                  '& .MuiFilledInput-input': {
-                      paddingTop: '50px',
-                  },
-                  '& .MuiFilledInput-root': {
-                      backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                      '&:hover': {
-                           backgroundColor: 'rgba(255, 255, 255, 0.15)',
-                      },
-                      '&.Mui-focused': {
-                           backgroundColor: 'rgba(255, 255, 255, 0.15)',
-                      }
-                  },
-                  '& .MuiInputBase-input': {
-                      color: 'white',
-                  },
+                bgcolor: 'rgba(255,255,255,0.1)',
+                borderRadius: 1,
+                '& .MuiInputLabel-root': { color: 'rgba(255,255,255,0.7)' },
+                '& .MuiInputLabel-root.Mui-focused': { color: 'white' },
+                '& .MuiFilledInput-input': { paddingTop: '30px' }, // Adjusted padding
+                '& .MuiFilledInput-root': {
+                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.15)' },
+                  '&.Mui-focused': { backgroundColor: 'rgba(255, 255, 255, 0.15)' }
+                },
+                '& .MuiInputBase-input': { color: 'white' },
               }}
             />
             <Button
@@ -142,13 +140,13 @@ export default function NewsletterSection() {
           </Box>
           {status && (
             <Alert 
-                severity={status.type} 
-                sx={{ 
-                    mt: 3, 
-                    justifyContent: 'center',
-                    color: 'text.primary',
-                    bgcolor: status.type === 'success' ? 'success.light' : 'error.light',
-                }}
+              severity={status.type} 
+              sx={{ 
+                mt: 3, 
+                justifyContent: 'center',
+                color: 'text.primary',
+                bgcolor: status.type === 'success' ? 'success.light' : 'error.light',
+              }}
             >
               {status.message}
             </Alert>

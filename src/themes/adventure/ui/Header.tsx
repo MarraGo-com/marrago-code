@@ -17,7 +17,7 @@ import LogOutButton from '@/components/auth/LogOutButton';
 import Image from 'next/image';
 import AnimatedMenuIcon from './AnimatedMenuIcon';
 import AnimatedLink from './AnimatedLink';
-import { siteConfig } from '@/config/site';
+import { siteConfig } from '@/config/client-data';
 import LanguageSwitcher from '@/components/ui/LanguageSwitcher';
 
 export default function Header() {
@@ -36,17 +36,30 @@ export default function Header() {
 
   const handleDrawerToggle = () => { setMobileOpen(!mobileOpen); };
 
-  const navLinks = [
-    { text: t('experiences'), href: '/experiences' },
-    { text: t('about'), href: '/about' },
-    { text: t('blogLink'), href: '/blog' },
-  ];
+  // 1. Conditionally build navLinks based on siteConfig for the Adventure theme
+  const navLinks = [];
+
+  if (siteConfig.hasExperiencesSection) { // Experiences is explicitly first in adventure navLinks
+    navLinks.push({ text: t('experiences'), href: '/experiences' });
+  }
+  navLinks.push({ text: t('about'), href: '/about' }); // 'About' is always present
+  
+  if (siteConfig.hasBlogSystem) {
+    navLinks.push({ text: t('blogLink'), href: '/blog' });
+  }
+  if (siteConfig.hasReviewsSystem) {
+    navLinks.push({ text: t('reviews'), href: '/reviews' }); // Assuming /reviews page exists
+  }
+  if (siteConfig.hasFaqSection) {
+    navLinks.push({ text: t('faq'), href: '/faq' }); // Assuming /faq page exists
+  }
+  // Add Contact if it's supposed to be in the main nav for adventure theme,
+  // it wasn't there before, but often is.
+  // navLinks.push({ text: t('contact'), href: '/contact' }); 
 
   const drawer = (
     <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', bgcolor: 'background.default' }}>
-        {/* Top part of the drawer */}
         <Box>
-            {/* ## FIX #1: Added a proper header with a close button to the drawer ## */}
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', p: 1.5 }}>
                 <Typography variant="h6" sx={{ ml: 1 }}>{t('mobileMenuTitle')}</Typography>
                 <IconButton onClick={handleDrawerToggle}>
@@ -55,6 +68,7 @@ export default function Header() {
             </Box>
             <Divider />
             <List>
+                {/* Render navLinks (now built conditionally) for mobile */}
                 {navLinks.map((link) => (
                     <ListItem key={link.text} disablePadding>
                         <ListItemButton component={Link} href={link.href} sx={{ textAlign: 'start', py: 1.5 }} onClick={handleDrawerToggle}>
@@ -65,7 +79,6 @@ export default function Header() {
             </List>
         </Box>
         
-        {/* Bottom part of the drawer for Login/Logout */}
         <Box>
             <Divider sx={{ my: 1 }} />
             {user ? (
@@ -79,6 +92,10 @@ export default function Header() {
                     </ListItemButton>
                 </ListItem>
             )}
+            {/* Language switcher for mobile drawer */}
+            <ListItem disablePadding sx={{ px: 2, py: 1 }}>
+              <LanguageSwitcher />
+            </ListItem>
         </Box>
     </Box>
   );
@@ -91,7 +108,6 @@ export default function Header() {
         position="absolute"
         elevation={0}
         sx={{
-          // ## FIX #2: Set the zIndex to be on top of other content but below the Drawer ##
           zIndex: (theme) => theme.zIndex.appBar,
           backgroundColor: isHeaderSolid ? 'background.paper' : 'transparent',
           color: isHeaderSolid ? 'text.primary' : 'common.white',
@@ -110,13 +126,13 @@ export default function Header() {
             <Box sx={{ minWidth: { md: 200 }, display: 'flex', justifyContent: 'flex-start' }}>
                 <Link href="/" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center' }}>
                   <Image 
-                    src="/favicon.ico" 
-                    alt="" 
+                    src= {siteConfig.logo} 
+                    alt= {siteConfig.siteName} 
                     width={40} 
                     height={40} 
                     priority 
+                    fetchPriority='high'
                     style={{ 
-                      //  filter: !isHeaderSolid ? 'brightness(0) invert(1)' : 'none',
                         transition: 'filter 0.3s ease-in-out'
                     }}
                   />
@@ -130,6 +146,7 @@ export default function Header() {
                 <AnimatedMenuIcon isOpen={mobileOpen} onClick={handleDrawerToggle}/>
             ) : (
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 3, justifyContent: 'center', flexGrow: 1 }}>
+                  {/* Render navLinks (now built conditionally) for desktop */}
                   {navLinks.map((link) => (
                     <AnimatedLink key={link.text} href={link.href}>
                       <Typography sx={{ fontWeight: 'bold' }}>{link.text}</Typography>
@@ -139,25 +156,24 @@ export default function Header() {
             )}
 
             <Box sx={{ minWidth: { md: 200 }, display: 'flex', justifyContent: 'flex-end' }}>
-                {/* --- ADD THE LANGUAGE SWITCHER HERE --- */}
-               <Box sx={{ display: { xs: 'none', md: 'block' }, mr: 2 }}>
+                <Box sx={{ display: { xs: 'none', md: 'block' }, mr: 2 }}>
                   <LanguageSwitcher />
-               </Box>
-               {loading ? <CircularProgress size={24} color="inherit" /> : !user && (
-                  <Button 
-                      variant="contained" 
-                      color="primary" 
-                      component={Link} 
-                      href="/contact"
-                      sx={{ 
-                          display: { xs: 'none', md: 'block' },
-                          borderRadius: '50px',
-                          fontWeight: 'bold',
-                          px: 3,
-                      }}
-                  >
-                    {t('login')}
-                  </Button>
+                </Box>
+                {loading ? <CircularProgress size={24} color="inherit" /> : !user && (
+                    <Button 
+                        variant="contained" 
+                        color="primary" 
+                        component={Link} 
+                        href="/contact" // Original adventure theme had /contact here instead of /admin/login
+                        sx={{ 
+                            display: { xs: 'none', md: 'block' },
+                            borderRadius: '50px',
+                            fontWeight: 'bold',
+                            px: 3,
+                        }}
+                    >
+                        {t('login')} {/* Still using t('login') for the button text */}
+                    </Button>
                 )}
             </Box>
           </Toolbar>
@@ -173,8 +189,6 @@ export default function Header() {
             ModalProps={{ keepMounted: true }} 
             sx={{ 
                 display: { xs: 'block', md: 'none' },
-                // The Drawer's default zIndex (1300) is higher than the AppBar's (1100),
-                // so it will correctly appear on top.
                 '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '80%', maxWidth: '300px' },
             }}
         >

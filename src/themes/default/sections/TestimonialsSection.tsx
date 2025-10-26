@@ -1,56 +1,51 @@
-// -------------------------------------------------------------------------
-// 3. NEW FILE: /src/components/sections/TestimonialsSection.tsx
-// This Server Component fetches the featured reviews and displays them.
-// -------------------------------------------------------------------------
-import {Grid, Box, Typography, Container } from "@mui/material";
+// /src/components/sections/TestimonialsSection.tsx (UPDATED)
 
-import { getTranslations } from "next-intl/server";
+import { Grid, Box, Typography, Container } from "@mui/material";
+// REMOVED: getTranslations is no longer needed
+// import { getTranslations } from "next-intl/server";
+import { getLocale } from 'next-intl/server'; // NEW: For getting locale in Server Components
+
+// NEW: Import client data
+
 import TestimonialCard from "@/components/reviews/TestimonialCard";
-import MainHeading from "../custom/MainHeading";
+// UPDATED: Use MainHeadingUserContent for direct title prop
 import { Review } from "@/types/review";
 import { getFeaturedReviews } from "@/lib/data";
-
-/* async function getFeaturedReviews() {
-  try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/reviews/featured`, {
-      next: { revalidate: 3600 } // Cache for 1 hour
-    });
-    if (!res.ok) return [];
-    const data = await res.json();
-     console.log("Fetched reviews===============================================================> :", JSON.stringify(data)); // Debugging output
-
-    return data.reviews;
-  } catch (error) {
-    console.error("Error fetching featured reviews:", error);
-    return [];
-  }
-} */
+import MainHeadingUserContent from "@/components/custom/MainHeadingUserContent";
+import { siteConfig } from "@/config/client-data";
 
 export default async function TestimonialsSection() {
   const reviews = (await getFeaturedReviews()) as Review[] | null;
-  const t = await getTranslations('Testimonials');
+  // REMOVED: const t = await getTranslations('Testimonials');
+
+  // NEW: Get locale and content from the client data file
+  const locale = (await getLocale()) as 'en' | 'fr' | 'ar';
+  const content = siteConfig.textContent[locale]?.homepage || siteConfig.textContent.en.homepage;
+
   if (!reviews || reviews.length === 0) {
-    return null; // Don't render the section if there are no featured reviews
+    return null;
   }
 
   return (
     <Box sx={{ py: { xs: 8, md: 12 }, bgcolor: 'background.default' }}>
       <Container maxWidth="lg">
         <Box sx={{ textAlign: 'center', mb: 8 }}>
-          <MainHeading 
-             titleKey='title' 
-              variant="h2"
-              component="h2"
-             t={t} 
-             sx={{ fontWeight: 'bold', mb: 2 }} />
+          {/* UPDATED: MainHeadingUserContent now gets title from client data */}
+          <MainHeadingUserContent 
+            title={content.testimonialsTitle}
+            variant="h2"
+            component="h2"
+            sx={{ fontWeight: 'bold', mb: 2 }} 
+          />
+          {/* UPDATED: Typography now gets subtitle from client data */}
           <Typography variant="h6" component="p" sx={{ color: 'text.secondary', maxWidth: '600px', mx: 'auto' }}>
-            {t('subtitle')}
+            {content.testimonialsSubtitle}
           </Typography>
         </Box>
 
         <Grid container spacing={4} justifyContent="center">
           {reviews.map((review: Review) => (
-            <Grid key={review.id}  size={{ xs: 12, sm: 8, md: 4 }}>
+            <Grid key={review.id} size={{ xs: 12, sm: 8, md: 4 }}>
               <TestimonialCard review={review} />
             </Grid>
           ))}

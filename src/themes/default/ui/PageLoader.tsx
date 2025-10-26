@@ -7,7 +7,7 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
-import { siteConfig } from '@/config/site';
+import { siteConfig } from '@/config/client-data';
 import Image from 'next/image';
 
 export default function PageLoader() {

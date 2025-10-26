@@ -19,7 +19,7 @@ import AnimatedMenuIcon from './AnimatedMenuIcon';
 import MegaMenuPanel from './MegaMenuPanel';
 import { AnimatePresence } from 'framer-motion';
 import AnimatedLink from './AnimatedLink';
-import { siteConfig } from '@/config/site';
+import { siteConfig } from '@/config/client-data';
 import LanguageSwitcher from '@/components/ui/LanguageSwitcher';
 
 export default function Header() {
@@ -39,11 +39,21 @@ export default function Header() {
 
   const handleDrawerToggle = () => { setMobileOpen(!mobileOpen); };
 
-  const navLinks = [
-    { text: t('about'), href: '/about' },
-    { text: t('blogLink'), href: '/blog' },
-    { text: t('contact'), href: '/contact' },
-  ];
+  // 1. Conditionally build navLinks based on siteConfig
+  const navLinks = [];
+  if (siteConfig.hasBlogSystem) {
+    navLinks.push({ text: t('blogLink'), href: '/blog' });
+  }
+  // If you also have dedicated /reviews or /faq pages, add them here
+  if (siteConfig.hasReviewsSystem) {
+    navLinks.push({ text: t('reviews'), href: '/reviews' }); // Assuming a /reviews page exists
+  }
+  if (siteConfig.hasFaqSection) {
+    navLinks.push({ text: t('faq'), href: '/faq' }); // Assuming a /faq page exists
+  }
+  navLinks.push({ text: t('about'), href: '/about' }); // 'About' is often always present
+  navLinks.push({ text: t('contact'), href: '/contact' }); // 'Contact' is often always present
+
 
   const drawer = (
     <Box sx={{ textAlign: 'start', bgcolor: 'background.default', height: '100%' }}>
@@ -53,11 +63,16 @@ export default function Header() {
       </Box>
       <Divider />
       <List>
-        <ListItem disablePadding>
-          <ListItemButton component={Link} href="/experiences" sx={{ textAlign: 'start' }} onClick={handleDrawerToggle}>
-            <ListItemText primary={t('experiences')} />
-          </ListItemButton>
-        </ListItem>
+        {/* 2. Conditionally render Experiences link in mobile drawer */}
+        {siteConfig.hasExperiencesSection && (
+          <ListItem disablePadding>
+            <ListItemButton component={Link} href="/experiences" sx={{ textAlign: 'start' }} onClick={handleDrawerToggle}>
+              <ListItemText primary={t('experiences')} />
+            </ListItemButton>
+          </ListItem>
+        )}
+        
+        {/* Render other navLinks (now built conditionally) */}
         {navLinks.map((link) => (
           <ListItem key={link.text} disablePadding>
             <ListItemButton component={Link} href={link.href} sx={{ textAlign: 'start' }} onClick={handleDrawerToggle}>
@@ -125,7 +140,7 @@ export default function Header() {
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Link href="/" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center' }}>
                   <Image 
-                    src="/favicon.ico"  
+                    src="/favicon.ico"  
                     alt="" 
                     width={40} 
                     height={40} 
@@ -149,17 +164,21 @@ export default function Header() {
               ) : (
                 // On Desktop: Display the navigation links and buttons on the right
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
-                  <Button
-                    color="inherit"
-                    onMouseEnter={() => setIsMenuHovered(true)}
-                    endIcon={<ArrowDropDownIcon />}
-                    component={Link}
-                    href="/experiences"
-                    sx={{ fontWeight: 500 }}
-                  >
-                    {t('experiences')}
-                  </Button>
+                  {/* 3. Conditionally render Experiences link on desktop */}
+                  {siteConfig.hasExperiencesSection && (
+                    <Button
+                      color="inherit"
+                      onMouseEnter={() => setIsMenuHovered(true)}
+                      endIcon={<ArrowDropDownIcon />}
+                      component={Link}
+                      href="/experiences"
+                      sx={{ fontWeight: 500 }}
+                    >
+                      {t('experiences')}
+                    </Button>
+                  )}
                   
+                  {/* Render other navLinks (now built conditionally) */}
                   {navLinks.map((link) => (
                     <AnimatedLink key={link.text} href={link.href}>
                       <Typography sx={{ fontWeight: 500 }}>{link.text}</Typography>

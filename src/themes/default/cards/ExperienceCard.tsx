@@ -9,7 +9,7 @@ import { Link } from '@/i18n/navigation';
 import { Experience, Translation } from '@/types/experience';
 import Image from 'next/image';
 import { createSummary } from '@/lib/utils';
-import { siteConfig } from '@/config/site'; // We'll need this to read the style
+import { siteConfig } from '@/config/client-data';
 
 export interface ExperienceCardProps {
   experience: Experience;

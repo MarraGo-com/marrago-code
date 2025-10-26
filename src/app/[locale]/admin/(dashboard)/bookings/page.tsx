@@ -1,35 +1,29 @@
 // -------------------------------------------------------------------------
-// 3. NEW FILE: /src/app/[locale]/admin/(dashboard)/bookings/page.tsx
-// This is the main page for managing booking requests.
+// 3. UPDATED FILE: /src/app/[locale]/admin/(dashboard)/bookings/page.tsx
+// This is the main page for managing booking requests, now conditionally
+// rendered based on siteConfig.hasBookingEngine.
 // -------------------------------------------------------------------------
 import { Box, Typography } from "@mui/material";
 import BookingsTable from "@/components/admin/BookingsTable";
 import { getAllAdminBookings } from "@/lib/data";
 import { Booking } from "@/types/booking";
-
-// This function runs on the server to get all bookings
-/* async function getBookings() {
-  try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/bookings`, {
-      cache: 'no-store', // Always fetch fresh data for the admin panel
-    });
-    if (!res.ok) return [];
-    const data = await res.json();
-    console.log("Fetched bookings:", JSON.stringify(data.bookings)); // Debugging output
-    return data.bookings;
-  } catch (error) {
-    console.error("Error fetching bookings:", error);
-    return [];
-  }
-} */
+import { notFound } from "next/navigation"; // <-- NEW: Import notFound
+import { siteConfig } from '@/config/client-data';
+import { getTranslations } from "next-intl/server"; // <-- NEW: Import getTranslations
 
 export default async function BookingsAdminPage() {
+  // RECTIFICATION: If booking engine is globally disabled, show 404
+  if (!siteConfig.hasBookingEngine) {
+    notFound(); 
+  }
+
   const bookings = (await getAllAdminBookings()) as Booking[];
+  const t = await getTranslations('admin.AdminBookingsPage'); // Assuming you'd add this namespace
 
   return (
     <Box>
       <Typography variant="h4" component="h1" sx={{ mb: 4, fontWeight: 'bold' }}>
-        Manage Booking Requests
+        {t('manageBookingsTitle') || 'Manage Booking Requests'} {/* RECTIFICATION: Use translation */}
       </Typography>
       
       <BookingsTable bookings={bookings} />

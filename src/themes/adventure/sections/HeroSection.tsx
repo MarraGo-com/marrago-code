@@ -1,26 +1,25 @@
-// /src/themes/adventure/sections/HeroSection.tsx
+// src/themes/adventure/sections/HeroSection.tsx
 'use client';
 
 import React from 'react';
 import { Typography, Button, Container, Box } from '@mui/material';
 import { Link } from '@/i18n/navigation';
-import { useTranslations } from 'next-intl';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import Image from 'next/image';
-import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline'; // An action-oriented icon
+import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 
-// Import the adventure Header component
-// (We will create/refactor this later, for now it can point to the default)
-// import Header from '../../default/ui/Header';
+import { useLocale } from 'next-intl';
+import { siteConfig } from '@/config/client-data';
 
 export default function HeroSection() {
-  const t = useTranslations('AgencyHero'); // Reusing the same translation keys
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const locale = useLocale() as 'en' | 'fr' | 'ar';
+  const clientTextContent = siteConfig.textContent;
+  const heroContent = clientTextContent[locale]?.homepage || clientTextContent.en.homepage;
 
-  // Use a more dynamic, action-oriented video and image
-  const heroVideoUrl = '/videos/hero-video.mp4'; // You can swap this with a more adventurous video
+  const heroVideoUrl = '/videos/hero-video.mp4';
   const heroImageUrl = '/images/todra-gorge2.webp';
 
   return (
@@ -30,19 +29,16 @@ export default function HeroSection() {
         height: { xs: '90vh', md: '100vh' },
         minHeight: 500,
         width: '100%',
-        overflow: 'hidden',
         bgcolor: 'background.default',
+        overflow: 'hidden',
       }}
     >
-      {/* The Header floats on top */}
-      {/* <Header /> */}
-
       {/* Background Media Layer */}
       <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
         {isMobile ? (
           <Image
             src={heroImageUrl}
-            alt={t('title')}
+            alt={heroContent.heroTitle}
             fill
             style={{ objectFit: 'cover' }}
             priority
@@ -63,14 +59,14 @@ export default function HeroSection() {
       </Box>
 
       {/* A more dramatic gradient overlay */}
-      <Box sx={{ 
-        position: 'absolute', 
-        top: 0, 
-        left: 0, 
-        width: '100%', 
-        height: '100%', 
-        background: 'radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.8) 100%)', 
-        zIndex: 2 
+      <Box sx={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        background: 'radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.8) 100%)',
+        zIndex: 2
       }} />
 
       {/* Centered Text Content Layer */}
@@ -86,38 +82,97 @@ export default function HeroSection() {
           justifyContent: 'center',
           textAlign: 'center',
           color: 'common.white',
+          pt: { xs: '60px', md: '80px' }, // Adjusted padding top for smaller screens
+          pb: { xs: '20px', md: 'auto' }, // Added padding bottom to prevent button overflow
+          // NEW: Add a flexible height and allow content to fit
+          minHeight: '80%', // Ensure content container takes up most of the space
+          maxHeight: '100%', // Prevent it from exceeding the hero section
+          // REFINED: Ensure children fill available space, but allow shrinking
+          '& > *': {
+            flexShrink: 1, // Allow children to shrink
+            minHeight: 0, // Allow content to shrink below its intrinsic height if needed
+          },
         }}
       >
-        {/* --- THIS IS THE KEY "ADVENTURE" CHANGE --- */}
-        <Typography 
-            variant="h1" 
-            component="h1" 
-            sx={{ 
-                // Using the modern, bold Poppins font (or your theme's default sans-serif)
-                fontWeight: 800, 
-                fontSize: { xs: '2.5rem', sm: '3.5rem', md: '5rem' }, 
-                mb: 2, 
-                textShadow: '0 3px 15px rgba(0,0,0,0.6)',
-                textTransform: 'uppercase', // Bold, uppercase text
-                letterSpacing: '0.05em',
-            }}
+        {/* H1 Title */}
+        <Typography
+          variant="h1"
+          component="h1"
+          sx={{
+            fontWeight: 800,
+            fontSize: { xs: '2.5rem', sm: '3.5rem', md: '5rem' },
+            mb: 2,
+            textShadow: '0 3px 15px rgba(0,0,0,0.6)',
+            textTransform: 'uppercase',
+            letterSpacing: '0.05em',
+            // NEW: Add line clamp for title if it gets too long, as a fallback
+            display: '-webkit-box',
+            WebkitLineClamp: { xs: 3, sm: 2 }, // Max 3 lines on mobile, 2 on larger
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+          }}
         >
-          {t('title')}
+          {heroContent.heroTitle}
         </Typography>
-        <Typography 
-            variant="h5" 
-            component="p" 
-            sx={{ 
-                mb: 4, 
-                maxWidth: 600, 
-                mx: 'auto', 
-                fontSize: { xs: '1.1rem', md: '1.3rem' }, 
-                textShadow: '0 2px 8px rgba(0,0,0,0.7)', 
-                fontWeight: 400 
-            }}
+
+        {/* Slogan */}
+        {siteConfig.slogan && (
+          <Typography
+            variant="h4"
+            component="p"
+            sx={(theme) => ({
+              mb: 2,
+              maxWidth: 700,
+              mx: 'auto',
+              fontSize: { xs: '1.2rem', sm: '1.5rem', md: '1.5rem' },
+              WebkitTextStroke: '0.5px white',
+              textStroke: '0.5px white',
+              textShadow: '0 2px 8px rgba(0,0,0,0.7)',
+              fontWeight: 500,
+              color: theme.palette.secondary.light,
+              textTransform: 'uppercase',
+              letterSpacing: '0.08em',
+              // NEW: Add line clamp for slogan
+              display: '-webkit-box',
+              WebkitLineClamp: { xs: 3, sm: 2 }, // Max 3 lines on mobile, 2 on larger
+              WebkitBoxOrient: 'vertical',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+            })}
+          >
+            {siteConfig.slogan}
+          </Typography>
+        )}
+
+        {/* Subtitle */}
+        <Typography
+          variant="h5"
+          component="p"
+          sx={{
+            mb: 2.5,
+            maxWidth: 600,
+            mx: 'auto',
+            fontSize: { xs: '1.1rem', md: '1.1rem' },
+            textShadow: '0 2px 8px rgba(0,0,0,0.7)',
+            fontWeight: 400,
+            // NEW: Add line clamp for subtitle
+            display: '-webkit-box',
+            WebkitLineClamp: { xs: 4, sm: 3 }, // Max 4 lines on mobile, 3 on larger
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            // Ensure some space above the button even if content is long
+            flexGrow: 1, // Allow this element to grow and push the button down if needed
+            alignItems: 'center',
+            justifyContent: 'center',
+            minHeight: 'auto', // Override minHeight:0 from parent if text is short
+          }}
         >
-          {t('subtitle')}
+          {heroContent.heroSubtitle}
         </Typography>
+
+        {/* CTA Button */}
         <Button
           variant="contained"
           color="primary"
@@ -127,18 +182,22 @@ export default function HeroSection() {
           startIcon={<PlayCircleOutlineIcon />}
           sx={{
             px: { xs: 4, md: 6 },
-            py: { xs: 1.5, md: 2 },
-            fontSize: { xs: '1rem', md: '1.2rem' },
+            py: { xs: 1.5, md: 1.5 },
+            fontSize: { xs: '1rem', md: '1.1rem' },
             fontWeight: 700,
-            borderRadius: '50px', // A modern, pill-shaped button
+            borderRadius: '50px',
             boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
             transition: 'transform 0.2s ease-in-out',
             '&:hover': {
-                transform: 'scale(1.05)',
-            }
+              transform: 'scale(1.05)',
+            },
+            mt: 'auto', // Pushes the button to the bottom of the flex container
+            mb: { xs: 0, md: 0 }, // Ensure no extra margin bottom
+            flexShrink: 0, // Prevent button from shrinking
+            paddingBottom: { xs: '20px', md: 'auto' }, // Ensure button stays within bounds
           }}
         >
-          {t('ctaButton')}
+          {heroContent.heroCtaButtonText}
         </Button>
       </Container>
     </Box>

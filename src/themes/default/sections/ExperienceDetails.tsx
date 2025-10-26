@@ -20,7 +20,12 @@ import { locations } from '@/config/locations';
 
 export type ExperienceDetailsProps = {
   experience: Experience;
-  clientConfig: { plugins: { hasReviews?: boolean } }; // Receive client config
+  clientConfig?: { 
+    plugins: { 
+      hasReviews?: boolean; 
+      hasBookingEngine?: boolean; // <-- NEW: Add hasBookingEngine to clientConfig type
+    } 
+  };
 };
 
 export default function ExperienceDetails({ experience, clientConfig }: ExperienceDetailsProps) {
@@ -29,6 +34,9 @@ export default function ExperienceDetails({ experience, clientConfig }: Experien
   
   const translation = experience.translations?.[locale] || experience.translations?.en;
   const location = locations.find(loc => loc.id === experience.locationId);
+
+  // RECTIFICATION: Access hasBookingEngine from clientConfig
+  const showBookingWidget = clientConfig?.plugins?.hasBookingEngine;
 
   return (
     <Box sx={{ py: { xs: 4, md: 8 } }}>
@@ -49,7 +57,7 @@ export default function ExperienceDetails({ experience, clientConfig }: Experien
         {/* Main Two-Column Layout */}
         <Grid container spacing={{ xs: 4, md: 8 }} >
           {/* Left Column: Main Content */}
-          <Grid  size={{ xs: 12, md: 7 }}>
+          <Grid size={{ xs: 12, md: 7 }}>
             <ImageGallery 
               coverImage={experience.coverImage}
               galleryImages={experience.galleryImages || []}
@@ -80,16 +88,18 @@ export default function ExperienceDetails({ experience, clientConfig }: Experien
             )}
           </Grid>
 
-          {/* Right Column: Sticky Booking Widget */}
-          <Grid  size={{ xs: 12, md: 5 }}>
-            <Box sx={{ position: 'sticky', top: '80px' }}>
-              <StickyBookingWidget 
-                experience={experience}
-                experienceId={experience.id}
-                experienceTitle={translation?.title || experience.title || ''}
-              />
-            </Box>
-          </Grid>
+          {/* Right Column: Sticky Booking Widget - RECTIFICATION: Conditional Rendering */}
+          {showBookingWidget && ( // <-- NEW: Only render if showBookingWidget is true
+            <Grid size={{ xs: 12, md: 5 }}>
+              <Box sx={{ position: 'sticky', top: '80px' }}>
+                <StickyBookingWidget 
+                  experience={experience}
+                  experienceId={experience.id}
+                  experienceTitle={translation?.title || experience.title || ''}
+                />
+              </Box>
+            </Grid>
+          )}
         </Grid>
         
         {/* --- THIS IS THE NEW, INTEGRATED REVIEWS SECTION --- */}

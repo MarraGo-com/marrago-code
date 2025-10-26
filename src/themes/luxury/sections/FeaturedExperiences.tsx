@@ -4,12 +4,15 @@
 import React from 'react';
 import { Grid, CircularProgress, Alert, Box, Container } from '@mui/material';
 import { useExperiences } from '@/hooks/useExperiences';
-import { useTranslations } from 'next-intl';
-import MainHeading from '../../default/custom/MainHeading'; // We can reuse the heading component for now
+import { useLocale, useTranslations } from 'next-intl';
+// import MainHeading from '../../default/custom/MainHeading'; // We can reuse the heading component for now
 
 import { Experience } from '@/types/experience';
 import dynamic from 'next/dynamic';
 import { ExperienceCardProps } from '../cards/ExperienceCard';
+import MainHeadingUserContent from '@/components/custom/MainHeadingUserContent';
+import { HomepageContent } from '@/config/types';
+import { siteConfig } from '@/config/client-data';
 
 // This dynamic import will now correctly load your new luxury card
 const theme = process.env.NEXT_PUBLIC_THEME || 'default';
@@ -18,14 +21,17 @@ const ExperienceCard = dynamic<ExperienceCardProps>(() => import(`@/themes/${the
 export default function FeaturedExperiences() {
   const t = useTranslations('FeaturedExperiences');
   const { data: experiences, isLoading, isError, error } = useExperiences();
+// CHANGED: Use useLocale to get the current locale
+  const locale = useLocale() as 'en' | 'fr' | 'ar'; 
 
+  // NEW: Safely get homepage content for the current locale
+  const homepageContent: HomepageContent = siteConfig.textContent[locale]?.homepage || siteConfig.textContent.en.homepage;
   return (
     // Use a clean, default background for a more minimalist feel
     <Box sx={{ py: { xs: 8, md: 12 }, bgcolor: 'background.default' }}>
       <Container maxWidth="lg">
-        <MainHeading 
-          titleKey='title' 
-          t={t} 
+        <MainHeadingUserContent
+          title={homepageContent.featuredExperiencesTitle} 
           variant="h2" 
           component="h2" 
           sx={{ 

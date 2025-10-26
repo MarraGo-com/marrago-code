@@ -1,27 +1,36 @@
-// -------------------------------------------------------------------------
-// 3. NEW FILE: /src/app/[locale]/blog/page.tsx
-// This is the main public blog page that lists all published articles.
-// -------------------------------------------------------------------------
-import {Grid, Box, Typography, Container } from "@mui/material";
+// /src/app/[locale]/blog/page.tsx (UPDATED)
 
-// import Header from "@/components/ui/Header";
-// import Footer from "@/components/ui/Footer";
+import { Grid, Box, Typography, Container } from "@mui/material";
 import ArticleCard from "@/components/blog/ArticleCard";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server"; 
 import { Metadata } from "next";
 import { Article } from "@/types/article";
 import { getPublishedArticles } from "@/lib/data";
 import { getStaticPageMetadata } from "@/config/static-metadata";
 import { generateStaticPageMetadata } from "@/lib/metadata";
-
+import { siteConfig } from '@/config/client-data';
+import { redirect } from "next/navigation";
 import dynamic from "next/dynamic";
+
+// --- ▼▼▼ CHANGES START HERE ▼▼▼ ---
+
+// 1. Import our new server-side loader
+import { getComponentImport } from "@/lib/theme-component-loader"; 
+
+// 2. Import the props type (path remains the same, as types don't affect runtime)
 import { ResponsiveHeadingProps } from "@/themes/default/custom/ResponsiveHeading";
-const theme = process.env.NEXT_PUBLIC_THEME || 'default';
-// const ResponsiveHeading = dynamic(() => import(`@/themes/${theme}/custom/ResponsiveHeading`));
+
+// 3. REMOVE the old 'theme' variable
+// const theme = process.env.NEXT_PUBLIC_THEME || 'default'; // <-- REMOVED
+
+// 4. Use getComponentImport to load the component
 const ResponsiveHeading = dynamic<ResponsiveHeadingProps>(() =>
-  import(`@/themes/${theme}/custom/ResponsiveHeading`).then((mod) => mod.default)
+  getComponentImport('ResponsiveHeading', 'custom')().then((mod) => mod.default)
 );
-// --- 2. This is the new, cleaner metadata function ---
+
+// --- ▲▲▲ CHANGES END HERE ▲▲▲ ---
+
+
 type MetadataParams = Promise<{ locale: 'en' | 'fr' }>;
 
 export async function generateMetadata({ 
@@ -29,8 +38,18 @@ export async function generateMetadata({
 }: { 
   params: MetadataParams 
 }): Promise<Metadata> {
-  // We simply call our helper with the page key and the current locale.
   const { locale } = await params;
+
+  if (!siteConfig.hasBlogSystem) {
+    return generateStaticPageMetadata({
+      title: "Page Not Found",
+      description: "This page is not available.",
+      pathname: `/blog`,
+      url: process.env.NEXT_PUBLIC_API_URL || "https://upmerce.com",
+      images: [],
+    });
+  }
+
   const metadata = getStaticPageMetadata('blog', locale);
   
   return generateStaticPageMetadata({
@@ -38,34 +57,38 @@ export async function generateMetadata({
     description: metadata.description,
     images: [metadata.ogImage],
     pathname: metadata.pathname,
-    url: process.env.NEXT_PUBLIC_API_URL || "https://upmerce.com", // Ensure you have this environment variable set
-
+    url: process.env.NEXT_PUBLIC_API_URL || "https://upmerce.com",
   });
 }
   
-
 export default async function BlogPage() {
+  if (!siteConfig.hasBlogSystem) {
+    redirect('/'); 
+  }
+
   const articles = await getPublishedArticles();
-  const t = await getTranslations('BlogPage');
+  const t = await getTranslations('BlogPage'); 
+
+  const locale = (await getLocale()) as 'en' | 'fr' | 'ar';
+  const content = siteConfig.textContent[locale]?.blogPage || siteConfig.textContent.en.blogPage;
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', bgcolor: 'background.default' }}>
-      {/* <Header /> */}
       <main className="flex-grow">
         <Container maxWidth="lg" sx={{ py: { xs: 4, md: 8 } }}>
           <Box sx={{ textAlign: 'center', mb: 8 }}>
             <ResponsiveHeading component="h2" sx={{ fontWeight: 'bold', mb: 2 }}>
-              {t('title')}
+              {content.title}
             </ResponsiveHeading>
             <Typography variant="h6" component="p" sx={{ color: 'text.secondary', maxWidth: '600px', mx: 'auto' }}>
-              {t('subtitle')}
+              {content.subtitle}
             </Typography>
           </Box>
 
           {articles.length > 0 ? (
             <Grid container spacing={4}>
               {articles.map((article: Article) => (
-                <Grid key={article.id}  size={{ xs: 12, sm: 6, md: 4 }}>
+                <Grid key={article.id} size={{ xs: 12, sm: 6, md: 4 }}>
                   <ArticleCard article={article} />
                 </Grid>
               ))}
@@ -77,7 +100,6 @@ export default async function BlogPage() {
           )}
         </Container>
       </main>
-      {/* <Footer /> */}
     </Box>
   );
 }

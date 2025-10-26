@@ -1,10 +1,15 @@
-// /src/themes/luxury/sections/SocialProofSection.tsx
+// /src/themes/luxury/sections/SocialProofSection.tsx (UPDATED)
 'use client';
 
 import React from 'react';
 import { Box, Typography, Container } from '@mui/material';
-import { useTranslations } from 'next-intl';
-import { siteConfig } from '@/config/site';
+// REMOVED: useTranslations is no longer needed
+// import { useTranslations } from 'next-intl';
+
+// NEW: Import client data and locale hook
+import { useLocale } from 'next-intl';
+
+import { siteConfig } from '@/config/client-data';
 import Image from 'next/image';
 
 const partnerLogos = [
@@ -15,7 +20,11 @@ const partnerLogos = [
 ];
 
 export default function SocialProofSection() {
-  const t = useTranslations('SocialProof');
+  // REMOVED: const t = useTranslations('SocialProof');
+
+  // NEW: Get content dynamically based on the current locale
+  const locale = useLocale() as 'en' | 'fr' | 'ar';
+  const content = siteConfig.textContent[locale]?.homepage || siteConfig.textContent.en.homepage;
 
   return (
     <Box sx={{ py: { xs: 6, md: 8 }, bgcolor: 'background.default' }}>
@@ -27,13 +36,13 @@ export default function SocialProofSection() {
             fontWeight: 'bold',
             textTransform: 'uppercase',
             letterSpacing: 2,
-            mb: 6, // Increased margin for more space
+            mb: 6,
           }}
         >
-          {t('title')}
+          {/* UPDATED: Using title from client data */}
+          {content.socialProofTitle}
         </Typography>
         
-        {/* --- The Animated Scroller is back, but with a more elegant style --- */}
         <Box
           sx={{
             width: '100%',
@@ -50,8 +59,7 @@ export default function SocialProofSection() {
                 '0%': { transform: 'translateX(0)' },
                 '100%': { transform: 'translateX(-50%)' },
               },
-              // --- KEY CHANGES for Luxury Feel ---
-              animation: 'scroll 40s linear infinite', // Slower, more graceful animation
+              animation: 'scroll 40s linear infinite',
               '&:hover': {
                 animationPlayState: 'paused',
               },
@@ -59,21 +67,20 @@ export default function SocialProofSection() {
           >
             {/* Render the logos twice for a seamless loop */}
             {[...partnerLogos, ...partnerLogos].map((logo, index) => (
-               <Box
+              <Box
                 key={`${logo.name}-${index}`}
                 sx={{
                   position: 'relative',
                   width: { xs: 130, sm: 160 },
                   height: { xs: 65, sm: 80 },
-                  mx: { xs: 3, sm: 5 }, // Increased spacing
+                  mx: { xs: 3, sm: 5 },
                   flexShrink: 0,
-                  // --- KEY CHANGES for Luxury Feel ---
-                  filter: (theme) => // Use grayscale in light mode, invert in dark
+                  filter: (theme) =>
                     theme.palette.mode === 'dark' ? 'brightness(0) invert(1)' : 'grayscale(100%)',
-                  opacity: 0.5, // Start with lower opacity
+                  opacity: 0.5,
                   transition: 'opacity 0.4s ease-in-out',
                   '&:hover': {
-                    opacity: 1, // Fade to full opacity on hover
+                    opacity: 1,
                   },
                 }}
               >

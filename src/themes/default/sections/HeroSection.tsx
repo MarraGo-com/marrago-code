@@ -1,21 +1,22 @@
-// /src/themes/default/sections/HeroSection.tsx
 'use client';
 
 import React from 'react';
 import { Typography, Button, Container, Box } from '@mui/material';
 import { Link } from '@/i18n/navigation';
-import { useTranslations } from 'next-intl';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import Image from 'next/image';
 
-// Import the default Header component
-// import Header from '../ui/Header';
+import { useLocale } from 'next-intl'; 
+import { siteConfig } from '@/config/client-data';
+
 
 export default function HeroSection() {
-  const t = useTranslations('HeroSection');
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const locale = useLocale() as 'en' | 'fr' | 'ar'; 
+
+  const heroContent = siteConfig.textContent[locale]?.homepage || siteConfig.textContent.en.homepage;
 
   const heroVideoUrl = '/videos/hero-video.mp4';
   const heroImageUrl = '/images/profound-celestial-masterpiece.webp';
@@ -31,17 +32,11 @@ export default function HeroSection() {
         bgcolor: 'background.default',
       }}
     >
-      {/* --- THIS IS THE FIX --- */}
-      {/* Header is now positioned absolutely within the relative parent Box */}
-      {/* It is no longer inside a flex container */}
-      {/* <Header /> */}
-
-      {/* Background Media Layer */}
       <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
         {isMobile ? (
           <Image
             src={heroImageUrl}
-            alt={t('title')}
+            alt={heroContent.heroTitle} 
             fill
             style={{ objectFit: 'cover' }}
             priority
@@ -61,7 +56,6 @@ export default function HeroSection() {
         )}
       </Box>
 
-      {/* Gradient Overlay Layer */}
       <Box sx={{ 
         position: 'absolute', 
         top: 0, 
@@ -72,8 +66,6 @@ export default function HeroSection() {
         zIndex: 2 
       }} />
 
-      {/* Centered Text Content Layer */}
-      {/* This Container uses Flexbox to center its own content vertically and horizontally */}
       <Container
         maxWidth="md"
         sx={{
@@ -88,12 +80,48 @@ export default function HeroSection() {
           color: 'common.white',
         }}
       >
-        <Typography variant="h1" component="h1" sx={{ fontWeight: 800, fontSize: { xs: '2.2rem', sm: '3rem', md: '4.5rem' }, mb: 3, textShadow: '0 4px 24px rgba(0,0,0,0.7)' }}>
-          {t('title')}
-        </Typography>
-        <Typography variant="h5" component="p" sx={{ mb: 5, maxWidth: 600, mx: 'auto', fontSize: { xs: '1rem', md: '1.25rem' }, textShadow: '0 2px 8px rgba(0,0,0,0.6)', fontWeight: 400 }}>
-          {t('subtitle')}
-        </Typography>
+        <Typography 
+          variant="h1" 
+          component="h1" 
+          sx={{ 
+            fontWeight: 800, 
+            fontSize: { xs: '2.2rem', sm: '3rem', md: '4.5rem' }, 
+            mb: 2, // REFINED: Reduced margin from 3 to 2
+            textShadow: '0 4px 24px rgba(0,0,0,0.7)',
+            textAlign: 'center' 
+          }}
+        >{heroContent.heroTitle}</Typography>
+
+        {siteConfig.slogan && (
+            <Typography 
+                variant="h4"
+                component="p" 
+                sx={{ 
+                    mb: 2, // REFINED: Reduced margin from 3 to 2
+                    maxWidth: 700, 
+                    mx: 'auto', 
+                    fontSize: { xs: '1.2rem', sm: '1.5rem', md: '1.75rem' }, // REFINED: Reduced desktop font size
+                    textShadow: '0 2px 8px rgba(0,0,0,0.6)', 
+                    fontWeight: 500,
+                    color: 'primary.light'
+                }}
+            >
+                {siteConfig.slogan}
+            </Typography>
+        )}
+        
+        <Typography 
+          variant="h5" 
+          component="p" 
+          sx={{ 
+            mb: 4, // REFINED: Reduced margin from 5 to 4
+            maxWidth: 600, 
+            mx: 'auto', 
+            fontSize: { xs: '1rem', md: '1.15rem' }, // REFINED: Reduced desktop font size
+            textShadow: '0 2px 8px rgba(0,0,0,0.6)', 
+            fontWeight: 400 
+          }}
+        >{heroContent.heroSubtitle}</Typography>
         <Button
           variant="contained"
           size="large"
@@ -107,9 +135,7 @@ export default function HeroSection() {
             color: 'white',
             background: `linear-gradient(90deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
           })}
-        >
-          {t('ctaButton')}
-        </Button>
+        >{heroContent.heroCtaButtonText}</Button>
       </Container>
     </Box>
   );

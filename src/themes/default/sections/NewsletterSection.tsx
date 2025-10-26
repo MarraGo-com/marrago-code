@@ -1,16 +1,27 @@
-// /src/components/sections/NewsletterSection.tsx
+// /src/themes/default/sections/NewsletterSection.tsx (UPDATED)
 'use client';
 
 import React, { useState } from 'react';
 import { Box, Typography, Container, TextField, Button, CircularProgress, Alert } from '@mui/material';
+// Kept for UI-specific text like placeholders and errors
 import { useTranslations } from 'next-intl';
-import MainHeading from '../custom/MainHeading';
+// NEW: Import client data and locale hook for main content
+import { useLocale } from 'next-intl';
+import MainHeadingUserContent from '@/components/custom/MainHeadingUserContent';
+import { siteConfig } from '@/config/client-data';
+
+// UPDATED: Use MainHeadingUserContent for direct title prop
 
 export default function NewsletterSection() {
+  // `t` is still used for UI text (label, button, errors)
   const t = useTranslations('Newsletter');
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+
+  // NEW: Get content for title and subtitle
+  const locale = useLocale() as 'en' | 'fr' | 'ar';
+  const content = siteConfig.textContent[locale]?.homepage || siteConfig.textContent.en.homepage;
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -31,7 +42,7 @@ export default function NewsletterSection() {
       }
 
       setStatus({ type: 'success', message: result.message });
-      setEmail(''); // Clear the form on success
+      setEmail('');
 
     } catch (err: unknown) {
       if (err instanceof Error) { 
@@ -48,15 +59,16 @@ export default function NewsletterSection() {
     <Box sx={{ py: { xs: 8, md: 12 }, bgcolor: 'background.paper' }}>
       <Container maxWidth="md">
         <Box sx={{ textAlign: 'center' }}>
-          <MainHeading 
-            titleKey='title' 
+          {/* UPDATED: MainHeadingUserContent now gets title from client data */}
+          <MainHeadingUserContent 
+            title={content.newsletterTitle}
             variant="h2"
             component="h2"
-            t={t}  
             sx={{ fontWeight: 'bold', mb: 2 }}
-            />
+          />
+          {/* UPDATED: Typography now gets subtitle from client data */}
           <Typography sx={{ color: 'text.secondary', mb: 4, maxWidth: '500px', mx: 'auto' }}>
-            {t('subtitle')}
+            {content.newsletterSubtitle}
           </Typography>
           <Box 
             component="form" 
@@ -74,7 +86,7 @@ export default function NewsletterSection() {
             <TextField
               required
               fullWidth
-              label={t('emailLabel')}
+              label={t('emailLabel')} // Kept using `t` for label
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}

@@ -1,34 +1,29 @@
 // -------------------------------------------------------------------------
-// 1. NEW FILE: /src/app/[locale]/admin/(dashboard)/reviews/page.tsx
-// This is the main page for managing customer reviews.
+// 1. UPDATED FILE: /src/app/[locale]/admin/(dashboard)/reviews/page.tsx
+// This is the main page for managing customer reviews, now conditionally
+// rendered based on siteConfig.hasReviewsSystem.
 // -------------------------------------------------------------------------
 import { Box, Typography } from "@mui/material";
 import ReviewsTable from "@/components/admin/ReviewsTable";
 import { Review } from "@/types/review";
 import { getAllAdminReviews } from "@/lib/data";
-
-// This function runs on the server to get all reviews
-/* async function getAllReviews(): Promise<Review[]> {
-  try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/reviews`, {
-      cache: 'no-store', // Always fetch the latest reviews for moderation
-    });
-    if (!res.ok) return [];
-    const data = await res.json();
-    return data.reviews;
-  } catch (error) {
-    console.error("Error fetching reviews for admin:", error);
-    return [];
-  }
-} */
+import { notFound } from "next/navigation"; // <-- NEW: Import notFound
+import { siteConfig } from '@/config/client-data';
+import { getTranslations } from "next-intl/server"; // <-- NEW: Import getTranslations
 
 export default async function ReviewsAdminPage() {
+  // RECTIFICATION: If review system is globally disabled, show 404
+  if (!siteConfig.hasReviewsSystem) {
+    notFound(); 
+  }
+
   const reviews = (await getAllAdminReviews()) as Review[];
+  const t = await getTranslations('admin.AdminReviewsPage'); // Assuming you'd add this namespace
 
   return (
     <Box>
       <Typography variant="h4" component="h1" sx={{ mb: 4, fontWeight: 'bold' }}>
-        Manage Customer Reviews
+        {t('manageReviewsTitle') || 'Manage Customer Reviews'} {/* RECTIFICATION: Use translation */}
       </Typography>
       
       <ReviewsTable reviews={reviews} />

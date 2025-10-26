@@ -1,24 +1,31 @@
-// /src/themes/luxury/sections/ContactSection.tsx
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'; // Import useEffect
 import { 
   Grid, Typography, Box, Container, TextField, Button, 
   CircularProgress, Alert, Snackbar 
 } from '@mui/material';
+// Kept for UI-specific text like placeholders and errors
 import { useTranslations } from 'next-intl';
+// NEW: Import client data and locale hook for main content
+import { useLocale } from 'next-intl';
+import { siteConfig } from '@/config/client-data';
+
+// UPDATED: Use MainHeadingUserContent for direct title prop
+import MainHeadingUserContent from '../../../components/custom/MainHeadingUserContent';
+
 import dynamic from 'next/dynamic';
 
-// Dynamically import the InteractiveMap
 const InteractiveMap = dynamic(
   () => import('@/components/ui/InteractiveMap'),
   {
     ssr: false,
-    loading: () => <Box sx={{ height: '400px', bgcolor: 'action.hover' }} />
+    loading: () => <Box sx={{ height: '100%', bgcolor: 'action.hover' }} />
   }
 );
 
 export default function ContactSection() {
+  // `t` is still used for UI text (labels, alerts, button)
   const t = useTranslations('ContactSection');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -29,6 +36,19 @@ export default function ContactSection() {
     message: '',
     severity: 'success',
   });
+  
+  // NEW: State to ensure map renders only on the client after mount
+  const [isClient, setIsClient] = useState(false);
+
+  // NEW: Get content for title and subtitle
+  const locale = useLocale() as 'en' | 'fr' | 'ar';
+  const content = siteConfig.textContent[locale]?.contactPage || siteConfig.textContent.en.contactPage;
+
+  // NEW: useEffect to set the isClient state to true after the component mounts
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
 
   const handleCloseSnackbar = (event?: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
@@ -70,30 +90,35 @@ export default function ContactSection() {
   return (
     <>
       <Box sx={{ py: { xs: 8, md: 12 }, bgcolor: 'background.default' }}>
-        <Container maxWidth="md"> {/* Use a medium container for a more focused layout */}
-          
-          {/* --- THIS IS THE KEY CHANGE: A centered, single-column layout --- */}
+        <Container maxWidth="md">
           <Box sx={{ textAlign: 'center', mb: 8 }}>
-            <Typography 
+            <MainHeadingUserContent
+              title={content.title}
               variant="h2"
               component="h2"
               sx={{ 
                 fontFamily: '"Oranienbaum", serif', 
                 fontWeight: 400, 
-                mb: 3 
+                mb: 2 
               }}
-            >
-              {t('title')}
-            </Typography>
+            />
+            {siteConfig.slogan && (
+              <Typography 
+                variant="h5" 
+                component="p" 
+                sx={{ mb: 3, color: 'primary.main', fontWeight: 500 }}
+              >
+                {siteConfig.slogan}
+              </Typography>
+            )}
             <Typography variant="h6" sx={{ color: 'text.secondary', maxWidth: '600px', mx: 'auto' }}>
-              {t('infoSubtitle')}
+              {content.infoSubtitle}
             </Typography>
           </Box>
           
-          {/* Contact Form with refined styling */}
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ maxWidth: '600px', mx: 'auto' }}>
             <Grid container spacing={3}>
-              <Grid  size={{xs: 12, sm: 6}}>
+              <Grid size={{xs: 12, sm: 6}}>
                 <TextField required fullWidth label={t('formNameLabel')} name="name" value={name} onChange={(e) => setName(e.target.value)} variant="filled" />
               </Grid>
               <Grid size={{xs: 12, sm: 6}}>
@@ -105,7 +130,7 @@ export default function ContactSection() {
               <Grid size={{xs: 12}} sx={{ textAlign: 'center' }}>
                 <Button 
                   type="submit" 
-                  variant="outlined" // More elegant button style
+                  variant="outlined"
                   color="primary" 
                   size="large" 
                   disabled={loading}
@@ -119,9 +144,11 @@ export default function ContactSection() {
         </Container>
       </Box>
 
-      {/* The map is now a full-width section for a more dramatic, high-end feel */}
       <Box sx={{ height: '50vh', minHeight: 400 }}>
-        <InteractiveMap latitude={30.4278} longitude={-9.5981} />
+        {/* UPDATED: Conditionally render map only when isClient is true */}
+        {isClient && (
+            <InteractiveMap latitude={siteConfig.contact.latitude || 0} longitude={siteConfig.contact.longitude || 0} />
+        )}
       </Box>
 
       <Snackbar
@@ -137,3 +164,4 @@ export default function ContactSection() {
     </>
   );
 }
+

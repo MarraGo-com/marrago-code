@@ -1,13 +1,20 @@
 {
   "Header": {
-    "siteTitle": "Souss-Massa Tours",
     "experiences": "Experiences",
     "about": "About",
     "contact": "Contact",
     "blogLink": "Blog",
     "mobileMenuTitle": "Menu",
     "allExperiences": "View All Experiences",
-    "login": "Log In"
+    "login": "Log In",
+    "experiencesLink": "Experiences", 
+    "reviewsLink": "Reviews", 
+    "faqLink": "FAQs",
+    "reviews": "Reviews",
+    "faq": "FAQs",
+    "linksTitle": "Links",
+    "privacyPolicyLink": "Privacy Policy",
+    "termsOfUseLink": "Terms of Use"
   },
   "HeroSection": {
     "title": "Discover the Soul of Morocco",
@@ -95,8 +102,10 @@
     "siteTitle": "Souss-Massa Tours",
     "aboutText": "Crafting authentic, unforgettable journeys through the heart of Morocco. Discover the real Souss-Massa region with local experts.",
     "linksTitle": "Quick Links",
+    "contactUsTitle": "Contact Us", 
     "aboutLink": "About Us",
     "experiencesLink": "Experiences",
+    "allRightsReserved": "All Rights Reserved.", 
     "contactLink": "Contact Us",
     "blogLink": "Blog",
     "contactTitle": "Contact",
@@ -110,7 +119,11 @@
     "companyTitle": "Company",
     "exploreTitle": "Explore",
     "privacyPolicy": "Privacy Policy",
-    "termsOfService": "Terms of Service"
+    "termsOfService": "Terms of Service",
+    "reviewsLink": "Reviews", 
+    "faqLink": "FAQs",
+    "privacyPolicyLink": "Privacy Policy",
+    "termsOfUseLink": "Terms of Use"
   }
   ,
   "LoginForm": {
@@ -176,6 +189,50 @@
    "ReviewsList": {
     "title": "Guest Reviews",
     "noReviews": "No reviews yet. Be the first to share your experience!"
+  },
+ "ReviewsPage": {
+    "reviewsComingSoonTitle": "Reviews Coming Soon!",
+    "reviewsComingSoonText": "We are gathering valuable feedback to share with you soon. Check back for authentic experiences!",
+
+    "reviewsTitleDefault": "What Our Guests Say",
+    "reviewDefaultComment1": "A fantastic experience from start to finish. The team was professional, and the sights were unforgettable. Highly recommended!",
+    "reviewDefaultComment2": "We had a great time. Everything was well-organized. We'll be back for another tour next year!",
+
+    "reviewsTitleAdventure": "Testimonials From the Trail",
+    "reviewAdventureComment1": "An absolutely epic adventure! The guides knew the terrain like the back of their hand and were super encouraging. The views from the summit were worth every step.",
+    "reviewAdventureComment2": "This wasn't just a tour; it was a real expedition. Pushed my limits in the best way possible. Safe, thrilling, and 100% authentic.",
+
+    "reviewsTitleLuxury": "Voices of Our Esteemed Guests",
+    "reviewLuxuryComment1": "The definition of bespoke travel. Every detail was flawlessly executed. The private riad was an oasis, and our guide was incredibly insightful. We felt like royalty.",
+    "reviewLuxuryComment2": "Our desert experience was nothing short of magical. The luxury camp exceeded all expectations. It was the perfect blend of high-end comfort and profound tranquility."
+  },
+  "FaqPage": {
+   "faqComingSoonTitle": "FAQ Coming Soon!",
+    "faqComingSoonText": "We are compiling a list of frequently asked questions to assist you. Please check back soon!",
+
+    "faqTitleDefault": "Frequently Asked Questions",
+    "faqDefaultQuestion1": "How do I book a tour?",
+    "faqDefaultAnswer1": "You can book directly through our website by selecting your desired tour and clicking 'Book Now'. You can also contact us via email or WhatsApp, and our team will be happy to assist you with your booking.",
+    "faqDefaultQuestion2": "What is your cancellation policy?",
+    "faqDefaultAnswer2": "We offer a full refund for cancellations made at least 7 days before the tour date. Cancellations made 3-6 days before receive a 50% refund. Unfortunately, we cannot offer refunds for cancellations made within 48 hours of the tour.",
+    "faqDefaultQuestion3": "What payment methods do you accept?",
+    "faqDefaultAnswer3": "We accept major credit cards (Visa, MasterCard, American Express) through our secure online payment gateway. We also accept bank transfers and cash payments in Moroccan Dirhams (MAD) upon arrival for certain tours.",
+    
+    "faqTitleAdventure": "Your Adventure Questions, Answered",
+    "faqAdventureQuestion1": "What level of physical fitness is required?",
+    "faqAdventureAnswer1": "Our adventure tours range from easy (light walking) to strenuous (multi-day trekking). Each tour page has a 'Difficulty' rating. Please read this carefully to ensure the tour matches your fitness level. When in doubt, contact us!",
+    "faqAdventureQuestion2": "Is this tour safe?",
+    "faqAdventureAnswer2": "Your safety is our absolute priority. All our adventure guides are certified in first-aid and have extensive experience in the local terrain. We use modern, well-maintained equipment and follow strict safety protocols.",
+    "faqAdventureQuestion3": "What should I pack for a desert or mountain trek?",
+    "faqAdventureAnswer3": "We recommend packing in layers: breathable shirts, a warm fleece or jacket for the evenings, comfortable hiking shoes, a hat, sunglasses, and high-SPF sunscreen. A reusable water bottle is a must. We will provide a detailed packing list upon booking.",
+
+    "faqTitleLuxury": "Your Curated Journey: FAQ",
+    "faqLuxuryQuestion1": "Can my entire trip be customized?",
+    "faqLuxuryAnswer1": "Absolutely. Customization is the heart of our luxury service. We design itineraries from the ground up based on your unique interests, pace, and preferences. Consider our listed tours as inspiration, not limitations.",
+    "faqLuxuryQuestion2": "What kind of accommodations do you use?",
+    "faqLuxuryAnswer2": "We partner exclusively with a curated selection of 5-star hotels, luxury riads, and high-end desert camps known for their exceptional service, exquisite design, and authentic character. We prioritize properties that offer both comfort and a true sense of place.",
+    "faqLuxuryQuestion3": "What makes your private tours different?",
+    "faqLuxuryAnswer3": "Our private luxury tours guarantee your exclusivity. You will have a dedicated expert guide and a private, premium air-conditioned vehicle (like a Mercedes V-Class or Toyota Prado) for your party alone. This allows for ultimate flexibility to adjust your schedule, explore off-the-beaten-path locations, and travel at your own pace."
   },
   "BlogPage": {
     "title": "Our Journal",
@@ -283,7 +340,41 @@
   "title": "Your Adventure Awaits",
   "subtitle": "Surf the Atlantic coast, trek the Atlas Mountains, or explore the Sahara desert. We offer authentic, expertly-guided excursions for every thrill-seeker.",
   "ctaButton": "Explore Our Adventures"
-}
-
+}, "BusinessTypes": {
+    "TravelAgency": "Travel Agency",
+    "TourOperator": "Tour Operator",
+    "TransportService": "Transport Service",
+    "Other": "Other"
+},
+  "admin": {
+    "AdminSidebar": {
+      "adminPanel": "Admin Panel",
+      "dashboard": "Dashboard",
+      "experiences": "Experiences",
+      "blog": "Blog",
+      "bookings": "Bookings",
+      "reviews": "Reviews",
+      "settings": "Settings"
+    },
+    "AdminBlogCreatePage": {
+      "createArticleTitle": "Create New Article"
+    },
+    "AdminBlogPage": {
+      "manageArticlesTitle": "Manage Blog Articles"
+    },
+    "AdminBlogEditPage": {
+      "editArticleTitle": "Edit Article",
+      "articleNotFound": "Article not found."
+    },
+    "AdminBookingsPage": {
+      "manageBookingsTitle": "Manage Booking Requests"
+    },
+    "AdminExperiencesPage": {
+      "manageExperiencesTitle": "Manage Experiences"
+    },
+    "AdminReviewsPage": {
+      "manageReviewsTitle": "Manage Customer Reviews"
+    }
+  }
   
 }
