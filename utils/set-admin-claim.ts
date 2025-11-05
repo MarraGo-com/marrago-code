@@ -4,7 +4,7 @@ fetch('/api/admin/set-admin-claim', {
         'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-        email: 'upmerce@gmail.com' // <-- IMPORTANT: CHANGE THIS!
+        email: 'marragog@gmail.com' // <-- IMPORTANT: CHANGE THIS!
     }),
 })
 .then(res => res.json())

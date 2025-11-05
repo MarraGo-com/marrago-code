@@ -79,18 +79,15 @@ export default function HeroSection() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          justifyContent: 'center',
+          justifyContent: { xs: 'space-between', md: 'center' }, // Better space distribution on mobile
           textAlign: 'center',
           color: 'common.white',
-          pt: { xs: '60px', md: '80px' }, // Adjusted padding top for smaller screens
-          pb: { xs: '20px', md: 'auto' }, // Added padding bottom to prevent button overflow
-          // NEW: Add a flexible height and allow content to fit
-          minHeight: '80%', // Ensure content container takes up most of the space
-          maxHeight: '100%', // Prevent it from exceeding the hero section
-          // REFINED: Ensure children fill available space, but allow shrinking
+          pt: { xs: '80px', md: '80px' },
+          pb: { xs: '40px', md: '40px' },
+          px: { xs: 2, md: 'auto' }, // Add horizontal padding on mobile
+          gap: { xs: 3, md: 2 }, // Add consistent spacing between elements
           '& > *': {
-            flexShrink: 1, // Allow children to shrink
-            minHeight: 0, // Allow content to shrink below its intrinsic height if needed
+            maxWidth: '100%', // Ensure content doesn't overflow container
           },
         }}
       >
@@ -101,13 +98,13 @@ export default function HeroSection() {
           sx={{
             fontWeight: 800,
             fontSize: { xs: '2.5rem', sm: '3.5rem', md: '5rem' },
-            mb: 2,
+            mb: { xs: 0, md: 2 }, // Remove margin bottom on mobile as we use gap
             textShadow: '0 3px 15px rgba(0,0,0,0.6)',
             textTransform: 'uppercase',
             letterSpacing: '0.05em',
-            // NEW: Add line clamp for title if it gets too long, as a fallback
+            // Optimize for mobile
             display: '-webkit-box',
-            WebkitLineClamp: { xs: 3, sm: 2 }, // Max 3 lines on mobile, 2 on larger
+            WebkitLineClamp: { xs: 2, sm: 2 }, // Limit to 2 lines on all screens
             WebkitBoxOrient: 'vertical',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
@@ -150,23 +147,19 @@ export default function HeroSection() {
           variant="h5"
           component="p"
           sx={{
-            mb: 2.5,
             maxWidth: 600,
             mx: 'auto',
             fontSize: { xs: '1.1rem', md: '1.1rem' },
             textShadow: '0 2px 8px rgba(0,0,0,0.7)',
             fontWeight: 400,
-            // NEW: Add line clamp for subtitle
             display: '-webkit-box',
-            WebkitLineClamp: { xs: 4, sm: 3 }, // Max 4 lines on mobile, 3 on larger
+            WebkitLineClamp: { xs: 3, sm: 3 }, // Limit to 3 lines
             WebkitBoxOrient: 'vertical',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
-            // Ensure some space above the button even if content is long
-            flexGrow: 1, // Allow this element to grow and push the button down if needed
-            alignItems: 'center',
-            justifyContent: 'center',
-            minHeight: 'auto', // Override minHeight:0 from parent if text is short
+            // Center the content vertically on mobile
+            marginTop: 'auto',
+            marginBottom: 'auto',
           }}
         >
           {heroContent.heroSubtitle}
@@ -191,10 +184,7 @@ export default function HeroSection() {
             '&:hover': {
               transform: 'scale(1.05)',
             },
-            mt: 'auto', // Pushes the button to the bottom of the flex container
-            mb: { xs: 0, md: 0 }, // Ensure no extra margin bottom
             flexShrink: 0, // Prevent button from shrinking
-            paddingBottom: { xs: '20px', md: 'auto' }, // Ensure button stays within bounds
           }}
         >
           {heroContent.heroCtaButtonText}

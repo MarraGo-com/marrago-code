@@ -123,7 +123,21 @@ export default function Header() {
             height: 70,
           }}>
             
-            <Box sx={{ minWidth: { md: 200 }, display: 'flex', justifyContent: 'flex-start' }}>
+            {/* Menu Icon for Mobile */}
+            {isMobileOrTablet && (
+              <Box sx={{ position: 'absolute', left: 0, zIndex: 1 }}>
+                <AnimatedMenuIcon isOpen={mobileOpen} onClick={handleDrawerToggle}/>
+              </Box>
+            )}
+
+            {/* Brand Logo and Name - Centered on Mobile */}
+            <Box sx={{ 
+              flexGrow: 1,
+              display: 'flex', 
+              justifyContent: { xs: 'center', md: 'flex-start' },
+              position: 'relative',
+              zIndex: 0
+            }}>
                 <Link href="/" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center' }}>
                   <Image 
                     src= {siteConfig.logo} 
@@ -142,9 +156,7 @@ export default function Header() {
                 </Link>
             </Box>
 
-            {isMobileOrTablet ? (
-                <AnimatedMenuIcon isOpen={mobileOpen} onClick={handleDrawerToggle}/>
-            ) : (
+            {!isMobileOrTablet && (
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 3, justifyContent: 'center', flexGrow: 1 }}>
                   {/* Render navLinks (now built conditionally) for desktop */}
                   {navLinks.map((link) => (

@@ -6,374 +6,311 @@ import { generatePageMetadata, MetadataStore } from './page-seo-metadata'; // <-
 
 // --- Client-Specific Textual Content ---
 const clientTextContent: SiteClientTextContent = {
-  en: { // English client-specific content for Les Palais Chérifiens
+  en: { // English content for MarraGo
     homepage: {
-      heroTitle: "Les Palais Chérifiens", // Keep the elegant name
-      heroSubtitle: "An intimate collection of restored riads and palaces in Morocco's historic hearts. Discover timeless elegance and bespoke hospitality.",
-      heroCtaButtonText: "Explore Our Palaces",
-      featuredExperiencesTitle: "Signature Suites & Experiences", // Changed from "Journeys"
-      whyChooseUsTitle: "The Art of Moroccan Luxury",
+      heroTitle: "MarraGo",
+      heroSubtitle: "Discover the magic of Morocco from south to north. We create your detailed itinerary, handling all transport, guides, and hotels for a seamless journey.", // <-- UPDATED
+      heroCtaButtonText: "Start Your Journey", // <-- UPDATED
+      featuredExperiencesTitle: "Our All-in-One Services", // <-- UPDATED
+      whyChooseUsTitle: "Why Travel With MarraGo?",
       whyChooseUsFeatures: [
-        { title: "Architectural Masterpieces", description: "Stay within authentically restored palaces showcasing exquisite Moroccan craftsmanship." },
-        { title: "Intimate & Serene Settings", description: "Find tranquility in lush courtyards and private terraces, away from the bustle." },
-        { title: "Personalized Concierge Service", description: "Allow us to curate bespoke cultural experiences and dining reservations just for you." },
+        { title: "Professional Transport", description: "Comfortable, air-conditioned vehicles with professional and reliable drivers at your service 24/7." }, // <-- UPDATED
+        { title: "Expert Local Guides", description: "Discover Morocco's rich history with a professional, certified guide in every city you visit." }, // <-- UPDATED
+        { title: "Detailed Itineraries", description: "We plan your entire trip from south to north in advance, including hotels, stops, and all logistics." }, // <-- UPDATED
       ],
-      blogHighlightsTitle: "From Our Heritage Journal",
-      blogHighlightsSubtitle: "Stories of Moroccan art, culture, and timeless elegance.",
-      socialProofTitle: "Preferred by Connoisseurs of Luxury",
-      testimonialsTitle: "Voices from Our Palaces",
-      testimonialsSubtitle: "Reflections from guests who experienced our unique hospitality.",
-      newsletterTitle: "An Invitation to Elegance",
-      newsletterSubtitle: "Receive exclusive updates and insights into Moroccan luxury.",
+      blogHighlightsTitle: "From Our Morocco Journal",
+      blogHighlightsSubtitle: "Travel tips, local secrets, and adventure stories from our guides.",
+      socialProofTitle: "Our Partners & Recognitions",
+      testimonialsTitle: "Hear From Our Travelers",
+      testimonialsSubtitle: "What our guests say about their Moroccan adventure with us.",
+      newsletterTitle: "Get Your Morocco Travel Tips",
+      newsletterSubtitle: "Join our newsletter for exclusive offers, travel inspiration, and local insights."
     },
-    luxuryHomepageSlides: [ // Tailored slides for the luxury theme and hotel concept
+    luxuryHomepageSlides: [
       {
-        image: '/images/mock/palais-cherifiens-marrakech-courtyard.webp', // Suggestion: Stunning courtyard of Marrakech property
-        title: 'Marrakech: Medina Majesty',
-        subtitle: 'Discover serene luxury within the vibrant heart of the Red City. Your private oasis awaits.',
-        buttonText: 'Explore Marrakech Palace',
-        link: '/locations/marrakech', // Example link structure
+        image: '/images/slides/marrago-transfer-van.webp',
+        title: 'Reliable Airport Transfers',
+        subtitle: 'Start your trip stress-free. Punctual, professional drivers waiting for you at Marrakech, Agadir, and more.',
+        buttonText: 'Book a Transfer',
+        link: '/experiences#transfers',
       },
       {
-        image: '/images/mock/palais-cherifiens-fes-suite.webp', // Suggestion: Exquisite suite interior in Fes property
-        title: 'Fes: Artisanal Elegance',
-        subtitle: 'Immerse yourself in history and craftsmanship within our meticulously restored palace in the ancient city of Fes.',
-        buttonText: 'Discover Fes Palace',
-        link: '/locations/fes', // Example link structure
+        image: '/images/slides/marrago-atlas-4x4.webp',
+        title: 'Full Moroccan Circuits', // <-- UPDATED
+        subtitle: 'Let us plan your complete journey from south to north, including all transport, hotels, and guides.', // <-- UPDATED
+        buttonText: 'Plan Your Itinerary', // <-- UPDATED
+        link: '/experiences#excursions',
       },
       {
-        image: '/images/mock/palais-cherifiens-rooftop-dining.webp', // Suggestion: Elegant rooftop dining with city view
-        title: 'Dining Under the Stars',
-        subtitle: 'Experience refined Moroccan gastronomy on our private rooftop terraces, overlooking the historic cityscape.',
-        buttonText: 'View Dining Experiences',
-        link: '/dining', // Example link structure
+        image: '/images/slides/marrago-guide-medina.webp',
+        title: 'Expert Historical Guides', // <-- UPDATED
+        subtitle: 'Explore the rich history of Fes, Marrakech, and more with a professional guide providing all the necessary information.', // <-- UPDATED
+        buttonText: 'Meet Our Guides', // <-- UPDATED
+        link: '/experiences#guides',
       },
     ],
     aboutPage: {
-      title: "Our Heritage: The Soul of Les Palais Chérifiens",
-      subtitle: "Preserving Moroccan elegance, offering unparalleled hospitality.",
-      paragraph1: "Les Palais Chérifiens represents more than just luxury accommodation; it's a curated collection of historically significant riads and palaces, each meticulously restored to honor its past while offering contemporary comfort. Our properties, located in the heart of Morocco's most captivating cities, serve as intimate gateways to the rich tapestry of Moroccan culture, art, and history.",
-      paragraph2: "Founded on the principles of preserving heritage and providing deeply personalized service, our mission is to offer discerning travelers an authentic and serene sanctuary. From the intricate Zellij tilework to the tranquil courtyards and bespoke concierge services, every detail is designed to create an atmosphere of timeless elegance and unforgettable Moroccan experiences.",
-      valuesTitle: "Our Pillars of Hospitality",
-      valuesSubtitle: "Guiding the experience within our walls.",
+      title: "About MarraGo: Your Complete Moroccan Itinerary Planners", // <-- UPDATED
+      subtitle: "Seamless travel, from south to north.", // <-- UPDATED
+      paragraph1: "MarraGo was born from a passion to show travelers the *real* magic of Morocco, from south to north. We are a full-service agency that believes you shouldn't have to worry about logistics. We are here to be your single point of contact for your entire journey.", // <-- UPDATED
+      paragraph2: "Our process is simple: we work with you to prepare a detailed travel itinerary in advance. We handle all your hotel reservations, arrange comfortable, air-conditioned transportation with reliable drivers, and provide professional tour guides in each city to help you explore Morocco's rich history. Your only job is to enjoy the journey.", // <-- UPDATED (Uses his exact words)
+      valuesTitle: "Our Travel Promise",
+      valuesSubtitle: "What you can expect from every booking.",
       values: [
-        { title: "Heritage Preservation", description: "Celebrating and maintaining authentic Moroccan architecture and craftsmanship." },
-        { title: "Personalized Service", description: "Anticipating needs and tailoring experiences with discreet, attentive care." },
-        { title: "Serenity & Privacy", description: "Creating tranquil havens for relaxation and reflection within vibrant cities." },
+        { title: "Comfort & Safety", description: "Comfortable, air-conditioned vehicles and professional, reliable drivers." }, // <-- UPDATED
+        { title: "Historical Expertise", description: "Certified local guides who share the rich history and culture of each city." }, // <-- UPDATED
+        { title: "Seamless Planning", description: "One detailed itinerary in advance. We handle all logistics, hotels, and transport." }, // <-- UPDATED
       ],
-      teamTitle: "Meet Our Curators of Experience",
-      teamSubtitle: "Passionate individuals dedicated to your comfort and discovery.",
+      teamTitle: "Meet Your Guides & Drivers",
+      teamSubtitle: "The professional, local team making your trip happen.",
       teamMembers: [
-         // --- SUGGESTED MOCK TEAM MEMBERS ---
-        { image: "/images/mock/hotel-manager-female.webp", name: "Leila Alami", title: "General Manager - Marrakech", bio: "With years of experience in luxury hospitality, Leila oversees our Marrakech palace, ensuring every guest experience is flawless and memorable." },
-        { image: "/images/mock/hotel-concierge-male.webp", name: "Youssef Karim", title: "Head Concierge - Fes", bio: "Youssef possesses an unparalleled knowledge of Fes. He delights in crafting bespoke itineraries and revealing the city's hidden gems to our guests." },
-        { image: "/images/mock/hotel-chef-male.webp", name: "Chef Rashid Boujida", title: "Executive Chef", bio: "Chef Rashid masterfully blends traditional Moroccan flavors with modern culinary techniques, creating exquisite dining experiences across our properties." },
+        { image: "/images/mock/driver-male.webp", name: "Hassan", title: "Lead Driver & Transport Manager", bio: "With 15+ years of experience, Hassan ensures every airport transfer and city-to-city trip is safe, comfortable, and punctual." },
+        { image: "/images/mock/guide-female.webp", name: "Fatima", title: "Certified Guide - Marrakech", bio: "Fatima is a licensed guide who speaks 4 languages and loves sharing the hidden history and food of the Marrakech medina." },
+        { image: "/images/mock/ops-manager-male.webp", name: "Omar (Your Brother)", title: "Founder & Itinerary Planner", bio: "Omar manages all logistics, from your detailed itinerary to hotel bookings, ensuring every part of your trip connects perfectly." }, // <-- UPDATED
       ],
-      ctaTitle: "Experience Timeless Moroccan Elegance?",
-      ctaButtonText: "Inquire About Your Stay",
+      ctaTitle: "Ready for Your Moroccan Adventure?",
+      ctaButtonText: "Plan Your Trip Now", // <-- UPDATED
     },
     contactPage: {
-      title: "Contact Les Palais Chérifiens",
-      infoTitle: "Connect With Our Reservations Team",
-      infoSubtitle: "For inquiries about availability, bespoke stays, or specific property details, please reach out. We look forward to welcoming you.",
+      title: "Contact MarraGo",
+      infoTitle: "Get in Touch With Our Team",
+      infoSubtitle: "For custom itineraries, full circuits, or any questions, our team is ready to build your perfect Moroccan trip.", // <-- UPDATED
     },
-    experiencesPage: { // Renamed from Tours to Suites/Experiences for a hotel
-      title: "Our Suites & Signature Experiences",
-      subtitle: "Discover uniquely designed accommodations and curated activities within our palaces.",
+    experiencesPage: { 
+      title: "Our Services: Full Itineraries, Transport & Guides", // <-- UPDATED
+      subtitle: "Explore all the ways we can make your Moroccan travel seamless and authentic.",
     },
     blogPage: {
-      title: "Les Palais Chérifiens Journal",
-      subtitle: "Insights into Moroccan art, culture, design, and the heritage preserved within our walls.",
+      title: "MarraGo Travel Journal",
+      subtitle: "Tips, insights, and stories from our drivers and guides to help you discover the real Morocco.",
     },
   },
- "fr": {
+  "fr": { // French content for MarraGo
     "homepage": {
-      "heroTitle": "Les Palais Chérifiens",
-      "heroSubtitle": "Une collection intime de riads et palais restaurés au cœur des villes historiques du Maroc. Découvrez une élégance intemporelle et une hospitalité sur mesure.",
-      "heroCtaButtonText": "Explorez Nos Palais",
-      "featuredExperiencesTitle": "Suites & Expériences Signature",
-      "whyChooseUsTitle": "L'Art du Luxe Marocain",
-      "whyChooseUsFeatures": [
-        {
-          "title": "Chefs-d'œuvre Architecturaux",
-          "description": "Séjournez dans des palais authentiquement restaurés, véritables vitrines de l'artisanat marocain raffiné."
-        },
-        {
-          "title": "Cadres Intimes & Sereins",
-          "description": "Trouvez la tranquillité dans des patios luxuriants et des terrasses privées, loin de l'agitation."
-        },
-        {
-          "title": "Service de Conciergerie Personnalisé",
-          "description": "Laissez-nous orchestrer des expériences culturelles et des réservations de restaurants sur mesure, juste pour vous."
-        }
+      "heroTitle": "MarraGo",
+      heroSubtitle: "Découvrez la magie du Maroc du sud au nord. Nous créons votre itinéraire détaillé, gérant transport, guides et hôtels pour un voyage sans faille.", // <-- UPDATED
+      heroCtaButtonText: "Commencez Votre Voyage", // <-- UPDATED
+      featuredExperiencesTitle: "Nos Services Tout-en-Un", // <-- UPDATED
+      whyChooseUsTitle: "Pourquoi Voyager Avec MarraGo ?",
+      whyChooseUsFeatures: [
+        { title: "Transport Professionnel", description: "Véhicules confortables et climatisés avec des chauffeurs professionnels et fiables à votre service 24/7." }, // <-- UPDATED
+        { title: "Guides Locaux Experts", description: "Découvrez la riche histoire du Maroc avec un guide professionnel et certifié dans chaque ville." }, // <-- UPDATED
+        { title: "Itinéraires Détaillés", description: "Nous planifions votre voyage complet du sud au nord à l'avance, incluant hôtels, arrêts et toute la logistique." }, // <-- UPDATED
       ],
-      "blogHighlightsTitle": "Extrait de Notre Journal du Patrimoine",
-      "blogHighlightsSubtitle": "Récits sur l'art, la culture et l'élégance intemporelle du Maroc.",
-      "socialProofTitle": "Préféré des Connaisseurs du Luxe",
-      "testimonialsTitle": "Voix de Nos Palais",
-      "testimonialsSubtitle": "Témoignages de clients ayant vécu notre hospitalité unique.",
-      "newsletterTitle": "Une Invitation à l'Élégance",
-      "newsletterSubtitle": "Recevez des actualités exclusives et des perspectives sur le luxe marocain."
+      blogHighlightsTitle: "De Notre Journal Marocain",
+      blogHighlightsSubtitle: "Conseils de voyage, secrets locaux et récits d'aventure de nos guides.",
+      socialProofTitle: "Nos Partenaires & Reconnaissances",
+      testimonialsTitle: "Nos Voyageurs Prennent la Parole",
+      testimonialsSubtitle: "Ce que nos clients disent de leur aventure marocaine avec nous.",
+      newsletterTitle: "Recevez nos Astuces de Voyage",
+      newsletterSubtitle: "Inscrivez-vous pour des offres exclusives, de l'inspiration et des bons plans locaux."
     },
     "luxuryHomepageSlides": [
       {
-        "image": "/images/mock/palais-cherifiens-marrakech-courtyard.webp",
-        "title": "Marrakech : Majesté de la Médina",
-        "subtitle": "Découvrez un luxe serein au cœur vibrant de la Ville Rouge. Votre oasis privée vous attend.",
-        "buttonText": "Explorer le Palais de Marrakech",
-        "link": "/locations/marrakech"
+        image: "/images/slides/marrago-transfer-van.webp",
+        title: "Transferts Aéroport Fiables",
+        subtitle: "Commencez votre voyage sans stress. Chauffeurs ponctuels et professionnels vous attendent à Marrakech, Agadir, et plus encore.",
+        buttonText: "Réserver un Transfert",
+        link: "/services/transfers"
       },
       {
-        "image": "/images/mock/palais-cherifiens-fes-suite.webp",
-        "title": "Fès : Élégance Artisanale",
-        "subtitle": "Plongez dans l'histoire et l'artisanat au sein de notre palais méticuleusement restauré dans l'ancienne ville de Fès.",
-        "buttonText": "Découvrir le Palais de Fès",
-        "link": "/locations/fes"
+        image: "/images/slides/marrago-atlas-4x4.webp",
+        title: "Circuits Marocains Complets", // <-- UPDATED
+        subtitle: "Laissez-nous planifier votre voyage complet du sud au nord, incluant transport, hôtels et guides.", // <-- UPDATED
+        buttonText: "Planifiez Votre Itinéraire", // <-- UPDATED
+        link: "/services/excursions"
       },
       {
-        "image": "/images/mock/palais-cherifiens-rooftop-dining.webp",
-        "title": "Dîner Sous les Étoiles",
-        "subtitle": "Découvrez une gastronomie marocaine raffinée sur nos terrasses privées, surplombant le paysage urbain historique.",
-        "buttonText": "Voir les Expériences Culinaires",
-        "link": "/dining"
+        image: "/images/slides/marrago-guide-medina.webp",
+        title: "Guides Historiques Experts", // <-- UPDATED
+        subtitle: "Explorez la riche histoire de Fès, Marrakech et plus encore avec un guide professionnel vous donnant toutes les informations.", // <-- UPDATED
+        buttonText: "Rencontrez Nos Guides", // <-- UPDATED
+        link: "/services/guides"
       }
     ],
     "aboutPage": {
-      "title": "Notre Héritage : L'Âme des Palais Chérifiens",
-      "subtitle": "Préserver l'élégance marocaine, offrir une hospitalité inégalée.",
-      "paragraph1": "Les Palais Chérifiens représentent plus qu'un simple hébergement de luxe ; c'est une collection de riads et de palais d'importance historique, chacun méticuleusement restauré pour honorer son passé tout en offrant un confort contemporain. Nos propriétés, situées au cœur des villes les plus captivantes du Maroc, servent de portails intimes vers la riche tapisserie de la culture, de l'art et de l'histoire du Maroc.",
-      "paragraph2": "Fondée sur les principes de préservation du patrimoine et d'un service profondément personnalisé, notre mission est d'offrir aux voyageurs exigeants un sanctuaire authentique et serein. Du Zellige complexe aux cours tranquilles et aux services de conciergerie sur mesure, chaque détail est conçu pour créer une atmosphère d'élégance intemporelle et d'expériences marocaines inoubliables.",
-      "valuesTitle": "Nos Piliers de l'Hospitalité",
-      "valuesSubtitle": "Guidant l'expérience entre nos murs.",
-      "values": [
-        {
-          "title": "Préservation du Patrimoine",
-          "description": "Célébrer et entretenir l'architecture et l'artisanat marocains authentiques."
-        },
-        {
-          "title": "Service Personnalisé",
-          "description": "Anticiper les besoins et personnaliser les expériences avec un soin discret et attentif."
-        },
-        {
-          "title": "Sérénité & Intimité",
-          "description": "Créer des havres de paix pour la détente et la réflexion au sein de villes dynamiques."
-        }
+      title: "À Propos de MarraGo : Vos Planificateurs d'Itinéraires Complets au Maroc", // <-- UPDATED
+      subtitle: "Voyagez sans faille, du sud au nord.", // <-- UPDATED
+      paragraph1: "MarraGo est née de la passion de montrer aux voyageurs la *vraie* magie du Maroc, du sud au nord. Nous sommes une agence complète qui croit que vous ne devriez pas vous soucier de la logistique. Nous sommes votre unique point de contact pour tout votre voyage.", // <-- UPDATED
+      paragraph2: "Notre processus est simple : nous préparons avec vous un itinéraire de voyage détaillé à l'avance. Nous gérons toutes vos réservations d'hôtel, organisons un transport confortable et climatisé avec des chauffeurs fiables, et fournissons des guides touristiques professionnels dans chaque ville pour vous aider à explorer la riche histoire du Maroc. Votre seul travail est de profiter du voyage.", // <-- UPDATED (Uses his exact words)
+      valuesTitle: "Notre Promesse de Voyage",
+      valuesSubtitle: "Ce que vous pouvez attendre de chaque réservation.",
+      values: [
+        { title: "Confort & Sécurité", description: "Véhicules confortables, climatisés et chauffeurs professionnels et fiables." }, // <-- UPDATED
+        { title: "Expertise Historique", description: "Guides locaux certifiés qui partagent la riche histoire et culture de chaque ville." }, // <-- UPDATED
+        { title: "Planification Sans Faille", description: "Un itinéraire détaillé à l'avance. Nous gérons logistique, hôtels et transport." }, // <-- UPDATED
       ],
-      "teamTitle": "Rencontrez Nos Créateurs d'Expériences",
-      "teamSubtitle": "Des individus passionnés dévoués à votre confort et à votre découverte.",
-      "teamMembers": [
-        {
-          "image": "/images/mock/hotel-manager-female.webp",
-          "name": "Leila Alami",
-          "title": "Directrice Générale - Marrakech",
-          "bio": "Forte de plusieurs années d'expérience dans l'hôtellerie de luxe, Leila supervise notre palais de Marrakech, veillant à ce que chaque expérience client soit impeccable et mémorable."
-        },
-        {
-          "image": "/images/mock/hotel-concierge-male.webp",
-          "name": "Youssef Karim",
-          "title": "Chef Concierge - Fès",
-          "bio": "Youssef possède une connaissance inégalée de Fès. Il prend plaisir à créer des itinéraires sur mesure et à révéler les joyaux cachés de la ville à nos clients."
-        },
-        {
-          "image": "/images/mock/hotel-chef-male.webp",
-          "name": "Chef Rashid Boujida",
-          "title": "Chef Exécutif",
-          "bio": "Le Chef Rashid marie avec brio les saveurs traditionnelles marocaines aux techniques culinaires modernes, créant des expériences gastronomiques exquises dans nos propriétés."
-        }
+      teamTitle: "Rencontrez Nos Guides & Chauffeurs",
+      teamSubtitle: "L'équipe locale et professionnelle qui donne vie à votre voyage.",
+      teamMembers: [
+        { image: "/images/mock/driver-male.webp", name: "Hassan", title: "Chauffeur Principal & Resp. Transport", bio: "Avec plus de 15 ans d'expérience, Hassan veille à ce que chaque transfert aéroport et trajet inter-villes soit sûr, confortable et ponctuel." },
+        { image: "/images/mock/guide-female.webp", name: "Fatima", title: "Guide Certifiée - Marrakech", bio: "Fatima est une guide agréée qui parle 4 langues et adore partager l'histoire cachée et la gastronomie de la médina de Marrakech." },
+        { image: "/images/mock/ops-manager-male.webp", name: "Omar", title: "Fondateur & Planificateur d'Itinéraires", bio: "Omar gère toute la logistique, de votre itinéraire détaillé aux réservations d'hôtels, s'assurant que chaque partie de votre voyage se connecte parfaitement." }, // <-- UPDATED
       ],
-      "ctaTitle": "Vivre l'Élégance Marocaine Intemporelle ?",
-      "ctaButtonText": "Renseignez-vous sur Votre Séjour"
+      ctaTitle: "Prêt pour Votre Aventure Marocaine ?",
+      ctaButtonText: "Planifiez Votre Voyage" // <-- UPDATED
     },
     "contactPage": {
-      "title": "Contacter Les Palais Chérifiens",
-      "infoTitle": "Contactez Notre Équipe de Réservation",
-      "infoSubtitle": "Pour toute demande de disponibilité, de séjours sur mesure ou de détails spécifiques sur une propriété, n'hésitez pas à nous contacter. Au plaisir de vous accueillir."
+      title: "Contacter MarraGo",
+      infoTitle: "Contactez Notre Équipe",
+      infoSubtitle: "Pour des itinéraires sur mesure, des circuits complets ou toute question, notre équipe est prête à construire votre voyage parfait au Maroc.", // <-- UPDATED
     },
     "experiencesPage": {
-      "title": "Nos Suites & Expériences Signature",
-      "subtitle": "Découvrez des hébergements au design unique et des activités organisées au sein de nos palais."
+      title: "Nos Services : Itinéraires Complets, Transport & Guides", // <-- UPDATED
+      subtitle: "Découvrez comment nous pouvons rendre votre voyage au Maroc fluide et authentique."
     },
     "blogPage": {
-      "title": "Journal des Palais Chérifiens",
-      "subtitle": "Perspectives sur l'art, la culture, le design marocains et le patrimoine préservé entre nos murs."
+      title: "Journal de Voyage MarraGo",
+      subtitle: "Astuces, perspectives et récits de nos chauffeurs et guides pour vous aider à découvrir le vrai Maroc."
     }
   },
- "ar": {
+  "ar": { // Arabic content for MarraGo
     "homepage": {
-      "heroTitle": "Les Palais Chérifiens",
-      "heroSubtitle": "مجموعة حصرية من الرياضات والقصور المرممة في قلب المدن التاريخية للمغرب. اكتشفوا أناقة خالدة وضيافة مصممة خصيصًا لكم.",
-      "heroCtaButtonText": "اكتشفوا قصورنا",
-      "featuredExperiencesTitle": "الأجنحة والتجارب المميزة",
-      "whyChooseUsTitle": "فن الفخامة المغربية",
-      "whyChooseUsFeatures": [
-        {
-          "title": "روائع معمارية",
-          "description": "أقيموا في قصور مرممة بشكل أصيل، تعكس براعة الصناعة التقليدية المغربية الراقية."
-        },
-        {
-          "title": "أجواء حميمية وهادئة",
-          "description": "تلقاو الهدوء فالرياضات الخضراء والتراسات الخاصة، بعيدًا عن ضجيج المدينة."
-        },
-        {
-          "title": "خدمة كونسيرج شخصية",
-          "description": "خليونا ننظم ليكم تجارب ثقافية وحجوزات عشاء مصممة خصيصًا ليكم."
-        }
+      "heroTitle": "MarraGo (مراڭو)",
+      heroSubtitle: "اكتشف سحر المغرب من جنوبه لشماله. كنصاوبو ليك برنامج مفصل، كنتكلفو بالنقل، المرشدين، والفنادق باش تكون رحلة واعرة وبلا صداع.", // <-- UPDATED
+      heroCtaButtonText: "بدا الرحلة ديالك", // <-- UPDATED
+      featuredExperiencesTitle: "خدماتنا المتكاملة", // <-- UPDATED
+      whyChooseUsTitle: "علاش تسافر مع MarraGo؟",
+      whyChooseUsFeatures: [
+        { title: "نقل احترافي", description: "سيارات مريحة ومكيفة مع سائقين محترفين وموثوقين في خدمتكم 24/7." }, // <-- UPDATED
+        { title: "مرشدين محليين خبراء", description: "اكتشف تاريخ المغرب الغني مع مرشد سياحي محترف ومعتمد في كل مدينة كتزورها." }, // <-- UPDATED
+        { title: "برامج مفصلة", description: "كنخططو لرحلتك كاملة من الجنوب للشمال مسبقًا، شاملة الفنادق، المحطات، واللوجستيك كامل." }, // <-- UPDATED
       ],
-      "blogHighlightsTitle": "من دفتر تراثنا",
-      "blogHighlightsSubtitle": "حكايات عن الفن، الثقافة، والأناقة المغربية الخالدة.",
-      "socialProofTitle": "الاختيار المفضل لخبراء الفخامة",
-      "testimonialsTitle": "أصداء من قصورنا",
-      "testimonialsSubtitle": "انطباعات الضيوف اللي جربو ضيافتنا الفريدة.",
-      "newsletterTitle": "دعوة للأناقة",
-      "newsletterSubtitle": "توصلوا بآخر المستجدات الحصرية وأفكار عن الفخامة المغربية."
+      blogHighlightsTitle: "من دفترنا المغربي",
+      blogHighlightsSubtitle: "نصائح للسفر، أسرار محلية، وقصص مغامرات من عند المرشدين ديالنا.",
+      socialProofTitle: "شركاؤنا وشهاداتنا",
+      testimonialsTitle: "آراء المسافرين معنا",
+      testimonialsSubtitle: "شنو قالو ضيوفنا على مغامرتهم المغربية معانا.",
+      newsletterTitle: "توصل بنصائح السفر للمغرب",
+      newsletterSubtitle: "تسجل معانا باش توصل بعروض حصرية، وإلهام السفر، وأفكار محلية."
     },
     "luxuryHomepageSlides": [
       {
-        "image": "/images/mock/palais-cherifiens-marrakech-courtyard.webp",
-        "title": "مراكش: فخامة المدينة القديمة",
-        "subtitle": "اكتشفوا الفخامة الهادئة في قلب المدينة الحمراء النابض بالحياة. واحتكم الخاصة كتسناكم.",
-        "buttonText": "اكتشفوا قصر مراكش",
-        "link": "/locations/marrakech"
+        image: "/images/slides/marrago-transfer-van.webp",
+        title: "تحويلات مطار موثوقة",
+        subtitle: "بدا الرحلة ديالك بلا ستريس. سائقون محترفون في الموعد، كينتظروك في مطار مراكش، أگادير، وغيرها.",
+        buttonText: "احجز نوبتك",
+        link: "/services/transfers"
       },
       {
-        "image": "/images/mock/palais-cherifiens-fes-suite.webp",
-        "title": "فاس: الأناقة الحرفية",
-        "subtitle": "غوصوا في التاريخ والصناعة التقليدية داخل قصرنا المرمم بعناية في مدينة فاس العتيقة.",
-        "buttonText": "اكتشفوا قصر فاس",
-        "link": "/locations/fes"
+        image: "/images/slides/marrago-atlas-4x4.webp",
+        title: "دورات (Circuits) مغربية كاملة", // <-- UPDATED
+        subtitle: "خلينا نخططو لرحلتك كاملة من الجنوب للشمال، شاملة النقل، الفنادق، والمرشدين.", // <-- UPDATED
+        buttonText: "خطط لرحلتك", // <-- UPDATED
+        link: "/services/excursions"
       },
       {
-        "image": "/images/mock/palais-cherifiens-rooftop-dining.webp",
-        "title": "عشاء تحت النجوم",
-        "subtitle": "جربوا فن الطبخ المغربي الراقي على تراساتنا الخاصة، المطلة على منظر المدينة التاريخي.",
-        "buttonText": "شوفو تجارب العشاء",
-        "link": "/dining"
+        image: "/images/slides/marrago-guide-medina.webp",
+        title: "مرشدون تاريخيون خبراء", // <-- UPDATED
+        subtitle: "اكتشف التاريخ الغني ديال فاس، مراكش، وأكثر مع مرشد محترف كيعطيك كاع المعلومات اللازمة.", // <-- UPDATED
+        buttonText: "تلاقى بالمرشدين", // <-- UPDATED
+        link: "/services/guides"
       }
     ],
     "aboutPage": {
-      "title": "تراثنا: روح 'Les Palais Chérifiens'",
-      "subtitle": "الحفاظ على الأناقة المغربية، وتقديم ضيافة لا مثيل لها.",
-      "paragraph1": "تمثل 'Les Palais Chérifiens' أكثر من مجرد إقامة فاخرة؛ إنها مجموعة منتقاة من الرياضات والقصور ذات الأهمية التاريخية، كل واحد منها تم ترميمه بدقة ليحترم ماضيه ويقدم الراحة العصرية. ممتلكاتنا، الموجودة في قلب أكثر المدن المغربية سحرًا، هي بوابات حميمية للنسيج الغني للثقافة والفن والتاريخ المغربي.",
-      "paragraph2": "تأسست على مبادئ الحفاظ على التراث وتقديم خدمة شخصية عميقة، مهمتنا هي أن نقدم للمسافرين المميزين ملاذًا أصيلًا وهادئًا. من الزليج المعقد إلى الأفنية الهادئة وخدمات الكونسيرج المصممة خصيصًا، كل تفصيل مصمم لخلق جو من الأناقة الخالدة والتجارب المغربية التي لا تُنسى.",
-      "valuesTitle": "أعمدة ضيافتنا",
-      "valuesSubtitle": "توجيه التجربة داخل أسوارنا.",
-      "values": [
-        {
-          "title": "الحفاظ على التراث",
-          "description": "الاحتفاء بالهندسة المعمارية والصناعة التقليدية المغربية الأصيلة والحفاظ عليها."
-        },
-        {
-          "title": "خدمة شخصية",
-          "description": "استباق الاحتياجات وتصميم التجارب بعناية فائقة وسرية."
-        },
-        {
-          "title": "الهدوء والخصوصية",
-          "description": "خلق ملاذات هادئة للاسترخاء والتأمل داخل المدن النابضة بالحياة."
-        }
+      title: "عن MarraGo: المخططون لرحلتك الكاملة في المغرب", // <-- UPDATED
+      subtitle: "سفر بلا مشاكل، من الجنوب للشمال.", // <-- UPDATED
+      paragraph1: "MarraGo تولدات من شغف باش نوريكم السحر الحقيقي ديال المغرب، من جنوبه لشماله. حنا وكالة كاملة كتآمن بأنك ما خاصكش تهز هم اللوجستيك. حنا هنا باش نكونو نقطة الاتصال الوحيدة ديالك لرحلتك كاملة.", // <-- UPDATED
+      paragraph2: "العملية ديالنا ساهلة: كنخدمو معاك باش نوجدو برنامج سفر مفصل مسبقًا. كنتكلفو بجميع حجوزات الفنادق ديالك، كنوفرو نقل مريح ومكيف مع سائقين موثوقين، وكنوفرو مرشدين سياحيين محترفين في كل مدينة باش نعاونوك تستكشف تاريخ المغرب الغني. خدمتك الوحيدة هي تستمتع بالرحلة.", // <-- UPDATED (Uses his exact words)
+      valuesTitle: "وعدنا لك في السفر",
+      valuesSubtitle: "شنو تقدر تتوقع مع كل حجز.",
+      values: [
+        { title: "الراحة والأمان", description: "سيارات مريحة ومكيفة وسائقين محترفين وموثوقين." }, // <-- UPDATED
+        { title: "الخبرة فالتاريخ", description: "مرشدين محليين معتمدين كيشاركو معاك تاريخ وثقافة كل مدينة." }, // <-- UPDATED
+        { title: "تخطيط ساهل ماهل", description: "برنامج واحد مفصل مسبقًا. كنتكلفو باللوجستيك، الفنادق، والنقل." }, // <-- UPDATED
       ],
-      "teamTitle": "تعرفوا على صانعي التجارب لدينا",
-      "teamSubtitle": "أشخاص شغوفون مكرسون لراحتكم ولاكتشافكم.",
-      "teamMembers": [
-        {
-          "image": "/images/mock/hotel-manager-female.webp",
-          "name": "ليلى العلمي",
-          "title": "المديرة العامة - مراكش",
-          "bio": "بسنوات من الخبرة في الضيافة الفاخرة، ليلى تشرف على قصرنا في مراكش، وتضمن أن تكون كل تجربة ضيف مثالية ولا تُنسى."
-        },
-        {
-          "image": "/images/mock/hotel-concierge-male.webp",
-          "name": "يوسف كريم",
-          "title": "رئيس الكونسيرج - فاس",
-          "bio": "يوسف عندو معرفة لا مثيل لها بمدينة فاس. كيستمتع بابتكار برامج مصممة خصيصًا وكشف الجواهر الخفية للمدينة لضيوفنا."
-        },
-        {
-          "image": "/images/mock/hotel-chef-male.webp",
-          "name": "الشيف رشيد بوجيدة",
-          "title": "الشيف التنفيذي",
-          "bio": "الشيف رشيد كيمزج ببراعة بين النكهات المغربية التقليدية وتقنيات الطهي الحديثة، خالقًا تجارب طعام راقية في جميع ممتلكاتنا."
-        }
+      teamTitle: "تعرف على المرشدين والسائقين ديالك",
+      teamSubtitle: "الفريق المحلي والمحترف اللي كيخلي رحلتك دوز مزيان.",
+      teamMembers: [
+        { image: "/images/mock/driver-male.webp", name: "حسن", title: "سائق رئيسي ومسؤول النقل", bio: "بأكثر من 15 عامًا من الخبرة، كيضمن حسن أن كل تنقل من المطار أو بين المدن يكون آمن، مريح، وفي الوقت." },
+        { image: "/images/mock/guide-female.webp", name: "فاطمة", title: "مرشدة معتمدة - مراكش", bio: "فاطمة مرشدة مرخصة كتهضر 4 لغات وكتبغي تشارك التاريخ الخفي والماكلة ديال مدينة مراكش القديمة." },
+        { image: "/images/mock/ops-manager-male.webp", name: "عمر", title: "مؤسس ومخطط الرحلات", bio: "عمر كيدير جميع اللوجستيات، من برنامجك المفصل حتى لحجوزات الفنادق، وكيضمن أن كل جزء من رحلتك يكون متناسق." }, // <-- UPDATED
       ],
-      "ctaTitle": "هل تودون تجربة الأناقة المغربية الخالدة؟",
-      "ctaButtonText": "استفسروا عن إقامتكم"
+      ctaTitle: "واجد لمغامرتك المغربية؟",
+      ctaButtonText: "خطط لرحلتك دابا" // <-- UPDATED
     },
     "contactPage": {
-      "title": "الاتصال بـ 'Les Palais Chérifiens'",
-      "infoTitle": "تواصلوا مع فريق الحجوزات لدينا",
-      "infoSubtitle": "للاستفسار عن التوافر، الإقامات المصممة خصيصًا، أو تفاصيل محددة عن ممتلكاتنا، يرجى التواصل معنا. نتطلع للترحيب بكم."
+      title: "تواصل مع MarraGo",
+      infoTitle: "تواصل مع فريقنا",
+      infoSubtitle: "لبرامج خاصة، دورات كاملة، أو أي أسئلة، الفريق ديالنا واجد يبني معاك رحلتك المثالية للمغرب.", // <-- UPDATED
     },
     "experiencesPage": {
-      "title": "أجنحتنا وتجاربنا المميزة",
-      "subtitle": "اكتشفوا أماكن إقامة مصممة بشكل فريد وأنشطة منسقة داخل قصورنا."
+      title: "خدماتنا: برامج كاملة، نقل ومرشدين", // <-- UPDATED
+      subtitle: "اكتشف جميع الطرق اللي نقدروا بيها نجعل سفرك للمغرب سلس وأصيل."
     },
     "blogPage": {
-      "title": "يوميات 'Les Palais Chérifiens'",
-      "subtitle": "أفكار حول الفن، الثقافة، التصميم المغربي، والتراث المحفوظ داخل أسوارنا."
+      title: "دفتر سفر MarraGo",
+      subtitle: "نصائح، أفكار، وقصص من السائقين والمرشدين ديالنا باش تعيش المغرب الحقيقي."
     }
-  },
+  }
 };
 
 // --- MANUAL CLIENT DATA (for Sahara Luxe Expeditions) ---
 const manualClientData = {
-  "clientId": "client-palais-cherifiens", // Unique ID
-
   // --- Core Business Info ---
-  "officialName": "Les Palais Chérifiens SARL", // Fictional official name
-  "websiteDisplayName": "Les Palais Chérifiens",
-  "slogan": "Authentic Luxury Moroccan Hospitality.",
-  "logoUrl": "/favicon.ico", // <-- SUGGESTION: Path to an elegant, perhaps calligraphic logo
-  "businessCategory": "Hotel", // CHANGED from TourOperator
-  "industrySpecifics": "A collection of luxury boutique hotels/riads in key Moroccan cities (Marrakech, Fes), specializing in authentic heritage, intimate settings, and personalized concierge services for discerning international travelers.",
+  "clientId": "client-marrago",
+  "officialName": "MarraGo Travel SARL", // Fictional official name
+  "websiteDisplayName": "MarraGo",
+  "slogan": "Magic of Morocco: Full Itineraries, Transport, Guides & Hotels.", // <-- UPDATED
+  "logoUrl": "/images/icons/icon-256x256.png", // (Using a placeholder path, you can change)
+  "businessCategory": "TourOperator",
+  "industrySpecifics": "A full-service Moroccan tour operator creating detailed travel itineraries from south to north. We specialize in comfortable, air-conditioned transportation with professional drivers, expert local guides in every city, and curated hotel reservations for a seamless and magical journey.", // <-- UPDATED (Uses his exact words)
 
   // --- Branding & Theme ---
-  "primaryColor": "#8B4513", // Suggestion: A rich SaddleBrown, evoking wood and leather
-  "secondaryColor": "#D4AF37", // Suggestion: A soft Gold, for luxury accents
-  "templateTheme": "default", // <-- Set to 'luxury'
+  // (Keeping the colors you set)
+  "primaryColor": "#00000000", 
+  "secondaryColor": "#ffffff", 
+  "templateTheme": "adventure",
 
-  // --- Contact Information (More generic for a collection) ---
-  "email": "reservations@palaischerifiens.ma", // Fictional central reservations email
-  "phone": "05XX-XXXXXX", // Fictional central phone number (e.g., Casablanca area code)
-  "latitude": 33.5731, // Casablanca latitude (example central office)
-  "longitude": -7.5898, // Casablanca longitude (example central office)
-  "address": "Central Reservations Office, Boulevard d'Anfa, Casablanca, Morocco", // Fictional central office address
-  "whatsappNumber": "06XX-XXXXXX", // Fictional central WhatsApp
+  // --- Contact Information ---
+  // (Keeping the contact info you set)
+  "email": "marragog@gmail.com", 
+  "phone": "+212669761650", 
+  "latitude": 31.6258, 
+  "longitude": -7.9892,
+  "address": "Fictional: 123 Rue de la Liberté, Guéliz, Marrakech, Morocco", 
+  "whatsappNumber": "+212669761650", 
 
   // --- Social Media Links ---
-  "facebook": "https://www.facebook.com/PalaisCherifiens", // Fictional
-  "instagram": "https://www.instagram.com/palaischerifiens/", // Fictional
-  "twitter": "", // Assume no X/Twitter
+  "facebook": "https://www.facebook.com/MarraGo", 
+  "instagram": "https://www.instagram.com/MarraGo/",
+  "twitter": "", 
 
   // --- About Us Content (Short version for config) ---
+  // (This was already very good and matches his new description)
   "aboutUsContent": {
-    "title": "Les Palais Chérifiens offers intimate luxury stays within meticulously restored riads and palaces in Morocco's historic hearts. We blend heritage preservation with bespoke hospitality.",
-    "imageUrl": "/images/mock/about-us-palais-cherifiens.webp" // <-- SUGGESTION: Elegant image of one of the riads or a courtyard
+    "title": "MarraGo is your local partner for a seamless Moroccan adventure. We handle all your logistics—from airport transfers to hotel bookings and expert local guides—so you can enjoy the magic.", 
+    "imageUrl": "/images/mock/about-us-marrago.webp" // (Placeholder path)
   },
 
   // --- Service Description (Short version for config) ---
-  "serviceDescription": "Luxury boutique hotel collection in Marrakech & Fes. Features include individually designed suites, serene courtyards, rooftop terraces, refined dining, intimate spas, and personalized concierge services.",
+  "serviceDescription": "We offer detailed travel itineraries (circuits from south to north), hotel reservations, professional local guides, and comfortable, air-conditioned transportation with reliable drivers.", // <-- UPDATED
 
-  // --- Tour Locations Served (Now Property Locations) ---
-  "tourLocationsServed": "Marrakech, Fes", // Cities where they have properties
+  // --- Tour Locations Served (Key cities) ---
+  // (This was already perfect for "south to north")
+  "tourLocationsServed": "Marrakech, Agadir, Fes, Casablanca, Rabat, Tangier, Essaouira, Merzouga",
 
   // --- Payment & Language Options ---
-  "paymentMethodsAccepted": ["bankTransfer", "onlinePaymentGateway", "creditCard"], // Standard for luxury hotels
-  "websiteLanguageOptions": ["en", "fr", "es"], // Common languages for luxury travel
+  "paymentMethodsAccepted": ["bankTransfer", "onlinePaymentGateway", "creditCard"],
+  "websiteLanguageOptions": ["en", "fr", "es"],
 
   // --- SEO Keywords & Social Share Image ---
-  "keywords": "luxury riad Morocco, boutique hotel Marrakech, luxury hotel Fes, Moroccan palace hotel, authentic Morocco luxury stay, Les Palais Chérifiens, Medina luxury riad, bespoke Morocco travel, heritage hotel Morocco",
-  "socialShareImageUrl": "/images/mock/og-palais-cherifiens.webp", // <-- SUGGESTION: Stunning OG image (e.g., beautiful riad courtyard detail)
+  "keywords": "Marrakech airport transfer, Morocco private driver, Morocco tour operator, book hotels Morocco, local guides Marrakech, MarraGo, excursions Morocco, transport touristique Maroc, Morocco circuits, detailed travel itinerary Morocco, Morocco south to north", // <-- UPDATED (Added new keywords)
+  "socialShareImageUrl": "/images/mock/og-marrago.webp", // (Placeholder path)
 
   // --- Feature Toggles ---
   "reviewsSystem": true,
   "blogSystem": true,
-  "bookingEngine": true, // Essential for a hotel
-  "experiencesSection": true, // To showcase suites & experiences
+  "bookingEngine": true, 
+  "experiencesSection": true, 
   "faqSection": true,
 
-  // --- Legal Content ---
-  "privacyPolicyContent": "Les Palais Chérifiens values your privacy... [Standard hotel privacy policy text regarding guest data, booking information, data security, GDPR/local compliance]. Contact: privacy@palaischerifiens.ma", // Placeholder
-  "termsOfUseContent": "Booking a stay at Les Palais Chérifiens constitutes acceptance of these terms... [Standard hotel terms covering reservations, deposits, cancellation policies, check-in/out, liability, guest conduct].", // Placeholder
+  // --- Legal Content (Placeholders) ---
+  "privacyPolicyContent": "MarraGo Travel SARL is committed to protecting your data... [Standard policy covering booking info, contact details, payment info, cookie usage for tours and transfers]. Contact: privacy@marraGo.com", 
+  "termsOfUseContent": "Booking a service with MarraGo constitutes acceptance of these terms... [Standard terms covering transfer details, tour cancellations, booking modifications, liability for transport, payment policies].", 
 
-  "clientTextContent": clientTextContent,
+  // This will pull in the detailed text you'll provide later
+  "clientTextContent": clientTextContent, 
 };
 
 
