@@ -296,7 +296,7 @@ const manualClientData = {
 
   // --- SEO Keywords & Social Share Image ---
   "keywords": "Marrakech airport transfer, Morocco private driver, Morocco tour operator, book hotels Morocco, local guides Marrakech, MarraGo, excursions Morocco, transport touristique Maroc, Morocco circuits, detailed travel itinerary Morocco, Morocco south to north", // <-- UPDATED (Added new keywords)
-  "socialShareImageUrl": "/images/mock/og-marrago.webp", // (Placeholder path)
+  "socialShareImageUrl": "/images/og/og-marrago.webp", // (Placeholder path)
 
   // --- Feature Toggles ---
   "reviewsSystem": true,
