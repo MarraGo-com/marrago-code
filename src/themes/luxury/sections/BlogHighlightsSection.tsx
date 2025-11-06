@@ -36,7 +36,7 @@ async function getLatestArticles() {
         translations: data.translations,
         title: data.translations?.en?.title || 'No Title',
         status: data.status || 'published',
-        author: data.author || 'Upmerce Solutions',
+         author: data.author || siteConfig.siteName,
       };
     });
     return articles;

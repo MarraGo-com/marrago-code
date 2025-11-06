@@ -29,7 +29,7 @@ const getNavItems = (t: any): NavItem[] => {
     // Condition Blog link
     siteConfig.hasBlogSystem ? { text: t('blog'), href: '/admin/blog', icon: <ArticleIcon /> } : false,
     // Condition Experiences link
-    siteConfig.hasExperiencesSection ? { text: t('experiences'), href: '/admin/experiences', icon: <CollectionsBookmarkIcon /> } : false, // Assuming you'll have an admin experiences page
+    siteConfig.hasExperiencesSection ? { text: t('experiences'), href: '/admin/dashboard', icon: <CollectionsBookmarkIcon /> } : false, // Assuming you'll have an admin experiences page
     // Condition Bookings link
     siteConfig.hasBookingEngine ? { text: t('bookings'), href: '/admin/bookings', icon: <BookOnlineIcon /> } : false,
     // Condition Reviews link

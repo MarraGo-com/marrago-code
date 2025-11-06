@@ -176,7 +176,7 @@ export default function Header() {
                         variant="contained" 
                         color="primary" 
                         component={Link} 
-                        href="/contact" // Original adventure theme had /contact here instead of /admin/login
+                        href="/admin/login" // Original adventure theme had /contact here instead of /admin/login
                         sx={{ 
                             display: { xs: 'none', md: 'block' },
                             borderRadius: '50px',

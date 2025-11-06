@@ -258,8 +258,8 @@ const manualClientData = {
 
   // --- Branding & Theme ---
   // (Keeping the colors you set)
-  "primaryColor": "#00000000", 
-  "secondaryColor": "#ffffff", 
+  "primaryColor": "#D97706", 
+  "secondaryColor": "#083344", 
   "templateTheme": "adventure",
 
   // --- Contact Information ---
