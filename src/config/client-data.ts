@@ -1,7 +1,7 @@
 // src/config/client-data.ts (Client-Specific Data & Final SiteConfig Export)
 
 import { mergeClientDataWithTheme, SiteConfig } from './site'; // Import from the core site.ts
-import { SiteClientTextContent} from './types'; // Import necessary types
+import { ManualClientData, SiteClientTextContent} from './types'; // Import necessary types
 import { generatePageMetadata, MetadataStore } from './page-seo-metadata'; // <-- ADD THIS IMPORT
 
 // --- Client-Specific Textual Content ---
@@ -246,11 +246,12 @@ const clientTextContent: SiteClientTextContent = {
 };
 
 // --- MANUAL CLIENT DATA (for Sahara Luxe Expeditions) ---
-const manualClientData = {
+const manualClientData : ManualClientData = {
   // --- Core Business Info ---
   "clientId": "client-marrago",
   "officialName": "MarraGo Travel SARL", // Fictional official name
   "websiteDisplayName": "MarraGo",
+  "ownerName": "Omar Ouazza", // Fictional owner name
   "slogan": "Magic of Morocco: Full Itineraries, Transport, Guides & Hotels.", // <-- UPDATED
   "logoUrl": "/images/icons/icon-256x256.png", // (Using a placeholder path, you can change)
   "businessCategory": "TourOperator",

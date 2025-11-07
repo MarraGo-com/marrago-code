@@ -21,6 +21,7 @@ export interface SiteConfig {
   templateTheme: 'default' | 'adventure' | 'luxury' ; // The base theme the client uses
   brandName: string;
   siteName: string;
+  ownerName: string;
   slogan: string;
   businessType: 'TravelAgency' | 'TourOperator' | 'TransportService' | 'Other';
   addressLocality?: string;

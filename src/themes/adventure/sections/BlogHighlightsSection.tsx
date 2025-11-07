@@ -33,7 +33,7 @@ async function getLatestArticles() {
         coverImage: data.coverImage,
         createdAt: data.createdAt.toDate().toISOString(),
         translations: data.translations,
-        author: data.author || siteConfig.siteName,
+        author: data.author || siteConfig.ownerName || siteConfig.siteName,
         title: data.translations?.en?.title || 'No Title',
         status: data.status || 'published',
       };

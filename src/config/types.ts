@@ -65,7 +65,12 @@ export interface BlogPageContent {
     title: string;
     subtitle: string;
 }
+// AboutUsContent type for metadata in ManualClientData
 
+type AboutUsContent = {
+  title: string;
+  imageUrl: string;
+};
 // Define the overall SiteClientTextContent interface
 // This interface describes the structure of ALL localized textual content.
 export interface SiteClientTextContent {
@@ -94,3 +99,64 @@ export interface SiteClientTextContent {
         blogPage: BlogPageContent;
     };
 }
+
+export type ManualClientData = {
+  // --- Core Business Info ---
+  clientId: string;
+  officialName: string;
+  websiteDisplayName: string;
+  ownerName: string;
+  slogan: string;
+  logoUrl: string;
+  businessCategory: string;
+  industrySpecifics: string;
+
+  // --- Branding & Theme ---
+  primaryColor: string;
+  secondaryColor: string;
+  templateTheme: string;
+
+  // --- Contact Information ---
+  email: string;
+  phone: string;
+  latitude: number;
+  longitude: number;
+  address: string;
+  whatsappNumber: string;
+
+  // --- Social Media Links ---
+  facebook: string;
+  instagram: string;
+  twitter: string;
+
+  // --- About Us Content (Short version for config) ---
+  aboutUsContent: AboutUsContent; // Using our nested type
+
+  // --- Service Description (Short version for config) ---
+  serviceDescription: string;
+
+  // --- Tour Locations Served (Key cities) ---
+  tourLocationsServed: string;
+
+  // --- Payment & Language Options ---
+  paymentMethodsAccepted: PaymentMethod[]; // An array of strings
+  websiteLanguageOptions: string[]; // An array of strings
+
+  // --- SEO Keywords & Social Share Image ---
+  keywords: string;
+  socialShareImageUrl: string;
+
+  // --- Feature Toggles ---
+  reviewsSystem: boolean;
+  blogSystem: boolean;
+  bookingEngine: boolean;
+  experiencesSection: boolean;
+  faqSection: boolean;
+
+  // --- Legal Content (Placeholders) ---
+  privacyPolicyContent: string;
+  termsOfUseContent: string;
+
+  // This will pull in the detailed text
+  clientTextContent: SiteClientTextContent; // Using our placeholder type
+};

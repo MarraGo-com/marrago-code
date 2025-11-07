@@ -34,8 +34,7 @@ async function getLatestArticles() {
         translations: data.translations,
         title: data.translations?.en?.title || 'No Title',
         status: data.status || 'published',
-         author: data.author || siteConfig.siteName,
-      };
+        author: data.author || siteConfig.ownerName || siteConfig.siteName,      };
     });
 
     return articles;
