@@ -30,14 +30,15 @@ export default function CreateArticleForm() {
     status: 'draft' as 'draft' | 'published',
     translations: {
       en: { title: '', content: '' },
-      fr: { title: '', content: '' }
+      fr: { title: '', content: '' },
+      es: { title: '', content: '' } // <-- ADDED THIS LINE
     }
   });
 
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [currentTab, setCurrentTab] = useState<'en' | 'fr'>('en'); // To manage which language tab is active
+  const [currentTab, setCurrentTab] = useState<'en' | 'fr' | 'es'>('en'); // To manage which language tab is active
 
   // --- 2. UPDATED HANDLERS for the new data structure ---
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -149,6 +150,7 @@ export default function CreateArticleForm() {
         <Tabs value={currentTab} onChange={(e, newValue) => setCurrentTab(newValue)}>
             <Tab label="English Content" value="en" />
             <Tab label="French Content" value="fr" />
+            <Tab label="Spanish Content" value="es" />
         </Tabs>
       </Box>
       <Box sx={{ pt: 2, display: 'flex', flexDirection: 'column', gap: 3 }}>

@@ -6,7 +6,7 @@ import { Locale } from './types'; // Ensure Locale is defined in your types.ts
 export interface PageMetadata {
   title: string;
   description: string;
-  ogImage?: { // Made optional for now, as not all pages might have unique OG images
+  ogImage?: {
     src: string;
     alt: string;
   };
@@ -21,8 +21,8 @@ export interface MetadataStore {
   blog?: Record<Locale, PageMetadata>;
   privacyPolicy?: Record<Locale, PageMetadata>;
   termsOfUse?: Record<Locale, PageMetadata>;
-  reviews?: Record<Locale, PageMetadata>; // Added for completeness if you have reviews page
-  faq?: Record<Locale, PageMetadata>;       // Added for completeness if you have faq page
+  reviews?: Record<Locale, PageMetadata>;
+  faq?: Record<Locale, PageMetadata>;
   // Add other pages as needed
 }
 
@@ -34,223 +34,294 @@ export interface MetadataStore {
  * @returns A MetadataStore object containing localized titles and descriptions for various pages.
  */
 export function generatePageMetadata(siteConfig: SiteConfig): MetadataStore {
-  const clientDisplayName = siteConfig.siteName || siteConfig.brandName;
-  const defaultDescription = siteConfig.siteDescription;
- // const defaultOgImage = siteConfig.ogImage || { src: '/images/og/default-og.webp', alt: 'Website default social share image' }; // Fallback OG image
-
+  const clientDisplayName = siteConfig.siteName || siteConfig.brandName; // This will be "MarraGo"
+  const defaultDescription = siteConfig.siteDescription; // This is your main site description
+ 
   return {
     homepage: {
       en: {
-        title: `Authentic Moroccan Adventures - ${clientDisplayName}`,
-        description: `Discover authentic, private tours in Morocco. We offer bespoke experiences, from desert treks to cultural city tours, crafted by local experts. ${defaultDescription}`,
+        title: `${clientDisplayName} - Morocco Transfers, Tours & Itineraries`,
+        description: `Discover the magic of Morocco with ${clientDisplayName}. We offer reliable airport transfers, professional guides, and detailed itineraries from south to north. ${defaultDescription}`,
         ogImage: {
-          src: "/images/og/og-homepage.webp", // Specific OG image for homepage
-          alt: "Panoramic view of a Moroccan desert landscape at sunset."
+          src: "/images/og/og-marrago-homepage.webp", // <-- UPDATE PATH
+          alt: "A luxury van on a scenic road in the Atlas Mountains."
         }
       },
       fr: {
-        title: `Aventures Marocaines Authentiques - ${clientDisplayName}`,
-        description: `Découvrez des circuits privés et authentiques au Maroc. Nous proposons des expériences sur mesure, des treks dans le désert aux visites culturelles, conçues par des experts locaux. ${defaultDescription}`,
+        title: `${clientDisplayName} - Transferts, Circuits & Itinéraires au Maroc`,
+        description: `Découvrez la magie du Maroc avec ${clientDisplayName}. Nous proposons des transferts aéroport fiables, des guides professionnels et des itinéraires détaillés du sud au nord. ${defaultDescription}`,
         ogImage: {
-          src: "/images/og/og-homepage.webp",
-          alt: "Vue panoramique d'un paysage désertique marocain au coucher du soleil."
+          src: "/images/og/og-marrago-homepage.webp",
+          alt: "Un van de luxe sur une route panoramique dans les montagnes de l'Atlas."
         }
       },
       ar: {
-        title: `مغامرات مغربية أصيلة - ${clientDisplayName}`,
-        description: `اكتشف جولات خاصة وأصيلة في المغرب. نقدم تجارب مصممة خصيصًا، من رحلات الصحراء إلى جولات المدينة الثقافية، صممها خبراء محليون. ${defaultDescription}`,
+        title: `${clientDisplayName} - النقل السياحي، الجولات والبرامج في المغرب`,
+        description: `اكتشف سحر المغرب مع ${clientDisplayName}. نقدم خدمة نقل المطار الموثوقة، ومرشدين محترفين، وبرامج سياحية مفصلة من الجنوب إلى الشمال. ${defaultDescription}`,
         ogImage: {
-          src: "/images/og/og-homepage.webp",
-          alt: "منظر بانورامي لصحراء مغربية عند غروب الشمس."
+          src: "/images/og/og-marrago-homepage.webp",
+          alt: "شاحنة فان فاخرة على طريق خلاب في جبال الأطلس."
         }
       },
+      // --- ADD YOUR NEW 'ES' LOCALE ---
+      es: {
+        title: `${clientDisplayName} - Traslados, Tours & Itinerarios en Marruecos`,
+        description: `Descubre la magia de Marruecos con ${clientDisplayName}. Ofrecemos traslados de aeropuerto fiables, guías profesionales e itinerarios detallados de sur a norte. ${defaultDescription}`,
+        ogImage: {
+          src: "/images/og/og-marrago-homepage.webp",
+          alt: "Una furgoneta de lujo en una carretera panorámica en las montañas del Atlas."
+        }
+      }
     },
     about: {
       en: {
-        title: `Our Story - ${clientDisplayName}`,
-        description: `Learn about our passion for responsible tourism and our mission to share the authentic beauty of Morocco. Meet our team of local expert guides. ${defaultDescription}`,
+        title: `About Us - ${clientDisplayName}`,
+        description: `Learn about our mission to provide seamless travel in Morocco. Meet our team of professional drivers and expert local guides. ${defaultDescription}`,
         ogImage: {
-          src: "/images/og/og-about.webp",
-          alt: "A traditional Moroccan tagine being prepared in a riad."
+          src: "/images/og/og-marrago-about.webp", // <-- UPDATE PATH
+          alt: "A photo of the MarraGo team of drivers and guides."
         }
       },
       fr: {
-        title: `Notre Histoire - ${clientDisplayName}`,
-        description: `Découvrez notre passion pour le tourisme responsable et notre mission de partager la beauté authentique du Maroc. Rencontrez notre équipe de guides experts locaux. ${defaultDescription}`,
+        title: `Notre Équipe - ${clientDisplayName}`,
+        description: `Découvrez notre mission : offrir des voyages fluides au Maroc. Rencontrez notre équipe de chauffeurs professionnels et de guides experts locaux. ${defaultDescription}`,
         ogImage: {
-          src: "/images/og/og-about.webp",
-          alt: "Un tajine marocain traditionnel en cours de préparation dans un riad."
+          src: "/images/og/og-marrago-about.webp",
+          alt: "Une photo de l'équipe de chauffeurs et de guides de MarraGo."
         }
       },
       ar: {
-        title: `قصتنا - ${clientDisplayName}`,
-        description: `تعرف على شغفنا بالسياحة المسؤولة ومهمتنا لمشاركة الجمال الأصيل للمغرب. قابل فريقنا من المرشدين المحليين الخبراء. ${defaultDescription}`,
+        title: `من نحن - ${clientDisplayName}`,
+        description: `تعرف على مهمتنا لتوفير سفر سلس في المغرب. قابل فريقنا من السائقين المحترفين والمرشدين المحليين الخبراء. ${defaultDescription}`,
         ogImage: {
-          src: "/images/og/og-about.webp",
-          alt: "طاجين مغربي تقليدي يتم تحضيره في رياض."
+          src: "/images/og/og-marrago-about.webp",
+          alt: "صورة لفريق سائقي ومرشدي MarraGo."
         }
       },
+      // --- ADD YOUR NEW 'ES' LOCALE ---
+      es: {
+        title: `Sobre Nosotros - ${clientDisplayName}`,
+        description: `Conozca nuestra misión de proporcionar viajes fluidos en Marruecos. Conozca a nuestro equipo de conductores profesionales y guías locales expertos. ${defaultDescription}`,
+        ogImage: {
+          src: "/images/og/og-marrago-about.webp",
+          alt: "Una foto del equipo de conductores y guías de MarraGo."
+        }
+      }
     },
     contact: {
       en: {
         title: `Contact Us - ${clientDisplayName}`,
-        description: `Ready to plan your adventure? Get in touch with our team to create your perfect, tailor-made Moroccan journey.`,
+        description: `Ready to plan your trip? Contact ${clientDisplayName} for reliable airport transfers, custom itineraries, and expert local guides in Morocco.`,
         ogImage: {
-          src: "/images/og/og-contact.webp",
-          alt: "A map of Morocco with a pin on the Souss-Massa region."
+          src: "/images/og/og-marrago-contact.webp", // <-- UPDATE PATH
+          alt: "A map of Morocco with pins on Marrakech, Fes, and Agadir."
         }
       },
       fr: {
         title: `Contactez-Nous - ${clientDisplayName}`,
-        description: `Prêt à planifier votre aventure ? Contactez notre équipe pour créer votre voyage marocain sur mesure parfait.`,
+        description: `Prêt à planifier votre voyage ? Contactez ${clientDisplayName} pour des transferts aéroport fiables, des itinéraires sur mesure et des guides locaux experts au Maroc.`,
         ogImage: {
-          src: "/images/og/og-contact.webp",
-          alt: "Une carte du Maroc avec une épingle sur la région de Souss-Massa."
+          src: "/images/og/og-marrago-contact.webp",
+          alt: "Une carte du Maroc avec des épingles sur Marrakech, Fès et Agadir."
         }
       },
       ar: {
         title: `اتصل بنا - ${clientDisplayName}`,
-        description: `هل أنت مستعد لتخطيط مغامرتك؟ تواصل مع فريقنا لإنشاء رحلتك المغربية المثالية والمصممة خصيصًا لك.`,
+        description: `هل أنت مستعد لتخطيط رحلتك؟ اتصل بـ ${clientDisplayName} للحصول على نقل مطار موثوق، وبرامج سياحية مخصصة، ومرشدين محليين خبراء في المغرب.`,
         ogImage: {
-          src: "/images/og/og-contact.webp",
-          alt: "خريطة المغرب مع دبوس على منطقة سوس ماسة."
+          src: "/images/og/og-marrago-contact.webp",
+          alt: "خريطة المغرب مع دبابيس على مراكش وفاس وأغادير."
         }
       },
+      // --- ADD YOUR NEW 'ES' LOCALE ---
+      es: {
+        title: `Contáctenos - ${clientDisplayName}`,
+        description: `¿Listo para planificar su viaje? Contacte a ${clientDisplayName} para traslados de aeropuerto fiables, itinerarios personalizados y guías locales expertos en Marruecos.`,
+        ogImage: {
+          src: "/images/og/og-marrago-contact.webp",
+          alt: "Un mapa de Marruecos con chinchetas en Marrakech, Fez y Agadir."
+        }
+      }
     },
     experiences: {
         en: {
-            title: `All Our Tours - ${clientDisplayName}`,
-            description: `Browse our complete collection of curated tours and authentic experiences across Morocco.`,
+            title: `Our Services - ${clientDisplayName}`,
+            description: `Browse our complete list of services: airport transfers, full circuits, detailed itineraries, and professional guides.`,
             ogImage: {
-              src: "/images/og/og-experiences.webp",
-              alt: "A collage of different Moroccan experiences: desert, mountains, and coast."
+              src: "/images/og/og-marrago-services.webp", // <-- UPDATE PATH
+              alt: "A collage of a luxury van, an Atlas mountain road, and a guide in a medina."
             }
         },
         fr: {
-            title: `Tous Nos Circuits - ${clientDisplayName}`,
-            description: `Parcourez notre collection complète de circuits organisés et d'expériences authentiques à travers le Maroc.`,
+            title: `Nos Services - ${clientDisplayName}`,
+            description: `Parcourez notre liste complète de services : transferts aéroport, circuits complets, itinéraires détaillés et guides professionnels.`,
             ogImage: {
-              src: "/images/og/og-experiences.webp",
-              alt: "Un collage de différentes expériences marocaines : désert, montagnes et côte."
+              src: "/images/og/og-marrago-services.webp",
+              alt: "Un collage d'un van de luxe, d'une route de l'Atlas et d'un guide dans une médina."
             }
         },
         ar: {
-            title: `جميع جولاتنا - ${clientDisplayName}`,
-            description: `تصفح مجموعتنا الكاملة من الجولات المنسقة والتجارب الأصيلة في جميع أنحاء المغرب.`,
+            title: `خدماتنا - ${clientDisplayName}`,
+            description: `تصفح قائمتنا الكاملة للخدمات: نقل المطار، الدوائر الكاملة، البرامج المفصلة، والمرشدين المحترفين.`,
             ogImage: {
-              src: "/images/og/og-experiences.webp",
-              alt: "مجموعة من التجارب المغربية المختلفة: الصحراء، الجبال، والساحل."
+              src: "/images/og/og-marrago-services.webp",
+              alt: "صورة مجمعة لسيارة فان فاخرة وطريق في الأطلس ومرشد في المدينة القديمة."
             }
         },
+      // --- ADD YOUR NEW 'ES' LOCALE ---
+      es: {
+        title: `Nuestros Servicios - ${clientDisplayName}`,
+        description: `Explore nuestra lista completa de servicios: traslados al aeropuerto, circuitos completos, itinerarios detallados y guías profesionales.`,
+        ogImage: {
+          src: "/images/og/og-marrago-services.webp",
+          alt: "Un collage de una furgoneta de lujo, una carretera del Atlas y un guía en una medina."
+        }
+      }
     },
     blog: {
         en: {
-            title: `Our Journal - ${clientDisplayName}`,
-            description: `Read our latest articles and travel guides about exploring the beautiful Souss-Massa region of Morocco.`,
+            title: `MarraGo Journal - ${clientDisplayName}`,
+            description: `Read our latest articles and travel guides from our expert drivers and guides about exploring Morocco.`,
             ogImage: {
-              src: "/images/og/og-blog.webp",
+              src: "/images/og/og-marrago-blog.webp", // <-- UPDATE PATH
               alt: "A person writing in a travel journal with a Moroccan landscape in the background."
             }
         },
         fr: {
-            title: `Notre Journal - ${clientDisplayName}`,
-            description: `Lisez nos derniers articles et guides de voyage sur l'exploration de la magnifique région de Souss-Massa au Maroc.`,
+            title: `Journal MarraGo - ${clientDisplayName}`,
+            description: `Lisez nos derniers articles et guides de voyage rédigés par nos chauffeurs experts et nos guides sur l'exploration du Maroc.`,
             ogImage: {
-              src: "/images/og/og-blog.webp",
+              src: "/images/og/og-marrago-blog.webp",
               alt: "Une personne écrivant dans un carnet de voyage avec un paysage marocain en arrière-plan."
             }
         },
         ar: {
-            title: `مجلتنا - ${clientDisplayName}`,
-            description: `اقرأ أحدث مقالاتنا وأدلة السفر حول استكشاف منطقة سوس ماسة الجميلة في المغرب.`,
+            title: `مدونة مراڭو - ${clientDisplayName}`,
+            description: `اقرأ أحدث مقالاتنا وأدلة السفر من سائقينا ومرشدينا الخبراء حول استكشاف المغرب.`,
             ogImage: {
-              src: "/images/og/og-blog.webp",
+              src: "/images/og/og-marrago-blog.webp",
               alt: "شخص يكتب في دفتر يوميات السفر مع منظر طبيعي مغربي في الخلفية."
             }
         },
+      // --- ADD YOUR NEW 'ES' LOCALE ---
+      es: {
+        title: `Diario MarraGo - ${clientDisplayName}`,
+        description: `Lea nuestros últimos artículos y guías de viaje de nuestros conductores y guías expertos sobre cómo explorar Marruecos.`,
+        ogImage: {
+          src: "/images/og/og-marrago-blog.webp",
+          alt: "Una persona escribiendo en un diario de viaje con un paisaje marroquí al fondo."
+        }
+      }
     },
     reviews: {
         en: {
             title: `Customer Reviews - ${clientDisplayName}`,
-            description: `Read what our customers say about their unforgettable travel experiences with us in Morocco.`,
+            description: `Read what our customers say about their seamless transfers and unforgettable tours with ${clientDisplayName}.`,
             ogImage: {
-              src: "/images/og/og-reviews.webp",
-              alt: "Happy customers reviewing their trip"
+              src: "/images/og/og-marrago-reviews.webp", // <-- UPDATE PATH
+              alt: "Happy customers reviewing their trip with MarraGo."
             }
         },
         fr: {
             title: `Avis Clients - ${clientDisplayName}`,
-            description: `Découvrez ce que nos clients pensent de leurs expériences de voyage inoubliables avec nous au Maroc.`,
+            description: `Découvrez ce que nos clients pensent de leurs transferts fluides et de leurs circuits inoubliables avec ${clientDisplayName}.`,
             ogImage: {
-              src: "/images/og/og-reviews.webp",
-              alt: "Clients heureux évaluant leur voyage"
+              src: "/images/og/og-marrago-reviews.webp",
+              alt: "Clients heureux évaluant leur voyage avec MarraGo."
             }
         },
         ar: {
             title: `آراء العملاء - ${clientDisplayName}`,
-            description: `اقرأ ما يقوله عملاؤنا عن تجارب سفرهم التي لا تُنسى معنا في المغرب.`,
+            description: `اقرأ ما يقوله عملاؤنا عن خدمات النقل السلسة والجولات التي لا تُنسى مع ${clientDisplayName}.`,
             ogImage: {
-              src: "/images/og/og-reviews.webp",
-              alt: "عملاء سعداء يراجعون رحلتهم"
+              src: "/images/og/og-marrago-reviews.webp",
+              alt: "عملاء سعداء يراجعون رحلتهم مع MarraGo."
             }
         },
+      // --- ADD YOUR NEW 'ES' LOCALE ---
+      es: {
+        title: `Reseñas de Clientes - ${clientDisplayName}`,
+        description: `Lea lo que dicen nuestros clientes sobre sus traslados fluidos e inolvidables tours con ${clientDisplayName}.`,
+        ogImage: {
+          src: "/images/og/og-marrago-reviews.webp",
+          alt: "Clientes felices reseñando su viaje con MarraGo."
+        }
+      }
     },
     faq: {
         en: {
-            title: `Frequently Asked Questions - ${clientDisplayName}`,
-            description: `Find answers to common questions about our travel services and Moroccan adventures.`,
+            title: `FAQ - ${clientDisplayName}`,
+            description: `Find answers to common questions about booking transfers, custom itineraries, and guides with ${clientDisplayName}.`,
             ogImage: {
-              src: "/images/og/og-faq.webp",
-              alt: "Person thinking with question marks"
+              src: "/images/og/og-marrago-faq.webp", // <-- UPDATE PATH
+              alt: "Person thinking with question marks about a Morocco trip."
             }
         },
         fr: {
-            title: `Foire Aux Questions - ${clientDisplayName}`,
-            description: `Trouvez les réponses aux questions courantes sur nos services de voyage et nos aventures marocaines.`,
+            title: `FAQ - ${clientDisplayName}`,
+            description: `Trouvez les réponses aux questions courantes sur la réservation de transferts, les itinéraires personnalisés et les guides avec ${clientDisplayName}.`,
             ogImage: {
-              src: "/images/og/og-faq.webp",
-              alt: "Personne qui réfléchit avec des points d'interrogation"
+              src: "/images/og/og-marrago-faq.webp",
+              alt: "Personne qui réfléchit avec des points d'interrogation à propos d'un voyage au Maroc."
             }
         },
         ar: {
             title: `الأسئلة المتكررة - ${clientDisplayName}`,
-            description: `ابحث عن إجابات للأسئلة الشائعة حول خدمات السفر والمغامرات المغربية.`,
+            description: `ابحث عن إجابات للأسئلة الشائعة حول حجز النقل، والبرامج المخصصة، والمرشدين مع ${clientDisplayName}.`,
             ogImage: {
-              src: "/images/og/og-faq.webp",
-              alt: "شخص يفكر بعلامات استفهام"
+              src: "/images/og/og-marrago-faq.webp",
+              alt: "شخص يفكر بعلامات استفهام حول رحلة إلى المغرب."
             }
         },
+      // --- ADD YOUR NEW 'ES' LOCALE ---
+      es: {
+        title: `Preguntas Frecuentes - ${clientDisplayName}`,
+        description: `Encuentre respuestas a preguntas comunes sobre la reserva de traslados, itinerarios personalizados y guías con ${clientDisplayName}.`,
+        ogImage: {
+          src: "/images/og/og-marrago-faq.webp",
+          alt: "Persona pensando con signos de interrogación sobre un viaje a Marruecos."
+        }
+      }
     },
-    termsOfUse: { // Renamed from 'terms' to match SiteConfig and clarity
+    termsOfUse: {
       en: {
         title: `Terms of Use - ${clientDisplayName}`,
-        description: `Read the legal terms and conditions for using our website and services.`,
+        description: `Read the legal terms and conditions for booking our transport and tour services.`,
         ogImage: {
-          src: "/images/og/og-terms.webp",
+          src: "/images/og/og-legal.webp", // <-- UPDATE PATH
           alt: "Legal document with pen"
         }
       },
       fr: {
         title: `Conditions d'Utilisation - ${clientDisplayName}`,
-        description: `Consultez les conditions légales d'utilisation de notre site web et de nos services.`,
+        description: `Consultez les conditions légales pour la réservation de nos services de transport et de circuits.`,
         ogImage: {
-          src: "/images/og/og-terms.webp",
+          src: "/images/og/og-legal.webp",
           alt: "Document juridique avec un stylo"
         }
       },
       ar: {
         title: `شروط الاستخدام - ${clientDisplayName}`,
-        description: `اقرأ الشروط والأحكام القانونية لاستخدام موقعنا وخدماتنا.`,
+        description: `اقرأ الشروط والأحكام القانونية لحجز خدمات النقل والجولات لدينا.`,
         ogImage: {
-          src: "/images/og/og-terms.webp",
+          src: "/images/og/og-legal.webp",
           alt: "وثيقة قانونية مع قلم"
         }
       },
+      // --- ADD YOUR NEW 'ES' LOCALE ---
+      es: {
+        title: `Términos de Uso - ${clientDisplayName}`,
+        description: `Lea los términos y condiciones legales para reservar nuestros servicios de transporte y tours.`,
+        ogImage: {
+          src: "/images/og/og-legal.webp",
+          alt: "Documento legal con bolígrafo"
+        }
+      }
     },
-    privacyPolicy: { // Renamed from 'privacy' to match SiteConfig and clarity
+    privacyPolicy: {
       en: {
         title: `Privacy Policy - ${clientDisplayName}`,
-        description: `Understand how we collect, use, and protect your personal data.`,
+        description: `Understand how ${clientDisplayName} collects, uses, and protects your personal booking data.`,
         ogImage: {
           src: "/images/og/og-privacy.webp",
           alt: "Shield icon representing data privacy"
@@ -258,7 +329,7 @@ export function generatePageMetadata(siteConfig: SiteConfig): MetadataStore {
       },
       fr: {
         title: `Politique de Confidentialité - ${clientDisplayName}`,
-        description: `Comprenez comment nous recueillons, utilisons et protégeons vos données personnelles.`,
+        description: `Comprenez comment ${clientDisplayName} recueille, utilise et protège vos données personnelles de réservation.`,
         ogImage: {
           src: "/images/og/og-privacy.webp",
           alt: "Icône de bouclier représentant la confidentialité des données"
@@ -266,12 +337,21 @@ export function generatePageMetadata(siteConfig: SiteConfig): MetadataStore {
       },
       ar: {
         title: `سياسة الخصوصية - ${clientDisplayName}`,
-        description: `افهم كيف نجمع بياناتك الشخصية ونستخدمها ونحميها.`,
+        description: `افهم كيف يقوم ${clientDisplayName} بجمع واستخدام وحماية بيانات الحجز الشخصية الخاصة بك.`,
         ogImage: {
           src: "/images/og/og-privacy.webp",
           alt: "درع يمثل خصوصية البيانات"
         }
       },
+      // --- ADD YOUR NEW 'ES' LOCALE ---
+      es: {
+        title: `Política de Privacidad - ${clientDisplayName}`,
+        description: `Comprenda cómo ${clientDisplayName} recopila, utiliza y protege sus datos personales de reserva.`,
+        ogImage: {
+          src: "/images/og/og-privacy.webp",
+          alt: "Icono de escudo que representa la privacidad de los datos"
+        }
+      }
     }
   };
 }

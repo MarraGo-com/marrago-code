@@ -1,6 +1,6 @@
 // src/config/types.ts (Centralized Type Definitions)
 
-export type Locale = 'en' | 'fr' | 'ar'; // Define available locales
+export type Locale = 'en' | 'fr' | 'ar' | 'es'; // Define available locales
 export type PaletteName = 'coastalBlue' | 'desertSunset' | 'luxeNoir';
 export type ThemeName = 'default' | 'luxury' | 'adventure';
 export type FontChoice = 'poppins' | 'lora' | 'cinzel-luxury' | 'pinyon-luxury' | 'oranienbaum-luxury';
@@ -91,6 +91,14 @@ export interface SiteClientTextContent {
         blogPage: BlogPageContent;
     };
     ar: {
+        homepage: HomepageContent; // Now using the dedicated interface
+        luxuryHomepageSlides: HeroSlide[];
+        aboutPage: AboutPageContent;
+        contactPage: ContactPageContent;
+        experiencesPage: ExperiencesPageContent;
+        blogPage: BlogPageContent;
+    };
+    es: {
         homepage: HomepageContent; // Now using the dedicated interface
         luxuryHomepageSlides: HeroSlide[];
         aboutPage: AboutPageContent;

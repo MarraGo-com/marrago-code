@@ -27,6 +27,7 @@ export interface Experience {
   translations: {
     en?: Translation;
     fr?: Translation;
+    es?: Translation;
     [key: string]: Translation | undefined;
   };
   // The title and description for display are prepared by the parent component

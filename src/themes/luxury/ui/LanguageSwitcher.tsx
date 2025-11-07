@@ -54,6 +54,7 @@ export default function LanguageSwitcher({ textColor, fontSize }: { textColor: s
         <MenuItem value="en">English</MenuItem>
         <MenuItem value="fr">Français</MenuItem>
         <MenuItem value="ar">العربية</MenuItem>
+        <MenuItem value="es">Español</MenuItem>
       </Select>
     </FormControl>
   );

@@ -46,6 +46,7 @@ export default function LanguageSwitcher() {
       >
         <MenuItem value="en">English</MenuItem>
         <MenuItem value="fr">Français</MenuItem>
+        <MenuItem value="es">Español</MenuItem>
         {/* You can easily add Arabic back later by uncommenting this line */}
         {/* <MenuItem value="ar">العربية</MenuItem> */}
       </Select>

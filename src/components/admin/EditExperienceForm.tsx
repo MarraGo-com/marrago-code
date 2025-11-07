@@ -208,7 +208,11 @@ export default function EditExperienceForm({ open, onClose, experience }: EditEx
         
         <Typography variant="subtitle1" sx={{ mt: 3, mb: 1 }}>Translations</Typography>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <Tabs value={currentTab} onChange={(e, newValue) => setCurrentTab(newValue)}><Tab label="English" value="en" /><Tab label="French" value="fr" /></Tabs>
+          <Tabs value={currentTab} onChange={(e, newValue) => setCurrentTab(newValue)}>
+             <Tab label="English" value="en" />
+             <Tab label="French" value="fr" />
+             <Tab label="Spanish" value="es" />
+          </Tabs>
         </Box>
         <Box sx={{ pt: 2, display: 'flex', flexDirection: 'column', gap: 2 }}>
             <TextField required name="title" label="Title" fullWidth value={formData.translations[currentTab]?.title || ''} onChange={handleNestedChange(`translations.${currentTab}`)} />

@@ -25,6 +25,7 @@ export interface Article {
   translations: {
     en?: ArticleTranslation;
     fr?: ArticleTranslation;
+    es?: ArticleTranslation; // <-- ADD THIS LINE
     [key: string]: ArticleTranslation | undefined;
   };
 }

@@ -21,8 +21,8 @@ export function getMainJsonLd({ url }: { url: string }) {
     address: {
       '@type': 'PostalAddress',
       streetAddress: siteConfig.contact.address,
-      addressLocality: siteConfig.addressLocality || 'Agadir',
-      addressRegion: siteConfig.addressRegion || 'Souss-Massa',
+      addressLocality: siteConfig.addressLocality || 'Marrakech',
+      addressRegion: siteConfig.addressRegion || 'Marrakech-Safi',
       addressCountry: siteConfig.addressCountry || 'MA'
     }
   };

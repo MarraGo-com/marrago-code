@@ -17,7 +17,8 @@ const initialFormData = {
   tags: '', // ITEN: Added tags as a comma-separated string
   translations: {
     en: { title: '', description: '', included: '', notIncluded: '', importantInfo: '', itinerary: '' },
-    fr: { title: '', description: '', included: '', notIncluded: '', importantInfo: '', itinerary: '' }
+    fr: { title: '', description: '', included: '', notIncluded: '', importantInfo: '', itinerary: '' },
+    es: { title: '', description: '', included: '', notIncluded: '', importantInfo: '', itinerary: '' } // <-- ADDED THIS LINE
   }
 };
 
@@ -27,7 +28,7 @@ export function useExperienceForm(initialExperience: Experience | null) {
   const [coverImageFile, setCoverImageFile] = useState<File | null>(null);
   const [newGalleryImageFiles, setNewGalleryImageFiles] = useState<File[]>([]);
   const [isCompressing, setIsCompressing] = useState(false);
-  const [currentTab, setCurrentTab] = useState<'en' | 'fr'>('en');
+  const [currentTab, setCurrentTab] = useState<'en' | 'fr'| 'es'>('en');
 
   useEffect(() => {
     if (initialExperience) {
@@ -55,7 +56,15 @@ export function useExperienceForm(initialExperience: Experience | null) {
                 notIncluded: initialExperience.translations?.fr?.notIncluded ?? '',
                 importantInfo: initialExperience.translations?.fr?.importantInfo ?? '',
                 itinerary: initialExperience.translations?.fr?.itinerary ?? '',
-              }
+              },
+              es: { // <-- ADDED THIS ENTIRE OBJECT
+              title: initialExperience.translations?.es?.title ?? '',
+              description: initialExperience.translations?.es?.description ?? '',
+              included: initialExperience.translations?.es?.included ?? '',
+              notIncluded: initialExperience.translations?.es?.notIncluded ?? '',
+              importantInfo: initialExperience.translations?.es?.importantInfo ?? '',
+              itinerary: initialExperience.translations?.es?.itinerary ?? '',
+            }
           }
       });
 

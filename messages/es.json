@@ -1,0 +1,373 @@
+{
+  "Header": {
+    "experiences": "Experiencias",
+    "about": "Nosotros",
+    "contact": "Contacto",
+    "blogLink": "Blog",
+    "mobileMenuTitle": "Menú",
+    "allExperiences": "Ver Todas las Experiencias",
+    "login": "Iniciar Sesión",
+    "experiencesLink": "Experiencias",
+    "reviewsLink": "Reseñas",
+    "faqLink": "FAQs",
+    "reviews": "Reseñas",
+    "faq": "FAQs",
+    "linksTitle": "Enlaces",
+    "privacyPolicyLink": "Política de Privacidad",
+    "termsOfUseLink": "Términos de Uso"
+  },
+  "HeroSection": {
+    "title": "Descubre el Alma de Marruecos",
+    "subtitle": "Viajes auténticos por los impresionantes paisajes y la rica cultura de la región Souss-Massa.",
+    "ctaButton": "Explora Nuestros Tours"
+  },
+  "FeaturedExperiences": {
+    "title": "Experiencias Destacadas",
+    "genericError": "Ocurrió un error al cargar las experiencias."
+  },
+  "WhyChooseUs": {
+    "title": "¿Por Qué Viajar Con Nosotros?",
+    "feature1_title": "Guías Locales Expertos",
+    "feature1_desc": "Nuestros guías nacieron y crecieron en Marruecos, ofreciéndote una visión inigualable y acceso a experiencias auténticas.",
+    "feature2_title": "Itinerarios a Medida",
+    "feature2_desc": "No creemos en 'talla única'. Cada viaje se diseña en torno a tus intereses, presupuesto y estilo de viaje.",
+    "feature3_title": "Soporte 24/7 Durante el Viaje",
+    "feature3_desc": "Viaja con total tranquilidad. Nuestro equipo está disponible las 24 horas para asegurar que tu viaje sea perfecto."
+  },
+  "AboutSection": {
+    "title": "Nuestra Historia",
+    "subtitle": "Más que tours, ofrecemos conexiones genuinas con el corazón de Marruecos.",
+    "paragraph1": "Fundada por expertos locales apasionados por compartir la belleza auténtica de la región Souss-Massa, nuestra misión es crear recuerdos de viaje inolvidables. Creemos en el turismo responsable que apoya a las comunidades locales y muestra la rica cultura y los impresionantes paisajes de nuestro hogar.",
+    "paragraph2": "Desde las majestuosas cumbres de las montañas del Atlas hasta las serenas arenas del Sahara, cada viaje con nosotros es más que unas vacaciones: es una aventura tejida con una conexión humana genuina.",
+    "imageAlt": "Una escena vibrante de un tagine marroquí tradicional siendo preparado.",
+    "valuesTitle": "Nuestros Valores Fundamentales",
+    "valuesSubtitle": "Estos principios guían cada viaje que creamos, asegurando una experiencia auténtica, respetuosa e inolvidable.",
+    "value1_title": "Autenticidad",
+    "value1_desc": "Te conectamos con personas y lugares reales, ofreciendo un verdadero sabor de la vida marroquí más allá de las rutas turísticas habituales.",
+    "value2_title": "Respeto",
+    "value2_desc": "Nuestros tours están diseñados para honrar las tradiciones locales, apoyar a las comunidades y preservar el delicado entorno que exploramos.",
+    "value3_title": "Pasión",
+    "value3_desc": "Amamos lo que hacemos. Nuestra pasión por la cultura y los paisajes de Marruecos es el ingrediente mágico en cada viaje que planeamos.",
+    "teamTitle": "Conoce a Nuestros Guías Expertos",
+    "teamSubtitle": "Nuestro equipo es nuestro mayor activo. Son expertos locales, contadores de historias y tu conexión personal con el auténtico corazón de Marruecos.",
+    "team1_name": "Hassan Al-Fassi",
+    "team1_title": "Guía Principal de Montaña",
+    "team1_bio": "Nacido en las montañas del Atlas, Hassan ha guiado caminatas durante más de 15 años. Su conocimiento de los senderos locales y la cultura bereber es inigualable.",
+    "team2_name": "Fatima Zahra",
+    "team2_title": "Experta Cultural y Culinaria",
+    "team2_bio": "Fatima comparte su pasión por la cocina y la historia marroquí, liderando nuestros tours por la ciudad y clases de cocina con calidez y experiencia.",
+    "team3_name": "Youssef Adnani",
+    "team3_title": "Especialista en el Desierto del Sahara",
+    "team3_bio": "De familia nómada, Youssef conoce el desierto como la palma de su mano. Lidera nuestras aventuras en 4x4 y trekking en camello.",
+    "ctaTitle": "¿Listo para Comenzar Tu Aventura?",
+    "ctaButton": "Contáctanos para Planear Tu Viaje"
+  },
+  "ExperienceCard": {
+    "learnMoreButton": "Saber Más"
+  },
+  "ExperienceDetails": {
+    "inquireButton": "Solicitar Reserva",
+    "includedTitle": "Qué Incluye",
+    "notIncludedTitle": "Qué No Incluye",
+    "importantInfoTitle": "Información Importante",
+    "itineraryTitle": "Itinerario Detallado"
+  },
+  "ExperienceFilters": {
+    "locationLabel": "Filtrar por Ubicación",
+    "allLocations": "Todas las Ubicaciones",
+    "sortLabel": "Ordenar Por",
+    "sortDefault": "Por Defecto",
+    "sortPriceAsc": "Precio: Menor a Mayor",
+    "sortPriceDesc": "Precio: Mayor a Menor"
+  },
+  "ExperiencesPage": {
+    "title": "Nuestras Aventuras",
+    "subtitle": "Explora nuestra colección completa de tours seleccionados y experiencias auténticas en la hermosa región de Souss-Massa.",
+    "noResults": "Ninguna experiencia coincide con tu filtro actual. Por favor, intenta otra selección."
+  },
+  "ContactSection": {
+    "title": "Ponte en Contacto",
+    "infoTitle": "Información de Contacto",
+    "infoSubtitle": "¿Tienes preguntas o estás listo para planear tu aventura? ¡Contáctanos! Estamos aquí para ayudarte a crear el viaje marroquí perfecto.",
+    "address": "Biougra, Souss-Massa, Marruecos",
+    "phone": "+212 123 456 789",
+    "email": "contact@souss-massatours.com",
+    "formNameLabel": "Tu Nombre",
+    "formEmailLabel": "Tu Correo Electrónico",
+    "formMessageLabel": "Tu Mensaje",
+    "formSubmitButton": "Enviar Mensaje",
+    "alertSuccess": "¡Gracias por tu mensaje! Nos pondremos en contacto contigo en breve."
+  },
+  "Footer": {
+    "siteTitle": "Souss-Massa Tours",
+    "aboutText": "Creando viajes auténticos e inolvidables por el corazón de Marruecos. Descubre la verdadera región Souss-Massa con expertos locales.",
+    "linksTitle": "Enlaces Rápidos",
+    "contactUsTitle": "Contáctanos",
+    "aboutLink": "Nosotros",
+    "experiencesLink": "Experiencias",
+    "allRightsReserved": "Todos los Derechos Reservados.",
+    "contactLink": "Contáctanos",
+    "blogLink": "Blog",
+    "contactTitle": "Contacto",
+    "address": "Biougra, Souss-Massa, Marruecos",
+    "phone": "+212 123 456 789",
+    "email": "contact@souss-massatours.com",
+    "socialTitle": "Síguenos",
+    "copyright": "© {year} Souss-Massa Tours. Todos los Derechos Reservados.",
+    "poweredBy": "Sitio web por",
+    "agencyName": "Upmerce Solutions",
+    "companyTitle": "Empresa",
+    "exploreTitle": "Explorar",
+    "privacyPolicy": "Política de Privacidad",
+    "termsOfService": "Términos de Servicio",
+    "reviewsLink": "Reseñas",
+    "faqLink": "FAQs",
+    "privacyPolicyLink": "Política de Privacidad",
+    "termsOfUseLink": "Términos de Uso"
+  },
+  "LoginForm": {
+    "title": "Acceso de Administrador",
+    "emailLabel": "Correo Electrónico",
+    "passwordLabel": "Contraseña",
+    "submitButton": "Iniciar Sesión",
+    "loadingButton": "Iniciando sesión...",
+    "error": "Error al iniciar sesión. Por favor, verifica tus credenciales."
+  },
+  "LogOutButton": {
+    "buttonText": "Cerrar Sesión",
+    "alertError": "Error al cerrar sesión."
+  },
+  "ExperienceForm": {
+    "createButton": "Añadir Nueva Experiencia",
+    "createDialogTitle": "Crear Nueva Experiencia",
+    "editDialogTitle": "Editar Experiencia",
+    "titleLabel": "Título",
+    "descriptionLabel": "Descripción",
+    "priceLabel": "Precio (ej: 'Desde 950 MAD')",
+    "locationLabel": "Ubicación",
+    "uploadButton": "Subir Imagen de Portada",
+    "uploadButtonOptional": "Subir Nueva Imagen de Portada (Opcional)",
+    "currentImageUrlLabel": "URL de la Imagen de Portada Actual",
+    "fileSelected": "Seleccionado: {fileName}",
+    "errorMissingImage": "Por favor, selecciona una imagen de portada para subir.",
+    "cancelButton": "Cancelar",
+    "submitButtonCreate": "Crear Experiencia",
+    "loadingButtonCreate": "Subiendo {progress}%",
+    "submitButtonEdit": "Guardar Cambios",
+    "loadingButtonEdit": "Guardando..."
+  },
+  "ExperiencesTable": {
+    "headerTitle": "Título",
+    "headerLocation": "Ubicación",
+    "headerPrice": "Precio",
+    "headerActions": "Acciones",
+    "noItemsFound": "No se encontraron experiencias.",
+    "deleteDialogTitle": "Confirmar Eliminación",
+    "deleteDialogWarning": "¿Estás seguro de que quieres eliminar permanentemente la experiencia: \"{title}\"? Esta acción no se puede deshacer.",
+    "cancelButton": "Cancelar",
+    "deleteButton": "Eliminar"
+  },
+  "Price": {
+    "from": "Desde",
+    "contactUs": "Contáctanos",
+    "perHalfDay": "por medio día",
+    "perDay": "por día",
+    "perPerson": "por persona",
+    "perGroup": "por grupo"
+  },
+  "LeaveReviewForm": {
+    "title": "Dejar una Reseña",
+    "nameLabel": "Tu Nombre",
+    "ratingLabel": "Tu Calificación",
+    "reviewLabel": "Tu Reseña",
+    "submitButton": "Enviar Reseña",
+    "successMessage": "¡Gracias! Tu reseña ha sido enviada para aprobación.",
+    "errorRating": "Por favor, selecciona una calificación de estrellas.",
+    "errorGeneric": "Algo salió mal. Por favor, inténtalo de nuevo."
+  },
+  "ReviewsList": {
+    "title": "Reseñas de Clientes",
+    "noReviews": "Aún no hay reseñas. ¡Sé el primero en compartir tu experiencia!"
+  },
+  "ReviewsPage": {
+    "reviewsComingSoonTitle": "¡Reseñas Próximamente!",
+    "reviewsComingSoonText": "Estamos recopilando valiosos comentarios para compartirlos contigo pronto. ¡Vuelve a consultar para ver experiencias auténticas!",
+    "reviewsTitleDefault": "Lo Que Dicen Nuestros Clientes",
+    "reviewDefaultComment1": "Una experiencia fantástica de principio a fin. El equipo fue profesional y las vistas inolvidables. ¡Altamente recomendado!",
+    "reviewDefaultComment2": "Lo pasamos muy bien. Todo estuvo bien organizado. ¡Volveremos para otro tour el próximo año!",
+    "reviewsTitleAdventure": "Testimonios Desde el Sendero",
+    "reviewAdventureComment1": "¡Una aventura absolutely épica! Los guías conocían el terreno como la palma de su mano y fueron súper alentadores. Las vistas desde la cumbre valieron cada paso.",
+    "reviewAdventureComment2": "Esto no fue solo un tour; fue una verdadera expedición. Llevé mis límites al máximo de la mejor manera posible. Seguro, emocionante y 100% auténtico.",
+    "reviewsTitleLuxury": "Voces de Nuestros Estimados Clientes",
+    "reviewLuxuryComment1": "La definición de viaje a medida. Cada detalle fue ejecutado sin problemas. El riad privado era un oasis y nuestro guía fue increíblemente perspicaz. Nos sentimos como de la realeza.",
+    "reviewLuxuryComment2": "Nuestra experiencia en el desierto fue simplemente mágica. El campamento de lujo superó todas las expectativas. Fue la mezcla perfecta de confort de alta gama y profunda tranquilidad."
+  },
+  "FaqPage": {
+    "faqComingSoonTitle": "¡Preguntas Frecuentes Próximamente!",
+    "faqComingSoonText": "Estamos compilando una lista de preguntas frecuentes para ayudarte. ¡Por favor, vuelve a consultar pronto!",
+    "faqTitleDefault": "Preguntas Frecuentes",
+    "faqDefaultQuestion1": "¿Cómo reservo un tour?",
+    "faqDefaultAnswer1": "Puedes reservar directamente a través de nuestro sitio web seleccionando el tour deseado y haciendo clic en 'Reservar Ahora'. También puedes contactarnos por correo electrónico o WhatsApp, y nuestro equipo estará encantado de ayudarte con tu reserva.",
+    "faqDefaultQuestion2": "¿Cuál es su política de cancelación?",
+    "faqDefaultAnswer2": "Ofrecemos un reembolso completo para cancelaciones hechas al menos 7 días antes de la fecha del tour. Las cancelaciones hechas 3-6 días antes reciben un reembolso del 50%. Desafortunadamente, no podemos ofrecer reembolsos por cancelaciones hechas dentro de las 48 horas del tour.",
+    "faqDefaultQuestion3": "¿Qué métodos de pago aceptan?",
+    "faqDefaultAnswer3": "Aceptamos las principales tarjetas de crédito (Visa, MasterCard, American Express) a través de nuestra pasarela de pago segura en línea. También aceptamos transferencias bancarias y pagos en efectivo en Dirhams Marroquíes (MAD) a la llegada para ciertos tours.",
+    "faqTitleAdventure": "Tus Preguntas de Aventura, Respondidas",
+    "faqAdventureQuestion1": "¿Qué nivel de condición física se requiere?",
+    "faqAdventureAnswer1": "Nuestros tours de aventura varían de fáciles (caminata ligera) a extenuantes (trekking de varios días). Cada página de tour tiene una calificación de 'Dificultad'. Por favor, léela atentamente para asegurarte de que el tour coincida con tu nivel de condición física. ¡En caso de duda, contáctanos!",
+    "faqAdventureQuestion2": "¿Es seguro este tour?",
+    "faqAdventureAnswer2": "Tu seguridad es nuestra prioridad absoluta. Todos nuestros guías de aventura están certificados en primeros auxilios y tienen una amplia experiencia en el terreno local. Utilizamos equipo moderno y bien mantenido y seguimos estrictos protocolos de seguridad.",
+    "faqAdventureQuestion3": "¿Qué debo empacar para un trekking en el desierto o la montaña?",
+    "faqAdventureAnswer3": "Recomendamos empacar en capas: camisetas transpirables, un forro polar cálido o chaqueta para las noches, zapatos de senderismo cómodos, un sombrero, gafas de sol y protector solar de alto SPF. Una botella de agua reutilizable es imprescindible. Proporcionaremos una lista de empaque detallada al reservar.",
+    "faqTitleLuxury": "Tu Viaje a Medida: Preguntas Frecuentes",
+    "faqLuxuryQuestion1": "¿Se puede personalizar todo mi viaje?",
+    "faqLuxuryAnswer1": "Absolutamente. La personalización es el corazón de nuestro servicio de lujo. Diseñamos itinerarios desde cero basados en tus intereses, ritmo y preferencias únicas. Considera nuestros tours listados como inspiración, no como limitaciones.",
+    "faqLuxuryQuestion2": "¿Qué tipo de alojamientos utilizan?",
+    "faqLuxuryAnswer2": "Nos asociamos exclusivamente con una cuidada selección de hoteles de 5 estrellas, riads de lujo y campamentos en el desierto de alta gama conocidos por su servicio excepcional, diseño exquisito y carácter auténtico. Priorizamos propiedades que ofrecen tanto confort como un verdadero sentido del lugar.",
+    "faqLuxuryQuestion3": "¿Qué hace diferentes a sus tours privados?",
+    "faqLuxuryAnswer3": "Nuestros tours privados de lujo garantizan tu exclusividad. Tendrás un guía experto dedicado y un vehículo premium privado con aire acondicionado (como un Mercedes V-Class o Toyota Prado) solo para tu grupo. Esto permite una flexibilidad total para ajustar tu horario, explorar lugares fuera de lo común y viajar a tu propio ritmo."
+  },
+  "BlogPage": {
+    "title": "Nuestro Diario",
+    "subtitle": "Guías de viaje, historias e inspiración desde el corazón de Marruecos.",
+    "noArticles": "Aún no se han publicado artículos. ¡Por favor, vuelve pronto!",
+    "metaTitle": "Blog | Souss-Massa Tours",
+    "metaDescription": "Lee nuestros últimos artículos y guías de viaje sobre cómo explorar la hermosa región Souss-Massa de Marruecos."
+  },
+  "BookingForm": {
+    "bookNowButton": "Reservar Este Tour",
+    "dialogTitle": "Solicitar Reserva: {experienceTitle}",
+    "dateLabel": "Selecciona una Fecha",
+    "guestsLabel": "Número de Huéspedes",
+    "nameLabel": "Tu Nombre Completo",
+    "emailLabel": "Tu Correo Electrónico",
+    "cancelButton": "Cancelar",
+    "submitButton": "Enviar Solicitud",
+    "successMessage": "¡Gracias! Tu solicitud de reserva ha sido enviada. Te contactaremos en breve para confirmar.",
+    "errorInvalidInput": "Por favor, selecciona una fecha y un número de huéspedes válidos.",
+    "errorGeneric": "Algo salió mal. Por favor, inténtalo de nuevo.",
+    "submitButtonPay": "Proceder al Pago"
+  },
+  "BlogHighlights": {
+    "title": "De Nuestro Diario",
+    "subtitle": "Descubre consejos de viaje, historias culturales e inspiración para tu próxima aventura marroquí."
+  },
+  "SocialProof": {
+    "title": "Nuestros Socios y Reconocimientos"
+  },
+  "Testimonials": {
+    "title": "Escucha a Nuestros Viajeros",
+    "subtitle": "Descubre lo que nuestros clientes dicen sobre sus inolvidables experiencias con nosotros."
+  },
+  "Newsletter": {
+    "title": "Únete a Nuestro Viaje",
+    "subtitle": "Suscríbete a nuestro boletín para consejos de viaje exclusivos, ofertas especiales e historias desde el corazón de Marruecos.",
+    "emailLabel": "Tu Correo Electrónico",
+    "submitButton": "Suscribirse",
+    "successMessage": "¡Gracias por suscribirte!",
+    "errorGeneric": "Algo salió mal. Por favor, inténtalo de nuevo."
+  },
+  "BookingStatusPage": {
+    "successTitle": "¡Pago Exitoso!",
+    "successSubtitle": "Gracias por tu reserva. Se ha enviado un correo electrónico de confirmación con todos los detalles de tu próxima aventura.",
+    "cancelledTitle": "Pago Cancelado",
+    "cancelledSubtitle": "Tu reserva no se completó. No se te ha cobrado. Puedes volver a nuestra página de experiencias para intentarlo de nuevo.",
+    "backButton": "Volver a Experiencias"
+  },
+  "MegaMenu": {
+    "destinationsTitle": "Destinos",
+    "stylesTitle": "Estilos de Viaje",
+    "featuredTitle": "Tour Destacado",
+    "styleAdventure": "Aventura",
+    "styleCultural": "Cultural",
+    "styleRelaxation": "Relajación",
+    "styleFamily": "Familia"
+  },
+  "WhatsApp": {
+    "tooltip": "Personalizar Tema",
+    "panelTitle": "Opciones de Tema",
+    "colorTitle": "Paleta de Colores",
+    "paletteCoastal": "Costero",
+    "paletteDesert": "Desierto",
+    "paletteLuxe": "Lujo",
+    "fontTitle": "Tipografía",
+    "fontModern": "Moderno",
+    "fontElegant": "Elegante",
+    "cardTitle": "Estilo de Tarjeta",
+    "cardImmersive": "Inmersivo",
+    "cardClassic": "Clásico"
+  },
+  "TopHeader": {
+    "help": "Ayuda",
+    "login": "Iniciar Sesión",
+    "joinNow": "Registrarse",
+    "findReservationTooltip": "Ingresa tu # de Confirmación abajo para localizar tu reserva.",
+    "cartTooltip": "Ver tu carrito de compras"
+  },
+  "MainHeaderNav": {
+    "findHotel": "Buscar un Hotel",
+    "getInspired": "Inspirarse",
+    "offers": "Ofertas",
+    "leadersClub": "Leaders Club"
+  },
+  "SearchBar": {
+    "destinationLabel": "Destino",
+    "destinationPlaceholder": "Hotel, Ciudad o País",
+    "checkInLabel": "Entrada",
+    "checkOutLabel": "Salida",
+    "guestsLabel": "Huéspedes",
+    "searchButton": "Buscar",
+    "adultsLabel": "Adultos",
+    "childrenLabel": "Niños",
+    "roomsLabel": "Habitaciones"
+  },
+  "FilterControls": {
+    "locationLabel": "Ubicación",
+    "allLocations": "Todas las Ubicaciones",
+    "sortLabel": "Ordenar Por",
+    "sortDefault": "Por Defecto",
+    "sortPriceAsc": "Precio: Menor a Mayor",
+    "sortPriceDesc": "Precio: Mayor a Menor"
+  },
+  "AgencyHero": {
+    "title": "Tu Aventura te Espera",
+    "subtitle": "Surfea la costa atlántica, recorre las montañas del Atlas o explora el desierto del Sahara. Ofrecemos excursiones auténticas y guiadas por expertos para cada buscador de emociones.",
+    "ctaButton": "Explora Nuestras Aventuras"
+  },
+  "BusinessTypes": {
+    "TravelAgency": "Agencia de Viajes",
+    "TourOperator": "Operador Turístico",
+    "TransportService": "Servicio de Transporte",
+    "Other": "Otro"
+  },
+  "admin": {
+    "AdminSidebar": {
+      "adminPanel": "Panel de Administración",
+      "dashboard": "Tablero",
+      "experiences": "Experiencias",
+      "blog": "Blog",
+      "bookings": "Reservas",
+      "reviews": "Reseñas",
+      "settings": "Configuración"
+    },
+    "AdminBlogCreatePage": {
+      "createArticleTitle": "Crear Nuevo Artículo"
+    },
+    "AdminBlogPage": {
+      "manageArticlesTitle": "Gestionar Artículos del Blog"
+    },
+    "AdminBlogEditPage": {
+      "editArticleTitle": "Editar Artículo",
+      "articleNotFound": "Artículo no encontrado."
+    },
+    "AdminBookingsPage": {
+      "manageBookingsTitle": "Gestionar Solicitudes de Reserva"
+    },
+    "AdminExperiencesPage": {
+      "manageExperiencesTitle": "Gestionar Experiencias"
+    },
+    "AdminReviewsPage": {
+      "manageReviewsTitle": "Gestionar Reseñas de Clientes"
+    }
+  }
+}

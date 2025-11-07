@@ -9,75 +9,75 @@ const clientTextContent: SiteClientTextContent = {
   en: { // English content for MarraGo
     homepage: {
       heroTitle: "MarraGo",
-      heroSubtitle: "Discover the magic of Morocco from south to north. We create your detailed itinerary, handling all transport, guides, and hotels for a seamless journey.", // <-- UPDATED
-      heroCtaButtonText: "Start Your Journey", // <-- UPDATED
-      featuredExperiencesTitle: "Our All-in-One Services", // <-- UPDATED
+      heroSubtitle: "Discover the magic of Morocco from south to north. We prepare your detailed itinerary in advance, handling all transport, hotels, and guides for an enjoyable journey.", // <-- UPDATED
+      heroCtaButtonText: "Start Your Journey",
+      featuredExperiencesTitle: "Our All-in-One Services",
       whyChooseUsTitle: "Why Travel With MarraGo?",
       whyChooseUsFeatures: [
-        { title: "Professional Transport", description: "Comfortable, air-conditioned vehicles with professional and reliable drivers at your service 24/7." }, // <-- UPDATED
-        { title: "Expert Local Guides", description: "Discover Morocco's rich history with a professional, certified guide in every city you visit." }, // <-- UPDATED
-        { title: "Detailed Itineraries", description: "We plan your entire trip from south to north in advance, including hotels, stops, and all logistics." }, // <-- UPDATED
+        { title: "Professional Transport", description: "Comfortable, air-conditioned transportation with professional and reliable drivers at your service." }, // <-- UPDATED
+        { title: "Expert Local Guides", description: "A professional guide in each city to help you explore the region’s rich history." }, // <-- UPDATED
+        { title: "Detailed Itineraries", description: "We handle hotel reservations and plan your entire journey in advance, including all stops." }, // <-- UPDATED
       ],
       blogHighlightsTitle: "From Our Morocco Journal",
       blogHighlightsSubtitle: "Travel tips, local secrets, and adventure stories from our guides.",
-      socialProofTitle: "Our Partners & Recognitions",
+      socialProofTitle: "Officially Recognized & Trusted", // (This is the title we chose)
       testimonialsTitle: "Hear From Our Travelers",
       testimonialsSubtitle: "What our guests say about their Moroccan adventure with us.",
       newsletterTitle: "Get Your Morocco Travel Tips",
       newsletterSubtitle: "Join our newsletter for exclusive offers, travel inspiration, and local insights."
     },
-    luxuryHomepageSlides: [
+   luxuryHomepageSlides: [
       {
         image: '/images/slides/marrago-transfer-van.webp',
-        title: 'Reliable Airport Transfers',
-        subtitle: 'Start your trip stress-free. Punctual, professional drivers waiting for you at Marrakech, Agadir, and more.',
+        title: 'Professional Transport', // <-- UPDATED
+        subtitle: 'Comfortable, air-conditioned transportation with professional and reliable drivers at your service.', // <-- UPDATED
         buttonText: 'Book a Transfer',
         link: '/experiences#transfers',
       },
       {
-        image: '/images/slides/marrago-atlas-4x4.webp',
-        title: 'Full Moroccan Circuits', // <-- UPDATED
-        subtitle: 'Let us plan your complete journey from south to north, including all transport, hotels, and guides.', // <-- UPDATED
-        buttonText: 'Plan Your Itinerary', // <-- UPDATED
+        image: '/images/slides/marrago-atlas-4x4.webp', // (This is the van in the desert/mountain)
+        title: 'Detailed Travel Itineraries', // <-- UPDATED
+        subtitle: 'We plan your complete journey from south to north in advance, including all stops, hotels, and guides.', // <-- UPDATED
+        buttonText: 'Plan Your Itinerary',
         link: '/experiences#excursions',
       },
       {
         image: '/images/slides/marrago-guide-medina.webp',
-        title: 'Expert Historical Guides', // <-- UPDATED
-        subtitle: 'Explore the rich history of Fes, Marrakech, and more with a professional guide providing all the necessary information.', // <-- UPDATED
-        buttonText: 'Meet Our Guides', // <-- UPDATED
+        title: 'Expert Local Guides', // <-- KEPT
+        subtitle: 'Explore Morocco\'s rich history with a professional guide in each city to provide all the necessary information.', // <-- UPDATED
+        buttonText: 'Meet Our Guides',
         link: '/experiences#guides',
       },
     ],
     aboutPage: {
-      title: "About MarraGo: Your Complete Moroccan Itinerary Planners", // <-- UPDATED
-      subtitle: "Seamless travel, from south to north.", // <-- UPDATED
-      paragraph1: "MarraGo was born from a passion to show travelers the *real* magic of Morocco, from south to north. We are a full-service agency that believes you shouldn't have to worry about logistics. We are here to be your single point of contact for your entire journey.", // <-- UPDATED
-      paragraph2: "Our process is simple: we work with you to prepare a detailed travel itinerary in advance. We handle all your hotel reservations, arrange comfortable, air-conditioned transportation with reliable drivers, and provide professional tour guides in each city to help you explore Morocco's rich history. Your only job is to enjoy the journey.", // <-- UPDATED (Uses his exact words)
+      title: "About MarraGo: Your Complete Moroccan Itinerary Planners",
+      subtitle: "Discover the magic of Morocco, from south to north.", // <-- UPDATED
+      paragraph1: "MarraGo was born from a passion to offer travelers an enjoyable journey to discover the *real* magic of Morocco. We are a full-service agency, and we are here to be your single point of contact for your entire trip, from south to north.", // <-- UPDATED
+      paragraph2: "Our process is simple: we work with you to prepare a detailed travel itinerary in advance, including all the places you will visit. We handle all your hotel reservations, provide comfortable, air-conditioned transportation, and accompany you with a professional tour guide in each city to explore the region’s rich history. Your only job is to enjoy the journey.", // <-- UPDATED (Uses his exact words)
       valuesTitle: "Our Travel Promise",
       valuesSubtitle: "What you can expect from every booking.",
       values: [
-        { title: "Comfort & Safety", description: "Comfortable, air-conditioned vehicles and professional, reliable drivers." }, // <-- UPDATED
-        { title: "Historical Expertise", description: "Certified local guides who share the rich history and culture of each city." }, // <-- UPDATED
-        { title: "Seamless Planning", description: "One detailed itinerary in advance. We handle all logistics, hotels, and transport." }, // <-- UPDATED
+        { title: "Comfort & Safety", description: "Comfortable, air-conditioned vehicles and professional, reliable drivers." }, // (Matches new description)
+        { title: "Historical Expertise", description: "Certified local guides who share the rich history and culture of each city." }, // (Matches new description)
+        { title: "Seamless Planning", description: "We plan your detailed itinerary and handle all logistics, hotels, and transport." }, // (Matches new description)
       ],
       teamTitle: "Meet Your Guides & Drivers",
       teamSubtitle: "The professional, local team making your trip happen.",
       teamMembers: [
         { image: "/images/mock/driver-male.webp", name: "Hassan", title: "Lead Driver & Transport Manager", bio: "With 15+ years of experience, Hassan ensures every airport transfer and city-to-city trip is safe, comfortable, and punctual." },
         { image: "/images/mock/guide-female.webp", name: "Fatima", title: "Certified Guide - Marrakech", bio: "Fatima is a licensed guide who speaks 4 languages and loves sharing the hidden history and food of the Marrakech medina." },
-        { image: "/images/mock/ops-manager-male.webp", name: "Omar (Your Brother)", title: "Founder & Itinerary Planner", bio: "Omar manages all logistics, from your detailed itinerary to hotel bookings, ensuring every part of your trip connects perfectly." }, // <-- UPDATED
+        { image: "/images/mock/ops-manager-male.webp", name: "Omar (Your Brother)", title: "Founder & Itinerary Planner", bio: "Omar manages all logistics, from your detailed itinerary to hotel bookings, ensuring every part of your trip connects perfectly." },
       ],
       ctaTitle: "Ready for Your Moroccan Adventure?",
-      ctaButtonText: "Plan Your Trip Now", // <-- UPDATED
+      ctaButtonText: "Plan Your Trip Now",
     },
     contactPage: {
       title: "Contact MarraGo",
       infoTitle: "Get in Touch With Our Team",
-      infoSubtitle: "For custom itineraries, full circuits, or any questions, our team is ready to build your perfect Moroccan trip.", // <-- UPDATED
+      infoSubtitle: "For custom itineraries, full circuits, or any questions, our team is ready to build your perfect Moroccan trip.",
     },
     experiencesPage: { 
-      title: "Our Services: Full Itineraries, Transport & Guides", // <-- UPDATED
+      title: "Our Services: Full Itineraries, Transport & Guides",
       subtitle: "Explore all the ways we can make your Moroccan travel seamless and authentic.",
     },
     blogPage: {
@@ -85,164 +85,243 @@ const clientTextContent: SiteClientTextContent = {
       subtitle: "Tips, insights, and stories from our drivers and guides to help you discover the real Morocco.",
     },
   },
-  "fr": { // French content for MarraGo
-    "homepage": {
-      "heroTitle": "MarraGo",
-      heroSubtitle: "Découvrez la magie du Maroc du sud au nord. Nous créons votre itinéraire détaillé, gérant transport, guides et hôtels pour un voyage sans faille.", // <-- UPDATED
-      heroCtaButtonText: "Commencez Votre Voyage", // <-- UPDATED
-      featuredExperiencesTitle: "Nos Services Tout-en-Un", // <-- UPDATED
-      whyChooseUsTitle: "Pourquoi Voyager Avec MarraGo ?",
-      whyChooseUsFeatures: [
-        { title: "Transport Professionnel", description: "Véhicules confortables et climatisés avec des chauffeurs professionnels et fiables à votre service 24/7." }, // <-- UPDATED
-        { title: "Guides Locaux Experts", description: "Découvrez la riche histoire du Maroc avec un guide professionnel et certifié dans chaque ville." }, // <-- UPDATED
-        { title: "Itinéraires Détaillés", description: "Nous planifions votre voyage complet du sud au nord à l'avance, incluant hôtels, arrêts et toute la logistique." }, // <-- UPDATED
-      ],
-      blogHighlightsTitle: "De Notre Journal Marocain",
-      blogHighlightsSubtitle: "Conseils de voyage, secrets locaux et récits d'aventure de nos guides.",
-      socialProofTitle: "Nos Partenaires & Reconnaissances",
-      testimonialsTitle: "Nos Voyageurs Prennent la Parole",
-      testimonialsSubtitle: "Ce que nos clients disent de leur aventure marocaine avec nous.",
-      newsletterTitle: "Recevez nos Astuces de Voyage",
-      newsletterSubtitle: "Inscrivez-vous pour des offres exclusives, de l'inspiration et des bons plans locaux."
-    },
-    "luxuryHomepageSlides": [
-      {
-        image: "/images/slides/marrago-transfer-van.webp",
-        title: "Transferts Aéroport Fiables",
-        subtitle: "Commencez votre voyage sans stress. Chauffeurs ponctuels et professionnels vous attendent à Marrakech, Agadir, et plus encore.",
-        buttonText: "Réserver un Transfert",
-        link: "/services/transfers"
-      },
-      {
-        image: "/images/slides/marrago-atlas-4x4.webp",
-        title: "Circuits Marocains Complets", // <-- UPDATED
-        subtitle: "Laissez-nous planifier votre voyage complet du sud au nord, incluant transport, hôtels et guides.", // <-- UPDATED
-        buttonText: "Planifiez Votre Itinéraire", // <-- UPDATED
-        link: "/services/excursions"
-      },
-      {
-        image: "/images/slides/marrago-guide-medina.webp",
-        title: "Guides Historiques Experts", // <-- UPDATED
-        subtitle: "Explorez la riche histoire de Fès, Marrakech et plus encore avec un guide professionnel vous donnant toutes les informations.", // <-- UPDATED
-        buttonText: "Rencontrez Nos Guides", // <-- UPDATED
-        link: "/services/guides"
-      }
+  fr: { // Contenu français pour MarraGo
+  homepage: {
+    heroTitle: "MarraGo",
+    heroSubtitle: "Découvrez la magie du Maroc du sud au nord. Nous préparons votre itinéraire détaillé à l'avance, gérant l'ensemble du transport, des hôtels et des guides pour un voyage agréable.",
+    heroCtaButtonText: "Commencez Votre Voyage",
+    featuredExperiencesTitle: "Nos Services Tout Compris",
+    whyChooseUsTitle: "Pourquoi Voyager Avec MarraGo ?",
+    whyChooseUsFeatures: [
+      { title: "Transport Professionnel", description: "Transport confortable et climatisé avec des chauffeurs professionnels et fiables à votre service." },
+      { title: "Guides Locaux Experts", description: "Un guide professionnel dans chaque ville pour vous aider à explorer la riche histoire de la région." },
+      { title: "Itinéraires Détaillés", description: "Nous gérons les réservations d'hôtel et planifions tout votre voyage à l'avance, y compris toutes les étapes." },
     ],
-    "aboutPage": {
-      title: "À Propos de MarraGo : Vos Planificateurs d'Itinéraires Complets au Maroc", // <-- UPDATED
-      subtitle: "Voyagez sans faille, du sud au nord.", // <-- UPDATED
-      paragraph1: "MarraGo est née de la passion de montrer aux voyageurs la *vraie* magie du Maroc, du sud au nord. Nous sommes une agence complète qui croit que vous ne devriez pas vous soucier de la logistique. Nous sommes votre unique point de contact pour tout votre voyage.", // <-- UPDATED
-      paragraph2: "Notre processus est simple : nous préparons avec vous un itinéraire de voyage détaillé à l'avance. Nous gérons toutes vos réservations d'hôtel, organisons un transport confortable et climatisé avec des chauffeurs fiables, et fournissons des guides touristiques professionnels dans chaque ville pour vous aider à explorer la riche histoire du Maroc. Votre seul travail est de profiter du voyage.", // <-- UPDATED (Uses his exact words)
-      valuesTitle: "Notre Promesse de Voyage",
-      valuesSubtitle: "Ce que vous pouvez attendre de chaque réservation.",
-      values: [
-        { title: "Confort & Sécurité", description: "Véhicules confortables, climatisés et chauffeurs professionnels et fiables." }, // <-- UPDATED
-        { title: "Expertise Historique", description: "Guides locaux certifiés qui partagent la riche histoire et culture de chaque ville." }, // <-- UPDATED
-        { title: "Planification Sans Faille", description: "Un itinéraire détaillé à l'avance. Nous gérons logistique, hôtels et transport." }, // <-- UPDATED
-      ],
-      teamTitle: "Rencontrez Nos Guides & Chauffeurs",
-      teamSubtitle: "L'équipe locale et professionnelle qui donne vie à votre voyage.",
-      teamMembers: [
-        { image: "/images/mock/driver-male.webp", name: "Hassan", title: "Chauffeur Principal & Resp. Transport", bio: "Avec plus de 15 ans d'expérience, Hassan veille à ce que chaque transfert aéroport et trajet inter-villes soit sûr, confortable et ponctuel." },
-        { image: "/images/mock/guide-female.webp", name: "Fatima", title: "Guide Certifiée - Marrakech", bio: "Fatima est une guide agréée qui parle 4 langues et adore partager l'histoire cachée et la gastronomie de la médina de Marrakech." },
-        { image: "/images/mock/ops-manager-male.webp", name: "Omar", title: "Fondateur & Planificateur d'Itinéraires", bio: "Omar gère toute la logistique, de votre itinéraire détaillé aux réservations d'hôtels, s'assurant que chaque partie de votre voyage se connecte parfaitement." }, // <-- UPDATED
-      ],
-      ctaTitle: "Prêt pour Votre Aventure Marocaine ?",
-      ctaButtonText: "Planifiez Votre Voyage" // <-- UPDATED
-    },
-    "contactPage": {
-      title: "Contacter MarraGo",
-      infoTitle: "Contactez Notre Équipe",
-      infoSubtitle: "Pour des itinéraires sur mesure, des circuits complets ou toute question, notre équipe est prête à construire votre voyage parfait au Maroc.", // <-- UPDATED
-    },
-    "experiencesPage": {
-      title: "Nos Services : Itinéraires Complets, Transport & Guides", // <-- UPDATED
-      subtitle: "Découvrez comment nous pouvons rendre votre voyage au Maroc fluide et authentique."
-    },
-    "blogPage": {
-      title: "Journal de Voyage MarraGo",
-      subtitle: "Astuces, perspectives et récits de nos chauffeurs et guides pour vous aider à découvrir le vrai Maroc."
-    }
+    blogHighlightsTitle: "De Notre Journal du Maroc",
+    blogHighlightsSubtitle: "Conseils de voyage, secrets locaux et récits d'aventure de nos guides.",
+    socialProofTitle: "Officiellement Reconnus & Dignes de Confiance",
+    testimonialsTitle: "L'avis de Nos Voyageurs",
+    testimonialsSubtitle: "Ce que nos clients disent de leur aventure marocaine avec nous.",
+    newsletterTitle: "Recevez Nos Conseils de Voyage au Maroc",
+    newsletterSubtitle: "Inscrivez-vous à notre newsletter pour des offres exclusives, de l'inspiration de voyage et des perspectives locales."
   },
-  "ar": { // Arabic content for MarraGo
-    "homepage": {
-      "heroTitle": "MarraGo (مراڭو)",
-      heroSubtitle: "اكتشف سحر المغرب من جنوبه لشماله. كنصاوبو ليك برنامج مفصل، كنتكلفو بالنقل، المرشدين، والفنادق باش تكون رحلة واعرة وبلا صداع.", // <-- UPDATED
-      heroCtaButtonText: "بدا الرحلة ديالك", // <-- UPDATED
-      featuredExperiencesTitle: "خدماتنا المتكاملة", // <-- UPDATED
-      whyChooseUsTitle: "علاش تسافر مع MarraGo؟",
-      whyChooseUsFeatures: [
-        { title: "نقل احترافي", description: "سيارات مريحة ومكيفة مع سائقين محترفين وموثوقين في خدمتكم 24/7." }, // <-- UPDATED
-        { title: "مرشدين محليين خبراء", description: "اكتشف تاريخ المغرب الغني مع مرشد سياحي محترف ومعتمد في كل مدينة كتزورها." }, // <-- UPDATED
-        { title: "برامج مفصلة", description: "كنخططو لرحلتك كاملة من الجنوب للشمال مسبقًا، شاملة الفنادق، المحطات، واللوجستيك كامل." }, // <-- UPDATED
-      ],
-      blogHighlightsTitle: "من دفترنا المغربي",
-      blogHighlightsSubtitle: "نصائح للسفر، أسرار محلية، وقصص مغامرات من عند المرشدين ديالنا.",
-      socialProofTitle: "شركاؤنا وشهاداتنا",
-      testimonialsTitle: "آراء المسافرين معنا",
-      testimonialsSubtitle: "شنو قالو ضيوفنا على مغامرتهم المغربية معانا.",
-      newsletterTitle: "توصل بنصائح السفر للمغرب",
-      newsletterSubtitle: "تسجل معانا باش توصل بعروض حصرية، وإلهام السفر، وأفكار محلية."
+  luxuryHomepageSlides: [
+    {
+      image: '/images/slides/marrago-transfer-van.webp',
+      title: 'Transport Professionnel',
+      subtitle: 'Transport confortable et climatisé avec des chauffeurs professionnels et fiables à votre service.',
+      buttonText: 'Réserver un Transfert',
+      link: '/experiences#transfers',
     },
-    "luxuryHomepageSlides": [
-      {
-        image: "/images/slides/marrago-transfer-van.webp",
-        title: "تحويلات مطار موثوقة",
-        subtitle: "بدا الرحلة ديالك بلا ستريس. سائقون محترفون في الموعد، كينتظروك في مطار مراكش، أگادير، وغيرها.",
-        buttonText: "احجز نوبتك",
-        link: "/services/transfers"
-      },
-      {
-        image: "/images/slides/marrago-atlas-4x4.webp",
-        title: "دورات (Circuits) مغربية كاملة", // <-- UPDATED
-        subtitle: "خلينا نخططو لرحلتك كاملة من الجنوب للشمال، شاملة النقل، الفنادق، والمرشدين.", // <-- UPDATED
-        buttonText: "خطط لرحلتك", // <-- UPDATED
-        link: "/services/excursions"
-      },
-      {
-        image: "/images/slides/marrago-guide-medina.webp",
-        title: "مرشدون تاريخيون خبراء", // <-- UPDATED
-        subtitle: "اكتشف التاريخ الغني ديال فاس، مراكش، وأكثر مع مرشد محترف كيعطيك كاع المعلومات اللازمة.", // <-- UPDATED
-        buttonText: "تلاقى بالمرشدين", // <-- UPDATED
-        link: "/services/guides"
-      }
+    {
+      image: '/images/slides/marrago-atlas-4x4.webp',
+      title: 'Itinéraires de Voyage Détaillés',
+      subtitle: 'Nous planifions votre voyage complet du sud au nord à l\'avance, incluant toutes les étapes, hôtels et guides.',
+      buttonText: 'Planifiez Votre Itinéraire',
+      link: '/experiences#excursions',
+    },
+    {
+      image: '/images/slides/marrago-guide-medina.webp',
+      title: 'Guides Locaux Experts',
+      subtitle: "Explorez la riche histoire du Maroc avec un guide professionnel dans chaque ville pour fournir toutes les informations nécessaires.",
+      buttonText: 'Rencontrez Nos Guides',
+      link: '/experiences#guides',
+    },
+  ],
+  aboutPage: {
+    title: "À Propos de MarraGo : Vos Planificateurs d'Itinéraires Marocains Complets",
+    subtitle: "Découvrez la magie du Maroc, du sud au nord.",
+    paragraph1: "MarraGo est née d'une passion : offrir aux voyageurs un agréable périple à la découverte de la *vraie* magie du Maroc. Nous sommes une agence de services complets, et nous sommes là pour être votre point de contact unique pour tout votre voyage, du sud au nord.",
+    paragraph2: "Notre processus est simple : nous travaillons avec vous pour préparer un itinéraire de voyage détaillé à l'avance, incluant tous les lieux que vous visiterez. Nous gérons toutes vos réservations d'hôtel, fournissons un transport confortable et climatisé, et vous accompagnons avec un guide touristique professionnel dans chaque ville pour explorer la riche histoire de la région. Votre seule tâche est de profiter du voyage.",
+    valuesTitle: "Notre Promesse de Voyage",
+    valuesSubtitle: "Ce à quoi vous pouvez vous attendre avec chaque réservation.",
+    values: [
+      { title: "Confort & Sécurité", description: "Véhicules confortables, climatisés et chauffeurs professionnels et fiables." },
+      { title: "Expertise Historique", description: "Guides locaux certifiés qui partagent la riche histoire et la culture de chaque ville." },
+      { title: "Planification Fluide", description: "Nous planifions votre itinéraire détaillé et gérons toute la logistique, les hôtels et le transport." },
     ],
-    "aboutPage": {
-      title: "عن MarraGo: المخططون لرحلتك الكاملة في المغرب", // <-- UPDATED
-      subtitle: "سفر بلا مشاكل، من الجنوب للشمال.", // <-- UPDATED
-      paragraph1: "MarraGo تولدات من شغف باش نوريكم السحر الحقيقي ديال المغرب، من جنوبه لشماله. حنا وكالة كاملة كتآمن بأنك ما خاصكش تهز هم اللوجستيك. حنا هنا باش نكونو نقطة الاتصال الوحيدة ديالك لرحلتك كاملة.", // <-- UPDATED
-      paragraph2: "العملية ديالنا ساهلة: كنخدمو معاك باش نوجدو برنامج سفر مفصل مسبقًا. كنتكلفو بجميع حجوزات الفنادق ديالك، كنوفرو نقل مريح ومكيف مع سائقين موثوقين، وكنوفرو مرشدين سياحيين محترفين في كل مدينة باش نعاونوك تستكشف تاريخ المغرب الغني. خدمتك الوحيدة هي تستمتع بالرحلة.", // <-- UPDATED (Uses his exact words)
-      valuesTitle: "وعدنا لك في السفر",
-      valuesSubtitle: "شنو تقدر تتوقع مع كل حجز.",
-      values: [
-        { title: "الراحة والأمان", description: "سيارات مريحة ومكيفة وسائقين محترفين وموثوقين." }, // <-- UPDATED
-        { title: "الخبرة فالتاريخ", description: "مرشدين محليين معتمدين كيشاركو معاك تاريخ وثقافة كل مدينة." }, // <-- UPDATED
-        { title: "تخطيط ساهل ماهل", description: "برنامج واحد مفصل مسبقًا. كنتكلفو باللوجستيك، الفنادق، والنقل." }, // <-- UPDATED
-      ],
-      teamTitle: "تعرف على المرشدين والسائقين ديالك",
-      teamSubtitle: "الفريق المحلي والمحترف اللي كيخلي رحلتك دوز مزيان.",
-      teamMembers: [
-        { image: "/images/mock/driver-male.webp", name: "حسن", title: "سائق رئيسي ومسؤول النقل", bio: "بأكثر من 15 عامًا من الخبرة، كيضمن حسن أن كل تنقل من المطار أو بين المدن يكون آمن، مريح، وفي الوقت." },
-        { image: "/images/mock/guide-female.webp", name: "فاطمة", title: "مرشدة معتمدة - مراكش", bio: "فاطمة مرشدة مرخصة كتهضر 4 لغات وكتبغي تشارك التاريخ الخفي والماكلة ديال مدينة مراكش القديمة." },
-        { image: "/images/mock/ops-manager-male.webp", name: "عمر", title: "مؤسس ومخطط الرحلات", bio: "عمر كيدير جميع اللوجستيات، من برنامجك المفصل حتى لحجوزات الفنادق، وكيضمن أن كل جزء من رحلتك يكون متناسق." }, // <-- UPDATED
-      ],
-      ctaTitle: "واجد لمغامرتك المغربية؟",
-      ctaButtonText: "خطط لرحلتك دابا" // <-- UPDATED
+    teamTitle: "Rencontrez Vos Guides & Chauffeurs",
+    teamSubtitle: "L'équipe locale et professionnelle qui concrétise votre voyage.",
+    teamMembers: [
+      { image: "/images/mock/driver-male.webp", name: "Hassan", title: "Chauffeur Principal & Responsable Transport", bio: "Avec plus de 15 ans d'expérience, Hassan veille à ce que chaque transfert d'aéroport et trajet interurbain soit sûr, confortable et ponctuel." },
+      { image: "/images/mock/guide-female.webp", name: "Fatima", title: "Guide Certifiée - Marrakech", bio: "Fatima est une guide agréée qui parle 4 langues et adore partager l'histoire cachée et la gastronomie de la médina de Marrakech." },
+      { image: "/images/mock/ops-manager-male.webp", name: "Omar (Votre Frère)", title: "Fondateur & Planificateur d'Itinéraires", bio: "Omar gère toute la logistique, de votre itinéraire détaillé aux réservations d'hôtel, s'assurant que chaque partie de votre voyage se connecte parfaitement." },
+    ],
+    ctaTitle: "Prêt pour Votre Aventure Marocaine ?",
+    ctaButtonText: "Planifiez Votre Voyage Maintenant",
+  },
+  contactPage: {
+    title: "Contacter MarraGo",
+    infoTitle: "Prenez Contact Avec Notre Équipe",
+    infoSubtitle: "Pour des itinéraires personnalisés, des circuits complets ou toute question, notre équipe est prête à construire votre voyage marocain parfait.",
+  },
+  experiencesPage: {
+    title: "Nos Services : Itinéraires Complets, Transport & Guides",
+    subtitle: "Explorez toutes les façons dont nous pouvons rendre votre voyage au Maroc fluide et authentique.",
+  },
+  blogPage: {
+    title: "Journal de Voyage MarraGo",
+    subtitle: "Conseils, astuces et récits de nos chauffeurs et guides pour vous aider à découvrir le vrai Maroc.",
+  },
+},
+  ar: { // المحتوى العربي لـ MarraGo
+  homepage: {
+    heroTitle: "MarraGo",
+    heroSubtitle: "اكتشف سحر المغرب من جنوبه إلى شماله. نحن نُعد خط سير رحلتك المفصل مسبقًا، ونتكفل بجميع وسائل النقل والفنادق والمرشدين للاستمتاع برحلة ممتعة.",
+    heroCtaButtonText: "ابدأ رحلتك",
+    featuredExperiencesTitle: "خدماتنا المتكاملة",
+    whyChooseUsTitle: "لماذا تسافر مع MarraGo؟",
+    whyChooseUsFeatures: [
+      { title: "نقل احترافي", description: "نقل مريح ومكيف مع سائقين محترفين وموثوق بهم في خدمتك." },
+      { title: "مرشدون محليون خبراء", description: "مرشد محترف في كل مدينة لمساعدتك على استكشاف تاريخ المنطقة الغني." },
+      { title: "برامج رحلات مفصلة", description: "نتكفل بحجوزات الفنادق ونخطط لرحلتك بأكملها مسبقًا، بما في ذلك جميع المحطات." },
+    ],
+    blogHighlightsTitle: "من يومياتنا في المغرب",
+    blogHighlightsSubtitle: "نصائح للسفر، أسرار محلية، وقصص مغامرات من مرشدينا.",
+    socialProofTitle: "معترف بنا رسميًا وموثوق بنا",
+    testimonialsTitle: "آراء مسافرينا",
+    testimonialsSubtitle: "ما يقوله ضيوفنا عن مغامرتهم المغربية معنا.",
+    newsletterTitle: "احصل على نصائح السفر إلى المغرب",
+    newsletterSubtitle: "انضم إلى نشرتنا البريدية للحصول على عروض حصرية، وإلهام للسفر، ورؤى محلية."
+  },
+  luxuryHomepageSlides: [
+    {
+      image: '/images/slides/marrago-transfer-van.webp',
+      title: 'نقل احترافي',
+      subtitle: 'نقل مريح ومكيف مع سائقين محترفين وموثوق بهم في خدمتك.',
+      buttonText: 'احجز خدمة نقل',
+      link: '/experiences#transfers',
     },
-    "contactPage": {
-      title: "تواصل مع MarraGo",
-      infoTitle: "تواصل مع فريقنا",
-      infoSubtitle: "لبرامج خاصة، دورات كاملة، أو أي أسئلة، الفريق ديالنا واجد يبني معاك رحلتك المثالية للمغرب.", // <-- UPDATED
+    {
+      image: '/images/slides/marrago-atlas-4x4.webp',
+      title: 'برامج رحلات مفصلة',
+      subtitle: 'نخطط لرحلتك الكاملة من الجنوب إلى الشمال مسبقًا، بما في ذلك جميع المحطات والفنادق والمرشدين.',
+      buttonText: 'خطط لرحلتك',
+      link: '/experiences#excursions',
     },
-    "experiencesPage": {
-      title: "خدماتنا: برامج كاملة، نقل ومرشدين", // <-- UPDATED
-      subtitle: "اكتشف جميع الطرق اللي نقدروا بيها نجعل سفرك للمغرب سلس وأصيل."
+    {
+      image: '/images/slides/marrago-guide-medina.webp',
+      title: 'مرشدون محليون خبراء',
+      subtitle: 'استكشف تاريخ المغرب الغني مع مرشد محترف في كل مدينة لتقديم جميع المعلومات اللازمة.',
+      buttonText: 'تعرف على مرشدينا',
+      link: '/experiences#guides',
     },
-    "blogPage": {
-      title: "دفتر سفر MarraGo",
-      subtitle: "نصائح، أفكار، وقصص من السائقين والمرشدين ديالنا باش تعيش المغرب الحقيقي."
-    }
-  }
+  ],
+  aboutPage: {
+    title: "عن MarraGo: مخططو برامج رحلاتكم المتكاملة في المغرب",
+    subtitle: "اكتشف سحر المغرب، من جنوبه إلى شماله.",
+    paragraph1: "وُلِدت MarraGo من شغف لتقديم رحلة ممتعة للمسافرين لاكتشاف سحر المغرب *الحقيقي*. نحن وكالة خدمات متكاملة، وموجودون لنكون نقطة اتصالك الوحيدة لرحلتك بأكملها، من الجنوب إلى الشمال.",
+    paragraph2: "عمليتنا بسيطة: نعمل معكم لإعداد برنامج رحلة مفصل مسبقًا، يشمل جميع الأماكن التي ستزورونها. نتكفل بجميع حجوزات الفنادق، ونوفر نقلاً مريحًا ومكيفًا، ونرافقكم بمرشد سياحي محترف في كل مدينة لاستكشاف تاريخ المنطقة الغني. مهمتكم الوحيدة هي الاستمتاع بالرحلة.",
+    valuesTitle: "وعدنا لكم",
+    valuesSubtitle: "ما يمكن أن تتوقعه مع كل حجز.",
+    values: [
+      { title: "الراحة والأمان", description: "مركبات مريحة ومكيفة وسائقون محترفون وموثوق بهم." },
+      { title: "خبرة تاريخية", description: "مرشدون محليون معتمدون يشاركونكم التاريخ الغني وثقافة كل مدينة." },
+      { title: "تخطيط سلس", description: "نخطط لبرنامج رحلتك المفصل ونتولى جميع الخدمات اللوجستية والفنادق والنقل." },
+    ],
+    teamTitle: "تعرف على مرشدينا وسائقينا",
+    teamSubtitle: "الفريق المحلي المحترف الذي يجعل رحلتك ممكنة.",
+    teamMembers: [
+      { image: "/images/mock/driver-male.webp", name: "حسن", title: "سائق رئيسي ومدير النقل", bio: "بأكثر من 15 عامًا من الخبرة، يضمن حسن أن كل عملية نقل من المطار ورحلة بين المدن آمنة ومريحة ودقيقة في مواعيدها." },
+      { image: "/images/mock/guide-female.webp", name: "فاطمة", title: "مرشدة معتمدة - مراكش", bio: "فاطمة مرشدة مرخصة تتحدث 4 لغات وتحب مشاركة التاريخ الخفي والطعام في مدينة مراكش القديمة." },
+      { image: "/images/mock/ops-manager-male.webp", name: "عمر (أخوك)", title: "المؤسس ومخطط الرحلات", bio: "يدير عمر جميع الخدمات اللوجستية، بدءًا من برنامج رحلتك المفصل وحتى حجوزات الفنادق، مما يضمن ترابط كل جزء من رحلتك بشكل مثالي." },
+    ],
+    ctaTitle: "هل أنت مستعد لمغامرتك المغربية؟",
+    ctaButtonText: "خطط لرحلتك الآن",
+  },
+  contactPage: {
+    title: "اتصل بـ MarraGo",
+    infoTitle: "تواصل مع فريقنا",
+    infoSubtitle: "للحصول على برامج رحلات مخصصة، أو جولات كاملة، أو لأي أسئلة، فريقنا مستعد لبناء رحلتك المغربية المثالية.",
+  },
+  experiencesPage: {
+    title: "خدماتنا: برامج رحلات كاملة، نقل، ومرشدون",
+    subtitle: "استكشف كل الطرق التي يمكننا من خلالها جعل سفرك إلى المغرب سلسًا وأصيلاً.",
+  },
+  blogPage: {
+    title: "يوميات السفر من MarraGo",
+    subtitle: "نصائح ورؤى وقصص من سائقينا ومرشدينا لمساعدتك على اكتشاف المغرب الحقيقي.",
+  },
+},
+ es: { // Contenido en español para MarraGo
+  homepage: {
+    heroTitle: "MarraGo",
+    heroSubtitle: "Descubre la magia de Marruecos de sur a norte. Preparamos tu itinerario detallado con antelación, gestionando todo el transporte, hoteles y guías para un viaje placentero.",
+    heroCtaButtonText: "Comienza Tu Viaje",
+    featuredExperiencesTitle: "Nuestros Servicios Todo Incluido",
+    whyChooseUsTitle: "¿Por Qué Viajar Con MarraGo?",
+    whyChooseUsFeatures: [
+      { title: "Transporte Profesional", description: "Transporte cómodo, con aire acondicionado y conductores profesionales y fiables a tu servicio." },
+      { title: "Guías Locales Expertos", description: "Un guía profesional en cada ciudad para ayudarte a explorar la rica historia de la región." },
+      { title: "Itinerarios Detallados", description: "Gestionamos las reservas de hotel y planificamos todo tu viaje con antelación, incluidas todas las paradas." },
+    ],
+    blogHighlightsTitle: "De Nuestro Diario de Marruecos",
+    blogHighlightsSubtitle: "Consejos de viaje, secretos locales e historias de aventuras de nuestros guías.",
+    socialProofTitle: "Oficialmente Reconocidos y de Confianza",
+    testimonialsTitle: "Escucha a Nuestros Viajeros",
+    testimonialsSubtitle: "Lo que nuestros huéspedes dicen sobre su aventura marroquí con nosotros.",
+    newsletterTitle: "Obtén Tus Consejos de Viaje para Marruecos",
+    newsletterSubtitle: "Únete a nuestro boletín para ofertas exclusivas, inspiración de viaje y perspectivas locales."
+  },
+  luxuryHomepageSlides: [
+    {
+      image: '/images/slides/marrago-transfer-van.webp',
+      title: 'Transporte Profesional',
+      subtitle: 'Transporte cómodo, con aire acondicionado y conductores profesionales y fiables a tu servicio.',
+      buttonText: 'Reservar un Traslado',
+      link: '/experiences#transfers',
+    },
+    {
+      image: '/images/slides/marrago-atlas-4x4.webp',
+      title: 'Itinerarios de Viaje Detallados',
+      subtitle: 'Planificamos tu viaje completo de sur a norte con antelación, incluyendo todas las paradas, hoteles y guías.',
+      buttonText: 'Planifica Tu Itinerario',
+      link: '/experiences#excursions',
+    },
+    {
+      image: '/images/slides/marrago-guide-medina.webp',
+      title: 'Guías Locales Expertos',
+      subtitle: 'Explora la rica historia de Marruecos con un guía profesional en cada ciudad para proporcionar toda la información necesaria.',
+      buttonText: 'Conoce a Nuestros Guías',
+      link: '/experiences#guides',
+    },
+  ],
+  aboutPage: {
+    title: "Sobre MarraGo: Tus Planificadores de Itinerarios Marroquíes Completos",
+    subtitle: "Descubre la magia de Marruecos, de sur a norte.",
+    paragraph1: "MarraGo nació de la pasión por ofrecer a los viajeros un viaje placentero para descubrir la *verdadera* magia de Marruecos. Somos una agencia de servicios completos y estamos aquí para ser tu único punto de contacto para todo tu viaje, de sur a norte.",
+    paragraph2: "Nuestro proceso es simple: trabajamos contigo para preparar un itinerario de viaje detallado con antelación, incluyendo todos los lugares que visitarás. Gestionamos todas tus reservas de hotel, proporcionamos transporte cómodo con aire acondicionado y te acompañamos con un guía turístico profesional en cada ciudad para explorar la rica historia de la región. Tu único trabajo es disfrutar del viaje.",
+    valuesTitle: "Nuestra Promesa de Viaje",
+    valuesSubtitle: "Lo que puedes esperar de cada reserva.",
+    values: [
+      { title: "Comodidad y Seguridad", description: "Vehículos cómodos, con aire acondicionado y conductores profesionales y fiables." },
+      { title: "Experiencia Histórica", description: "Guías locales certificados que comparten la rica historia y cultura de cada ciudad." },
+      { title: "Planificación Fluida", description: "Planificamos tu itinerario detallado y gestionamos toda la logística, hoteles y transporte." },
+    ],
+    teamTitle: "Conoce a Tus Guías y Conductores",
+    teamSubtitle: "El equipo local y profesional que hace posible tu viaje.",
+    teamMembers: [
+      { image: "/images/mock/driver-male.webp", name: "Hassan", title: "Conductor Principal y Gerente de Transporte", bio: "Con más de 15 años de experiencia, Hassan asegura que cada traslado al aeropuerto y viaje entre ciudades sea seguro, cómodo y puntual." },
+      { image: "/images/mock/guide-female.webp", name: "Fatima", title: "Guía Certificada - Marrakech", bio: "Fatima es una guía licenciada que habla 4 idiomas y le encanta compartir la historia oculta y la gastronomía de la medina de Marrakech." },
+      { image: "/images/mock/ops-manager-male.webp", name: "Omar (Tu Hermano)", title: "Fundador y Planificador de Itinerarios", bio: "Omar gestiona toda la logística, desde tu itinerario detallado hasta las reservas de hotel, asegurando que cada parte de tu viaje se conecte perfectamente." },
+    ],
+    ctaTitle: "¿Listo para Tu Aventura Marroquí?",
+    ctaButtonText: "Planifica Tu Viaje Ahora",
+  },
+  contactPage: {
+    title: "Contactar con MarraGo",
+    infoTitle: "Ponte en Contacto Con Nuestro Equipo",
+    infoSubtitle: "Para itinerarios personalizados, circuitos completos o cualquier pregunta, nuestro equipo está listo para construir tu viaje marroquí perfecto.",
+  },
+  experiencesPage: {
+    title: "Nuestros Servicios: Itinerarios Completos, Transporte y Guías",
+    subtitle: "Explora todas las formas en que podemos hacer que tu viaje a Marruecos sea fluido y auténtico.",
+  },
+  blogPage: {
+    title: "Diario de Viaje MarraGo",
+    subtitle: "Consejos, percepciones e historias de nuestros conductores y guías para ayudarte a descubrir el verdadero Marruecos.",
+  },
+}
 };
 
 // --- MANUAL CLIENT DATA (for Sahara Luxe Expeditions) ---
@@ -267,9 +346,9 @@ const manualClientData : ManualClientData = {
   // (Keeping the contact info you set)
   "email": "marragog@gmail.com", 
   "phone": "+212669761650", 
-  "latitude": 31.6258, 
-  "longitude": -7.9892,
-  "address": "Fictional: 123 Rue de la Liberté, Guéliz, Marrakech, Morocco", 
+  "latitude": 31.60086, 
+  "longitude": -8.0265,
+  "address": "Sixt Aéroport Marrakech-Ménara, Marrakech, Morocco", 
   "whatsappNumber": "+212669761650", 
 
   // --- Social Media Links ---

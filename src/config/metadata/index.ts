@@ -5,14 +5,14 @@ export const FORMAT_DETECTION = {
     telephone: true,
   };
 export const ICONS= {
-    icon: '/icon.ico',
-    shortcut: '/icon.ico',
-    apple: '/icon.ico',
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
     other: {
       rel: 'icon',
-      url: '/icon.ico',
+      url: '/favicon.ico',
     },
-  };  
+  };   
   export const ARCHIVES = [process.env.NEXT_PUBLIC_API_URL, `/policy`] as string[];
 
   export const ASSETS = [`/assets`];
