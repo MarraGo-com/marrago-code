@@ -4,7 +4,7 @@
 import React from 'react';
 import { Grid, Typography, Box, Container, IconButton, Divider, Stack, SxProps, Theme } from '@mui/material';
 import { usePathname, Link } from '@/i18n/navigation';
-import { Locale, useLocale, useTranslations } from 'next-intl';
+import {useLocale, useTranslations } from 'next-intl';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 

@@ -69,10 +69,10 @@ export interface BlogPageContent {
 }
 // AboutUsContent type for metadata in ManualClientData
 
-type AboutUsContent = {
+/* type AboutUsContent = {
   title: string;
   imageUrl: string;
-};
+}; */
 // define GlobalContent type for shared textual content
 type GlobalContent = {
     slogan: string;
