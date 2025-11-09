@@ -20,11 +20,20 @@ const clientTextContent: SiteClientTextContent = {
       ],
       blogHighlightsTitle: "From Our Morocco Journal",
       blogHighlightsSubtitle: "Travel tips, local secrets, and adventure stories from our guides.",
-      socialProofTitle: "Officially Recognized & Trusted", // (This is the title we chose)
+      socialProofTitle: "Our Trusted Partners", // (This is the title we chose)
       testimonialsTitle: "Hear From Our Travelers",
       testimonialsSubtitle: "What our guests say about their Moroccan adventure with us.",
       newsletterTitle: "Get Your Morocco Travel Tips",
       newsletterSubtitle: "Join our newsletter for exclusive offers, travel inspiration, and local insights."
+    },
+   global: {
+      slogan: "Magic of Morocco: Full Itineraries, Transport, Guides & Hotels.",
+      industrySpecifics: "A full-service Moroccan tour operator creating detailed travel itineraries from south to north. We specialize in comfortable, air-conditioned transportation with professional drivers, expert local guides in every city, and curated hotel reservations for a seamless and magical journey.",
+      serviceDescription: "We offer detailed travel itineraries (circuits from south to north), hotel reservations, professional local guides, and comfortable, air-conditioned transportation with reliable drivers.",
+      keywords: "Marrakech airport transfer, Morocco private driver, Morocco tour operator, book hotels Morocco, local guides Marrakech, MarraGo, excursions Morocco, Morocco circuits, detailed travel itinerary Morocco, Morocco south to north",
+      // --- UPDATED with placeholders ---
+      privacyPolicyContent: "{officialName} is committed to protecting your data... [Standard policy covering booking info, contact details, payment info, cookie usage for tours and transfers]. Contact: {email}",
+      termsOfUseContent: "Booking a service with {brandName} constitutes acceptance of these terms... [Standard terms covering transfer details, tour cancellations, booking modifications, liability for transport, payment policies]."
     },
    luxuryHomepageSlides: [
       {
@@ -52,6 +61,8 @@ const clientTextContent: SiteClientTextContent = {
     aboutPage: {
       title: "About MarraGo: Your Complete Moroccan Itinerary Planners",
       subtitle: "Discover the magic of Morocco, from south to north.", // <-- UPDATED
+      summary: "Your local partner for seamless transport, authentic guides, and complete itineraries in Morocco.", // <-- For Footer
+      imageUrl: "/images/marrago/about-us-marrago.webp", // <-- For About Page
       paragraph1: "MarraGo was born from a passion to offer travelers an enjoyable journey to discover the *real* magic of Morocco. We are a full-service agency, and we are here to be your single point of contact for your entire trip, from south to north.", // <-- UPDATED
       paragraph2: "Our process is simple: we work with you to prepare a detailed travel itinerary in advance, including all the places you will visit. We handle all your hotel reservations, provide comfortable, air-conditioned transportation, and accompany you with a professional tour guide in each city to explore the region’s rich history. Your only job is to enjoy the journey.", // <-- UPDATED (Uses his exact words)
       valuesTitle: "Our Travel Promise",
@@ -64,9 +75,9 @@ const clientTextContent: SiteClientTextContent = {
       teamTitle: "Meet Your Guides & Drivers",
       teamSubtitle: "The professional, local team making your trip happen.",
       teamMembers: [
-        { image: "/images/mock/driver-male.webp", name: "Hassan", title: "Lead Driver & Transport Manager", bio: "With 15+ years of experience, Hassan ensures every airport transfer and city-to-city trip is safe, comfortable, and punctual." },
-        { image: "/images/mock/guide-female.webp", name: "Fatima", title: "Certified Guide - Marrakech", bio: "Fatima is a licensed guide who speaks 4 languages and loves sharing the hidden history and food of the Marrakech medina." },
-        { image: "/images/mock/ops-manager-male.webp", name: "Omar (Your Brother)", title: "Founder & Itinerary Planner", bio: "Omar manages all logistics, from your detailed itinerary to hotel bookings, ensuring every part of your trip connects perfectly." },
+        { image: "/images/marrago/driver-male.webp", name: "Hassan", title: "Lead Driver & Transport Manager", bio: "With 15+ years of experience, Hassan ensures every airport transfer and city-to-city trip is safe, comfortable, and punctual." },
+        { image: "/images/marrago/guide-female.webp", name: "Fatima", title: "Certified Guide - Marrakech", bio: "Fatima is a licensed guide who speaks 4 languages and loves sharing the hidden history and food of the Marrakech medina." },
+        { image: "/images/marrago/ops-manager-male.webp", name: "Omar (Your Brother)", title: "Founder & Itinerary Planner", bio: "Omar manages all logistics, from your detailed itinerary to hotel bookings, ensuring every part of your trip connects perfectly." },
       ],
       ctaTitle: "Ready for Your Moroccan Adventure?",
       ctaButtonText: "Plan Your Trip Now",
@@ -99,12 +110,21 @@ const clientTextContent: SiteClientTextContent = {
     ],
     blogHighlightsTitle: "De Notre Journal du Maroc",
     blogHighlightsSubtitle: "Conseils de voyage, secrets locaux et récits d'aventure de nos guides.",
-    socialProofTitle: "Officiellement Reconnus & Dignes de Confiance",
+    socialProofTitle: "Nos Partenaires de Confiance",
     testimonialsTitle: "L'avis de Nos Voyageurs",
     testimonialsSubtitle: "Ce que nos clients disent de leur aventure marocaine avec nous.",
     newsletterTitle: "Recevez Nos Conseils de Voyage au Maroc",
     newsletterSubtitle: "Inscrivez-vous à notre newsletter pour des offres exclusives, de l'inspiration de voyage et des perspectives locales."
   },
+  
+  global: {
+  slogan: "Magie du Maroc : Itinéraires Complets, Transport, Guides & Hôtels.",
+  industrySpecifics: "Un tour-opérateur marocain complet créant des itinéraires de voyage détaillés du sud au nord. Nous sommes spécialisés dans le transport confortable et climatisé avec chauffeurs professionnels, les guides locaux experts dans chaque ville, et les réservations d'hôtels organisées pour un voyage fluide et magique.",
+  serviceDescription: "Nous proposons des itinéraires de voyage détaillés (circuits du sud au nord), des réservations d'hôtel, des guides locaux professionnels, et un transport confortable et climatisé avec des chauffeurs fiables.",
+  keywords: "transfert aéroport Marrakech, chauffeur privé Maroc, tour opérateur Maroc, réserver hôtels Maroc, guides locaux Marrakech, MarraGo, excursions Maroc, circuits Maroc, itinéraire de voyage détaillé Maroc, Maroc du sud au nord",
+  privacyPolicyContent: "{officialName} s'engage à protéger vos données... [Politique standard couvrant les informations de réservation, les coordonnées, les informations de paiement, l'utilisation des cookies pour les circuits et les transferts]. Contact : {email}",
+  termsOfUseContent: "La réservation d'un service auprès de {brandName} vaut acceptation de ces conditions... [Conditions standard couvrant les détails des transferts, les annulations de circuits, les modifications de réservation, la responsabilité du transport, les politiques de paiement]."
+},
   luxuryHomepageSlides: [
     {
       image: '/images/slides/marrago-transfer-van.webp',
@@ -131,6 +151,8 @@ const clientTextContent: SiteClientTextContent = {
   aboutPage: {
     title: "À Propos de MarraGo : Vos Planificateurs d'Itinéraires Marocains Complets",
     subtitle: "Découvrez la magie du Maroc, du sud au nord.",
+    summary: "Votre partenaire local pour un transport fluide, des guides authentiques et des itinéraires complets au Maroc.",
+    imageUrl: "/images/marrago/about-us-marrago.webp",
     paragraph1: "MarraGo est née d'une passion : offrir aux voyageurs un agréable périple à la découverte de la *vraie* magie du Maroc. Nous sommes une agence de services complets, et nous sommes là pour être votre point de contact unique pour tout votre voyage, du sud au nord.",
     paragraph2: "Notre processus est simple : nous travaillons avec vous pour préparer un itinéraire de voyage détaillé à l'avance, incluant tous les lieux que vous visiterez. Nous gérons toutes vos réservations d'hôtel, fournissons un transport confortable et climatisé, et vous accompagnons avec un guide touristique professionnel dans chaque ville pour explorer la riche histoire de la région. Votre seule tâche est de profiter du voyage.",
     valuesTitle: "Notre Promesse de Voyage",
@@ -143,9 +165,9 @@ const clientTextContent: SiteClientTextContent = {
     teamTitle: "Rencontrez Vos Guides & Chauffeurs",
     teamSubtitle: "L'équipe locale et professionnelle qui concrétise votre voyage.",
     teamMembers: [
-      { image: "/images/mock/driver-male.webp", name: "Hassan", title: "Chauffeur Principal & Responsable Transport", bio: "Avec plus de 15 ans d'expérience, Hassan veille à ce que chaque transfert d'aéroport et trajet interurbain soit sûr, confortable et ponctuel." },
-      { image: "/images/mock/guide-female.webp", name: "Fatima", title: "Guide Certifiée - Marrakech", bio: "Fatima est une guide agréée qui parle 4 langues et adore partager l'histoire cachée et la gastronomie de la médina de Marrakech." },
-      { image: "/images/mock/ops-manager-male.webp", name: "Omar (Votre Frère)", title: "Fondateur & Planificateur d'Itinéraires", bio: "Omar gère toute la logistique, de votre itinéraire détaillé aux réservations d'hôtel, s'assurant que chaque partie de votre voyage se connecte parfaitement." },
+      { image: "/images/marrago/driver-male.webp", name: "Hassan", title: "Chauffeur Principal & Responsable Transport", bio: "Avec plus de 15 ans d'expérience, Hassan veille à ce que chaque transfert d'aéroport et trajet interurbain soit sûr, confortable et ponctuel." },
+      { image: "/images/marrago/guide-female.webp", name: "Fatima", title: "Guide Certifiée - Marrakech", bio: "Fatima est une guide agréée qui parle 4 langues et adore partager l'histoire cachée et la gastronomie de la médina de Marrakech." },
+      { image: "/images/marrago/ops-manager-male.webp", name: "Omar (Votre Frère)", title: "Fondateur & Planificateur d'Itinéraires", bio: "Omar gère toute la logistique, de votre itinéraire détaillé aux réservations d'hôtel, s'assurant que chaque partie de votre voyage se connecte parfaitement." },
     ],
     ctaTitle: "Prêt pour Votre Aventure Marocaine ?",
     ctaButtonText: "Planifiez Votre Voyage Maintenant",
@@ -178,12 +200,20 @@ const clientTextContent: SiteClientTextContent = {
     ],
     blogHighlightsTitle: "من يومياتنا في المغرب",
     blogHighlightsSubtitle: "نصائح للسفر، أسرار محلية، وقصص مغامرات من مرشدينا.",
-    socialProofTitle: "معترف بنا رسميًا وموثوق بنا",
+    socialProofTitle: "شركاؤنا الموثوقون",
     testimonialsTitle: "آراء مسافرينا",
     testimonialsSubtitle: "ما يقوله ضيوفنا عن مغامرتهم المغربية معنا.",
     newsletterTitle: "احصل على نصائح السفر إلى المغرب",
     newsletterSubtitle: "انضم إلى نشرتنا البريدية للحصول على عروض حصرية، وإلهام للسفر، ورؤى محلية."
   },
+ global: {
+  slogan: "سحر المغرب: برامج رحلات كاملة، نقل، مرشدون، وفنادق.",
+  industrySpecifics: "منظم رحلات سياحية مغربي متكامل ينشئ برامج سفر مفصلة من الجنوب إلى الشمال. نحن متخصصون في النقل المريح والمكيف مع سائقين محترفين، ومرشدين محليين خبراء في كل مدينة، وحجوزات فندقية منسقة لرحلة سلسة وساحرة.",
+  serviceDescription: "نحن نقدم برامج سفر مفصلة (جولات من الجنوب إلى الشمال)، حجوزات فندقية، مرشدين محليين محترفين، ونقل مريح ومكيف مع سائقين موثوقين.",
+  keywords: "توصيل مطار مراكش, سائق خاص المغرب, منظم رحلات المغرب, حجز فنادق المغرب, مرشد سياحي محلي مراكش, MarraGo, جولات سياحية المغرب, جولات المغرب, برنامج سياحي مفصل المغرب, المغرب من الجنوب إلى الشمال",
+  privacyPolicyContent: "تلتزم {officialName} بحماية بياناتك... [سياسة قياسية تغطي معلومات الحجز، تفاصيل الاتصال، معلومات الدفع، استخدام ملفات تعريف الارتباط للجولات وعمليات النقل]. للتواصل: {email}",
+  termsOfUseContent: "يُعد حجز خدمة مع {brandName} قبولاً لهذه الشروط... [شروط قياسية تغطي تفاصيل النقل، إلغاء الجولات، تعديلات الحجز، المسؤولية عن النقل، سياسات الدفع]."
+},
   luxuryHomepageSlides: [
     {
       image: '/images/slides/marrago-transfer-van.webp',
@@ -210,6 +240,8 @@ const clientTextContent: SiteClientTextContent = {
   aboutPage: {
     title: "عن MarraGo: مخططو برامج رحلاتكم المتكاملة في المغرب",
     subtitle: "اكتشف سحر المغرب، من جنوبه إلى شماله.",
+    summary: "شريكك المحلي للنقل السلس، والمرشدين الموثوقين، وبرامج الرحلات المتكاملة في المغرب.",
+    imageUrl: "/images/marrago/about-us-marrago.webp",
     paragraph1: "وُلِدت MarraGo من شغف لتقديم رحلة ممتعة للمسافرين لاكتشاف سحر المغرب *الحقيقي*. نحن وكالة خدمات متكاملة، وموجودون لنكون نقطة اتصالك الوحيدة لرحلتك بأكملها، من الجنوب إلى الشمال.",
     paragraph2: "عمليتنا بسيطة: نعمل معكم لإعداد برنامج رحلة مفصل مسبقًا، يشمل جميع الأماكن التي ستزورونها. نتكفل بجميع حجوزات الفنادق، ونوفر نقلاً مريحًا ومكيفًا، ونرافقكم بمرشد سياحي محترف في كل مدينة لاستكشاف تاريخ المنطقة الغني. مهمتكم الوحيدة هي الاستمتاع بالرحلة.",
     valuesTitle: "وعدنا لكم",
@@ -222,9 +254,9 @@ const clientTextContent: SiteClientTextContent = {
     teamTitle: "تعرف على مرشدينا وسائقينا",
     teamSubtitle: "الفريق المحلي المحترف الذي يجعل رحلتك ممكنة.",
     teamMembers: [
-      { image: "/images/mock/driver-male.webp", name: "حسن", title: "سائق رئيسي ومدير النقل", bio: "بأكثر من 15 عامًا من الخبرة، يضمن حسن أن كل عملية نقل من المطار ورحلة بين المدن آمنة ومريحة ودقيقة في مواعيدها." },
-      { image: "/images/mock/guide-female.webp", name: "فاطمة", title: "مرشدة معتمدة - مراكش", bio: "فاطمة مرشدة مرخصة تتحدث 4 لغات وتحب مشاركة التاريخ الخفي والطعام في مدينة مراكش القديمة." },
-      { image: "/images/mock/ops-manager-male.webp", name: "عمر (أخوك)", title: "المؤسس ومخطط الرحلات", bio: "يدير عمر جميع الخدمات اللوجستية، بدءًا من برنامج رحلتك المفصل وحتى حجوزات الفنادق، مما يضمن ترابط كل جزء من رحلتك بشكل مثالي." },
+      { image: "/images/marrago/driver-male.webp", name: "حسن", title: "سائق رئيسي ومدير النقل", bio: "بأكثر من 15 عامًا من الخبرة، يضمن حسن أن كل عملية نقل من المطار ورحلة بين المدن آمنة ومريحة ودقيقة في مواعيدها." },
+      { image: "/images/marrago/guide-female.webp", name: "فاطمة", title: "مرشدة معتمدة - مراكش", bio: "فاطمة مرشدة مرخصة تتحدث 4 لغات وتحب مشاركة التاريخ الخفي والطعام في مدينة مراكش القديمة." },
+      { image: "/images/marrago/ops-manager-male.webp", name: "عمر (أخوك)", title: "المؤسس ومخطط الرحلات", bio: "يدير عمر جميع الخدمات اللوجستية، بدءًا من برنامج رحلتك المفصل وحتى حجوزات الفنادق، مما يضمن ترابط كل جزء من رحلتك بشكل مثالي." },
     ],
     ctaTitle: "هل أنت مستعد لمغامرتك المغربية؟",
     ctaButtonText: "خطط لرحلتك الآن",
@@ -257,12 +289,20 @@ const clientTextContent: SiteClientTextContent = {
     ],
     blogHighlightsTitle: "De Nuestro Diario de Marruecos",
     blogHighlightsSubtitle: "Consejos de viaje, secretos locales e historias de aventuras de nuestros guías.",
-    socialProofTitle: "Oficialmente Reconocidos y de Confianza",
+    socialProofTitle: "Nuestros Socios de Confianza",
     testimonialsTitle: "Escucha a Nuestros Viajeros",
     testimonialsSubtitle: "Lo que nuestros huéspedes dicen sobre su aventura marroquí con nosotros.",
     newsletterTitle: "Obtén Tus Consejos de Viaje para Marruecos",
     newsletterSubtitle: "Únete a nuestro boletín para ofertas exclusivas, inspiración de viaje y perspectivas locales."
   },
+  global: {
+  slogan: "Magia de Marruecos: Itinerarios Completos, Transporte, Guías y Hoteles.",
+  industrySpecifics: "Un touroperador marroquí de servicio completo que crea itinerarios de viaje detallados de sur a norte. Nos especializamos en transporte cómodo y con aire acondicionado con conductores profesionales, guías locales expertos en cada ciudad y reservas de hoteles seleccionadas para un viaje fluido y mágico.",
+  serviceDescription: "Ofrecemos itinerarios de viaje detallados (circuitos de sur a norte), reservas de hotel, guías locales profesionales y transporte cómodo con aire acondicionado y conductores fiables.",
+  keywords: "traslado aeropuerto Marrakech, conductor privado Marruecos, tour operador Marruecos, reservar hoteles Marruecos, guías locales Marrakech, MarraGo, excursiones Marruecos, circuitos Marruecos, itinerario de viaje detallado Marruecos, Marruecos de sur a norte",
+  privacyPolicyContent: "{officialName} se compromete a proteger sus datos... [Política estándar que cubre la información de reserva, detalles de contacto, información de pago, uso de cookies para tours y traslados]. Contacto: {email}",
+  termsOfUseContent: "Reservar un servicio con {brandName} constituye la aceptación de estos términos... [Términos estándar que cubren detalles de traslados, cancelaciones de tours, modificaciones de reservas, responsabilidad del transporte, políticas de pago]."
+},
   luxuryHomepageSlides: [
     {
       image: '/images/slides/marrago-transfer-van.webp',
@@ -289,6 +329,8 @@ const clientTextContent: SiteClientTextContent = {
   aboutPage: {
     title: "Sobre MarraGo: Tus Planificadores de Itinerarios Marroquíes Completos",
     subtitle: "Descubre la magia de Marruecos, de sur a norte.",
+    summary: "Su socio local para transporte fluido, guías auténticos e itinerarios completos en Marruecos.",
+    imageUrl: "/images/marrago/about-us-marrago.webp",
     paragraph1: "MarraGo nació de la pasión por ofrecer a los viajeros un viaje placentero para descubrir la *verdadera* magia de Marruecos. Somos una agencia de servicios completos y estamos aquí para ser tu único punto de contacto para todo tu viaje, de sur a norte.",
     paragraph2: "Nuestro proceso es simple: trabajamos contigo para preparar un itinerario de viaje detallado con antelación, incluyendo todos los lugares que visitarás. Gestionamos todas tus reservas de hotel, proporcionamos transporte cómodo con aire acondicionado y te acompañamos con un guía turístico profesional en cada ciudad para explorar la rica historia de la región. Tu único trabajo es disfrutar del viaje.",
     valuesTitle: "Nuestra Promesa de Viaje",
@@ -301,9 +343,9 @@ const clientTextContent: SiteClientTextContent = {
     teamTitle: "Conoce a Tus Guías y Conductores",
     teamSubtitle: "El equipo local y profesional que hace posible tu viaje.",
     teamMembers: [
-      { image: "/images/mock/driver-male.webp", name: "Hassan", title: "Conductor Principal y Gerente de Transporte", bio: "Con más de 15 años de experiencia, Hassan asegura que cada traslado al aeropuerto y viaje entre ciudades sea seguro, cómodo y puntual." },
-      { image: "/images/mock/guide-female.webp", name: "Fatima", title: "Guía Certificada - Marrakech", bio: "Fatima es una guía licenciada que habla 4 idiomas y le encanta compartir la historia oculta y la gastronomía de la medina de Marrakech." },
-      { image: "/images/mock/ops-manager-male.webp", name: "Omar (Tu Hermano)", title: "Fundador y Planificador de Itinerarios", bio: "Omar gestiona toda la logística, desde tu itinerario detallado hasta las reservas de hotel, asegurando que cada parte de tu viaje se conecte perfectamente." },
+      { image: "/images/marrago/driver-male.webp", name: "Hassan", title: "Conductor Principal y Gerente de Transporte", bio: "Con más de 15 años de experiencia, Hassan asegura que cada traslado al aeropuerto y viaje entre ciudades sea seguro, cómodo y puntual." },
+      { image: "/images/marrago/guide-female.webp", name: "Fatima", title: "Guía Certificada - Marrakech", bio: "Fatima es una guía licenciada que habla 4 idiomas y le encanta compartir la historia oculta y la gastronomía de la medina de Marrakech." },
+      { image: "/images/marrago/ops-manager-male.webp", name: "Omar (Tu Hermano)", title: "Fundador y Planificador de Itinerarios", bio: "Omar gestiona toda la logística, desde tu itinerario detallado hasta las reservas de hotel, asegurando que cada parte de tu viaje se conecte perfectamente." },
     ],
     ctaTitle: "¿Listo para Tu Aventura Marroquí?",
     ctaButtonText: "Planifica Tu Viaje Ahora",
@@ -331,10 +373,10 @@ const manualClientData : ManualClientData = {
   "officialName": "MarraGo Travel SARL", // Fictional official name
   "websiteDisplayName": "MarraGo",
   "ownerName": "Omar Ouazza", // Fictional owner name
-  "slogan": "Magic of Morocco: Full Itineraries, Transport, Guides & Hotels.", // <-- UPDATED
+ // "slogan": "Magic of Morocco: Full Itineraries, Transport, Guides & Hotels.", // <-- UPDATED
   "logoUrl": "/images/icons/icon-256x256.png", // (Using a placeholder path, you can change)
   "businessCategory": "TourOperator",
-  "industrySpecifics": "A full-service Moroccan tour operator creating detailed travel itineraries from south to north. We specialize in comfortable, air-conditioned transportation with professional drivers, expert local guides in every city, and curated hotel reservations for a seamless and magical journey.", // <-- UPDATED (Uses his exact words)
+ // "industrySpecifics": "A full-service Moroccan tour operator creating detailed travel itineraries from south to north. We specialize in comfortable, air-conditioned transportation with professional drivers, expert local guides in every city, and curated hotel reservations for a seamless and magical journey.", // <-- UPDATED (Uses his exact words)
 
   // --- Branding & Theme ---
   // (Keeping the colors you set)
@@ -353,18 +395,23 @@ const manualClientData : ManualClientData = {
 
   // --- Social Media Links ---
   "facebook": "https://www.facebook.com/MarraGo", 
-  "instagram": "https://www.instagram.com/MarraGo/",
-  "twitter": "", 
+  "instagram": "https://www.instagram.com/marragotravel",
+  "tiktok": "https://www.tiktok.com/@marragogo",
+  "twitter": "https://twitter.com/MarraGo", 
+  // ℹ️ You must find these numerical IDs using a tool like tweeterid.com
+  "twitterHandle": "@MarraGo", // <-- ADD THIS
+  "twitterSiteId": "123456789", // <-- ADD A PLACEHOLDER ID
+  "twitterCreatorId": "123456789", // <-- ADD A PLACEHOLDER ID
 
   // --- About Us Content (Short version for config) ---
   // (This was already very good and matches his new description)
-  "aboutUsContent": {
+ /*  "aboutUsContent": {
     "title": "MarraGo is your local partner for a seamless Moroccan adventure. We handle all your logistics—from airport transfers to hotel bookings and expert local guides—so you can enjoy the magic.", 
-    "imageUrl": "/images/mock/about-us-marrago.webp" // (Placeholder path)
-  },
+    "imageUrl": "/images/mock/about-us-marrago.webp" 
+  }, */
 
   // --- Service Description (Short version for config) ---
-  "serviceDescription": "We offer detailed travel itineraries (circuits from south to north), hotel reservations, professional local guides, and comfortable, air-conditioned transportation with reliable drivers.", // <-- UPDATED
+//  "serviceDescription": "We offer detailed travel itineraries (circuits from south to north), hotel reservations, professional local guides, and comfortable, air-conditioned transportation with reliable drivers.", // <-- UPDATED
 
   // --- Tour Locations Served (Key cities) ---
   // (This was already perfect for "south to north")
@@ -375,7 +422,7 @@ const manualClientData : ManualClientData = {
   "websiteLanguageOptions": ["en", "fr", "es"],
 
   // --- SEO Keywords & Social Share Image ---
-  "keywords": "Marrakech airport transfer, Morocco private driver, Morocco tour operator, book hotels Morocco, local guides Marrakech, MarraGo, excursions Morocco, transport touristique Maroc, Morocco circuits, detailed travel itinerary Morocco, Morocco south to north", // <-- UPDATED (Added new keywords)
+  // "keywords": "Marrakech airport transfer, Morocco private driver, Morocco tour operator, book hotels Morocco, local guides Marrakech, MarraGo, excursions Morocco, transport touristique Maroc, Morocco circuits, detailed travel itinerary Morocco, Morocco south to north", // <-- UPDATED (Added new keywords)
   "socialShareImageUrl": "/images/og/og-marrago.webp", // (Placeholder path)
 
   // --- Feature Toggles ---
@@ -386,8 +433,8 @@ const manualClientData : ManualClientData = {
   "faqSection": true,
 
   // --- Legal Content (Placeholders) ---
-  "privacyPolicyContent": "MarraGo Travel SARL is committed to protecting your data... [Standard policy covering booking info, contact details, payment info, cookie usage for tours and transfers]. Contact: privacy@marraGo.com", 
-  "termsOfUseContent": "Booking a service with MarraGo constitutes acceptance of these terms... [Standard terms covering transfer details, tour cancellations, booking modifications, liability for transport, payment policies].", 
+ // "privacyPolicyContent": "MarraGo Travel SARL is committed to protecting your data... [Standard policy covering booking info, contact details, payment info, cookie usage for tours and transfers]. Contact: privacy@marraGo.com", 
+ // "termsOfUseContent": "Booking a service with MarraGo constitutes acceptance of these terms... [Standard terms covering transfer details, tour cancellations, booking modifications, liability for transport, payment policies].", 
 
   // This will pull in the detailed text you'll provide later
   "clientTextContent": clientTextContent, 

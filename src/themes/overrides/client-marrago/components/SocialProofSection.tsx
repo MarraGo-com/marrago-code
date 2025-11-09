@@ -7,6 +7,7 @@ import { useLocale } from 'next-intl';
 
 import { siteConfig } from '@/config/client-data';
 import Image from 'next/image';
+import { WebsiteLanguage } from '@/config/types';
 
 // --- CUSTOMIZED FOR MARRAGO ---
 // This array is now a strategic "target list" for Omar.
@@ -14,30 +15,22 @@ import Image from 'next/image';
 // with permission) and place them in your /public/images/logos/ folder.
 const partnerLogos = [
   { 
-    name: 'Moroccan Ministry of Tourism', 
-    url: '/images/logos/logo-ministry-tourism.webp' // (Placeholder path)
+    name: 'Riad Marrakesh', 
+    url: '/images/logos/logo-riad-marrakesh.webp' // (Placeholder path)
   },
   { 
-    name: 'FNTT - Fédération Nationale du Transport Touristique', // <-- NEW
-    url: '/images/logos/logo-fntt-maroc.webp' // (Placeholder path)
+    name: 'Royal Mansour Marrakesh', // <-- NEW
+    url: '/images/logos/logo-royal-mansour-marrakesh.webp' // (Placeholder path)
   },
   { 
-    name: 'TripAdvisor', 
-    url: '/images/logos/logo-tripadvisor.webp' // (Placeholder path)
-  },
-  { 
-    name: 'Trusted Hotel Partner', 
-    url: '/images/logos/logo-mamounia.webp' // (e.g., A famous Riad's logo)
-  },
-  { 
-    name: 'Trusted Agency Partner', 
-    url: '/images/logos/logo-maroc-voyage.webp' // (e.g., An international travel agency)
-  },
+    name: 'Riad Lakhdar', 
+    url: '/images/logos/logo-riad-lakhdar.webp' // (Placeholder path)
+  }
 ];
 // --- END CUSTOMIZATION ---
 
 export default function SocialProofSection() {
-  const locale = useLocale() as 'en' | 'fr' | 'ar';
+  const locale = useLocale() as WebsiteLanguage;
   const content = siteConfig.textContent[locale]?.homepage || siteConfig.textContent.en.homepage;
 
   return (

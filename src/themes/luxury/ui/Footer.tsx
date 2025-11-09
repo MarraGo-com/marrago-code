@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { Typography, Box, Container, IconButton, Grid, Divider, Stack } from '@mui/material';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { Link, usePathname } from '@/i18n/navigation';
 import { siteConfig } from '@/config/client-data';
 import Image from 'next/image';
@@ -17,6 +17,8 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import TiktokIcon from '@/components/icons/TiktokIcon'; // <-- 1. IMPORT YOUR NEW ICON
+import { WebsiteLanguage } from '@/config/types';
 
 // --- Dynamic Imports ---
 const InteractiveMap = dynamic(
@@ -30,8 +32,8 @@ const InteractiveMap = dynamic(
 
 // --- Sub-components for Organization ---
 
-const BrandInfo = ({ t }: { t: any }) => { // Added 't' prop for defaultAboutText
-  const hasSocials = siteConfig.social.facebook || siteConfig.social.instagram || siteConfig.social.twitter;
+const BrandInfo = ({ t, aboutSummary }: { t: any, aboutSummary: string }) => { // Added 't' prop for defaultAboutText
+  const hasSocials = siteConfig.social.facebook || siteConfig.social.instagram || siteConfig.social.twitter || siteConfig.social.tiktok;
 
   return (
     <Grid size={{ xs: 12, md: 4 }}>
@@ -54,7 +56,7 @@ const BrandInfo = ({ t }: { t: any }) => { // Added 't' prop for defaultAboutTex
         )}
         {/* RECTIFICATION: Conditional display for aboutUsContent with fallback */}
         <Typography variant="body2" sx={{ maxWidth: '300px', mb: hasSocials ? 3 : 0 }}> {/* Adjusted mb based on social icons presence */}
-            {siteConfig.aboutUsContent.title ? `${siteConfig.aboutUsContent.title.substring(0, 150)}...` : t('defaultAboutText')}
+            {aboutSummary ? `${aboutSummary.substring(0, 150)}...` : t('defaultAboutText')}
         </Typography>
         {/* RECTIFICATION: Conditional rendering for social icons in BrandInfo */}
         {hasSocials && (
@@ -68,6 +70,9 @@ const BrandInfo = ({ t }: { t: any }) => { // Added 't' prop for defaultAboutTex
               {siteConfig.social.twitter && (
                   <IconButton aria-label="Twitter" color="inherit" href={siteConfig.social.twitter} target="_blank" rel="noopener noreferrer"><TwitterIcon /></IconButton>
               )}
+               {siteConfig.social.tiktok && (
+              <IconButton aria-label="Twitter" color="inherit" href={siteConfig.social.tiktok} target="_blank" rel="noopener noreferrer"> <TiktokIcon sx={{ transform: 'scale(1.5)' }}/></IconButton>
+          )}
           </Box>
         )}
     </Grid>
@@ -190,7 +195,7 @@ export default function LuxuryFooter() { // Renamed to LuxuryFooter for clarity
   const t = useTranslations('Footer');
   const t_nav = useTranslations('Header'); // Keep using Header translations for nav links
   const pathname = usePathname();
-  
+  const locale = useLocale() as WebsiteLanguage; // Specify possible locales
   // RECTIFICATION: Conditional map display logic
   const showMap = 
     pathname !== '/contact' && 
@@ -230,7 +235,8 @@ export default function LuxuryFooter() { // Renamed to LuxuryFooter for clarity
     return links;
   };
 
-
+     const aboutSummary = siteConfig.textContent?.[locale]?.aboutPage?.summary || siteConfig.textContent?.en?.aboutPage?.summary || '';
+ 
   return (
     <Box 
       component="footer" 
@@ -245,7 +251,7 @@ export default function LuxuryFooter() { // Renamed to LuxuryFooter for clarity
       <Container maxWidth="lg">
         {/* --- Top Row: Information Columns --- */}
         <Grid container spacing={5} justifyContent="space-between" sx={{ mb: 8 }}>
-          <BrandInfo t={t} /> {/* Pass t to BrandInfo */}
+          <BrandInfo t={t} aboutSummary ={aboutSummary}/> {/* Pass t to BrandInfo */}
           <FooterLinkColumn title={t('companyTitle')} links={dynamicCompanyLinks(t_nav)} /> {/* Use dynamic links */}
           <FooterLinkColumn title={t('exploreTitle')} links={dynamicExploreLinks(t_nav)} /> {/* Use dynamic links */}
           <ContactDetails title={t('contactUsTitle')} />

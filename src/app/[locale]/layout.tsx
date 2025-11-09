@@ -45,8 +45,16 @@ const PageTransition = dynamic<PageTransitionProps>(() =>
 
 
 export const metadata: Metadata = {
-  title: siteConfig.siteName,
-  description: siteConfig.siteDescription,
+  metadataBase: new URL(process.env.NEXT_PUBLIC_API_URL || "https://marrago.com"),
+  title: {
+    // This is the pattern for all child pages (e.g., "About Us | MarraGo")
+    template: `%s | ${siteConfig.siteName}`,
+    
+    // This is the default title for the homepage (when %s is empty)
+    default: `${siteConfig.siteName} - ${siteConfig.textContent.en.global.slogan}`, 
+  },
+  // Use the full, rich description as the default
+  description: siteConfig.textContent.en.global.industrySpecifics,
 };
 
 type Props = {

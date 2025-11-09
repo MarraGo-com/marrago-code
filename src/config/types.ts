@@ -37,6 +37,8 @@ export interface HomepageContent {
 export interface AboutPageContent {
     title: string;
     subtitle: string;
+    summary: string;
+    imageUrl: string;
     paragraph1: string;
     paragraph2: string;
     valuesTitle: string;
@@ -71,11 +73,21 @@ type AboutUsContent = {
   title: string;
   imageUrl: string;
 };
+// define GlobalContent type for shared textual content
+type GlobalContent = {
+    slogan: string;
+    industrySpecifics: string;
+    serviceDescription: string;
+    keywords: string;
+    privacyPolicyContent: string;
+    termsOfUseContent: string;
+};
 // Define the overall SiteClientTextContent interface
 // This interface describes the structure of ALL localized textual content.
 export interface SiteClientTextContent {
     en: {
         homepage: HomepageContent; // Now using the dedicated interface
+        global: GlobalContent;
         luxuryHomepageSlides: HeroSlide[];
         aboutPage: AboutPageContent;
         contactPage: ContactPageContent;
@@ -84,6 +96,7 @@ export interface SiteClientTextContent {
     };
     fr: {
         homepage: HomepageContent; // Now using the dedicated interface
+        global: GlobalContent;
         luxuryHomepageSlides: HeroSlide[];
         aboutPage: AboutPageContent;
         contactPage: ContactPageContent;
@@ -92,6 +105,7 @@ export interface SiteClientTextContent {
     };
     ar: {
         homepage: HomepageContent; // Now using the dedicated interface
+        global: GlobalContent;
         luxuryHomepageSlides: HeroSlide[];
         aboutPage: AboutPageContent;
         contactPage: ContactPageContent;
@@ -100,6 +114,7 @@ export interface SiteClientTextContent {
     };
     es: {
         homepage: HomepageContent; // Now using the dedicated interface
+        global: GlobalContent;
         luxuryHomepageSlides: HeroSlide[];
         aboutPage: AboutPageContent;
         contactPage: ContactPageContent;
@@ -109,62 +124,68 @@ export interface SiteClientTextContent {
 }
 
 export type ManualClientData = {
-  // --- Core Business Info ---
-  clientId: string;
-  officialName: string;
-  websiteDisplayName: string;
-  ownerName: string;
-  slogan: string;
-  logoUrl: string;
-  businessCategory: string;
-  industrySpecifics: string;
+  // --- Core Business Info ---
+  clientId: string;
+  officialName: string;
+  websiteDisplayName: string;
+  ownerName: string;
+  // slogan: string; // (Correctly deleted)
+  logoUrl: string;
+  businessCategory: string;
+  // industrySpecifics: string; // (Correctly deleted)
 
-  // --- Branding & Theme ---
-  primaryColor: string;
-  secondaryColor: string;
-  templateTheme: string;
+  // --- Branding & Theme ---
+  primaryColor: string;
+  secondaryColor: string;
+  templateTheme: string;
 
-  // --- Contact Information ---
-  email: string;
-  phone: string;
-  latitude: number;
-  longitude: number;
-  address: string;
-  whatsappNumber: string;
+  // --- Contact Information ---
+  email: string;
+  phone: string;
+  latitude: number;
+  longitude: number;
+  address: string;
+  whatsappNumber: string;
 
-  // --- Social Media Links ---
-  facebook: string;
-  instagram: string;
-  twitter: string;
+  // --- Social Media Links ---
+  facebook: string;
+  instagram: string;
+  twitter: string; // This is the full URL, e.g., https://twitter.com/MarraGo
+  tiktok: string;
+  // --- NEW: Add Twitter-specific metadata ---
+  // We add these to match the ExtendedMetadata type. Make them optional (?).
+  twitterHandle?: string; // The @handle (e.g., @MarraGo) for the 'creator' field
+  twitterSiteId?: string; // The numerical ID for 'siteId'
+  twitterCreatorId?: string; // The numerical ID for 'creatorId'
 
-  // --- About Us Content (Short version for config) ---
-  aboutUsContent: AboutUsContent; // Using our nested type
+  // --- About Us Content (Short version for config) ---
+  // aboutUsContent: AboutUsContent; // (Correctly deleted)
 
-  // --- Service Description (Short version for config) ---
-  serviceDescription: string;
+  // --- Service Description (Short version for config) ---
+  // serviceDescription: string; // (Correctly deleted)
 
-  // --- Tour Locations Served (Key cities) ---
-  tourLocationsServed: string;
+  // --- Tour Locations Served (Key cities) ---
+  tourLocationsServed: string;
 
-  // --- Payment & Language Options ---
-  paymentMethodsAccepted: PaymentMethod[]; // An array of strings
-  websiteLanguageOptions: string[]; // An array of strings
+  // --- Payment & Language Options ---
+  paymentMethodsAccepted: PaymentMethod[]; // An array of strings
+  websiteLanguageOptions: string[]; // An array of strings
 
-  // --- SEO Keywords & Social Share Image ---
-  keywords: string;
-  socialShareImageUrl: string;
+  // --- SEO Keywords & Social Share Image ---
+  // keywords: string; // (Correctly deleted)
+  socialShareImageUrl: string;
 
-  // --- Feature Toggles ---
-  reviewsSystem: boolean;
-  blogSystem: boolean;
-  bookingEngine: boolean;
-  experiencesSection: boolean;
-  faqSection: boolean;
+  // --- Feature Toggles ---
+  reviewsSystem: boolean;
+  blogSystem: boolean;
+  bookingEngine: boolean;
+  experiencesSection: boolean;
+  faqSection: boolean;
 
-  // --- Legal Content (Placeholders) ---
-  privacyPolicyContent: string;
-  termsOfUseContent: string;
+  // --- Legal Content (Placeholders) ---
+  // privacyPolicyContent: string; // (Correctly deleted)
+  // termsOfUseContent: string; // (Correctly deleted)
 
-  // This will pull in the detailed text
-  clientTextContent: SiteClientTextContent; // Using our placeholder type
+  // This will pull in the detailed text
+  clientTextContent: SiteClientTextContent; // Using our placeholder type
 };

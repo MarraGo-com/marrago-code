@@ -23,7 +23,7 @@ const theme = process.env.NEXT_PUBLIC_THEME || 'default';
 const TeamMemberCard = dynamic<TeamMemberCardProps>(() => import(`@/themes/${theme}/ui/TeamMemberCard`));
 
 // --- Static Data ---
-const aboutImageUrl = siteConfig.aboutUsContent.imageUrl;
+// const aboutImageUrl = siteConfig.aboutUsContent.imageUrl;
 const ctaLink = '/contact';
 const valueIcons = [
     <PublicIcon key="public" fontSize="large" color="primary" />,
@@ -71,7 +71,7 @@ const StorySection = ({ content }: { content: AboutPageContent }) => (
                 mx: 'auto',
             }}>
                 <Image
-                    src={aboutImageUrl}
+                    src={content.imageUrl}
                     alt={content.title}
                     fill
                     loading='lazy'

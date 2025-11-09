@@ -67,9 +67,7 @@ export function getStaticPageMetadata(
   // Ensure title is a string before attempting concatenation
   const baseTitle = typeof content?.title === 'string' ? content.title : '';
 
-  const finalTitle = pageKey === 'homepage'
-    ? `${siteConfig.siteName || siteConfig.brandName} | ${baseTitle}`
-    : `${baseTitle} | ${siteConfig.siteName || siteConfig.brandName}`;
+  // const finalTitle = baseTitle;
 
   // If the page is 'homepage', use the theme-specific image from siteConfig,
   // otherwise use the specific image defined in pageSeoMetadataStore for that page,
@@ -79,7 +77,7 @@ export function getStaticPageMetadata(
     : content?.ogImage || siteConfig.ogImage || { src: '/images/og/og-default.webp', alt: 'Default OG Image' };
 
   return {
-    title: finalTitle,
+    title: baseTitle,
     description: content?.description || siteConfig.siteDescription || '', // Fallback to siteConfig description
     ogImage: finalOgImage,
     pathname: pathname

@@ -24,7 +24,7 @@ import ResponsiveHeading from '../custom/ResponsiveHeading';
 import { AboutPageContent } from '@/config/types';
 
 // --- Static Data ---
-const aboutImageUrl = siteConfig.aboutUsContent.imageUrl;
+// const aboutImageUrl = siteConfig.aboutUsContent.imageUrl;
 const ctaLink = '/contact';
 const valueIcons = [
   <PublicIcon key="public" fontSize="large" color="primary" />,
@@ -66,7 +66,7 @@ const StorySection = ({ content }: { content: AboutPageContent }) => (
         ml: { md: 'auto' }
       }}>
         <Image
-          src={aboutImageUrl}
+          src={content.imageUrl}
           alt={content.title} 
           fill
           loading='lazy'

@@ -43,6 +43,11 @@ export interface SiteConfig {
     twitter: string;
     instagram: string;
     facebook: string;
+    tiktok: string;
+    // NEW: Specific Twitter metadata
+    twitterHandle?: string;
+    twitterSiteId?: string;
+    twitterCreatorId?: string;
   };
 
   colors: {
@@ -91,98 +96,105 @@ const themeConfigs: Record<ThemeName, Partial<SiteConfig>> = {
 };
 
 /**
- * Merges raw client data (from questionnaire or manual source) with the chosen theme's configuration.
- * @param rawClientData The data directly from the client's questionnaire.
- * @returns The final, merged SiteConfig object.
- */
+ * Merges raw client data (from questionnaire or manual source) with the chosen theme's configuration.
+ * @param rawClientData The data directly from the client's questionnaire.
+ * @returns The final, merged SiteConfig object.
+ */
 export function mergeClientDataWithTheme(rawClientData: unknown): SiteConfig {
-  const r = rawClientData as Record<string, any>;
-  const processedConfig: Partial<SiteConfig> = {
-    brandName: r.officialName,
-    siteName: r.websiteDisplayName,
-    clientId: r.clientId,
-    slogan: r.slogan,
-    businessType: r.businessCategory || 'Other',
-    addressLocality: r.address?.split(',')[0]?.trim() || '',
-    addressRegion: r.address?.split(',')[2]?.trim() || '',
-    addressCountry: r.address?.split(',').pop()?.trim() || 'MA',
-    logo: r.logoUrl,
-    siteDescription: r.industrySpecifics || "A leading provider of custom travel experiences.",
-    keywords: r.keywords ? (r.keywords as string).split(',').map((k: string) => k.trim()) : [],
+  const r = rawClientData as Record<string, any>;
+  const processedConfig: Partial<SiteConfig> = {
+    brandName: r.officialName,
+    siteName: r.websiteDisplayName,
+    clientId: r.clientId,
+    ownerName: r.ownerName,
+    // slogan: r.slogan, // (Correctly deleted)
+    businessType: r.businessCategory || 'Other',
+    addressLocality: r.address?.split(',')[0]?.trim() || '',
+    addressRegion: r.address?.split(',')[2]?.trim() || '',
+    addressCountry: r.address?.split(',').pop()?.trim() || 'MA',
+    logo: r.logoUrl,
+    // (Other deleted fields are correct)
 
-    contact: {
-      email: r.email,
-      phone: r.phone,
-      whatsappNumber: r.whatsappNumber,
-      address: r.address,
-      latitude: r.latitude,
-      longitude: r.longitude,
-    },
-    social: {
-      twitter: r.twitter,
-      instagram: r.instagram,
-      facebook: r.facebook,
-    },
+    contact: {
+      email: r.email,
+      phone: r.phone,
+      whatsappNumber: r.whatsappNumber,
+      address: r.address,
+      latitude: r.latitude,
+      longitude: r.longitude,
+    },
 
-    colors: {
-      primaryColor: r.primaryColor,
-      secondaryColor: r.secondaryColor,
-    },
-    theme: {
-      palette: r.palette || 'desertSunset',
-      font: r.font || 'lora',
-      cardStyle: r.cardStyle || 'immersive',
-    },
-    ogImage: r.socialShareImageUrl
-      ? {
-          src: r.socialShareImageUrl,
-          alt: `${r.websiteDisplayName} social share image`,
-        }
-      : undefined,
+    // --- UPDATED THIS OBJECT ---
+    social: {
+      twitter: r.twitter,
+      instagram: r.instagram,
+      facebook: r.facebook,
+      tiktok: r.tiktok,
+      // Added the new, specific Twitter metadata
+      twitterHandle: r.twitterHandle, 
+      twitterSiteId: r.twitterSiteId,
+      twitterCreatorId: r.twitterCreatorId,
+    },
+    // --- END OF UPDATE ---
 
-    aboutUsContent: r.aboutUsContent,
-    serviceDescription: r.serviceDescription,
-    tourLocationsServed: r.tourLocationsServed ? (r.tourLocationsServed as string).split(',').map((l: string) => l.trim()) : [],
-    paymentMethodsAccepted: r.paymentMethodsAccepted || [],
-    websiteLanguageOptions: r.websiteLanguageOptions || [],
+    colors: {
+      primaryColor: r.primaryColor,
+      secondaryColor: r.secondaryColor,
+    },
+    theme: {
+      palette: r.palette || 'desertSunset',
+      font: r.font || 'lora',
+      cardStyle: r.cardStyle || 'immersive',
+    },
+    ogImage: r.socialShareImageUrl
+      ? {
+          src: r.socialShareImageUrl,
+          alt: `${r.websiteDisplayName} social share image`,
+        }
+      : undefined,
 
-    hasReviewsSystem: r.reviewsSystem,
-    hasBlogSystem: r.blogSystem,
-    hasBookingEngine: r.bookingEngine,
-    hasExperiencesSection: r.experiencesSection,
-    hasFaqSection: r.faqSection,
+    tourLocationsServed: r.tourLocationsServed ? (r.tourLocationsServed as string).split(',').map((l: string) => l.trim()) : [],
+    paymentMethodsAccepted: r.paymentMethodsAccepted || [],
+    websiteLanguageOptions: r.websiteLanguageOptions || [],
 
-    privacyPolicyContent: r.privacyPolicyContent || 'Default privacy policy text...',
-    termsOfUseContent: r.termsOfUseContent || 'Default terms of use text...',
+    hasReviewsSystem: r.reviewsSystem,
+    hasBlogSystem: r.blogSystem,
+    hasBookingEngine: r.bookingEngine,
+    hasExperiencesSection: r.experiencesSection,
+    hasFaqSection: r.faqSection,
 
-    templateTheme: r.templateTheme as ThemeName,
-    textContent: r.clientTextContent, // Ensure rawClientData has this property
-  };
+    templateTheme: r.templateTheme as ThemeName,
+    textContent: r.clientTextContent,
+  };
 
-  const selectedThemeConfig = themeConfigs[processedConfig.templateThemeName || 'default'];
-  
-  const finalConfig: SiteConfig = {
-      ...selectedThemeConfig,
-      ...processedConfig,
-      
-      colors: {
-          ...(selectedThemeConfig.colors || {}),
-          ...(processedConfig.colors || {}),
+  const selectedThemeConfig = themeConfigs[processedConfig.templateThemeName || 'default'];
+  
+  const finalConfig: SiteConfig = {
+      ...selectedThemeConfig,
+      ...processedConfig,
+      
+      colors: {
+          ...(selectedThemeConfig.colors || {}),
+          ...(processedConfig.colors || {}),
+      },
+      theme: {
+          ...(selectedThemeConfig.theme || {}),
+          ...(processedConfig.theme || {}),
+      },
+      
+      // --- ALSO UPDATING THE 'social' MERGE LOGIC ---
+      social: {
+        ...(selectedThemeConfig.social || {}),
+        ...(processedConfig.social || {}),
       },
-      theme: {
-          ...(selectedThemeConfig.theme || {}),
-          ...(processedConfig.theme || {}),
-      },
-      keywords: Array.from(new Set([
-          ...(selectedThemeConfig.keywords || []),
-          ...(processedConfig.keywords || []),
-      ])),
-      tourLocationsServed: Array.from(new Set([
-          ...(selectedThemeConfig.tourLocationsServed || []),
-          ...(processedConfig.tourLocationsServed || []),
-      ])),
-      textContent: processedConfig.textContent as SiteClientTextContent, 
-  } as SiteConfig;
+      // --- END OF UPDATE ---
 
-  return finalConfig;
+      tourLocationsServed: Array.from(new Set([
+          ...(selectedThemeConfig.tourLocationsServed || []),
+          ...(processedConfig.tourLocationsServed || []),
+      ])),
+      textContent: processedConfig.textContent as SiteClientTextContent, 
+  } as SiteConfig;
+
+  return finalConfig;
 }

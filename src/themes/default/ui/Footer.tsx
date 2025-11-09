@@ -4,7 +4,7 @@
 import React from 'react';
 import { Grid, Typography, Box, Container, IconButton, Stack } from '@mui/material';
 import { usePathname } from '@/i18n/navigation';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import AnimatedLink from './AnimatedLink'; // Assuming AnimatedLink is in the same directory or adjust path
@@ -18,6 +18,8 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { WebsiteLanguage } from '@/config/types';
+import TiktokIcon from '@/components/icons/TiktokIcon';
 
 // --- Dynamic Imports ---
 const InteractiveMap = dynamic(
@@ -30,7 +32,7 @@ const InteractiveMap = dynamic(
 
 // --- Sub-components for Organization ---
 
-const BrandInfo = ({ t }: { t: any }) => (
+const BrandInfo = ({ t, aboutSummary }: { t: any, aboutSummary: string }) => (
   <Grid  size={{xs: 12, sm: 6, md: 4}}> {/* Corrected Grid size prop to 'item' */}
     <Box sx={{ display: 'flex', alignItems: 'center', mb: 1.5 }}>
         <Image 
@@ -50,9 +52,9 @@ const BrandInfo = ({ t }: { t: any }) => (
         </Typography>
     )}
     {/* Conditional display for aboutUsContent */}
-    {siteConfig.aboutUsContent.title && (
+    {aboutSummary && (
       <Typography variant="body2">
-          {siteConfig.aboutUsContent.title.length > 150 ? `${siteConfig.aboutUsContent.title.substring(0, 150)}...` : siteConfig.aboutUsContent.title}
+        {aboutSummary.length > 150 ? `${aboutSummary.substring(0, 150)}...` : aboutSummary}
       </Typography>
     )}
     {!siteConfig.aboutUsContent.title && ( // Fallback if no specific content is provided
@@ -109,7 +111,9 @@ const ContactDetails = ({ t }: { t: any }) => {
     siteConfig.contact.email ||
     siteConfig.social.facebook ||
     siteConfig.social.instagram ||
-    siteConfig.social.twitter;
+    siteConfig.social.twitter ||
+    siteConfig.social.tiktok
+    ;
 
   if (!hasContactInfo) {
     return null;
@@ -168,6 +172,12 @@ const ContactDetails = ({ t }: { t: any }) => {
           {siteConfig.social.twitter && (
               <IconButton aria-label="Twitter" color="inherit" href={siteConfig.social.twitter} target="_blank" rel="noopener noreferrer"><TwitterIcon /></IconButton>
           )}
+          {siteConfig.social.tiktok && (
+              <IconButton aria-label="Twitter" color="inherit" href={siteConfig.social.tiktok} target="_blank" rel="noopener noreferrer"><TwitterIcon /></IconButton>
+          )}
+           {siteConfig.social.tiktok && (
+              <IconButton aria-label="Twitter" color="inherit" href={siteConfig.social.tiktok} target="_blank" rel="noopener noreferrer"> <TiktokIcon sx={{ transform: 'scale(1.5)' }}/></IconButton>
+          )}
       </Box>
     </Grid>
   );
@@ -218,7 +228,8 @@ const CopyrightBar = ({ t }: { t: any }) => {
 export default function Footer() {
   const t = useTranslations('Footer');
   const pathname = usePathname();
-  
+  const locale = useLocale() as WebsiteLanguage;
+
   const showMap = 
     pathname !== '/contact' && 
     siteConfig.contact.latitude !== undefined && 
@@ -226,6 +237,8 @@ export default function Footer() {
     siteConfig.contact.longitude !== undefined &&
     siteConfig.contact.longitude !== null &&
     (siteConfig.contact.latitude !== 0 || siteConfig.contact.longitude !== 0);
+    
+    const aboutSummary = siteConfig.textContent?.[locale]?.aboutPage?.summary || siteConfig.textContent?.en?.aboutPage?.summary || '';
 
   return (
     <Box 
@@ -241,7 +254,7 @@ export default function Footer() {
       <Container maxWidth="lg">
         {/* --- Top Row: Information Columns --- */}
         <Grid container spacing={5} sx={{ mb: 6 }}>
-          <BrandInfo t={t} />
+          <BrandInfo t={t} aboutSummary= {aboutSummary}/>
           {/* Only render FooterLinks if it has content (now handled internally by FooterLinks component) */}
           <FooterLinks t={t} />
           <ContactDetails t={t} />

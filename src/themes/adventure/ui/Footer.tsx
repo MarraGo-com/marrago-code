@@ -4,7 +4,7 @@
 import React from 'react';
 import { Grid, Typography, Box, Container, IconButton, Divider, Stack, SxProps, Theme } from '@mui/material';
 import { usePathname, Link } from '@/i18n/navigation';
-import { useTranslations } from 'next-intl';
+import { Locale, useLocale, useTranslations } from 'next-intl';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 
@@ -18,6 +18,8 @@ import EmailIcon from '@mui/icons-material/Email';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { siteConfig } from '@/config/client-data';
+import { WebsiteLanguage } from '@/config/types';
+import TiktokIcon from '@/components/icons/TiktokIcon';
 
 // --- Dynamic Imports ---
 const InteractiveMap = dynamic(
@@ -55,7 +57,7 @@ const animatedLinkSx: SxProps<Theme> = {
 
 // --- Sub-components for Organization ---
 
-const BrandInfo = ({ t }: { t: any }) => (
+const BrandInfo = ({ t, aboutSummary }: { t: any, aboutSummary: string }) => (
     <Grid size={{ xs: 12, sm: 6, md: 4 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', mb: 1.5 }}>
             <Image 
@@ -75,9 +77,9 @@ const BrandInfo = ({ t }: { t: any }) => (
             </Typography>
         )}
         {/* RECTIFICATION: Conditional display for aboutUsContent with fallback */}
-    {siteConfig.aboutUsContent?.title ? (
+    {aboutSummary ? (
       <Typography variant="body2" sx={{ color: 'grey.400' }}> {/* Added color for consistency */}
-        {siteConfig.aboutUsContent.title.length > 150 ? `${siteConfig.aboutUsContent.title.substring(0, 150)}...` : siteConfig.aboutUsContent.title}
+        {aboutSummary.length > 150 ? `${aboutSummary.substring(0, 150)}...` : aboutSummary}
       </Typography>
     ) : (
       <Typography variant="body2" sx={{ color: 'grey.400' }}> {/* Added color for consistency */}
@@ -130,7 +132,8 @@ const ContactDetails = ({ t }: { t: any }) => {
     siteConfig.contact.email ||
     siteConfig.social.facebook ||
     siteConfig.social.instagram ||
-    siteConfig.social.twitter;
+    siteConfig.social.twitter ||
+    siteConfig.social.tiktok;
 
   if (!hasContactInfo) {
     return null; // Don't render the entire column if no contact details are present
@@ -184,6 +187,11 @@ const ContactDetails = ({ t }: { t: any }) => {
           {siteConfig.social.twitter && (
               <IconButton aria-label="Twitter" sx={{ color: 'grey.400', '&:hover': { color: 'common.white' } }} href={siteConfig.social.twitter} target="_blank" rel="noopener noreferrer"><TwitterIcon /></IconButton>
           )}
+          {siteConfig.social.tiktok && (
+              <IconButton aria-label="Twitter" sx={{ color: 'grey.400', '&:hover': { color: 'common.white' } }} href={siteConfig.social.tiktok} target="_blank" rel="noopener noreferrer">
+                <TiktokIcon sx={{ transform: 'scale(1.5)' }}/>
+              </IconButton>
+          )}
       </Box>
     </Grid>
   );
@@ -236,7 +244,7 @@ export default function AdventureFooter() { // Renamed to AdventureFooter for cl
   const t = useTranslations('Footer');
   const t_nav = useTranslations('Header'); // Uses 'Header' translations for navigation links
   const pathname = usePathname();
-  
+  const locale = useLocale() as WebsiteLanguage;
   // RECTIFICATION: Conditional map display logic
   const showMap = 
     pathname !== '/contact' && 
@@ -245,7 +253,7 @@ export default function AdventureFooter() { // Renamed to AdventureFooter for cl
     siteConfig.contact.longitude !== undefined &&
     siteConfig.contact.longitude !== null &&
     (siteConfig.contact.latitude !== 0 || siteConfig.contact.longitude !== 0); // Only show if explicit non-zero coordinates exist
-
+    const aboutSummary = siteConfig.textContent?.[locale]?.aboutPage?.summary || siteConfig.textContent?.en?.aboutPage?.summary || '';
   return (
     <Box 
       component="footer" 
@@ -258,7 +266,7 @@ export default function AdventureFooter() { // Renamed to AdventureFooter for cl
       <Container maxWidth="lg">
         {/* --- Top Row: Information Columns --- */}
         <Grid container spacing={5} sx={{ mb: 6 }}>
-          <BrandInfo t={t} />
+          <BrandInfo t={t} aboutSummary= {aboutSummary}/>
           <FooterLinks t_nav={t_nav} />
           <ContactDetails t={t} />
         </Grid>
