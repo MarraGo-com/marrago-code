@@ -82,13 +82,13 @@ export default function SocialProofSection() {
                   height: { xs: 65, sm: 80 },
                   mx: { xs: 3, sm: 5 },
                   flexShrink: 0,
-                  filter: (theme) =>
+                 /*  filter: (theme) =>
                     theme.palette.mode === 'dark' ? 'brightness(0) invert(1)' : 'grayscale(100%)',
                   opacity: 0.5,
                   transition: 'opacity 0.4s ease-in-out',
                   '&:hover': {
                     opacity: 1,
-                  },
+                  }, */
                 }}
               >
                 <Image

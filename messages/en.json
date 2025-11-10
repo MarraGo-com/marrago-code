@@ -375,6 +375,187 @@
     "AdminReviewsPage": {
       "manageReviewsTitle": "Manage Customer Reviews"
     }
+  },
+  "PrivacyPage": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last Updated: November 10, 2025",
+    "sections": {
+      "introduction": {
+        "title": "1. Introduction",
+        "text": "{officialName} ('we', 'us') is committed to protecting your personal data. This Privacy Policy explains how we collect, use, and protect your information when you use our website ({brandName}.com) and our services, in compliance with Moroccan Law No. 09-08."
+      },
+      "dataController": {
+        "title": "2. Data Controller",
+        "text": "{officialName} is the 'Data Controller' responsible for your personal data collected through this website."
+      },
+      "dataCollected": {
+        "title": "3. Data We Collect",
+        "intro": "We may collect the following data:",
+        "points": [
+          {
+            "label": "Data you provide:",
+            "text": "Your name, email address, phone number, and the number of guests when you fill out a booking or contact form."
+          },
+          {
+            "label": "Payment Data:",
+            "text": "We use Stripe to process payments. We do not store your credit card details. Your payment data is handled by Stripe."
+          },
+          {
+            "label": "Automatic Data:",
+            "text": "Your IP address, browser type, and how you use our site (via simple analytics) to help us improve our service."
+          }
+        ]
+      },
+      "howWeUseData": {
+        "title": "4. How We Use Your Data",
+        "intro": "We use your data for the following purposes:",
+        "points": [
+          {
+            "label": "To Fulfill Your Booking:",
+            "text": "To process your reservation, manage your itinerary, and provide you with transport and guide services."
+          },
+          {
+            "label": "To Communicate With You:",
+            "text": "To send you booking confirmations, itinerary details, and respond to your questions."
+          },
+          {
+            "label": "To Improve Our Service:",
+            "text": "To understand how our website is used so we can make it better."
+          }
+        ]
+      },
+      "dataSharing": {
+        "title": "5. Data Sharing",
+        "intro": "We do not sell your personal data. We only share it when necessary:",
+        "points": [
+          {
+            "label": "With Service Partners:",
+            "text": "We may share your name with a hotel we are booking on your behalf or with a specific guide."
+          },
+          {
+            "label": "With Payment Processors:",
+            "text": "We share payment information with Stripe to complete your transaction."
+          },
+          {
+            "label": "For Legal Reasons:",
+            "text": "If required by Moroccan law."
+          }
+        ]
+      },
+      "dataRetention": {
+        "title": "6. Data Retention",
+        "text": "We retain your personal data only for as long as necessary to fulfill the services we promised and to comply with our legal obligations (e.g., for tax purposes)."
+      },
+      "yourRights": {
+        "title": "7. Your Rights (Law 09-08)",
+        "intro": "Under Moroccan law, you have the right to:",
+        "points": [
+          {
+            "label": "Access:",
+            "text": "Request a copy of the personal data we hold about you."
+          },
+          {
+            "label": "Rectification:",
+            "text": "Request that we correct any inaccurate data."
+          },
+          {
+            "label": "Erasure:",
+            "text": "Request that we delete your personal data."
+          },
+          {
+            "label": "Object:",
+            "text": "Object to the processing of your data for legitimate reasons."
+          }
+        ],
+        "outro": "To exercise these rights, please contact us at: {email}. You also have the right to lodge a complaint with the CNDP (Morocco's data protection commission)."
+      },
+      "cookies": {
+        "title": "8. Cookies",
+        "text": "We use essential cookies for our site to function and analytical cookies to improve our service. You can manage your consent via our cookie banner."
+      },
+      "policyUpdates": {
+        "title": "9. Policy Updates",
+        "text": "We may update this policy at any time. Any changes will be posted on this page with an updated 'Last Updated' date."
+      },
+      "contactUs": {
+        "title": "10. Contact Us",
+        "text": "If you have any questions, please contact us at: {email}."
+      }
+    }
+  },
+  "TermsPage": {
+    "title": "Terms of Use",
+    "lastUpdated": "Last Updated: November 10, 2025",
+    "sections": {
+      "agreement": {
+        "title": "1. Agreement to Terms",
+        "text": "By accessing our website ({brandName}.com) or booking a service with us, you agree to be bound by these Terms of Use. 'We' or 'us' refers to {officialName}."
+      },
+      "services": {
+        "title": "2. Our Services",
+        "text": "We provide tour operator services, including (but not limited to) airport transfers, multi-day circuits, hotel reservations, and private guide services ('Services'). All services are subject to availability and confirmation."
+      },
+      "bookingsPayments": {
+        "title": "3. Bookings & Payments",
+        "points": [
+          {
+            "label": "Bookings:",
+            "text": "A booking is only considered confirmed after we receive the required deposit and you receive a written confirmation from us."
+          },
+          {
+            "label": "Payments:",
+            "text": "A deposit (e.g., 50%) is required to secure your booking. The final balance is due on a specified date before the trip or upon arrival, as stated in your booking confirmation."
+          },
+          {
+            "label": "Payment Methods:",
+            "text": "We accept payments via Stripe (credit card) and bank transfer. All transactions are secure."
+          }
+        ]
+      },
+      "cancellationsRefunds": {
+        "title": "4. Cancellations & Refunds",
+        "intro": "This is the most critical section. You must define this clearly with your brother. Here is a common, professional policy:",
+        "subsections": [
+          {
+            "title": "Cancellation by You:",
+            "points": [
+              "Cancellations made more than 30 days before the tour start date: Full refund of your deposit.",
+              "Cancellations made 15-29 days before: 50% refund of your deposit.",
+              "Cancellations made less than 14 days before: No refund of the deposit."
+            ]
+          },
+          {
+            "title": "Cancellation by Us:",
+            "text": "We reserve the right to cancel a tour at any time due to unforeseen circumstances (e.g., natural disasters, safety concerns). In this event, you will receive a 100% full refund."
+          }
+        ]
+      },
+      "yourResponsibilities": {
+        "title": "5. Your Responsibilities",
+        "points": [
+          {
+            "label": "Travel Insurance:",
+            "text": "You are required to purchase comprehensive travel insurance before your trip. This insurance must cover (at a minimum) medical emergencies, personal injury, and cancellation. We are not liable for any incidents not covered by your insurance."
+          },
+          {
+            "label": "Documents:",
+            "text": "You are responsible for ensuring your passport, visa, and any other travel documents are valid for your trip to Morocco."
+          }
+        ]
+      },
+      "liability": {
+        "title": "6. Liability",
+        "text": "{officialName} acts as an agent for hotels, transport providers, and other contractors. We are not liable for any injury, damage, loss, accident, delay, or irregularity that may occur due to the act or default of any company or person engaged in conveying the passenger or in carrying out the arrangements of the tour. We are not responsible for delays or issues caused by 'force majeure' (e.g., weather, strikes, political unrest)."
+      },
+      "itineraryChanges": {
+        "title": "7. Itinerary Changes",
+        "text": "We will make every effort to adhere to the confirmed itinerary. However, we reserve the right to make changes to the itinerary (e.g., order of sights, change of hotel) if necessary due to local conditions, weather, or other unforeseen circumstances to ensure your safety and comfort."
+      },
+      "governingLaw": {
+        "title": "8. Governing Law",
+        "text": "These terms are governed by the laws of the Kingdom of Morocco. Any dispute shall be settled in the competent courts of Marrakech (or Agadir)."
+      }
+    }
   }
   
 }

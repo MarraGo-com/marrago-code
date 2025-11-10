@@ -32,8 +32,8 @@ const clientTextContent: SiteClientTextContent = {
       serviceDescription: "We offer detailed travel itineraries (circuits from south to north), hotel reservations, professional local guides, and comfortable, air-conditioned transportation with reliable drivers.",
       keywords: "Marrakech airport transfer, Morocco private driver, Morocco tour operator, book hotels Morocco, local guides Marrakech, MarraGo, excursions Morocco, Morocco circuits, detailed travel itinerary Morocco, Morocco south to north",
       // --- UPDATED with placeholders ---
-      privacyPolicyContent: "{officialName} is committed to protecting your data... [Standard policy covering booking info, contact details, payment info, cookie usage for tours and transfers]. Contact: {email}",
-      termsOfUseContent: "Booking a service with {brandName} constitutes acceptance of these terms... [Standard terms covering transfer details, tour cancellations, booking modifications, liability for transport, payment policies]."
+    //  privacyPolicyContent: "{officialName} is committed to protecting your data... [Standard policy covering booking info, contact details, payment info, cookie usage for tours and transfers]. Contact: {email}",
+    //  termsOfUseContent: "Booking a service with {brandName} constitutes acceptance of these terms... [Standard terms covering transfer details, tour cancellations, booking modifications, liability for transport, payment policies]."
     },
    luxuryHomepageSlides: [
       {
@@ -122,8 +122,8 @@ const clientTextContent: SiteClientTextContent = {
   industrySpecifics: "Un tour-opérateur marocain complet créant des itinéraires de voyage détaillés du sud au nord. Nous sommes spécialisés dans le transport confortable et climatisé avec chauffeurs professionnels, les guides locaux experts dans chaque ville, et les réservations d'hôtels organisées pour un voyage fluide et magique.",
   serviceDescription: "Nous proposons des itinéraires de voyage détaillés (circuits du sud au nord), des réservations d'hôtel, des guides locaux professionnels, et un transport confortable et climatisé avec des chauffeurs fiables.",
   keywords: "transfert aéroport Marrakech, chauffeur privé Maroc, tour opérateur Maroc, réserver hôtels Maroc, guides locaux Marrakech, MarraGo, excursions Maroc, circuits Maroc, itinéraire de voyage détaillé Maroc, Maroc du sud au nord",
-  privacyPolicyContent: "{officialName} s'engage à protéger vos données... [Politique standard couvrant les informations de réservation, les coordonnées, les informations de paiement, l'utilisation des cookies pour les circuits et les transferts]. Contact : {email}",
-  termsOfUseContent: "La réservation d'un service auprès de {brandName} vaut acceptation de ces conditions... [Conditions standard couvrant les détails des transferts, les annulations de circuits, les modifications de réservation, la responsabilité du transport, les politiques de paiement]."
+ // privacyPolicyContent: "{officialName} s'engage à protéger vos données... [Politique standard couvrant les informations de réservation, les coordonnées, les informations de paiement, l'utilisation des cookies pour les circuits et les transferts]. Contact : {email}",
+ // termsOfUseContent: "La réservation d'un service auprès de {brandName} vaut acceptation de ces conditions... [Conditions standard couvrant les détails des transferts, les annulations de circuits, les modifications de réservation, la responsabilité du transport, les politiques de paiement]."
 },
   luxuryHomepageSlides: [
     {
@@ -211,8 +211,8 @@ const clientTextContent: SiteClientTextContent = {
   industrySpecifics: "منظم رحلات سياحية مغربي متكامل ينشئ برامج سفر مفصلة من الجنوب إلى الشمال. نحن متخصصون في النقل المريح والمكيف مع سائقين محترفين، ومرشدين محليين خبراء في كل مدينة، وحجوزات فندقية منسقة لرحلة سلسة وساحرة.",
   serviceDescription: "نحن نقدم برامج سفر مفصلة (جولات من الجنوب إلى الشمال)، حجوزات فندقية، مرشدين محليين محترفين، ونقل مريح ومكيف مع سائقين موثوقين.",
   keywords: "توصيل مطار مراكش, سائق خاص المغرب, منظم رحلات المغرب, حجز فنادق المغرب, مرشد سياحي محلي مراكش, MarraGo, جولات سياحية المغرب, جولات المغرب, برنامج سياحي مفصل المغرب, المغرب من الجنوب إلى الشمال",
-  privacyPolicyContent: "تلتزم {officialName} بحماية بياناتك... [سياسة قياسية تغطي معلومات الحجز، تفاصيل الاتصال، معلومات الدفع، استخدام ملفات تعريف الارتباط للجولات وعمليات النقل]. للتواصل: {email}",
-  termsOfUseContent: "يُعد حجز خدمة مع {brandName} قبولاً لهذه الشروط... [شروط قياسية تغطي تفاصيل النقل، إلغاء الجولات، تعديلات الحجز، المسؤولية عن النقل، سياسات الدفع]."
+ // privacyPolicyContent: "تلتزم {officialName} بحماية بياناتك... [سياسة قياسية تغطي معلومات الحجز، تفاصيل الاتصال، معلومات الدفع، استخدام ملفات تعريف الارتباط للجولات وعمليات النقل]. للتواصل: {email}",
+ // termsOfUseContent: "يُعد حجز خدمة مع {brandName} قبولاً لهذه الشروط... [شروط قياسية تغطي تفاصيل النقل، إلغاء الجولات، تعديلات الحجز، المسؤولية عن النقل، سياسات الدفع]."
 },
   luxuryHomepageSlides: [
     {
@@ -300,8 +300,8 @@ const clientTextContent: SiteClientTextContent = {
   industrySpecifics: "Un touroperador marroquí de servicio completo que crea itinerarios de viaje detallados de sur a norte. Nos especializamos en transporte cómodo y con aire acondicionado con conductores profesionales, guías locales expertos en cada ciudad y reservas de hoteles seleccionadas para un viaje fluido y mágico.",
   serviceDescription: "Ofrecemos itinerarios de viaje detallados (circuitos de sur a norte), reservas de hotel, guías locales profesionales y transporte cómodo con aire acondicionado y conductores fiables.",
   keywords: "traslado aeropuerto Marrakech, conductor privado Marruecos, tour operador Marruecos, reservar hoteles Marruecos, guías locales Marrakech, MarraGo, excursiones Marruecos, circuitos Marruecos, itinerario de viaje detallado Marruecos, Marruecos de sur a norte",
-  privacyPolicyContent: "{officialName} se compromete a proteger sus datos... [Política estándar que cubre la información de reserva, detalles de contacto, información de pago, uso de cookies para tours y traslados]. Contacto: {email}",
-  termsOfUseContent: "Reservar un servicio con {brandName} constituye la aceptación de estos términos... [Términos estándar que cubren detalles de traslados, cancelaciones de tours, modificaciones de reservas, responsabilidad del transporte, políticas de pago]."
+ // privacyPolicyContent: "{officialName} se compromete a proteger sus datos... [Política estándar que cubre la información de reserva, detalles de contacto, información de pago, uso de cookies para tours y traslados]. Contacto: {email}",
+ // termsOfUseContent: "Reservar un servicio con {brandName} constituye la aceptación de estos términos... [Términos estándar que cubren detalles de traslados, cancelaciones de tours, modificaciones de reservas, responsabilidad del transporte, políticas de pago]."
 },
   luxuryHomepageSlides: [
     {

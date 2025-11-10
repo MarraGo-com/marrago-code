@@ -79,8 +79,8 @@ type GlobalContent = {
     industrySpecifics: string;
     serviceDescription: string;
     keywords: string;
-    privacyPolicyContent: string;
-    termsOfUseContent: string;
+  //  privacyPolicyContent: string;
+  //  termsOfUseContent: string;
 };
 // Define the overall SiteClientTextContent interface
 // This interface describes the structure of ALL localized textual content.
