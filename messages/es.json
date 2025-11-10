@@ -369,5 +369,186 @@
     "AdminReviewsPage": {
       "manageReviewsTitle": "Gestionar Reseñas de Clientes"
     }
+  },
+  "PrivacyPage": {
+    "title": "Política de Privacidad",
+    "lastUpdated": "Última actualización: 10 de noviembre de 2025",
+    "sections": {
+      "introduction": {
+        "title": "1. Introducción",
+        "text": "{officialName} ('nosotros') se compromete a proteger sus datos personales. Esta Política de Privacidad explica cómo recopilamos, usamos y protegemos su información cuando utiliza nuestro sitio web ({brandName}.com) y nuestros servicios, en cumplimiento de la Ley marroquí N° 09-08."
+      },
+      "dataController": {
+        "title": "2. Responsable del Tratamiento",
+        "text": "{officialName} es el 'Responsable del Tratamiento' de sus datos personales recopilados a través de este sitio web."
+      },
+      "dataCollected": {
+        "title": "3. Datos que Recopilamos",
+        "intro": "Podemos recopilar los siguientes datos:",
+        "points": [
+          {
+            "label": "Datos que usted proporciona:",
+            "text": "Su nombre, dirección de correo electrónico, número de teléfono y el número de huéspedes cuando completa un formulario de reserva o contacto."
+          },
+          {
+            "label": "Datos de Pago:",
+            "text": "Usamos Stripe para procesar pagos. No almacenamos los detalles de su tarjeta de crédito. Sus datos de pago son gestionados por Stripe."
+          },
+          {
+            "label": "Datos Automáticos:",
+            "text": "Su dirección IP, tipo de navegador y cómo utiliza nuestro sitio (a través de analíticas simples) para ayudarnos a mejorar nuestro servicio."
+          }
+        ]
+      },
+      "howWeUseData": {
+        "title": "4. Cómo Usamos Sus Datos",
+        "intro": "Usamos sus datos para los siguientes propósitos:",
+        "points": [
+          {
+            "label": "Para Gestionar Su Reserva:",
+            "text": "Para procesar su reserva, gestionar su itinerario y proporcionarle los servicios de transporte y guía."
+          },
+          {
+            "label": "Para Comunicarnos Con Usted:",
+            "text": "Para enviarle confirmaciones de reserva, detalles del itinerario y responder a sus preguntas."
+          },
+          {
+            "label": "Para Mejorar Nuestro Servicio:",
+            "text": "Para entender cómo se utiliza nuestro sitio web y así poder mejorarlo."
+          }
+        ]
+      },
+      "dataSharing": {
+        "title": "5. Cesión de Datos",
+        "intro": "No vendemos sus datos personales. Solo los compartimos cuando es necesario:",
+        "points": [
+          {
+            "label": "Con Socios de Servicios:",
+            "text": "Podemos compartir su nombre con un hotel que estamos reservando en su nombre o con un guía específico."
+          },
+          {
+            "label": "Con Procesadores de Pago:",
+            "text": "Compartimos información de pago con Stripe para completar su transacción."
+          },
+          {
+            "label": "Por Razones Legales:",
+            "text": "Si lo exige la ley marroquí."
+          }
+        ]
+      },
+      "dataRetention": {
+        "title": "6. Conservación de Datos",
+        "text": "Conservamos sus datos personales solo durante el tiempo necesario para cumplir con los servicios prometidos y para cumplir con nuestras obligaciones legales (por ejemplo, para fines fiscales)."
+      },
+      "yourRights": {
+        "title": "7. Sus Derechos (Ley 09-08)",
+        "intro": "Bajo la ley marroquí, usted tiene derecho a:",
+        "points": [
+          {
+            "label": "Acceso:",
+            "text": "Solicitar una copia de los datos personales que tenemos sobre usted."
+          },
+          {
+            "label": "Rectificación:",
+            "text": "Solicitar que corrijamos cualquier dato inexacto."
+          },
+          {
+            "label": "Supresión (Cancelación):",
+            "text": "Solicitar que eliminemos sus datos personales."
+          },
+          {
+            "label": "Oposición:",
+            "text": "Oponerse al tratamiento de sus datos por motivos legítimos."
+          }
+        ],
+        "outro": "Para ejercer estos derechos, contáctenos en: {email}. También tiene derecho a presentar una queja ante la CNDP (Comisión Nacional de control de la protección de Datos de carácter Personal de Marruecos)."
+      },
+      "cookies": {
+        "title": "8. Cookies",
+        "text": "Usamos cookies esenciales para que nuestro sitio funcione y cookies analíticas para mejorar nuestro servicio. Puede gestionar su consentimiento a través de nuestro banner de cookies."
+      },
+      "policyUpdates": {
+        "title": "9. Actualizaciones de la Política",
+        "text": "Podemos actualizar esta política en cualquier momento. Cualquier cambio se publicará en esta página con una fecha de 'Última actualización' actualizada."
+      },
+      "contactUs": {
+        "title": "10. Contáctenos",
+        "text": "Si tiene alguna pregunta, contáctenos en: {email}."
+      }
+    }
+  },
+  "TermsPage": {
+    "title": "Términos de Uso",
+    "lastUpdated": "Última actualización: 10 de noviembre de 2025",
+    "sections": {
+      "agreement": {
+        "title": "1. Aceptación de los Términos",
+        "text": "Al acceder a nuestro sitio web ({brandName}.com) o reservar un servicio con nosotros, usted acepta estar sujeto a estos Términos de Uso. 'Nosotros' se refiere a {officialName}."
+      },
+      "services": {
+        "title": "2. Nuestros Servicios",
+        "text": "Proporcionamos servicios de operador turístico, incluyendo (entre otros) traslados al aeropuerto, circuitos de varios días, reservas de hotel y servicios de guía privado ('Servicios'). Todos los servicios están sujetos a disponibilidad y confirmación."
+      },
+      "bookingsPayments": {
+        "title": "3. Reservas y Pagos",
+        "points": [
+          {
+            "label": "Reservas:",
+            "text": "Una reserva solo se considera confirmada después de que recibamos el depósito requerido y usted reciba una confirmación por escrito de nuestra parte."
+          },
+          {
+            "label": "Pagos:",
+            "text": "Se requiere un depósito (ej. 50%) para asegurar su reserva. El saldo final se debe pagar en una fecha específica antes del viaje o a la llegada, según se indique en su confirmación de reserva."
+          },
+          {
+            "label": "Métodos de Pago:",
+            "text": "Aceptamos pagos a través de Stripe (tarjeta de crédito) y transferencia bancaria. Todas las transacciones son seguras."
+          }
+        ]
+      },
+      "cancellationsRefunds": {
+        "title": "4. Cancelaciones y Reembolsos",
+        "intro": "Esta es la sección más crítica. Debes definirla claramente con tu hermano. Aquí hay una política profesional común:",
+        "subsections": [
+          {
+            "title": "Cancelación por su parte:",
+            "points": [
+              "Cancelaciones hechas con más de 30 días de antelación a la fecha de inicio del tour: Reembolso completo de su depósito.",
+              "Cancelaciones hechas 15-29 días antes: Reembolso del 50% de su depósito.",
+              "Cancelaciones hechas menos de 14 días antes: No hay reembolso del depósito."
+            ]
+          },
+          {
+            "title": "Cancelación por nuestra parte:",
+            "text": "Nos reservamos el derecho de cancelar un tour en cualquier momento debido a circunstancias imprevistas (ej. desastres naturales, problemas de seguridad). En este caso, recibirá un reembolso completo del 100%."
+          }
+        ]
+      },
+      "yourResponsibilities": {
+        "title": "5. Sus Responsabilidades",
+        "points": [
+          {
+            "label": "Seguro de Viaje:",
+            "text": "Usted está obligado a contratar un seguro de viaje completo antes de su viaje. Este seguro debe cubrir (como mínimo) emergencias médicas, lesiones personales y cancelación. No somos responsables de ningún incidente no cubierto por su seguro."
+          },
+          {
+            "label": "Documentos:",
+            "text": "Usted es responsable de asegurarse de que su pasaporte, visado y cualquier otro documento de viaje sean válidos para su viaje a Marruecos."
+          }
+        ]
+      },
+      "liability": {
+        "title": "6. Responsabilidad",
+        "text": "{officialName} actúa como un agente para hoteles, proveedores de transporte y otros contratistas. No somos responsables de ninguna lesión, daño, pérdida, accidente, retraso o irregularidad que pueda ocurrir debido al acto o incumplimiento de cualquier compañía o persona involucrada en el transporte del pasajero o en la ejecución de los arreglos del tour. No somos responsables de retrasos o problemas causados por 'fuerza mayor' (ej. clima, huelgas, disturbios políticos)."
+      },
+      "itineraryChanges": {
+        "title": "7. Cambios en el Itinerario",
+        "text": "Haremos todo lo posible por adherirnos al itinerario confirmado. Sin embargo, nos reservamos el derecho de realizar cambios en el itinerario (ej. orden de las visitas, cambio de hotel) si es necesario debido a condiciones locales, clima u otras circunstancias imprevistas para garantizar su seguridad y comodidad."
+      },
+      "governingLaw": {
+        "title": "8. Ley Aplicable",
+        "text": "Estos términos se rigen por las leyes del Reino de Marruecos. Cualquier disputa se resolverá en los tribunales competentes de Marrakech (o Agadir)."
+      }
+    }
   }
 }

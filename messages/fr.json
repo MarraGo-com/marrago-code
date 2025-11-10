@@ -369,5 +369,186 @@
     "AdminReviewsPage": {
       "manageReviewsTitle": "Gérer les Avis Clients"
     }
+  },
+  "PrivacyPage": {
+    "title": "Politique de Confidentialité",
+    "lastUpdated": "Dernière mise à jour : 10 novembre 2025",
+    "sections": {
+      "introduction": {
+        "title": "1. Introduction",
+        "text": "{officialName} ('nous') s'engage à protéger vos données personnelles. Cette Politique de Confidentialité explique comment nous collectons, utilisons et protégeons vos informations lorsque vous utilisez notre site web ({brandName}.com) et nos services, conformément à la loi marocaine n° 09-08."
+      },
+      "dataController": {
+        "title": "2. Responsable du Traitement",
+        "text": "{officialName} est le 'Responsable du Traitement' de vos données personnelles collectées via ce site web."
+      },
+      "dataCollected": {
+        "title": "3. Données que Nous Collectons",
+        "intro": "Nous pouvons collecter les données suivantes :",
+        "points": [
+          {
+            "label": "Données que vous fournissez :",
+            "text": "Votre nom, adresse e-mail, numéro de téléphone et le nombre de participants lorsque vous remplissez un formulaire de réservation ou de contact."
+          },
+          {
+            "label": "Données de Paiement :",
+            "text": "Nous utilisons Stripe pour traiter les paiements. Nous ne stockons pas les détails de votre carte de crédit. Vos données de paiement sont gérées par Stripe."
+          },
+          {
+            "label": "Données Automatiques :",
+            "text": "Votre adresse IP, type de navigateur, et comment vous utilisez notre site (via des analyses simples) pour nous aider à améliorer notre service."
+          }
+        ]
+      },
+      "howWeUseData": {
+        "title": "4. Comment Nous Utilisons Vos Données",
+        "intro": "Nous utilisons vos données aux fins suivantes :",
+        "points": [
+          {
+            "label": "Pour Exécuter Votre Réservation :",
+            "text": "Pour traiter votre réservation, gérer votre itinéraire et vous fournir les services de transport et de guide."
+          },
+          {
+            "label": "Pour Communiquer Avec Vous :",
+            "text": "Pour vous envoyer des confirmations de réservation, les détails de l'itinéraire et répondre à vos questions."
+          },
+          {
+            "label": "Pour Améliorer Notre Service :",
+            "text": "Pour comprendre comment notre site web est utilisé afin de pouvoir l'améliorer."
+          }
+        ]
+      },
+      "dataSharing": {
+        "title": "5. Partage des Données",
+        "intro": "Nous ne vendons pas vos données personnelles. Nous les partageons uniquement lorsque cela est nécessaire :",
+        "points": [
+          {
+            "label": "Avec des Partenaires de Service :",
+            "text": "Nous pouvons partager votre nom avec un hôtel que nous réservons en votre nom ou avec un guide spécifique."
+          },
+          {
+            "label": "Avec les Processeurs de Paiement :",
+            "text": "Nous partageons les informations de paiement avec Stripe pour finaliser votre transaction."
+          },
+          {
+            "label": "Pour des Raisons Légales :",
+            "text": "Si la loi marocaine l'exige."
+          }
+        ]
+      },
+      "dataRetention": {
+        "title": "6. Conservation des Données",
+        "text": "Nous conservons vos données personnelles uniquement aussi longtemps que nécessaire pour fournir les services promis et pour nous conformer à nos obligations légales (par exemple, à des fins fiscales)."
+      },
+      "yourRights": {
+        "title": "7. Vos Droits (Loi 09-08)",
+        "intro": "Conformément à la loi marocaine, vous avez le droit de :",
+        "points": [
+          {
+            "label": "Accès :",
+            "text": "Demander une copie des données personnelles que nous détenons à votre sujet."
+          },
+          {
+            "label": "Rectification :",
+            "text": "Demander que nous corrigions toute donnée inexacte."
+          },
+          {
+            "label": "Suppression :",
+            "text": "Demander que nous supprimions vos données personnelles."
+          },
+          {
+            "label": "Opposition :",
+            "text": "Vous opposer au traitement de vos données pour des motifs légitimes."
+          }
+        ],
+        "outro": "Pour exercer ces droits, veuillez nous contacter à : {email}. Vous avez également le droit de déposer une plainte auprès de la CNDP (Commission Nationale de contrôle de la protection des Données à caractère Personnel du Maroc)."
+      },
+      "cookies": {
+        "title": "8. Cookies",
+        "text": "Nous utilisons des cookies essentiels au fonctionnement de notre site et des cookies analytiques pour améliorer notre service. Vous pouvez gérer votre consentement via notre bannière de cookies."
+      },
+      "policyUpdates": {
+        "title": "9. Mises à Jour de la Politique",
+        "text": "Nous pouvons mettre à jour cette politique à tout moment. Tout changement sera publié sur cette page avec une date de 'Dernière mise à jour' actualisée."
+      },
+      "contactUs": {
+        "title": "10. Contactez-Nous",
+        "text": "Si vous avez des questions, veuillez nous contacter à : {email}."
+      }
+    }
+  },
+  "TermsPage": {
+    "title": "Conditions d'Utilisation",
+    "lastUpdated": "Dernière mise à jour : 10 novembre 2025",
+    "sections": {
+      "agreement": {
+        "title": "1. Acceptation des Conditions",
+        "text": "En accédant à notre site web ({brandName}.com) ou en réservant un service avec nous, vous acceptez d'être lié par ces Conditions d'Utilisation. 'Nous' fait référence à {officialName}."
+      },
+      "services": {
+        "title": "2. Nos Services",
+        "text": "Nous fournissons des services de tour-opérateur, y compris (mais sans s'y limiter) les transferts aéroport, les circuits de plusieurs jours, les réservations d'hôtel et les services de guide privé ('Services'). Tous les services sont sous réserve de disponibilité et de confirmation."
+      },
+      "bookingsPayments": {
+        "title": "3. Réservations et Paiements",
+        "points": [
+          {
+            "label": "Réservations :",
+            "text": "Une réservation n'est considérée comme confirmée qu'après réception de l'acompte requis et réception d'une confirmation écrite de notre part."
+          },
+          {
+            "label": "Paiements :",
+            "text": "Un acompte (par ex. 50%) est requis pour garantir votre réservation. Le solde final est dû à une date spécifiée avant le voyage ou à l'arrivée, comme indiqué dans votre confirmation de réservation."
+          },
+          {
+            "label": "Méthodes de Paiement :",
+            "text": "Nous acceptons les paiements via Stripe (carte de crédit) et virement bancaire. Toutes les transactions sont sécurisées."
+          }
+        ]
+      },
+      "cancellationsRefunds": {
+        "title": "4. Annulations et Remboursements",
+        "intro": "C'est la section la plus critique. Vous devez la définir clairement avec votre frère. Voici une politique professionnelle courante :",
+        "subsections": [
+          {
+            "title": "Annulation de votre part :",
+            "points": [
+              "Annulations faites plus de 30 jours avant la date de début du circuit : Remboursement intégral de votre acompte.",
+              "Annulations faites 15-29 jours avant : Remboursement de 50% de votre acompte.",
+              "Annulations faites moins de 14 jours avant : Aucun remboursement de l'acompte."
+            ]
+          },
+          {
+            "title": "Annulation de notre part :",
+            "text": "Nous nous réservons le droit d'annuler un circuit à tout moment en raison de circonstances imprévues (par ex. catastrophes naturelles, problèmes de sécurité). Dans ce cas, vous recevrez un remboursement intégral de 100%."
+          }
+        ]
+      },
+      "yourResponsibilities": {
+        "title": "5. Vos Responsabilités",
+        "points": [
+          {
+            "label": "Assurance Voyage :",
+            "text": "Vous êtes tenu de souscrire une assurance voyage complète avant votre voyage. Cette assurance doit couvrir (au minimum) les urgences médicales, les dommages corporels et l'annulation. Nous ne sommes pas responsables des incidents non couverts par votre assurance."
+          },
+          {
+            "label": "Documents :",
+            "text": "Vous êtes responsable de vous assurer que votre passeport, visa et tout autre document de voyage sont valides pour votre voyage au Maroc."
+          }
+        ]
+      },
+      "liability": {
+        "title": "6. Responsabilité",
+        "text": "{officialName} agit en tant qu'agent pour les hôtels, les transporteurs et autres prestataires. Nous ne sommes pas responsables de toute blessure, dommage, perte, accident, retard ou irrégularité pouvant survenir du fait d'un acte ou d'un manquement de toute société ou personne engagée dans le transport du passager ou dans l'exécution des arrangements du circuit. Nous ne sommes pas responsables des retards ou problèmes causés par un cas de 'force majeure' (par ex. météo, grèves, troubles politiques)."
+      },
+      "itineraryChanges": {
+        "title": "7. Modifications de l'Itinéraire",
+        "text": "Nous ferons tout notre possible pour respecter l'itinéraire confirmé. Cependant, nous nous réservons le droit d'apporter des modifications à l'itinéraire (par ex. ordre des visites, changement d'hôtel) si nécessaire en raison des conditions locales, de la météo ou d'autres circonstances imprévues pour assurer votre sécurité et votre confort."
+      },
+      "governingLaw": {
+        "title": "8. Droit Applicable",
+        "text": "Ces conditions sont régies par les lois du Royaume du Maroc. Tout litige sera réglé par les tribunaux compétents de Marrakech (ou Agadir)."
+      }
+    }
   }
 }
