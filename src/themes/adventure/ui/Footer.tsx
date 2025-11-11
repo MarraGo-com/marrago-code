@@ -63,8 +63,8 @@ const BrandInfo = ({ t, aboutSummary }: { t: any, aboutSummary: string }) => (
             <Image 
                 src={siteConfig.logo}
                 alt={`${siteConfig.siteName} Logo`}
-                width={40} 
-                height={40} 
+                width={60} 
+                height={60} 
                 style={{ marginRight: '10px' }}
             />
             <Typography variant="h6" component="p" sx={{ color: 'common.white', fontWeight: 'bold' }}>

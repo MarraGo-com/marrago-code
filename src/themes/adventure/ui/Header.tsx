@@ -142,8 +142,8 @@ export default function Header() {
                   <Image 
                     src= {siteConfig.logo} 
                     alt= {siteConfig.siteName} 
-                    width={40} 
-                    height={40} 
+                    width={60} 
+                    height={60} 
                     priority 
                     fetchPriority='high'
                     style={{ 

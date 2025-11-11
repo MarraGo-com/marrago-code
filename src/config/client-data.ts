@@ -371,7 +371,7 @@ const manualClientData : ManualClientData = {
   // --- Core Business Info ---
   "clientId": "client-marrago",
   "officialName": "MarraGo Travel SARL", // Fictional official name
-  "websiteDisplayName": "MarraGo",
+  "websiteDisplayName": "MarraGo Travel",
   "ownerName": "Omar Ouazza", // Fictional owner name
  // "slogan": "Magic of Morocco: Full Itineraries, Transport, Guides & Hotels.", // <-- UPDATED
   "logoUrl": "/images/icons/icon-256x256.png", // (Using a placeholder path, you can change)
@@ -415,7 +415,8 @@ const manualClientData : ManualClientData = {
 
   // --- Tour Locations Served (Key cities) ---
   // (This was already perfect for "south to north")
-  "tourLocationsServed": "Marrakech, Agadir, Fes, Casablanca, Rabat, Tangier, Essaouira, Merzouga",
+  // --- Tour Locations Served (Key cities) ---
+  "tourLocationsServed": "Agadir, Agafay, Casablanca, Essaouira, Fes, Imlil, Marrakech, Merzouga, Ourika, Ouarzazate, Rabat, Tangier, Zagora",
 
   // --- Payment & Language Options ---
   "paymentMethodsAccepted": ["bankTransfer", "onlinePaymentGateway", "creditCard"],

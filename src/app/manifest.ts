@@ -47,6 +47,12 @@ const primaryColor = siteConfig.colors.primaryColor || '#004AAD'; // Fallback to
         purpose: 'maskable',
       },
       {
+        src: '/images/icons/icon-256x256.png',
+        sizes: '256x256',
+        type: 'image/png',
+        purpose: 'maskable',
+      },
+      {
         src: '/images/icons/icon-384x384.png',
         sizes: '384x384',
         type: 'image/png',
