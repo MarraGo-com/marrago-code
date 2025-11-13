@@ -23,7 +23,7 @@ async function getExperiences(locale: string) {
         id: doc.id,
         title,
         description,
-        price: data.price || { amount: 0, currency: 'MAD', prefix: 'from' },
+        price: data.price || { amount: 0, currency: 'EUR', prefix: 'from' },
         locationId: data.locationId || 'unknown',
         tags: data.tags || [],
         duration: data.duration || 'N/A',

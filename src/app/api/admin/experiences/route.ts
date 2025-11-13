@@ -23,7 +23,7 @@ export async function POST(request: Request) {
     const newData = {
       price: {
         amount: Number(price.amount) || 0,
-        currency: price.currency || 'MAD',
+        currency: price.currency || 'EUR',
         prefix: price.prefix || 'from',
       },
       locationId,

@@ -86,7 +86,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
     offers: {
       '@type': 'Offer',
       price: '0', 
-      priceCurrency: 'MAD',
+      priceCurrency: 'EUR',
       availability: 'https://schema.org/InStock',
     }
   };

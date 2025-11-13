@@ -11,7 +11,7 @@ import { Experience, GalleryImage } from '@/types/experience';
 
 // The initial state now includes a 'tags' property
 const initialFormData = {
-  price: { amount: '', currency: 'MAD', prefix: 'from' },
+  price: { amount: '', currency: 'EUR', prefix: 'from' },
   locationId: '',
   coverImage: '',
   tags: '', // ITEN: Added tags as a comma-separated string

@@ -140,7 +140,7 @@ export default function EditExperienceForm({ open, onClose, experience }: EditEx
         <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 2, mb: 2 }}>
             <FormControl fullWidth>
               <InputLabel htmlFor="price-amount">Price Amount</InputLabel>
-              <OutlinedInput id="price-amount" name="amount" type="number" value={formData.price.amount} onChange={handleNestedChange('price')} startAdornment={<InputAdornment position="start">MAD</InputAdornment>} label="Price Amount" required />
+              <OutlinedInput id="price-amount" name="amount" type="number" value={formData.price.amount} onChange={handleNestedChange('price')} startAdornment={<InputAdornment position="start">EUR</InputAdornment>} label="Price Amount" required />
             </FormControl>
             <FormControl fullWidth required>
               <InputLabel id="location-select-label">Location</InputLabel>
