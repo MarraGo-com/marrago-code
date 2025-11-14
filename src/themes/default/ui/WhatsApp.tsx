@@ -1,5 +1,5 @@
 // -------------------------------------------------------------------------
-// FILE: /src/components/ui/WhatsApp.tsx
+// FILE: /src/themes/adventure/ui/WhatsApp.tsx
 // This is the floating settings panel that allows users to change the theme.
 // -------------------------------------------------------------------------
 'use client';

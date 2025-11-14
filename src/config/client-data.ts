@@ -75,9 +75,8 @@ const clientTextContent: SiteClientTextContent = {
       teamTitle: "Meet Your Guides & Drivers",
       teamSubtitle: "The professional, local team making your trip happen.",
       teamMembers: [
-        { image: "/images/marrago/driver-male.webp", name: "Hassan", title: "Lead Driver & Transport Manager", bio: "With 15+ years of experience, Hassan ensures every airport transfer and city-to-city trip is safe, comfortable, and punctual." },
-        { image: "/images/marrago/guide-female.webp", name: "Fatima", title: "Certified Guide - Marrakech", bio: "Fatima is a licensed guide who speaks 4 languages and loves sharing the hidden history and food of the Marrakech medina." },
-        { image: "/images/marrago/ops-manager-male.webp", name: "Omar (Your Brother)", title: "Founder & Itinerary Planner", bio: "Omar manages all logistics, from your detailed itinerary to hotel bookings, ensuring every part of your trip connects perfectly." },
+        { image: "/images/marrago/ops-founder-male.webp", name: "Omar Ouazza", title: "Founder & Lead Driver", bio: "As the founder and heart of the business, Omar is your primary guide on the road. He personally ensures every aspect of your trip is flawless. With extensive driving experience, he guarantees your safety and comfort, while his meticulous planning of your itinerary and logistics ensures a seamless, stress-free adventure from start to finish." },
+        { image: "/images/marrago/assistant-male.webp", name: "Kamal Ahfid", title: "Operations Manager", bio: "Kamal is the organizational backbone of your journey. As the Operations Manager and Omar's right-hand man, he manages all the crucial details behind the scenes. From coordinating your bookings to handling inquiries and ensuring every logistical element is perfectly in place, Kamal works tirelessly so you can simply relax and enjoy your trip." },
       ],
       ctaTitle: "Ready for Your Moroccan Adventure?",
       ctaButtonText: "Plan Your Trip Now",
@@ -164,11 +163,20 @@ const clientTextContent: SiteClientTextContent = {
     ],
     teamTitle: "Rencontrez Vos Guides & Chauffeurs",
     teamSubtitle: "L'équipe locale et professionnelle qui concrétise votre voyage.",
-    teamMembers: [
-      { image: "/images/marrago/driver-male.webp", name: "Hassan", title: "Chauffeur Principal & Responsable Transport", bio: "Avec plus de 15 ans d'expérience, Hassan veille à ce que chaque transfert d'aéroport et trajet interurbain soit sûr, confortable et ponctuel." },
-      { image: "/images/marrago/guide-female.webp", name: "Fatima", title: "Guide Certifiée - Marrakech", bio: "Fatima est une guide agréée qui parle 4 langues et adore partager l'histoire cachée et la gastronomie de la médina de Marrakech." },
-      { image: "/images/marrago/ops-manager-male.webp", name: "Omar (Votre Frère)", title: "Fondateur & Planificateur d'Itinéraires", bio: "Omar gère toute la logistique, de votre itinéraire détaillé aux réservations d'hôtel, s'assurant que chaque partie de votre voyage se connecte parfaitement." },
-    ],
+   teamMembers: [
+  {
+    "image": "/images/marrago/ops-founder-male.webp",
+    "name": "Omar Ouazza",
+    "title": "Fondateur et Chauffeur Principal",
+    "bio": "En tant que fondateur et cœur de l'entreprise, Omar est votre guide principal sur la route. Il veille personnellement à ce que chaque aspect de votre voyage soit impeccable. Fort d'une grande expérience de la conduite, il garantit votre sécurité et votre confort, tandis que sa planification méticuleuse de votre itinéraire et de la logistique assure une aventure fluide et sans stress du début à la fin."
+  },
+  {
+    "image": "/images/marrago/assistant-male.webp",
+    "name": "Kamal Ahfid",
+    "title": "Responsable des Opérations",
+    "bio": "Kamal est l'épine dorsale organisationnelle de votre voyage. En tant que Responsable des Opérations et bras droit d'Omar, il gère tous les détails cruciaux en coulisses. De la coordination de vos réservations à la gestion des demandes et en s'assurant que chaque élément logistique est parfaitement en place, Kamal travaille sans relâche pour que vous puissiez simplement vous détendre et profiter de votre voyage."
+  }
+],
     ctaTitle: "Prêt pour Votre Aventure Marocaine ?",
     ctaButtonText: "Planifiez Votre Voyage Maintenant",
   },
@@ -254,10 +262,19 @@ const clientTextContent: SiteClientTextContent = {
     teamTitle: "تعرف على مرشدينا وسائقينا",
     teamSubtitle: "الفريق المحلي المحترف الذي يجعل رحلتك ممكنة.",
     teamMembers: [
-      { image: "/images/marrago/driver-male.webp", name: "حسن", title: "سائق رئيسي ومدير النقل", bio: "بأكثر من 15 عامًا من الخبرة، يضمن حسن أن كل عملية نقل من المطار ورحلة بين المدن آمنة ومريحة ودقيقة في مواعيدها." },
-      { image: "/images/marrago/guide-female.webp", name: "فاطمة", title: "مرشدة معتمدة - مراكش", bio: "فاطمة مرشدة مرخصة تتحدث 4 لغات وتحب مشاركة التاريخ الخفي والطعام في مدينة مراكش القديمة." },
-      { image: "/images/marrago/ops-manager-male.webp", name: "عمر (أخوك)", title: "المؤسس ومخطط الرحلات", bio: "يدير عمر جميع الخدمات اللوجستية، بدءًا من برنامج رحلتك المفصل وحتى حجوزات الفنادق، مما يضمن ترابط كل جزء من رحلتك بشكل مثالي." },
-    ],
+  {
+    "image": "/images/marrago/ops-founder-male.webp",
+    "name": "Omar Ouazza",
+    "title": "المؤسس والسائق الرئيسي",
+    "bio": "بصفته مؤسس الشركة وقلبها النابض، عمر هو دليلك الأساسي على الطريق. يحرص شخصيًا على أن يكون كل جانب من جوانب رحلتك مثاليًا. بفضل خبرته الواسعة في القيادة، فإنه يضمن سلامتك وراحتك، بينما يضمن تخطيطه الدقيق لمسار رحلتK ولوجستياتها مغامرة سلسة وخالية من التوتر من البداية إلى النهاية."
+  },
+  {
+    "image": "/images/marrago/assistant-male.webp",
+    "name": "Kamal Ahfid",
+    "title": "مدير العمليات",
+    "bio": "كمال هو العمود الفقري التنظيمي لرحلتك. بصفته مدير العمليات والذراع الأيمن لعمر، فإنه يدير جميع التفاصيل الحاسمة خلف الكواليس. من تنسيق حجوزاتك إلى التعامل مع الاستفسارات والتأكد من أن كل عنصر لوجستي في مكانه الصحيح، يعمل كمال بلا كلل حتى تتمكن ببساطة من الاسترخاء والاستمتاع برحلتك."
+  }
+],
     ctaTitle: "هل أنت مستعد لمغامرتك المغربية؟",
     ctaButtonText: "خطط لرحلتك الآن",
   },
@@ -343,10 +360,19 @@ const clientTextContent: SiteClientTextContent = {
     teamTitle: "Conoce a Tus Guías y Conductores",
     teamSubtitle: "El equipo local y profesional que hace posible tu viaje.",
     teamMembers: [
-      { image: "/images/marrago/driver-male.webp", name: "Hassan", title: "Conductor Principal y Gerente de Transporte", bio: "Con más de 15 años de experiencia, Hassan asegura que cada traslado al aeropuerto y viaje entre ciudades sea seguro, cómodo y puntual." },
-      { image: "/images/marrago/guide-female.webp", name: "Fatima", title: "Guía Certificada - Marrakech", bio: "Fatima es una guía licenciada que habla 4 idiomas y le encanta compartir la historia oculta y la gastronomía de la medina de Marrakech." },
-      { image: "/images/marrago/ops-manager-male.webp", name: "Omar (Tu Hermano)", title: "Fundador y Planificador de Itinerarios", bio: "Omar gestiona toda la logística, desde tu itinerario detallado hasta las reservas de hotel, asegurando que cada parte de tu viaje se conecte perfectamente." },
-    ],
+  {
+    "image": "/images/marrago/ops-founder-male.webp",
+    "name": "Omar Ouazza",
+    "title": "Fundador y Conductor Principal",
+    "bio": "Como fundador y corazón del negocio, Omar es su guía principal en el camino. Él se asegura personalmente de que cada aspecto de su viaje sea impecable. Con una amplia experiencia de conducción, garantiza su seguridad y comodidad, mientras que su meticulosa planificación de su itinerario y logística asegura una aventura fluida y sin estrés de principio a fin."
+  },
+  {
+    "image": "/images/marrago/assistant-male.webp",
+    "name": "Kamal Ahfid",
+    "title": "Gerente de Operaciones",
+    "bio": "Kamal es la columna vertebral organizativa de su viaje. Como Gerente de Operaciones y mano derecha de Omar, gestiona todos los detalles cruciales entre bastidores. Desde la coordinación de sus reservas hasta la gestión de consultas y asegurarse de que cada elemento logístico esté perfectamente en su lugar, Kamal trabaja incansablemente para que usted pueda simplemente relajarse y disfrutar de su viaje."
+  }
+],
     ctaTitle: "¿Listo para Tu Aventura Marroquí?",
     ctaButtonText: "Planifica Tu Viaje Ahora",
   },

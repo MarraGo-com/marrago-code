@@ -29,6 +29,7 @@ import { getMainJsonLd } from "@/config/json-ld";
 // 1. Import our server-side loader
 import { getComponentImport } from "@/lib/theme-component-loader"; 
 import { CookieConsentProvider } from "@/contexts/CookieConsentContext";
+import FloatingWhatsApp from "@/components/ui/FloatingWhatsApp";
 
 // 2. REMOVE the old 'theme' variable
 // const theme = process.env.NEXT_PUBLIC_THEME || 'default'; // <-- REMOVED
@@ -115,11 +116,11 @@ export default async function RootLayout({
                    </main>
                    <Footer />
                  </div>
-                {/* <WhatsApp /> */}
                </ThemeRegistry>
              </ThemeContextProvider>
            </QueryProvider>
            <AnalyticsScripts />
+           <FloatingWhatsApp />
            </CookieConsentProvider>
          </NextIntlClientProvider>
 
