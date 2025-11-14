@@ -550,5 +550,30 @@
         "text": "Ces conditions sont régies par les lois du Royaume du Maroc. Tout litige sera réglé par les tribunaux compétents de Marrakech (ou Agadir)."
       }
     }
+  },
+  "CookieConsent": {
+    "message": "Nous utilisons des cookies pour améliorer votre expérience de navigation, analyser le trafic du site et personnaliser le contenu.",
+    "privacyLinkText": "En savoir plus dans notre Politique de Confidentialité",
+    "acceptAll": "Tout accepter",
+    "declineAll": "Tout refuser",
+    "customize": "Personnaliser",
+    "modal": {
+      "title": "Gérer vos préférences de cookies",
+      "close": "Fermer la fenêtre",
+      "description": "Vous pouvez choisir quels types de cookies autoriser. Vos préférences seront sauvegardées pendant 1 an.",
+      "save": "Enregistrer les préférences",
+      "necessary": {
+        "title": "Strictement nécessaires",
+        "description": "Ces cookies sont essentiels au fonctionnement du site et ne peuvent pas être désactivés."
+      },
+      "analytics": {
+        "title": "Cookies analytiques",
+        "description": "Ces cookies nous aident à comprendre comment les visiteurs interagissent avec notre site en collectant des informations anonymes."
+      },
+      "marketing": {
+        "title": "Cookies marketing",
+        "description": "Ces cookies sont utilisés pour suivre les visiteurs sur les sites web afin d'afficher des publicités pertinentes (par ex. Pixel Facebook)."
+      }
+    }
   }
 }

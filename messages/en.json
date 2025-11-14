@@ -556,6 +556,31 @@
         "text": "These terms are governed by the laws of the Kingdom of Morocco. Any dispute shall be settled in the competent courts of Marrakech (or Agadir)."
       }
     }
+  },
+  "CookieConsent": {
+    "message": "We use cookies to enhance your browsing experience, analyze site traffic, and personalize content.",
+    "privacyLinkText": "Learn more in our Privacy Policy",
+    "acceptAll": "Accept All",
+    "declineAll": "Decline All",
+    "customize": "Customize",
+    "modal": {
+      "title": "Manage Your Cookie Preferences",
+      "close": "Close modal",
+      "description": "You can choose which types of cookies to allow. Your preferences will be saved for 1 year.",
+      "save": "Save Preferences",
+      "necessary": {
+        "title": "Strictly Necessary",
+        "description": "These cookies are essential for the website to function and cannot be switched off."
+      },
+      "analytics": {
+        "title": "Analytical Cookies",
+        "description": "These cookies help us understand how visitors interact with our website by collecting anonymous information."
+      },
+      "marketing": {
+        "title": "Marketing Cookies",
+        "description": "These cookies are used to track visitors across websites to display relevant ads (e.g., Facebook Pixel)."
+      }
+    }
   }
   
 }

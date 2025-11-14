@@ -16,7 +16,9 @@ import QueryProvider from "@/providers/QueryProvider";
 import { ThemeContextProvider } from "@/contexts/ThemeContext";
 
 import DeferredStylesheets from "@/components/custom/DeferredStylesheets";
-import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
+// import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
+// --- 2. ADDED new cookie system imports ---
+import AnalyticsScripts from "@/components/analytics/AnalyticsScripts";
 import { PageTransitionProps } from "@/themes/default/custom/PageTransition";
 import { fontVariables } from "@/config/fonts";
 import ConditionalHeader from "@/components/ui/ConditionalHeader";
@@ -26,6 +28,7 @@ import { getMainJsonLd } from "@/config/json-ld";
 
 // 1. Import our server-side loader
 import { getComponentImport } from "@/lib/theme-component-loader"; 
+import { CookieConsentProvider } from "@/contexts/CookieConsentContext";
 
 // 2. REMOVE the old 'theme' variable
 // const theme = process.env.NEXT_PUBLIC_THEME || 'default'; // <-- REMOVED
@@ -99,7 +102,8 @@ export default async function RootLayout({
        </head>
        <body className={fontVariables}>
         <NextIntlClientProvider locale={locale} messages={messages}>
-           <QueryProvider>
+           <CookieConsentProvider>
+              <QueryProvider>
              <ThemeContextProvider>
                <ThemeRegistry>
                  <div className="flex flex-col min-h-screen">
@@ -115,13 +119,10 @@ export default async function RootLayout({
                </ThemeRegistry>
              </ThemeContextProvider>
            </QueryProvider>
+           <AnalyticsScripts />
+           </CookieConsentProvider>
          </NextIntlClientProvider>
 
-        
-
-         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
-           <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
-         )}
        </body>
      </html>
   );
