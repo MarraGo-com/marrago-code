@@ -246,7 +246,10 @@
     "successMessage": "¡Gracias! Tu solicitud de reserva ha sido enviada. Te contactaremos en breve para confirmar.",
     "errorInvalidInput": "Por favor, selecciona una fecha y un número de huéspedes válidos.",
     "errorGeneric": "Algo salió mal. Por favor, inténtalo de nuevo.",
-    "submitButtonPay": "Proceder al Pago"
+    "submitButtonPay": "Proceder al Pago",
+    "submitButtonInquiry": "Enviar Solicitud",
+    "successMessageInquiry": "¡Gracias! Su solicitud ha sido recibida. Nos pondremos en contacto con usted por correo electrónico en breve con un enlace de pago seguro para confirmar."
+  
   },
   "BlogHighlights": {
     "title": "De Nuestro Diario",
@@ -295,7 +298,15 @@
     "fontElegant": "Elegante",
     "cardTitle": "Estilo de Tarjeta",
     "cardImmersive": "Inmersivo",
-    "cardClassic": "Clásico"
+    "cardClassic": "Clásico",
+    "modalTitle": "Chatea con Nosotros",
+    "modalDescription": "Nuestro team está listo para ayudar a planificar tu viaje perfecto. Hablarás directamente con:",
+    "omarName": "Omar Ouazza",
+    "omarTitle": "Fundador y Conductor Principal",
+    "kamalName": "Kamal Ahfid",
+    "kamalTitle": "Gerente de Operaciones",
+    "modalCta": "Iniciar Chat",
+    "prefilledText": "Hola, les contacto para tener más información sobre los servicios de MarraGo."
   },
   "TopHeader": {
     "help": "Ayuda",

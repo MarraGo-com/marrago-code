@@ -253,7 +253,9 @@
     "successMessage": "Thank you! Your booking request has been sent. We will contact you shortly to confirm.",
     "errorInvalidInput": "Please select a valid date and number of guests.",
     "errorGeneric": "Something went wrong. Please try again.",
-     "submitButtonPay": "Proceed to Payment"
+     "submitButtonPay": "Proceed to Payment",
+    "submitButtonInquiry": "Send Booking Request",
+    "successMessageInquiry": "Thank you! Your request has been received. We will contact you by email shortly with a secure payment link to confirm."
   },
   "BlogHighlights": {
     "title": "From Our Journal",
@@ -291,7 +293,6 @@
     "styleFamily": "Family"
   },
   "WhatsApp": {
-    "tooltip": "Customize Theme",
     "panelTitle": "Theme Options",
     "colorTitle": "Color Palette",
     "paletteCoastal": "Coastal",
@@ -302,7 +303,16 @@
     "fontElegant": "Elegant",
     "cardTitle": "Card Style",
     "cardImmersive": "Immersive",
-    "cardClassic": "Classic"
+    "cardClassic": "Classic",
+    "omarName": "Omar Ouazza",
+    "omarTitle": "Founder & Lead Driver",
+    "kamalName": "Kamal Ahfid",
+    "kamalTitle": "Operations Manager",
+    "tooltip": "Contact us on WhatsApp",
+    "modalTitle": "Chat with Us",
+    "modalDescription": "Our team is ready to help plan your perfect trip. You'll be speaking directly with:",
+    "modalCta": "Start Chat",
+    "prefilledText": "Hey, I'm contacting you to have more information about MarraGo services."
   },
   "TopHeader": {
     "help": "Help",

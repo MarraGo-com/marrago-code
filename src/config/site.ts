@@ -2,7 +2,9 @@
 
 // Import types from the new types file
 import type { 
-  PaletteName, ThemeName, FontChoice, CardStyle, PaymentMethod, WebsiteLanguage, SiteClientTextContent // NEW: Also import SiteClientTextContent
+  PaletteName, ThemeName, FontChoice, CardStyle, PaymentMethod, WebsiteLanguage, SiteClientTextContent, // NEW: Also import SiteClientTextContent
+  TrustBadge,
+  PartnerLogo
 } from './types'; 
 
 // Re-export types so other modules can import them from '@/config/site'
@@ -49,7 +51,8 @@ export interface SiteConfig {
     twitterSiteId?: string;
     twitterCreatorId?: string;
   };
-
+  trustBadges: TrustBadge[];
+  partnerLogos: PartnerLogo[];
   colors: {
     primaryColor: string;
     secondaryColor: string;
@@ -136,7 +139,8 @@ export function mergeClientDataWithTheme(rawClientData: unknown): SiteConfig {
       twitterCreatorId: r.twitterCreatorId,
     },
     // --- END OF UPDATE ---
-
+    trustBadges: r.trustBadges || [],
+    partnerLogos: r.partnerLogos || [],
     colors: {
       primaryColor: r.primaryColor,
       secondaryColor: r.secondaryColor,

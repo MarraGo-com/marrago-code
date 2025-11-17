@@ -82,6 +82,10 @@ type GlobalContent = {
   //  privacyPolicyContent: string;
   //  termsOfUseContent: string;
 };
+type whatsAppModalContent = {
+    modalDescription: string;
+    prefilledText: string;
+};
 // Define the overall SiteClientTextContent interface
 // This interface describes the structure of ALL localized textual content.
 export interface SiteClientTextContent {
@@ -93,6 +97,7 @@ export interface SiteClientTextContent {
         contactPage: ContactPageContent;
         experiencesPage: ExperiencesPageContent;
         blogPage: BlogPageContent;
+        whatsAppModalContent: whatsAppModalContent;
     };
     fr: {
         homepage: HomepageContent; // Now using the dedicated interface
@@ -102,6 +107,7 @@ export interface SiteClientTextContent {
         contactPage: ContactPageContent;
         experiencesPage: ExperiencesPageContent;
         blogPage: BlogPageContent;
+        whatsAppModalContent: whatsAppModalContent;
     };
     ar: {
         homepage: HomepageContent; // Now using the dedicated interface
@@ -111,6 +117,8 @@ export interface SiteClientTextContent {
         contactPage: ContactPageContent;
         experiencesPage: ExperiencesPageContent;
         blogPage: BlogPageContent;
+        whatsAppModalContent: whatsAppModalContent;
+
     };
     es: {
         homepage: HomepageContent; // Now using the dedicated interface
@@ -120,7 +128,19 @@ export interface SiteClientTextContent {
         contactPage: ContactPageContent;
         experiencesPage: ExperiencesPageContent;
         blogPage: BlogPageContent;
+        whatsAppModalContent: whatsAppModalContent;
+
     };
+}
+// NEW: Define the shape of our logos
+export interface TrustBadge {
+  name: string;
+  url: string;
+}
+
+export interface PartnerLogo {
+  name: string;
+  url: string;
 }
 
 export type ManualClientData = {
@@ -188,4 +208,6 @@ export type ManualClientData = {
 
   // This will pull in the detailed text
   clientTextContent: SiteClientTextContent; // Using our placeholder type
+  trustBadges?: TrustBadge[];
+  partnerLogos?: PartnerLogo[];
 };

@@ -30,6 +30,7 @@ import { getMainJsonLd } from "@/config/json-ld";
 import { getComponentImport } from "@/lib/theme-component-loader"; 
 import { CookieConsentProvider } from "@/contexts/CookieConsentContext";
 import FloatingWhatsApp from "@/components/ui/FloatingWhatsApp";
+import NewsletterPopup from "@/components/ui/NewsletterPopup";
 
 // 2. REMOVE the old 'theme' variable
 // const theme = process.env.NEXT_PUBLIC_THEME || 'default'; // <-- REMOVED
@@ -120,6 +121,7 @@ export default async function RootLayout({
              </ThemeContextProvider>
            </QueryProvider>
            <AnalyticsScripts />
+           <NewsletterPopup />
            <FloatingWhatsApp />
            </CookieConsentProvider>
          </NextIntlClientProvider>

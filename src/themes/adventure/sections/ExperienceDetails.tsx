@@ -12,11 +12,11 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Inclusions from '@/components/experience/Inclusions';
 import Itinerary from '@/components/experience/Itinerary';
 import ImageGallery from '@/components/experience/ImageGallery';
-import BookingForm from '@/components/booking/BookingForm'; // Import BookingForm directly
 import { Experience } from '@/types/experience';
 import ReviewsList from '@/components/reviews/ReviewsList';
 import LeaveReviewForm from '@/components/reviews/LeaveReviewForm';
 import { locations } from '@/config/locations';
+import BookingForm from '@/components/booking/BookingForm';
 
 export type ExperienceDetailsProps = {
   experience: Experience;

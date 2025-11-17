@@ -246,7 +246,9 @@
     "successMessage": "Merci ! Votre demande de réservation a été envoyée. Nous vous contacterons sous peu pour confirmer.",
     "errorInvalidInput": "Veuillez sélectionner une date et un nombre de personnes valides.",
     "errorGeneric": "Une erreur est survenue. Veuillez réessayer.",
-    "submitButtonPay": "Procéder au Paiement"
+    "submitButtonPay": "Procéder au Paiement",
+    "submitButtonInquiry": "Envoyer la Demande",
+    "successMessageInquiry": "Merci ! Votre demande a été reçue. Nous vous contacterons par e-mail sous peu avec un lien de paiement sécurisé pour confirmer."
   },
   "BlogHighlights": {
     "title": "De Notre Journal",
@@ -295,7 +297,15 @@
     "fontElegant": "Élégante",
     "cardTitle": "Style de Carte",
     "cardImmersive": "Immersif",
-    "cardClassic": "Classique"
+    "cardClassic": "Classique",
+    "modalTitle": "Discutez avec Nous",
+    "modalDescription": "Notre équipe est prête à vous aider à planifier votre voyage parfait. Vous parlerez directement avec :",
+    "omarName": "Omar Ouazza",
+    "omarTitle": "Fondateur et Chauffeur Principal",
+    "kamalName": "Kamal Ahfid",
+    "kamalTitle": "Responsable des Opérations",
+    "modalCta": "Démarrer la Discussion",
+    "prefilledText": "Bonjour, je vous contacte pour avoir plus d'informations sur les services de MarraGo."
   },
   "TopHeader": {
     "help": "Aide",

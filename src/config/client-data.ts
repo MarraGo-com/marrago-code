@@ -7,6 +7,10 @@ import { generatePageMetadata, MetadataStore } from './page-seo-metadata'; // <-
 // --- Client-Specific Textual Content ---
 const clientTextContent: SiteClientTextContent = {
   en: { // English content for MarraGo
+     whatsAppModalContent: {
+      modalDescription: "Our team is ready to help plan your perfect trip. You'll be speaking directly with:",
+      prefilledText: "Hey, I'm contacting you to have more information about MarraGo services."
+    },
     homepage: {
       heroTitle: "MarraGo",
       heroSubtitle: "Discover the magic of Morocco from south to north. We prepare your detailed itinerary in advance, handling all transport, hotels, and guides for an enjoyable journey.", // <-- UPDATED
@@ -25,7 +29,8 @@ const clientTextContent: SiteClientTextContent = {
       testimonialsSubtitle: "What our guests say about their Moroccan adventure with us.",
       newsletterTitle: "Get Your Morocco Travel Tips",
       newsletterSubtitle: "Join our newsletter for exclusive offers, travel inspiration, and local insights."
-    },
+    }
+    ,
    global: {
       slogan: "Magic of Morocco: Full Itineraries, Transport, Guides & Hotels.",
       industrySpecifics: "A full-service Moroccan tour operator creating detailed travel itineraries from south to north. We specialize in comfortable, air-conditioned transportation with professional drivers, expert local guides in every city, and curated hotel reservations for a seamless and magical journey.",
@@ -96,6 +101,10 @@ const clientTextContent: SiteClientTextContent = {
     },
   },
   fr: { // Contenu français pour MarraGo
+  whatsAppModalContent: {
+      modalDescription: "Notre équipe est prête à vous aider à planifier votre voyage parfait. Vous parlerez directement avec :",
+      prefilledText: "Bonjour, je vous contacte pour avoir plus d'informations sur les services de MarraGo."
+    },  
   homepage: {
     heroTitle: "MarraGo",
     heroSubtitle: "Découvrez la magie du Maroc du sud au nord. Nous préparons votre itinéraire détaillé à l'avance, gérant l'ensemble du transport, des hôtels et des guides pour un voyage agréable.",
@@ -195,7 +204,11 @@ const clientTextContent: SiteClientTextContent = {
   },
 },
   ar: { // المحتوى العربي لـ MarraGo
-  homepage: {
+    whatsAppModalContent: {
+      modalDescription: "فريقنا جاهز للمساعدة في تخطيط رحلتك المثالية. سوف تتحدث مباشرة مع:",
+      prefilledText: "مرحباً، أتواصل معكم للحصول على مزيد من المعلومات حول خدمات MarraGo."
+    },
+    homepage: {
     heroTitle: "MarraGo",
     heroSubtitle: "اكتشف سحر المغرب من جنوبه إلى شماله. نحن نُعد خط سير رحلتك المفصل مسبقًا، ونتكفل بجميع وسائل النقل والفنادق والمرشدين للاستمتاع برحلة ممتعة.",
     heroCtaButtonText: "ابدأ رحلتك",
@@ -293,6 +306,10 @@ const clientTextContent: SiteClientTextContent = {
   },
 },
  es: { // Contenido en español para MarraGo
+  whatsAppModalContent: {
+      modalDescription: "Nuestro equipo está listo para ayudar a planificar tu viaje perfecto. Hablarás directamente con:",
+      prefilledText: "Hola, les contacto para tener más información sobre los servicios de MarraGo."
+    },
   homepage: {
     heroTitle: "MarraGo",
     heroSubtitle: "Descubre la magia de Marruecos de sur a norte. Preparamos tu itinerario detallado con antelación, gestionando todo el transporte, hoteles y guías para un viaje placentero.",
@@ -442,6 +459,21 @@ const manualClientData : ManualClientData = {
   // --- Tour Locations Served (Key cities) ---
   // (This was already perfect for "south to north")
   // --- Tour Locations Served (Key cities) ---
+  "trustBadges": [], 
+  "partnerLogos": [
+    { 
+      "name": "Riad Marrakesh", 
+      "url": "/images/logos/logo-riad-marrakesh.webp"
+    },
+    { 
+      "name": "Royal Mansour Marrakesh",
+      "url": "/images/logos/logo-royal-mansour-marrakesh.webp"
+    },
+    { 
+      "name": "Riad Lakhdar", 
+      "url": "/images/logos/logo-riad-lakhdar.webp"
+    }
+  ],
   "tourLocationsServed": "Agadir, Agafay, Casablanca, Essaouira, Fes, Imlil, Marrakech, Merzouga, Ourika, Ouarzazate, Rabat, Tangier, Zagora",
 
   // --- Payment & Language Options ---
