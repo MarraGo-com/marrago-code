@@ -14,6 +14,12 @@ interface InclusionsProps {
   notIncluded?: string;
 }
 
+// Helper function to clean Markdown list items
+// It removes the leading "*" or "-" and the following space
+const cleanListItem = (item: string) => {
+    return item.replace(/^[\*\-]\s*/, '');
+};
+
 export default function Inclusions({ included, notIncluded }: InclusionsProps) {
   const t = useTranslations('ExperienceDetails');
 
@@ -31,17 +37,18 @@ export default function Inclusions({ included, notIncluded }: InclusionsProps) {
       <Grid container spacing={4}>
         {/* Included Section */}
         {includedItems.length > 0 && (
-          <Grid  size={{ xs: 12, md: 6 }}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 3 }}>
               {t('includedTitle')}
             </Typography>
             <List>
               {includedItems.map((item, index) => (
-                <ListItem key={index} disablePadding>
+                <ListItem key={index} disablePadding sx={{ mb: 1 }}>
                   <ListItemIcon sx={{ minWidth: '40px' }}>
                     <CheckCircleIcon color="success" />
                   </ListItemIcon>
-                  <ListItemText primary={item} />
+                  {/* ▼▼▼ FIX: Clean the item text before rendering ▼▼▼ */}
+                  <ListItemText primary={cleanListItem(item)} sx={{ '& span': { fontSize: '1.05rem' } }} />
                 </ListItem>
               ))}
             </List>
@@ -56,11 +63,12 @@ export default function Inclusions({ included, notIncluded }: InclusionsProps) {
             </Typography>
             <List>
               {notIncludedItems.map((item, index) => (
-                <ListItem key={index} disablePadding>
+                <ListItem key={index} disablePadding sx={{ mb: 1 }}>
                   <ListItemIcon sx={{ minWidth: '40px' }}>
                     <CancelIcon color="error" />
                   </ListItemIcon>
-                  <ListItemText primary={item} />
+                  {/* ▼▼▼ FIX: Clean the item text before rendering ▼▼▼ */}
+                  <ListItemText primary={cleanListItem(item)} sx={{ '& span': { fontSize: '1.05rem' } }} />
                 </ListItem>
               ))}
             </List>

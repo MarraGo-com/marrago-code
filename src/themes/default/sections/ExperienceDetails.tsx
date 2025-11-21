@@ -13,30 +13,41 @@ import StickyBookingWidget from '@/components/booking/StickyBookingWidget';
 import Inclusions from '@/components/experience/Inclusions';
 import Itinerary from '@/components/experience/Itinerary';
 import ImageGallery from '@/components/experience/ImageGallery';
-import ReviewsList from '@/components/reviews/ReviewsList'; // Import ReviewsList
-import LeaveReviewForm from '@/components/reviews/LeaveReviewForm'; // Import LeaveReviewForm
+import ReviewsList from '@/components/reviews/ReviewsList';
+import LeaveReviewForm from '@/components/reviews/LeaveReviewForm';
 import { Experience } from '@/types/experience';
 import { locations } from '@/config/locations';
 
 export type ExperienceDetailsProps = {
   experience: Experience;
-  clientConfig?: { 
-    plugins: { 
-      hasReviews?: boolean; 
-      hasBookingEngine?: boolean; // <-- NEW: Add hasBookingEngine to clientConfig type
-    } 
+  clientConfig?: {
+    plugins: {
+      hasReviews?: boolean;
+      hasBookingEngine?: boolean;
+    }
   };
 };
 
 export default function ExperienceDetails({ experience, clientConfig }: ExperienceDetailsProps) {
   const locale = useLocale();
   const t = useTranslations('ExperienceDetails');
-  
+
   const translation = experience.translations?.[locale] || experience.translations?.en;
   const location = locations.find(loc => loc.id === experience.locationId);
 
-  // RECTIFICATION: Access hasBookingEngine from clientConfig
   const showBookingWidget = clientConfig?.plugins?.hasBookingEngine;
+
+  // Shared styles for Markdown content to ensure it looks good in the default theme
+  const markdownStyles = {
+      color: 'text.secondary',
+      fontSize: '1.1rem',
+      lineHeight: 1.7,
+      '& p': { mb: 3 },
+      '& strong': { fontWeight: 700, color: 'text.primary' },
+      '& ul, & ol': { pl: 4, mb: 3 },
+      '& li': { mb: 1 },
+      '& h3, & h4': { color: 'text.primary', fontWeight: 'bold', mt: 4, mb: 2 }
+  };
 
   return (
     <Box sx={{ py: { xs: 4, md: 8 } }}>
@@ -58,18 +69,23 @@ export default function ExperienceDetails({ experience, clientConfig }: Experien
         <Grid container spacing={{ xs: 4, md: 8 }} >
           {/* Left Column: Main Content */}
           <Grid size={{ xs: 12, md: 7 }}>
-            <ImageGallery 
+            <ImageGallery
               coverImage={experience.coverImage}
               galleryImages={experience.galleryImages || []}
               altText={translation?.title || experience.title || ''}
             />
-            
-            <Typography variant="body1" sx={{ mb: 4, color: 'text.secondary', fontSize: '1.1rem', lineHeight: 1.7 }}>
-              {translation?.description || experience.description}
-            </Typography>
+
+            {/* ▼▼▼ FIX 1: Use ReactMarkdown for Main Description ▼▼▼ */}
+            <Box sx={{ mb: 4, ...markdownStyles }}>
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {translation?.description || experience.description}
+              </ReactMarkdown>
+            </Box>
+            {/* ▲▲▲ END FIX 1 ▲▲▲ */}
 
             <Divider sx={{ my: 4 }} />
-            <Inclusions 
+            {/* These components will handle their own Markdown rendering now */}
+            <Inclusions
               included={translation?.included}
               notIncluded={translation?.notIncluded}
             />
@@ -80,7 +96,8 @@ export default function ExperienceDetails({ experience, clientConfig }: Experien
                 <Divider sx={{ my: 4 }} />
                 <Box>
                   <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 3 }}>{t('importantInfoTitle')}</Typography>
-                  <Box sx={{ '& p, & ul, & li': { color: 'text.secondary' } }}>
+                  {/* This part was already correct, just ensuring styles match */}
+                  <Box sx={markdownStyles}>
                     <ReactMarkdown remarkPlugins={[remarkGfm]}>{translation.importantInfo}</ReactMarkdown>
                   </Box>
                 </Box>
@@ -88,11 +105,11 @@ export default function ExperienceDetails({ experience, clientConfig }: Experien
             )}
           </Grid>
 
-          {/* Right Column: Sticky Booking Widget - RECTIFICATION: Conditional Rendering */}
-          {showBookingWidget && ( // <-- NEW: Only render if showBookingWidget is true
+          {/* Right Column: Sticky Booking Widget */}
+          {showBookingWidget && (
             <Grid size={{ xs: 12, md: 5 }}>
               <Box sx={{ position: 'sticky', top: '80px' }}>
-                <StickyBookingWidget 
+                <StickyBookingWidget
                   experience={experience}
                   experienceId={experience.id}
                   experienceTitle={translation?.title || experience.title || ''}
@@ -101,8 +118,8 @@ export default function ExperienceDetails({ experience, clientConfig }: Experien
             </Grid>
           )}
         </Grid>
-        
-        {/* --- THIS IS THE NEW, INTEGRATED REVIEWS SECTION --- */}
+
+        {/* Reviews Section */}
         {clientConfig?.plugins?.hasReviews && (
           <>
             <Divider sx={{ my: 8 }} />

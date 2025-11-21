@@ -474,7 +474,7 @@ const manualClientData : ManualClientData = {
       "url": "/images/logos/logo-riad-lakhdar.webp"
     }
   ],
-  "tourLocationsServed": "Agadir, Agafay, Casablanca, Essaouira, Fes, Imlil, Marrakech, Merzouga, Ourika, Ouarzazate, Rabat, Tangier, Zagora",
+  "tourLocationsServed": "Agadir, Agafay, Casablanca, Essaouira, Fes, Imlil, Marrakech, Merzouga, Ourika, Ouarzazate, Ouzoud, Rabat, Tangier, Zagora",
 
   // --- Payment & Language Options ---
   "paymentMethodsAccepted": ["bankTransfer", "onlinePaymentGateway", "creditCard"],
