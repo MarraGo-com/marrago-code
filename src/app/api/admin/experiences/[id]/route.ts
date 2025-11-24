@@ -4,9 +4,10 @@ import { adminDb } from '@/lib/firebase-admin';
 import { FieldValue } from 'firebase-admin/firestore';
 import { getStorage } from 'firebase-admin/storage';
 import { revalidatePath } from 'next/cache';
-import { GalleryImage } from '@/types/experience'; // Assuming you have this in your types
+import { GalleryImage } from '@/types/experience';
 
 type Params = Promise<{ id: string }>;
+
 export async function PUT(
   request: Request,
   { params }: { params: Params }
@@ -14,17 +15,36 @@ export async function PUT(
   try {
     const { id } = await params;
     const body = await request.json();
-    const { price, locationId, coverImage, galleryImages, translations, tags } = body;
+
+    // ▼▼▼ DESTRUCTURE ALL NEW FIELDS ▼▼▼
+    const { 
+      price, 
+      locationId, 
+      coverImage, 
+      galleryImages, 
+      translations, 
+      tags,
+      // New fields:
+      duration, // <--- ADDED DURATION HERE
+      maxGuests,
+      tourCode,
+      languages,
+      startTimes,
+      latitude,
+      longitude
+    } = body;
+    // ▲▲▲
 
     if (!id) {
       return NextResponse.json({ message: 'Experience ID is required' }, { status: 400 });
     }
 
-    const tagsArray = tags && typeof tags === 'string'
-      ? tags.split(',').map((tag: string) => tag.trim()).filter(Boolean)
-      : [];
+    // The frontend already processes these into arrays, but we can keep this for safety
+    const tagsArray = Array.isArray(tags) ? tags : [];
 
     const docRef = adminDb.collection('experiences').doc(id);
+    
+    // ▼▼▼ ADD ALL FIELDS TO THE UPDATE DATA ▼▼▼
     const updateData = {
       price,
       locationId,
@@ -32,9 +52,20 @@ export async function PUT(
       galleryImages: galleryImages || [],
       translations,
       tags: tagsArray,
+      // NEW FIELD ADDED TO PAYLOAD
+      duration: duration || '', // Ensure it's a string
+      maxGuests: maxGuests ?? null, // Use null for Firestore if undefined
+      tourCode: tourCode ?? "",
+      languages: languages || [],
+      startTimes: startTimes || [],
+      latitude: latitude ?? null,
+      longitude: longitude ?? null,
       updatedAt: FieldValue.serverTimestamp(),
     };
-    
+    // ▲▲▲
+
+    console.log("API (PUT): Updating experience with data:", updateData); // Debug log for server-side
+
     await docRef.update(updateData);
 
     revalidatePath('/[locale]/experiences', 'page');
@@ -50,6 +81,7 @@ export async function PUT(
   }
 }
 
+// ... (The DELETE function remains the same as before, no changes needed there)
 export async function DELETE(
   request: Request,
   { params }: { params: Params }
@@ -76,8 +108,7 @@ export async function DELETE(
         }
     }
 
-    // --- THIS IS THE CORRECTED LOGIC ---
-    // This now correctly handles the array of { path, hidden } objects.
+    // Delete Gallery Images
     if (data?.galleryImages && Array.isArray(data.galleryImages)) {
       const bucket = getStorage().bucket();
       const deletePromises = data.galleryImages.map((img: GalleryImage) => {

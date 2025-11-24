@@ -47,8 +47,8 @@ export async function generateMetadata({ params }: { params: ExperienceMetadata 
 
   return generateDynamicPageMetadata({
     title: experience.translations?.[locale]?.title || experience.translations?.fr?.title || 'Experience Not Available',
-    description: experience.translations?.[locale]?.description.substring(0, 160) + '...' || experience.translations?.fr?.description.substring(0, 160) + '...' ,
-    images: [{ src: experience.coverImage || '', alt: experience.title || '' }],
+    description: experience.translations?.[locale]?.description?.substring(0, 160) + '...' || experience.translations?.fr?.description?.substring(0, 160) + '...' ,
+    images: [{ src: experience.coverImage || '', alt: experience.translations?.[locale]?.title || '' }],
     pathname: `/experiences/${id}`,
     url: process.env.NEXT_PUBLIC_API_URL || "https://upmerce.com",
   });

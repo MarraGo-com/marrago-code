@@ -7,6 +7,7 @@ import { cache } from 'react';
 import { adminDb } from '@/lib/firebase-admin';
 import { Article } from '@/types/article';
 import { Review } from '@/types/review';
+import { Booking } from '@/types/booking';
 
 // FOR THE BLOG PAGE:
 
@@ -146,24 +147,65 @@ export const getAllAdminReviews = cache(async () => {
 });
 
 // --- NEW: Function to get ALL bookings for the admin panel ---
-export const getAllAdminBookings = cache(async () => {
+export async function getAllAdminBookings(): Promise<Booking[]> {
   try {
-    const bookingsSnapshot = await adminDb.collection('bookings').orderBy('createdAt', 'desc').get();
-    return bookingsSnapshot.docs.map(doc => {
+    const bookingsRef = adminDb.collection('bookings');
+    // Order by newest first
+    const snapshot = await bookingsRef.orderBy('createdAt', 'desc').get();
+
+    if (snapshot.empty) {
+      return [];
+    }
+
+    const bookings = snapshot.docs.map(doc => {
+      // 1. Get raw data, which includes non-serializable Firestore Timestamps
       const data = doc.data();
+
+      // 2. Safely convert Timestamps to ISO strings
+      let bookingDateIso: string | undefined = undefined;
+
+      // Check for NEW format ('date' field)
+      if (data.date && typeof data.date.toDate === 'function') {
+          bookingDateIso = data.date.toDate().toISOString();
+      } 
+      // Fallback to OLD format ('requestedDate' field)
+      else if (data.requestedDate && typeof data.requestedDate.toDate === 'function') {
+          bookingDateIso = data.requestedDate.toDate().toISOString();
+      }
+
+      // Safely serialize createdAt
+      const createdAtIso = data.createdAt && typeof data.createdAt.toDate === 'function' 
+        ? data.createdAt.toDate().toISOString() 
+        : new Date().toISOString();
+
+      // 3. Return clean, serializable object
       return {
         id: doc.id,
+        // Spread data first (contains nested objects like customer, guests, notes)
         ...data,
-        createdAt: data.createdAt.toDate().toISOString(),
-        updatedAt: data.updatedAt ? data.updatedAt.toDate().toISOString() : null,
-        requestedDate: data.requestedDate.toDate().toISOString(),
-      };
+        // ▼▼▼ OVERWRITE RAW TIMESTAMPS WITH STRINGS ▼▼▼
+        // These lines ensure the raw Firestore objects are replaced by strings
+        // before being sent to the client component.
+        date: bookingDateIso, 
+        requestedDate: bookingDateIso,
+        createdAt: createdAtIso,
+        // ▲▲▲ END OVERWRITES ▲▲▲
+        
+        // Standardized field for UI
+        bookingDate: bookingDateIso,
+        // Ensure required Booking properties are present
+        experienceId: data.experienceId || '',
+        experienceTitle: data.experienceTitle || '',
+        status: data.status || 'pending',
+      } as Booking;
     });
+
+    return bookings;
   } catch (error) {
-    console.error("Error fetching bookings for admin:", error);
-    return [];
+    console.error("Error fetching admin bookings:", error);
+    return []; 
   }
-});
+}
 // --- NEW FUNCTION to get review summary for a specific experience ---
 export const getReviewSummary = cache(async (experienceId: string) => {
   try {

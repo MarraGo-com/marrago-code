@@ -14,6 +14,11 @@ const nextConfig: NextConfig = {
                 protocol: 'https',
                 hostname: 'images.pexels.com',
                 pathname: '/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'upload.wikimedia.org',
+                pathname: '/**',
             }
         ],
         minimumCacheTTL: 60 * 60 * 24 * 30, // Cache for 30 days

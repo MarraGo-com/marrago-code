@@ -1,22 +1,44 @@
-// -------------------------------------------------------------------------
-// 2. UPDATED FILE: /src/components/admin/BookingsTable.tsx
-// This component is now interactive, with a menu to change booking status.
-// -------------------------------------------------------------------------
+// /src/components/admin/BookingsTable.tsx
 'use client';
 
 import React, { useState } from 'react';
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, Chip, IconButton, Menu, MenuItem } from '@mui/material';
+import { 
+  Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, 
+  Typography, Chip, IconButton, Menu, MenuItem, Stack, Tooltip 
+} from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import NoteIcon from '@mui/icons-material/Note';
 import { useAppRouter } from '@/hooks/router/useAppRouter';
 
+// Defines the structure of a Booking object as returned by the Admin API.
+// It must accommodate both old and new data structures.
 interface Booking {
   id: string;
-  customerName: string;
-  customerEmail: string;
   experienceTitle: string;
-  requestedDate: string;
-  numberOfGuests: number;
   status: 'pending' | 'confirmed' | 'cancelled';
+  
+  // New standardized date field from API
+  bookingDate?: string;
+
+  // New Nested Objects
+  customer?: {
+    name: string;
+    email: string;
+    phone?: string;
+  };
+  guests?: {
+    adults: number;
+    children: number;
+    total: number;
+  };
+  notes?: string;
+
+  // Legacy fields (for old records)
+  customerName?: string;
+  customerEmail?: string;
+  requestedDate?: string;
+  numberOfGuests?: number;
 }
 
 interface BookingsTableProps {
@@ -54,7 +76,7 @@ export default function BookingsTable({ bookings }: BookingsTableProps) {
       }
       
       handleClose();
-      router.refresh(); // Refresh the server component data
+      router.refresh();
 
     } catch (error) {
       console.error("Failed to update booking status:", error);
@@ -62,8 +84,20 @@ export default function BookingsTable({ bookings }: BookingsTableProps) {
     }
   };
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-CA');
+  // Helper to format dates safely
+  const formatDate = (dateString?: string) => {
+    if (!dateString) return 'N/A';
+    try {
+      // Use UTC to avoid timezone shifts on the server date
+      return new Date(dateString).toLocaleDateString('en-GB', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        timeZone: 'UTC' 
+      });
+    } catch (e) {
+      return e instanceof Error ? e.message : 'Invalid date';
+    }
   };
 
   const getStatusChip = (status: string) => {
@@ -80,38 +114,92 @@ export default function BookingsTable({ bookings }: BookingsTableProps) {
   return (
     <>
       <TableContainer component={Paper} sx={{ bgcolor: 'background.paper' }}>
-        <Table sx={{ minWidth: 650 }} aria-label="bookings table">
+        <Table sx={{ minWidth: 750 }} aria-label="bookings table">
           <TableHead>
             <TableRow>
               <TableCell sx={{ fontWeight: 'bold' }}>Customer</TableCell>
               <TableCell sx={{ fontWeight: 'bold' }}>Experience</TableCell>
-              <TableCell sx={{ fontWeight: 'bold' }}>Requested Date</TableCell>
+              <TableCell sx={{ fontWeight: 'bold' }}>Booked For</TableCell>
               <TableCell sx={{ fontWeight: 'bold' }}>Guests</TableCell>
               <TableCell sx={{ fontWeight: 'bold' }}>Status</TableCell>
               <TableCell align="right" sx={{ fontWeight: 'bold' }}>Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {bookings.map((row) => (
-              <TableRow key={row.id} hover>
-                <TableCell>
-                  <Typography variant="body2" sx={{ fontWeight: 'bold' }}>{row.customerName}</Typography>
-                  <Typography variant="caption" sx={{ color: 'text.secondary' }}>{row.customerEmail}</Typography>
-                </TableCell>
-                <TableCell>{row.experienceTitle}</TableCell>
-                <TableCell>{formatDate(row.requestedDate)}</TableCell>
-                <TableCell>{row.numberOfGuests}</TableCell>
-                <TableCell>{getStatusChip(row.status)}</TableCell>
-                <TableCell align="right">
-                  <IconButton
-                    aria-label="more"
-                    onClick={(e) => handleClick(e, row.id)}
-                  >
-                    <MoreVertIcon />
-                  </IconButton>
-                </TableCell>
-              </TableRow>
-            ))}
+            {bookings.map((row) => {
+              // --- Data Normalization (Handle Old vs New) ---
+              const name = row.customer?.name || row.customerName || 'Unknown';
+              const email = row.customer?.email || row.customerEmail || 'N/A';
+              const phone = row.customer?.phone;
+              const totalGuests = row.guests?.total ?? row.numberOfGuests ?? 0;
+              const adults = row.guests?.adults;
+              const children = row.guests?.children;
+              const dateToUse = row.bookingDate || row.requestedDate;
+              // ----------------------------------------------
+
+              return (
+                <TableRow key={row.id} hover>
+                  {/* CUSTOMER COLUMN */}
+                  <TableCell>
+                    <Stack direction="row" alignItems="center" spacing={1}>
+                      <Typography variant="body2" sx={{ fontWeight: 'bold' }}>{name}</Typography>
+                      {/* Show note icon if notes exist */}
+                      {row.notes && (
+                        <Tooltip title={<Typography variant="body2">{row.notes}</Typography>} arrow placement="top">
+                          <NoteIcon color="action" fontSize="small" sx={{ cursor: 'help' }}/>
+                        </Tooltip>
+                      )}
+                    </Stack>
+                    <Typography variant="caption" display="block" sx={{ color: 'text.secondary' }}>{email}</Typography>
+                    {phone && (
+                      <Stack direction="row" alignItems="center" spacing={0.5} sx={{ mt: 0.5 }}>
+                        <WhatsAppIcon fontSize="inherit" color="success" />
+                        <Typography 
+                          variant="caption" 
+                          component="a" 
+                          // Clean phone number for WhatsApp link (remove spaces, +, etc.)
+                          href={`https://wa.me/${phone.replace(/[^0-9]/g, '')}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          sx={{ color: 'success.main', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}
+                        >
+                          {phone}
+                        </Typography>
+                      </Stack>
+                    )}
+                  </TableCell>
+
+                  {/* EXPERIENCE COLUMN */}
+                  <TableCell>{row.experienceTitle}</TableCell>
+
+                  {/* DATE COLUMN */}
+                  <TableCell>{formatDate(dateToUse)}</TableCell>
+
+                  {/* GUESTS COLUMN */}
+                  <TableCell>
+                    <Typography variant="body2">{totalGuests} Guests</Typography>
+                    {adults !== undefined && children !== undefined && (
+                      <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+                        ({adults} Adults, {children} Children)
+                      </Typography>
+                    )}
+                  </TableCell>
+
+                  {/* STATUS COLUMN */}
+                  <TableCell>{getStatusChip(row.status)}</TableCell>
+
+                  {/* ACTIONS COLUMN */}
+                  <TableCell align="right">
+                    <IconButton
+                      aria-label="more"
+                      onClick={(e) => handleClick(e, row.id)}
+                    >
+                      <MoreVertIcon />
+                    </IconButton>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </TableContainer>

@@ -1,26 +1,44 @@
-// -------------------------------------------------------------------------
-// 1. UPDATED FILE: /src/hooks/useExperienceForm.ts
-// This hook is now upgraded to handle the 'tags' field.
-// -------------------------------------------------------------------------
+// /src/hooks/useExperienceForm.ts
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
 import imageCompression from 'browser-image-compression';
-import { Experience, GalleryImage } from '@/types/experience';
-// ...removed unused import SelectChangeEvent...
+import { Experience, GalleryImage, Translation } from '@/types/experience';
 
-// The initial state now includes a 'tags' property
+// Helper to create an empty translation object
+const emptyTranslation: Translation = { 
+  title: '', 
+  description: '', 
+  shortDescription: '', // <--- NEW FIELD INITIALIZATION
+  highlights: '', 
+  included: '', 
+  notIncluded: '', 
+  importantInfo: '', 
+  itinerary: '',
+  faqs: [] 
+};
+
+// The initial state
 const initialFormData = {
   price: { amount: '', currency: 'EUR', prefix: 'from' },
   locationId: '',
   coverImage: '',
-  tags: '', // ITEN: Added tags as a comma-separated string
+  tags: '',
+  maxGuests: undefined as number | undefined,
+  tourCode: '',
+  languages: '', 
+  startTimes: '',
+  latitude: undefined as number | undefined,
+  longitude: undefined as number | undefined,
+  duration: '', // Added duration to base form data
   translations: {
-    en: { title: '', description: '', included: '', notIncluded: '', importantInfo: '', itinerary: '' },
-    fr: { title: '', description: '', included: '', notIncluded: '', importantInfo: '', itinerary: '' },
-    es: { title: '', description: '', included: '', notIncluded: '', importantInfo: '', itinerary: '' } // <-- ADDED THIS LINE
+    en: { ...emptyTranslation },
+    fr: { ...emptyTranslation },
+    es: { ...emptyTranslation }
   }
 };
+
+type LanguageCode = 'en' | 'fr' | 'es';
 
 export function useExperienceForm(initialExperience: Experience | null) {
   const [formData, setFormData] = useState(initialFormData);
@@ -28,47 +46,52 @@ export function useExperienceForm(initialExperience: Experience | null) {
   const [coverImageFile, setCoverImageFile] = useState<File | null>(null);
   const [newGalleryImageFiles, setNewGalleryImageFiles] = useState<File[]>([]);
   const [isCompressing, setIsCompressing] = useState(false);
-  const [currentTab, setCurrentTab] = useState<'en' | 'fr'| 'es'>('en');
+  const [currentTab, setCurrentTab] = useState<LanguageCode>('en');
 
+  // ▼▼▼ THE DATA LOADING LOGIC ▼▼▼
   useEffect(() => {
     if (initialExperience) {
-      const { galleryImages, ...restOfExperience } = initialExperience;
-      
-      setFormData({
-          ...initialFormData,
-          ...restOfExperience,
-          price: initialExperience.price ? { ...initialExperience.price, amount: String(initialExperience.price.amount) } : initialFormData.price,
-          // ITEN: Convert the tags array from Firestore into a comma-separated string for the form
+      const newFormState = {
+          // Explicitly map base fields
+          locationId: initialExperience.locationId || '',
+          coverImage: initialExperience.coverImage || '',
+          duration: initialExperience.duration || '',
+          
+          // Handle Price conversion to string for input
+          price: initialExperience.price ? { 
+              ...initialExperience.price, 
+              amount: initialExperience.price.amount !== undefined ? String(initialExperience.price.amount) : '' 
+          } : initialFormData.price,
+          
+          // Handle Arrays -> Comma-separated strings
           tags: initialExperience.tags?.join(', ') || '',
+          languages: initialExperience.languages?.join(', ') || '',
+          startTimes: initialExperience.startTimes?.join(', ') || '',
+
+          // Handle optional numbers & strings
+          maxGuests: initialExperience.maxGuests,
+          latitude: initialExperience.latitude,
+          longitude: initialExperience.longitude,
+          tourCode: initialExperience.tourCode || '',
+          
+          // Handle complex nested translations
           translations: {
               en: {
-                title: initialExperience.translations?.en?.title ?? '',
-                description: initialExperience.translations?.en?.description ?? '',
-                included: initialExperience.translations?.en?.included ?? '',
-                notIncluded: initialExperience.translations?.en?.notIncluded ?? '',
-                importantInfo: initialExperience.translations?.en?.importantInfo ?? '',
-                itinerary: initialExperience.translations?.en?.itinerary ?? '',
+                ...emptyTranslation, ...initialExperience.translations?.en,
+                faqs: initialExperience.translations?.en?.faqs || []
               },
               fr: {
-                title: initialExperience.translations?.fr?.title ?? '',
-                description: initialExperience.translations?.fr?.description ?? '',
-                included: initialExperience.translations?.fr?.included ?? '',
-                notIncluded: initialExperience.translations?.fr?.notIncluded ?? '',
-                importantInfo: initialExperience.translations?.fr?.importantInfo ?? '',
-                itinerary: initialExperience.translations?.fr?.itinerary ?? '',
+                ...emptyTranslation, ...initialExperience.translations?.fr,
+                faqs: initialExperience.translations?.fr?.faqs || []
               },
-              es: { // <-- ADDED THIS ENTIRE OBJECT
-              title: initialExperience.translations?.es?.title ?? '',
-              description: initialExperience.translations?.es?.description ?? '',
-              included: initialExperience.translations?.es?.included ?? '',
-              notIncluded: initialExperience.translations?.es?.notIncluded ?? '',
-              importantInfo: initialExperience.translations?.es?.importantInfo ?? '',
-              itinerary: initialExperience.translations?.es?.itinerary ?? '',
-            }
+              es: {
+                ...emptyTranslation, ...initialExperience.translations?.es,
+                faqs: initialExperience.translations?.es?.faqs || []
+              }
           }
-      });
-
-      setInitialGalleryImages(galleryImages || []);
+      };
+      setFormData(newFormState);
+      setInitialGalleryImages(initialExperience.galleryImages || []);
     } else {
       setFormData(initialFormData);
       setInitialGalleryImages([]);
@@ -77,10 +100,11 @@ export function useExperienceForm(initialExperience: Experience | null) {
     setNewGalleryImageFiles([]);
   }, [initialExperience]);
 
+  // --- No changes below this line ---
   const handleNestedChange = useCallback((path: string) => (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
     setFormData(prev => {
-        const newState = JSON.parse(JSON.stringify(prev)); // Deep copy to avoid mutation issues
+        const newState = JSON.parse(JSON.stringify(prev));
         let currentLevel = newState;
         const parts = path.split('.');
         for (let i = 0; i < parts.length; i++) {
@@ -93,6 +117,34 @@ export function useExperienceForm(initialExperience: Experience | null) {
         return newState;
     });
   }, []);
+
+  const handleAddFaq = (lang: LanguageCode) => {
+    setFormData(prev => {
+      const newState = { ...prev };
+      const currentFaqs = newState.translations[lang].faqs || [];
+      newState.translations[lang].faqs = [...currentFaqs, { question: '', answer: '' }];
+      return newState;
+    });
+  };
+
+  const handleFaqChange = (lang: LanguageCode, index: number, field: 'question' | 'answer', value: string) => {
+    setFormData(prev => {
+      const newState = { ...prev };
+      const newFaqs = [...(newState.translations[lang].faqs || [])];
+      newFaqs[index][field] = value;
+      newState.translations[lang].faqs = newFaqs;
+      return newState;
+    });
+  };
+
+  const handleRemoveFaq = (lang: LanguageCode, index: number) => {
+    setFormData(prev => {
+      const newState = { ...prev };
+      const currentFaqs = newState.translations[lang].faqs || [];
+      newState.translations[lang].faqs = currentFaqs.filter((_, i) => i !== index);
+      return newState;
+    });
+  };
 
   const handleCoverImageChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -154,6 +206,9 @@ export function useExperienceForm(initialExperience: Experience | null) {
     removeInitialGalleryImage,
     removeNewGalleryImage,
     resetForm,
-    setFormData
+    setFormData,
+    handleAddFaq,
+    handleFaqChange,
+    handleRemoveFaq
   };
-};
+}

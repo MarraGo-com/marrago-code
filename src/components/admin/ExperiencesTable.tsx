@@ -2,38 +2,55 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, IconButton, Typography, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Button, CircularProgress } from '@mui/material';
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, IconButton, Typography, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Button, CircularProgress, Box } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditExperienceForm from './EditExperienceForm';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { Experience } from '@/types/experience';
 import { locations } from '@/config/locations';
-
-
-
-
-
-
-
+import { WebsiteLanguage } from '@/config/types';
 
 interface ExperiencesTableProps {
   experiences: Experience[];
 }
 
 export default function ExperiencesTable({ experiences }: ExperiencesTableProps) {
- // const locale = useLocale();
   const t = useTranslations('ExperiencesTable');
+  const locale = useLocale() as WebsiteLanguage;
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [selectedExperience, setSelectedExperience] = useState<Experience | null>(null);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [itemToDelete, setItemToDelete] = useState<Experience | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
+  // ▼▼▼ NEW STATE FOR FETCHING ▼▼▼
+  const [isFetching, setIsFetching] = useState(false);
+  // ▲▲▲
 
-  const handleEdit = (experience: Experience) => {
-    setSelectedExperience(experience);
-    setEditModalOpen(true);
+  // ▼▼▼ UPDATED HANDLE EDIT FUNCTION ▼▼▼
+  const handleEdit = async (experience: Experience) => {
+    setIsFetching(true);
+    try {
+      // Fetch fresh data from the public API, using a timestamp to bust cache
+      // We use the public API because it already returns the full, processed experience object
+      // that matches our TypeScript interface.
+      const response = await fetch(`/api/experiences/${experience.id}?t=${Date.now()}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch fresh experience data.');
+      }
+      const data = await response.json();
+      
+      // Set the fresh data and open the modal
+      setSelectedExperience(data.experience);
+      setEditModalOpen(true);
+    } catch (error) {
+      console.error("Error fetching fresh data:", error);
+      alert("Failed to load latest experience data. Please try again.");
+    } finally {
+      setIsFetching(false);
+    }
   };
+  // ▲▲▲ END UPDATED FUNCTION ▲▲▲
   
   const handleCloseEditModal = () => {
     setEditModalOpen(false);
@@ -72,6 +89,19 @@ export default function ExperiencesTable({ experiences }: ExperiencesTableProps)
 
   return (
     <>
+      {/* ▼▼▼ LOADING OVERLAY ▼▼▼ */}
+      {isFetching && (
+        <Box sx={{ 
+          position: 'fixed', 
+          top: 0, left: 0, width: '100%', height: '100%', 
+          bgcolor: 'rgba(0,0,0,0.3)', zIndex: 9999, 
+          display: 'flex', justifyContent: 'center', alignItems: 'center' 
+        }}>
+          <CircularProgress color="primary" />
+        </Box>
+      )}
+      {/* ▲▲▲ END LOADING OVERLAY ▲▲▲ */}
+
       <TableContainer component={Paper} sx={{ bgcolor: 'background.paper' }}>
         <Table sx={{ minWidth: 650 }} aria-label="experiences table">
           <TableHead>
@@ -95,23 +125,19 @@ export default function ExperiencesTable({ experiences }: ExperiencesTableProps)
               experiences.map((row) => {
                 const formattedPrice = row.price ? `${row.price.amount} ${row.price.currency}` : 'N/A';
                 
-                // --- THIS IS THE ROBUST FIX ---
-                // We trim whitespace and convert to lowercase for a reliable comparison.
                 const locationName = locations.find(
                   (loc) => loc.id.trim().toLowerCase() === row.locationId?.trim().toLowerCase()
                 )?.name || 'Unknown Location';
 
-                // Optional: For debugging, you can see what's being compared.
-                // console.log(`Comparing Firestore ID: '${row.locationId}' with local IDs.`);
-
                 return (
                   <TableRow key={row.id} hover sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                    <TableCell component="th" scope="row">{row.title}</TableCell>
+                    <TableCell component="th" scope="row">{row.translations?.[locale]?.title}</TableCell>
                     <TableCell>{locationName}</TableCell>
                     <TableCell>{formattedPrice}</TableCell>
                     <TableCell align="right">
-                      <IconButton onClick={() => handleEdit(row)} aria-label="edit"><EditIcon /></IconButton>
-                      <IconButton onClick={() => handleDeleteClick(row)} aria-label="delete" sx={{ color: 'error.main' }}><DeleteIcon /></IconButton>
+                      {/* ▼▼▼ DISABLED WHILE FETCHING ▼▼▼ */}
+                      <IconButton onClick={() => handleEdit(row)} aria-label="edit" disabled={isFetching}><EditIcon /></IconButton>
+                      <IconButton onClick={() => handleDeleteClick(row)} aria-label="delete" sx={{ color: 'error.main' }} disabled={isFetching}><DeleteIcon /></IconButton>
                     </TableCell>
                     
                   </TableRow>
@@ -131,7 +157,7 @@ export default function ExperiencesTable({ experiences }: ExperiencesTableProps)
         <DialogTitle>{t('deleteDialogTitle')}</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            {t('deleteDialogWarning', { title: itemToDelete?.title ?? '' })}
+            {t('deleteDialogWarning', { title: itemToDelete?.translations?.[locale].title ?? '' })}
           </DialogContentText>
         </DialogContent>
         <DialogActions>

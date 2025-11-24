@@ -15,7 +15,7 @@ import { HomepageContent } from '@/config/types';
 import { siteConfig } from '@/config/client-data';
 
 // This will dynamically load your default card, which is perfect.
-const ExperienceCard = dynamic<ExperienceCardProps>(() => import(`@/themes/default/cards/ExperienceCard`));
+const ExperienceCard = dynamic<ExperienceCardProps>(() => import(`@/themes/adventure/cards/ExperienceCard`));
 
 export default function FeaturedExperiences() {
   const t = useTranslations('FeaturedExperiences');

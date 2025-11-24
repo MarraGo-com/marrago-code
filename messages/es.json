@@ -9,17 +9,17 @@
     "login": "Iniciar Sesión",
     "experiencesLink": "Experiencias",
     "reviewsLink": "Reseñas",
-    "faqLink": "FAQs",
+    "faqLink": "Preguntas Frecuentes",
     "reviews": "Reseñas",
-    "faq": "FAQs",
+    "faq": "FAQ",
     "linksTitle": "Enlaces",
     "privacyPolicyLink": "Política de Privacidad",
     "termsOfUseLink": "Términos de Uso"
   },
   "HeroSection": {
     "title": "Descubre el Alma de Marruecos",
-    "subtitle": "Viajes auténticos por los impresionantes paisajes y la rica cultura de la región Souss-Massa.",
-    "ctaButton": "Explora Nuestros Tours"
+    "subtitle": "Viajes auténticos a través de los impresionantes paisajes y la rica cultura de la región de Souss-Massa.",
+    "ctaButton": "Explorar Nuestros Tours"
   },
   "FeaturedExperiences": {
     "title": "Experiencias Destacadas",
@@ -28,28 +28,28 @@
   "WhyChooseUs": {
     "title": "¿Por Qué Viajar Con Nosotros?",
     "feature1_title": "Guías Locales Expertos",
-    "feature1_desc": "Nuestros guías nacieron y crecieron en Marruecos, ofreciéndote una visión inigualable y acceso a experiencias auténticas.",
+    "feature1_desc": "Nuestros guías han nacido y crecido en Marruecos, ofreciéndole una visión incomparable y acceso a experiencias auténticas.",
     "feature2_title": "Itinerarios a Medida",
-    "feature2_desc": "No creemos en 'talla única'. Cada viaje se diseña en torno a tus intereses, presupuesto y estilo de viaje.",
-    "feature3_title": "Soporte 24/7 Durante el Viaje",
-    "feature3_desc": "Viaja con total tranquilidad. Nuestro equipo está disponible las 24 horas para asegurar que tu viaje sea perfecto."
+    "feature2_desc": "No hacemos 'talla única'. Cada viaje se elabora en función de sus intereses, presupuesto y estilo de viaje.",
+    "feature3_title": "Soporte 24/7 en el Viaje",
+    "feature3_desc": "Viaje con total tranquilidad. Nuestro equipo está disponible las 24 horas para asegurar que su viaje sea perfecto."
   },
   "AboutSection": {
     "title": "Nuestra Historia",
-    "subtitle": "Más que tours, ofrecemos conexiones genuinas con el corazón de Marruecos.",
-    "paragraph1": "Fundada por expertos locales apasionados por compartir la belleza auténtica de la región Souss-Massa, nuestra misión es crear recuerdos de viaje inolvidables. Creemos en el turismo responsable que apoya a las comunidades locales y muestra la rica cultura y los impresionantes paisajes de nuestro hogar.",
-    "paragraph2": "Desde las majestuosas cumbres de las montañas del Atlas hasta las serenas arenas del Sahara, cada viaje con nosotros es más que unas vacaciones: es una aventura tejida con una conexión humana genuina.",
-    "imageAlt": "Una escena vibrante de un tagine marroquí tradicional siendo preparado.",
+    "subtitle": "Más que simples tours, ofrecemos conexiones genuinas con el corazón de Marruecos.",
+    "paragraph1": "Fundada por expertos locales con pasión por compartir la belleza auténtica de la región de Souss-Massa, nuestra misión es crear recuerdos de viaje inolvidables. Creemos en el turismo responsable que apoya a las comunidades locales y muestra la rica cultura y los impresionantes paisajes de nuestro hogar.",
+    "paragraph2": "Desde los picos majestuosos de las montañas del Atlas hasta las serenas arenas del Sahara, cada viaje con nosotros es más que unas vacaciones: es una aventura tejida con una conexión humana genuina.",
+    "imageAlt": "Una escena vibrante de un tajine marroquí tradicional siendo preparado.",
     "valuesTitle": "Nuestros Valores Fundamentales",
-    "valuesSubtitle": "Estos principios guían cada viaje que creamos, asegurando una experiencia auténtica, respetuosa e inolvidable.",
+    "valuesSubtitle": "Estos principios guían cada viaje que diseñamos, asegurando una experiencia auténtica, respetuosa e inolvidable.",
     "value1_title": "Autenticidad",
-    "value1_desc": "Te conectamos con personas y lugares reales, ofreciendo un verdadero sabor de la vida marroquí más allá de las rutas turísticas habituales.",
+    "value1_desc": "Le conectamos con personas y lugares reales, ofreciendo una verdadera muestra de la vida marroquí más allá de las rutas turísticas típicas.",
     "value2_title": "Respeto",
-    "value2_desc": "Nuestros tours están diseñados para honrar las tradiciones locales, apoyar a las comunidades y preservar el delicado entorno que exploramos.",
+    "value2_desc": "Nuestros tours están diseñados para honrar las tradiciones locales, apoyar a las comunidades y preservar el delicado medio ambiente que exploramos.",
     "value3_title": "Pasión",
     "value3_desc": "Amamos lo que hacemos. Nuestra pasión por la cultura y los paisajes de Marruecos es el ingrediente mágico en cada viaje que planeamos.",
-    "teamTitle": "Conoce a Nuestros Guías Expertos",
-    "teamSubtitle": "Nuestro equipo es nuestro mayor activo. Son expertos locales, contadores de historias y tu conexión personal con el auténtico corazón de Marruecos.",
+    "teamTitle": "Conozca a Nuestros Guías Expertos",
+    "teamSubtitle": "Nuestro equipo es nuestro mayor activo. Son expertos locales, narradores de historias y su conexión personal con el auténtico corazón de Marruecos.",
     "team1_name": "Hassan Al-Fassi",
     "team1_title": "Guía Principal de Montaña",
     "team1_bio": "Nacido en las montañas del Atlas, Hassan ha guiado caminatas durante más de 15 años. Su conocimiento de los senderos locales y la cultura bereber es inigualable.",
@@ -58,17 +58,17 @@
     "team2_bio": "Fatima comparte su pasión por la cocina y la historia marroquí, liderando nuestros tours por la ciudad y clases de cocina con calidez y experiencia.",
     "team3_name": "Youssef Adnani",
     "team3_title": "Especialista en el Desierto del Sahara",
-    "team3_bio": "De familia nómada, Youssef conoce el desierto como la palma de su mano. Lidera nuestras aventuras en 4x4 y trekking en camello.",
-    "ctaTitle": "¿Listo para Comenzar Tu Aventura?",
-    "ctaButton": "Contáctanos para Planear Tu Viaje"
+    "team3_bio": "De una familia nómada, Youssef conoce el desierto como la palma de su mano. Lidera nuestras aventuras en 4x4 y caminatas en camello.",
+    "ctaTitle": "¿Listo para Comenzar su Aventura?",
+    "ctaButton": "Contáctenos para Planear su Viaje"
   },
-  "ExperienceCard": {
-    "learnMoreButton": "Saber Más"
-  },
+ "ExperienceCard": {
+  "bookNowButton": "Reservar Ahora"
+},
   "ExperienceDetails": {
     "inquireButton": "Solicitar Reserva",
-    "includedTitle": "Qué Incluye",
-    "notIncludedTitle": "Qué No Incluye",
+    "includedTitle": "Qué está incluido",
+    "notIncludedTitle": "Qué no está incluido",
     "importantInfoTitle": "Información Importante",
     "itineraryTitle": "Itinerario Detallado"
   },
@@ -77,61 +77,61 @@
     "allLocations": "Todas las Ubicaciones",
     "sortLabel": "Ordenar Por",
     "sortDefault": "Por Defecto",
-    "sortPriceAsc": "Precio: Menor a Mayor",
-    "sortPriceDesc": "Precio: Mayor a Menor"
+    "sortPriceAsc": "Precio: Bajo a Alto",
+    "sortPriceDesc": "Precio: Alto a Bajo"
   },
   "ExperiencesPage": {
     "title": "Nuestras Aventuras",
-    "subtitle": "Explora nuestra colección completa de tours seleccionados y experiencias auténticas en la hermosa región de Souss-Massa.",
-    "noResults": "Ninguna experiencia coincide con tu filtro actual. Por favor, intenta otra selección."
+    "subtitle": "Explore nuestra colección completa de tours seleccionados y experiencias auténticas en la hermosa región de Souss-Massa.",
+    "noResults": "Ninguna experiencia coincide con su filtro actual. Por favor intente otra selección."
   },
   "ContactSection": {
-    "title": "Ponte en Contacto",
+    "title": "Póngase en Contacto",
     "infoTitle": "Información de Contacto",
-    "infoSubtitle": "¿Tienes preguntas o estás listo para planear tu aventura? ¡Contáctanos! Estamos aquí para ayudarte a crear el viaje marroquí perfecto.",
+    "infoSubtitle": "¿Tiene preguntas o está listo para planear su aventura? ¡Contáctenos! Estamos aquí para ayudarle a diseñar el viaje marroquí perfecto.",
     "address": "Biougra, Souss-Massa, Marruecos",
     "phone": "+212 123 456 789",
     "email": "contact@souss-massatours.com",
-    "formNameLabel": "Tu Nombre",
-    "formEmailLabel": "Tu Correo Electrónico",
-    "formMessageLabel": "Tu Mensaje",
+    "formNameLabel": "Su Nombre",
+    "formEmailLabel": "Su Email",
+    "formMessageLabel": "Su Mensaje",
     "formSubmitButton": "Enviar Mensaje",
-    "alertSuccess": "¡Gracias por tu mensaje! Nos pondremos en contacto contigo en breve."
+    "alertSuccess": "¡Gracias por su mensaje! Le responderemos en breve."
   },
   "Footer": {
     "siteTitle": "Souss-Massa Tours",
-    "aboutText": "Creando viajes auténticos e inolvidables por el corazón de Marruecos. Descubre la verdadera región Souss-Massa con expertos locales.",
+    "aboutText": "Creando viajes auténticos e inolvidables a través del corazón de Marruecos. Descubra la verdadera región de Souss-Massa con expertos locales.",
     "linksTitle": "Enlaces Rápidos",
-    "contactUsTitle": "Contáctanos",
-    "aboutLink": "Nosotros",
+    "contactUsTitle": "Contáctenos",
+    "aboutLink": "Sobre Nosotros",
     "experiencesLink": "Experiencias",
     "allRightsReserved": "Todos los Derechos Reservados.",
-    "contactLink": "Contáctanos",
+    "contactLink": "Contáctenos",
     "blogLink": "Blog",
     "contactTitle": "Contacto",
     "address": "Biougra, Souss-Massa, Marruecos",
     "phone": "+212 123 456 789",
     "email": "contact@souss-massatours.com",
-    "socialTitle": "Síguenos",
+    "socialTitle": "Síganos",
     "copyright": "© {year} Souss-Massa Tours. Todos los Derechos Reservados.",
     "poweredBy": "Sitio web por",
     "agencyName": "Upmerce Solutions",
-    "companyTitle": "Empresa",
+    "companyTitle": "Compañía",
     "exploreTitle": "Explorar",
     "privacyPolicy": "Política de Privacidad",
     "termsOfService": "Términos de Servicio",
     "reviewsLink": "Reseñas",
-    "faqLink": "FAQs",
+    "faqLink": "Preguntas Frecuentes",
     "privacyPolicyLink": "Política de Privacidad",
     "termsOfUseLink": "Términos de Uso"
   },
   "LoginForm": {
     "title": "Acceso de Administrador",
-    "emailLabel": "Correo Electrónico",
+    "emailLabel": "Dirección de Correo",
     "passwordLabel": "Contraseña",
-    "submitButton": "Iniciar Sesión",
-    "loadingButton": "Iniciando sesión...",
-    "error": "Error al iniciar sesión. Por favor, verifica tus credenciales."
+    "submitButton": "Entrar",
+    "loadingButton": "Entrando...",
+    "error": "Error al iniciar sesión. Por favor verifique sus credenciales."
   },
   "LogOutButton": {
     "buttonText": "Cerrar Sesión",
@@ -139,17 +139,17 @@
   },
   "ExperienceForm": {
     "createButton": "Añadir Nueva Experiencia",
-    "createDialogTitle": "Crear Nueva Experiencia",
+    "createDialogTitle": "Crear una Nueva Experiencia",
     "editDialogTitle": "Editar Experiencia",
     "titleLabel": "Título",
     "descriptionLabel": "Descripción",
-    "priceLabel": "Precio (ej: 'Desde 950 MAD')",
+    "priceLabel": "Precio (ej. 'Desde 950 MAD')",
     "locationLabel": "Ubicación",
     "uploadButton": "Subir Imagen de Portada",
     "uploadButtonOptional": "Subir Nueva Imagen de Portada (Opcional)",
-    "currentImageUrlLabel": "URL de la Imagen de Portada Actual",
+    "currentImageUrlLabel": "URL de Imagen Actual",
     "fileSelected": "Seleccionado: {fileName}",
-    "errorMissingImage": "Por favor, selecciona una imagen de portada para subir.",
+    "errorMissingImage": "Por favor seleccione una imagen de portada para subir.",
     "cancelButton": "Cancelar",
     "submitButtonCreate": "Crear Experiencia",
     "loadingButtonCreate": "Subiendo {progress}%",
@@ -163,13 +163,13 @@
     "headerActions": "Acciones",
     "noItemsFound": "No se encontraron experiencias.",
     "deleteDialogTitle": "Confirmar Eliminación",
-    "deleteDialogWarning": "¿Estás seguro de que quieres eliminar permanentemente la experiencia: \"{title}\"? Esta acción no se puede deshacer.",
+    "deleteDialogWarning": "¿Está seguro de que desea eliminar permanentemente la experiencia: \"{title}\"? Esta acción no se puede deshacer.",
     "cancelButton": "Cancelar",
     "deleteButton": "Eliminar"
   },
   "Price": {
     "from": "Desde",
-    "contactUs": "Contáctanos",
+    "contactUs": "Contáctenos",
     "perHalfDay": "por medio día",
     "perDay": "por día",
     "perPerson": "por persona",
@@ -177,104 +177,115 @@
   },
   "LeaveReviewForm": {
     "title": "Dejar una Reseña",
-    "nameLabel": "Tu Nombre",
-    "ratingLabel": "Tu Calificación",
-    "reviewLabel": "Tu Reseña",
+    "nameLabel": "Su Nombre",
+    "ratingLabel": "Su Calificación",
+    "reviewLabel": "Su Reseña",
     "submitButton": "Enviar Reseña",
-    "successMessage": "¡Gracias! Tu reseña ha sido enviada para aprobación.",
-    "errorRating": "Por favor, selecciona una calificación de estrellas.",
-    "errorGeneric": "Algo salió mal. Por favor, inténtalo de nuevo."
+    "successMessage": "¡Gracias! Su reseña ha sido enviada para aprobación.",
+    "errorRating": "Por favor seleccione una calificación de estrellas.",
+    "errorGeneric": "Algo salió mal. Por favor inténtelo de nuevo."
   },
   "ReviewsList": {
-    "title": "Reseñas de Clientes",
-    "noReviews": "Aún no hay reseñas. ¡Sé el primero en compartir tu experiencia!"
+    "title": "Reseñas de Invitados",
+    "noReviews": "Aún no hay reseñas. ¡Sea el primero en compartir su experiencia!"
   },
   "ReviewsPage": {
-    "reviewsComingSoonTitle": "¡Reseñas Próximamente!",
-    "reviewsComingSoonText": "Estamos recopilando valiosos comentarios para compartirlos contigo pronto. ¡Vuelve a consultar para ver experiencias auténticas!",
-    "reviewsTitleDefault": "Lo Que Dicen Nuestros Clientes",
-    "reviewDefaultComment1": "Una experiencia fantástica de principio a fin. El equipo fue profesional y las vistas inolvidables. ¡Altamente recomendado!",
-    "reviewDefaultComment2": "Lo pasamos muy bien. Todo estuvo bien organizado. ¡Volveremos para otro tour el próximo año!",
-    "reviewsTitleAdventure": "Testimonios Desde el Sendero",
-    "reviewAdventureComment1": "¡Una aventura absolutely épica! Los guías conocían el terreno como la palma de su mano y fueron súper alentadores. Las vistas desde la cumbre valieron cada paso.",
-    "reviewAdventureComment2": "Esto no fue solo un tour; fue una verdadera expedición. Llevé mis límites al máximo de la mejor manera posible. Seguro, emocionante y 100% auténtico.",
-    "reviewsTitleLuxury": "Voces de Nuestros Estimados Clientes",
-    "reviewLuxuryComment1": "La definición de viaje a medida. Cada detalle fue ejecutado sin problemas. El riad privado era un oasis y nuestro guía fue increíblemente perspicaz. Nos sentimos como de la realeza.",
-    "reviewLuxuryComment2": "Nuestra experiencia en el desierto fue simplemente mágica. El campamento de lujo superó todas las expectativas. Fue la mezcla perfecta de confort de alta gama y profunda tranquilidad."
+    "reviewsComingSoonTitle": "¡Próximamente Reseñas!",
+    "reviewsComingSoonText": "Estamos recopilando comentarios valiosos para compartir con usted pronto. ¡Vuelva para ver experiencias auténticas!",
+    "reviewsTitleDefault": "Lo Que Dicen Nuestros Invitados",
+    "reviewDefaultComment1": "Una experiencia fantástica de principio a fin. El equipo fue profesional y las vistas inolvidables. ¡Muy recomendado!",
+    "reviewDefaultComment2": "Lo pasamos genial. Todo estaba bien organizado. ¡Volveremos para otro tour el próximo año!",
+    "reviewsTitleAdventure": "Testimonios desde el Sendero",
+    "reviewAdventureComment1": "¡Una aventura absolutamente épica! Los guías conocían el terreno como la palma de su mano y fueron muy alentadores. Las vistas desde la cima valieron cada paso.",
+    "reviewAdventureComment2": "Esto no fue solo un tour; fue una expedición real. Puso a prueba mis límites de la mejor manera posible. Seguro, emocionante y 100% auténtico.",
+    "reviewsTitleLuxury": "Voces de Nuestros Estimados Invitados",
+    "reviewLuxuryComment1": "La definición de viaje a medida. Cada detalle fue ejecutado impecablemente. El riad privado era un oasis y nuestro guía increíblemente perspicaz. Nos sentimos como la realeza.",
+    "reviewLuxuryComment2": "Nuestra experiencia en el desierto fue mágica. El campamento de lujo superó todas las expectativas. Fue la mezcla perfecta de confort de alta gama y tranquilidad profunda."
   },
   "FaqPage": {
     "faqComingSoonTitle": "¡Preguntas Frecuentes Próximamente!",
-    "faqComingSoonText": "Estamos compilando una lista de preguntas frecuentes para ayudarte. ¡Por favor, vuelve a consultar pronto!",
+    "faqComingSoonText": "Estamos compilando una lista de preguntas frecuentes para ayudarle. ¡Por favor vuelva pronto!",
     "faqTitleDefault": "Preguntas Frecuentes",
     "faqDefaultQuestion1": "¿Cómo reservo un tour?",
-    "faqDefaultAnswer1": "Puedes reservar directamente a través de nuestro sitio web seleccionando el tour deseado y haciendo clic en 'Reservar Ahora'. También puedes contactarnos por correo electrónico o WhatsApp, y nuestro equipo estará encantado de ayudarte con tu reserva.",
+    "faqDefaultAnswer1": "Puede reservar directamente a través de nuestro sitio web seleccionando el tour deseado y haciendo clic en 'Reservar Ahora'. También puede contactarnos vía email o WhatsApp, y nuestro equipo estará encantado de ayudarle con su reserva.",
     "faqDefaultQuestion2": "¿Cuál es su política de cancelación?",
-    "faqDefaultAnswer2": "Ofrecemos un reembolso completo para cancelaciones hechas al menos 7 días antes de la fecha del tour. Las cancelaciones hechas 3-6 días antes reciben un reembolso del 50%. Desafortunadamente, no podemos ofrecer reembolsos por cancelaciones hechas dentro de las 48 horas del tour.",
+    "faqDefaultAnswer2": "Ofrecemos un reembolso completo para cancelaciones hechas al menos 7 días antes de la fecha del tour. Las cancelaciones hechas de 3 a 6 días antes reciben un reembolso del 50%. Desafortunadamente, no podemos ofrecer reembolsos para cancelaciones hechas dentro de las 48 horas previas al tour.",
     "faqDefaultQuestion3": "¿Qué métodos de pago aceptan?",
-    "faqDefaultAnswer3": "Aceptamos las principales tarjetas de crédito (Visa, MasterCard, American Express) a través de nuestra pasarela de pago segura en línea. También aceptamos transferencias bancarias y pagos en efectivo en Dirhams Marroquíes (MAD) a la llegada para ciertos tours.",
-    "faqTitleAdventure": "Tus Preguntas de Aventura, Respondidas",
+    "faqDefaultAnswer3": "Aceptamos las principales tarjetas de crédito (Visa, MasterCard, American Express) a través de nuestra pasarela de pago segura en línea. También aceptamos transferencias bancarias y pagos en efectivo en Dirhams marroquíes (MAD) a la llegada para ciertos tours.",
+    "faqTitleAdventure": "Sus Preguntas de Aventura, Respondidas",
     "faqAdventureQuestion1": "¿Qué nivel de condición física se requiere?",
-    "faqAdventureAnswer1": "Nuestros tours de aventura varían de fáciles (caminata ligera) a extenuantes (trekking de varios días). Cada página de tour tiene una calificación de 'Dificultad'. Por favor, léela atentamente para asegurarte de que el tour coincida con tu nivel de condición física. ¡En caso de duda, contáctanos!",
+    "faqAdventureAnswer1": "Nuestros tours de aventura van desde fáciles (caminata ligera) hasta extenuantes (trekking de varios días). Cada página de tour tiene una calificación de 'Dificultad'. Por favor lea esto cuidadosamente para asegurar que el tour coincida con su nivel de condición física. ¡En caso de duda, contáctenos!",
     "faqAdventureQuestion2": "¿Es seguro este tour?",
-    "faqAdventureAnswer2": "Tu seguridad es nuestra prioridad absoluta. Todos nuestros guías de aventura están certificados en primeros auxilios y tienen una amplia experiencia en el terreno local. Utilizamos equipo moderno y bien mantenido y seguimos estrictos protocolos de seguridad.",
-    "faqAdventureQuestion3": "¿Qué debo empacar para un trekking en el desierto o la montaña?",
-    "faqAdventureAnswer3": "Recomendamos empacar en capas: camisetas transpirables, un forro polar cálido o chaqueta para las noches, zapatos de senderismo cómodos, un sombrero, gafas de sol y protector solar de alto SPF. Una botella de agua reutilizable es imprescindible. Proporcionaremos una lista de empaque detallada al reservar.",
-    "faqTitleLuxury": "Tu Viaje a Medida: Preguntas Frecuentes",
+    "faqAdventureAnswer2": "Su seguridad es nuestra prioridad absoluta. Todos nuestros guías de aventura están certificados en primeros auxilios y tienen amplia experiencia en el terreno local. Utilizamos equipos modernos y bien mantenidos y seguimos estrictos protocolos de seguridad.",
+    "faqAdventureQuestion3": "¿Qué debo empacar para una caminata en el desierto o montaña?",
+    "faqAdventureAnswer3": "Recomendamos empacar en capas: camisas transpirables, un forro polar o chaqueta abrigada para las noches, zapatos cómodos para caminar, un sombrero, gafas de sol y protector solar de alto factor. Una botella de agua reutilizable es imprescindible. Proporcionaremos una lista de equipaje detallada al reservar.",
+    "faqTitleLuxury": "Su Viaje Curado: FAQ",
     "faqLuxuryQuestion1": "¿Se puede personalizar todo mi viaje?",
-    "faqLuxuryAnswer1": "Absolutamente. La personalización es el corazón de nuestro servicio de lujo. Diseñamos itinerarios desde cero basados en tus intereses, ritmo y preferencias únicas. Considera nuestros tours listados como inspiración, no como limitaciones.",
-    "faqLuxuryQuestion2": "¿Qué tipo de alojamientos utilizan?",
-    "faqLuxuryAnswer2": "Nos asociamos exclusivamente con una cuidada selección de hoteles de 5 estrellas, riads de lujo y campamentos en el desierto de alta gama conocidos por su servicio excepcional, diseño exquisito y carácter auténtico. Priorizamos propiedades que ofrecen tanto confort como un verdadero sentido del lugar.",
+    "faqLuxuryAnswer1": "Absolutamente. La personalización es el corazón de nuestro servicio de lujo. Diseñamos itinerarios desde cero basados en sus intereses únicos, ritmo y preferencias. Considere nuestros tours listados como inspiración, no limitaciones.",
+    "faqLuxuryQuestion2": "¿Qué tipo de alojamiento utilizan?",
+    "faqLuxuryAnswer2": "Nos asociamos exclusivamente con una selección curada de hoteles de 5 estrellas, riads de lujo y campamentos en el desierto de alta gama conocidos por su servicio excepcional, diseño exquisito y carácter auténtico. Priorizamos propiedades que ofrecen tanto confort como un verdadero sentido del lugar.",
     "faqLuxuryQuestion3": "¿Qué hace diferentes a sus tours privados?",
-    "faqLuxuryAnswer3": "Nuestros tours privados de lujo garantizan tu exclusividad. Tendrás un guía experto dedicado y un vehículo premium privado con aire acondicionado (como un Mercedes V-Class o Toyota Prado) solo para tu grupo. Esto permite una flexibilidad total para ajustar tu horario, explorar lugares fuera de lo común y viajar a tu propio ritmo."
+    "faqLuxuryAnswer3": "Nuestros tours privados de lujo garantizan su exclusividad. Tendrá un guía experto dedicado y un vehículo privado premium con aire acondicionado (como un Mercedes Clase V o Toyota Prado) solo para su grupo. Esto permite la máxima flexibilidad para ajustar su horario, explorar lugares fuera de lo común y viajar a su propio ritmo."
   },
   "BlogPage": {
     "title": "Nuestro Diario",
     "subtitle": "Guías de viaje, historias e inspiración desde el corazón de Marruecos.",
-    "noArticles": "Aún no se han publicado artículos. ¡Por favor, vuelve pronto!",
+    "noArticles": "Aún no se han publicado artículos. ¡Por favor vuelva pronto!",
     "metaTitle": "Blog | Souss-Massa Tours",
-    "metaDescription": "Lee nuestros últimos artículos y guías de viaje sobre cómo explorar la hermosa región Souss-Massa de Marruecos."
+    "metaDescription": "Lea nuestros últimos artículos y guías de viaje sobre la exploración de la hermosa región de Souss-Massa en Marruecos."
   },
   "BookingForm": {
-    "bookNowButton": "Reservar Este Tour",
-    "dialogTitle": "Solicitar Reserva: {experienceTitle}",
-    "dateLabel": "Selecciona una Fecha",
-    "guestsLabel": "Número de Huéspedes",
-    "nameLabel": "Tu Nombre Completo",
-    "emailLabel": "Tu Correo Electrónico",
+    "title": "Reserva esta Aventura",
+    "priceFrom": "Desde",
+    "bookNowButton": "Solicitar Reserva",
+    "dateLabel": "Seleccionar Fecha",
+    "guestsLabel": "Viajeros",
+    "adultsLabel": "Adultos",
+    "adultsAge": "13+ años",
+    "childrenLabel": "Niños",
+    "childrenAge": "2-12 años",
+    "dialogTitle": "Complete su Solicitud",
+    "dialogSubtitle": "Rellene sus datos a continuación para asegurar su plaza para {experienceTitle} el {date}.",
+    "nameLabel": "Nombre Completo",
+    "emailLabel": "Dirección de Correo",
+    "phoneLabel": "Número de Teléfono (WhatsApp)",
+    "notesLabel": "Notas Adicionales (Opcional)",
+    "notesPlaceholder": "Requisitos dietéticos, solicitudes especiales, etc.",
     "cancelButton": "Cancelar",
     "submitButton": "Enviar Solicitud",
-    "successMessage": "¡Gracias! Tu solicitud de reserva ha sido enviada. Te contactaremos en breve para confirmar.",
-    "errorInvalidInput": "Por favor, selecciona una fecha y un número de huéspedes válidos.",
-    "errorGeneric": "Algo salió mal. Por favor, inténtalo de nuevo.",
-    "submitButtonPay": "Proceder al Pago",
-    "submitButtonInquiry": "Enviar Solicitud",
-    "successMessageInquiry": "¡Gracias! Su solicitud ha sido recibida. Nos pondremos en contacto con usted por correo electrónico en breve con un enlace de pago seguro para confirmar."
-  
+    "successMessage": "¡Gracias! Su solicitud de reserva ha sido enviada. Nos pondremos en contacto con usted en breve para confirmar.",
+    "errorInvalidInput": "Por favor complete todos los campos requeridos correctamente.",
+    "errorNoDate": "Por favor seleccione una fecha.",
+    "errorNoGuests": "Por favor añada al menos un viajero.",
+    "errorGeneric": "Algo salió mal. Por favor inténtelo de nuevo.",
+    "trustSignal1": "Reserva Segura",
+    "trustSignal2": "Mejor Precio Garantizado",
+    "trustSignal3": "Cancelación Gratuita (48h)"
   },
   "BlogHighlights": {
     "title": "De Nuestro Diario",
-    "subtitle": "Descubre consejos de viaje, historias culturales e inspiración para tu próxima aventura marroquí."
+    "subtitle": "Descubra consejos de viaje, historias culturales e inspiración para su próxima aventura marroquí."
   },
   "SocialProof": {
     "title": "Nuestros Socios y Reconocimientos"
   },
   "Testimonials": {
-    "title": "Escucha a Nuestros Viajeros",
-    "subtitle": "Descubre lo que nuestros clientes dicen sobre sus inolvidables experiencias con nosotros."
+    "title": "Escuche a Nuestros Viajeros",
+    "subtitle": "Descubra lo que dicen nuestros huéspedes sobre sus experiencias inolvidables con nosotros."
   },
   "Newsletter": {
-    "title": "Únete a Nuestro Viaje",
-    "subtitle": "Suscríbete a nuestro boletín para consejos de viaje exclusivos, ofertas especiales e historias desde el corazón de Marruecos.",
-    "emailLabel": "Tu Correo Electrónico",
+    "title": "Únase a Nuestro Viaje",
+    "subtitle": "Suscríbase a nuestro boletín para recibir consejos de viaje exclusivos, ofertas especiales e historias desde el corazón de Marruecos.",
+    "emailLabel": "Su Dirección de Correo",
     "submitButton": "Suscribirse",
-    "successMessage": "¡Gracias por suscribirte!",
-    "errorGeneric": "Algo salió mal. Por favor, inténtalo de nuevo."
+    "successMessage": "¡Gracias por suscribirse!",
+    "errorGeneric": "Algo salió mal. Por favor inténtelo de nuevo."
   },
   "BookingStatusPage": {
     "successTitle": "¡Pago Exitoso!",
-    "successSubtitle": "Gracias por tu reserva. Se ha enviado un correo electrónico de confirmación con todos los detalles de tu próxima aventura.",
+    "successSubtitle": "Gracias por su reserva. Se le ha enviado un correo electrónico de confirmación con todos los detalles de su próxima aventura.",
     "cancelledTitle": "Pago Cancelado",
-    "cancelledSubtitle": "Tu reserva no se completó. No se te ha cobrado. Puedes volver a nuestra página de experiencias para intentarlo de nuevo.",
+    "cancelledSubtitle": "Su reserva no se completó. No se le ha cobrado. Puede volver a nuestra página de experiencias para intentarlo de nuevo.",
     "backButton": "Volver a Experiencias"
   },
   "MegaMenu": {
@@ -287,7 +298,6 @@
     "styleFamily": "Familia"
   },
   "WhatsApp": {
-    "tooltip": "Personalizar Tema",
     "panelTitle": "Opciones de Tema",
     "colorTitle": "Paleta de Colores",
     "paletteCoastal": "Costero",
@@ -299,27 +309,28 @@
     "cardTitle": "Estilo de Tarjeta",
     "cardImmersive": "Inmersivo",
     "cardClassic": "Clásico",
-    "modalTitle": "Chatea con Nosotros",
-    "modalDescription": "Nuestro team está listo para ayudar a planificar tu viaje perfecto. Hablarás directamente con:",
     "omarName": "Omar Ouazza",
     "omarTitle": "Fundador y Conductor Principal",
     "kamalName": "Kamal Ahfid",
     "kamalTitle": "Gerente de Operaciones",
+    "tooltip": "Contáctenos en WhatsApp",
+    "modalTitle": "Chatea con Nosotros",
+    "modalDescription": "Nuestro equipo está listo para ayudar a planear su viaje perfecto. Hablará directamente con:",
     "modalCta": "Iniciar Chat",
-    "prefilledText": "Hola, les contacto para tener más información sobre los servicios de MarraGo."
+    "prefilledText": "Hola, le contacto para tener más información sobre los servicios de MarraGo."
   },
   "TopHeader": {
     "help": "Ayuda",
-    "login": "Iniciar Sesión",
-    "joinNow": "Registrarse",
-    "findReservationTooltip": "Ingresa tu # de Confirmación abajo para localizar tu reserva.",
-    "cartTooltip": "Ver tu carrito de compras"
+    "login": "Ingresar",
+    "joinNow": "Únase Ahora",
+    "findReservationTooltip": "Ingrese su N.º de Confirmación abajo para localizar su reserva.",
+    "cartTooltip": "Ver su carrito de compras"
   },
   "MainHeaderNav": {
     "findHotel": "Buscar un Hotel",
-    "getInspired": "Inspirarse",
+    "getInspired": "Inspírese",
     "offers": "Ofertas",
-    "leadersClub": "Leaders Club"
+    "leadersClub": "Club de Líderes"
   },
   "SearchBar": {
     "destinationLabel": "Destino",
@@ -337,13 +348,13 @@
     "allLocations": "Todas las Ubicaciones",
     "sortLabel": "Ordenar Por",
     "sortDefault": "Por Defecto",
-    "sortPriceAsc": "Precio: Menor a Mayor",
-    "sortPriceDesc": "Precio: Mayor a Menor"
+    "sortPriceAsc": "Precio: Bajo a Alto",
+    "sortPriceDesc": "Precio: Alto a Bajo"
   },
   "AgencyHero": {
-    "title": "Tu Aventura te Espera",
-    "subtitle": "Surfea la costa atlántica, recorre las montañas del Atlas o explora el desierto del Sahara. Ofrecemos excursiones auténticas y guiadas por expertos para cada buscador de emociones.",
-    "ctaButton": "Explora Nuestras Aventuras"
+    "title": "Su Aventura Le Espera",
+    "subtitle": "Surfee la costa atlántica, camine por las montañas del Atlas o explore el desierto del Sahara. Ofrecemos excursiones auténticas y guiadas por expertos para cada buscador de emociones.",
+    "ctaButton": "Explore Nuestras Aventuras"
   },
   "BusinessTypes": {
     "TravelAgency": "Agencia de Viajes",
@@ -383,18 +394,18 @@
   },
   "PrivacyPage": {
     "title": "Política de Privacidad",
-    "lastUpdated": "Última actualización: 10 de noviembre de 2025",
+    "lastUpdated": "Última Actualización: 10 de Noviembre de 2025",
     "sections": {
       "introduction": {
         "title": "1. Introducción",
-        "text": "{officialName} ('nosotros') se compromete a proteger sus datos personales. Esta Política de Privacidad explica cómo recopilamos, usamos y protegemos su información cuando utiliza nuestro sitio web ({brandName}.com) y nuestros servicios, en cumplimiento de la Ley marroquí N° 09-08."
+        "text": "{officialName} ('nosotros', 'nos') se compromete a proteger sus datos personales. Esta Política de Privacidad explica cómo recopilamos, usamos y protegemos su información cuando utiliza nuestro sitio web ({brandName}.com) y nuestros servicios, en cumplimiento con la Ley Marroquí N.º 09-08."
       },
       "dataController": {
-        "title": "2. Responsable del Tratamiento",
-        "text": "{officialName} es el 'Responsable del Tratamiento' de sus datos personales recopilados a través de este sitio web."
+        "title": "2. Responsable de Datos",
+        "text": "{officialName} es el 'Responsable del Tratamiento' responsable de sus datos personales recopilados a través de este sitio web."
       },
       "dataCollected": {
-        "title": "3. Datos que Recopilamos",
+        "title": "3. Datos Que Recopilamos",
         "intro": "Podemos recopilar los siguientes datos:",
         "points": [
           {
@@ -403,11 +414,11 @@
           },
           {
             "label": "Datos de Pago:",
-            "text": "Usamos Stripe para procesar pagos. No almacenamos los detalles de su tarjeta de crédito. Sus datos de pago son gestionados por Stripe."
+            "text": "Utilizamos Stripe para procesar pagos. No almacenamos los detalles de su tarjeta de crédito. Sus datos de pago son manejados por Stripe."
           },
           {
             "label": "Datos Automáticos:",
-            "text": "Su dirección IP, tipo de navegador y cómo utiliza nuestro sitio (a través de analíticas simples) para ayudarnos a mejorar nuestro servicio."
+            "text": "Su dirección IP, tipo de navegador y cómo utiliza nuestro sitio (vía análisis simple) para ayudarnos a mejorar nuestro servicio."
           }
         ]
       },
@@ -416,8 +427,8 @@
         "intro": "Usamos sus datos para los siguientes propósitos:",
         "points": [
           {
-            "label": "Para Gestionar Su Reserva:",
-            "text": "Para procesar su reserva, gestionar su itinerario y proporcionarle los servicios de transporte y guía."
+            "label": "Para Cumplir Su Reserva:",
+            "text": "Para procesar su reserva, gestionar su itinerario y proporcionarle servicios de transporte y guía."
           },
           {
             "label": "Para Comunicarnos Con Usted:",
@@ -425,16 +436,16 @@
           },
           {
             "label": "Para Mejorar Nuestro Servicio:",
-            "text": "Para entender cómo se utiliza nuestro sitio web y así poder mejorarlo."
+            "text": "Para entender cómo se usa nuestro sitio web para que podamos mejorarlo."
           }
         ]
       },
       "dataSharing": {
-        "title": "5. Cesión de Datos",
+        "title": "5. Compartir Datos",
         "intro": "No vendemos sus datos personales. Solo los compartimos cuando es necesario:",
         "points": [
           {
-            "label": "Con Socios de Servicios:",
+            "label": "Con Socios de Servicio:",
             "text": "Podemos compartir su nombre con un hotel que estamos reservando en su nombre o con un guía específico."
           },
           {
@@ -443,13 +454,13 @@
           },
           {
             "label": "Por Razones Legales:",
-            "text": "Si lo exige la ley marroquí."
+            "text": "Si lo requiere la ley marroquí."
           }
         ]
       },
       "dataRetention": {
-        "title": "6. Conservación de Datos",
-        "text": "Conservamos sus datos personales solo durante el tiempo necesario para cumplir con los servicios prometidos y para cumplir con nuestras obligaciones legales (por ejemplo, para fines fiscales)."
+        "title": "6. Retención de Datos",
+        "text": "Conservamos sus datos personales solo el tiempo necesario para cumplir con los servicios prometidos y cumplir con nuestras obligaciones legales (ej. para fines fiscales)."
       },
       "yourRights": {
         "title": "7. Sus Derechos (Ley 09-08)",
@@ -464,23 +475,23 @@
             "text": "Solicitar que corrijamos cualquier dato inexacto."
           },
           {
-            "label": "Supresión (Cancelación):",
+            "label": "Supresión:",
             "text": "Solicitar que eliminemos sus datos personales."
           },
           {
-            "label": "Oposición:",
-            "text": "Oponerse al tratamiento de sus datos por motivos legítimos."
+            "label": "Objeción:",
+            "text": "Oponerse al procesamiento de sus datos por razones legítimas."
           }
         ],
-        "outro": "Para ejercer estos derechos, contáctenos en: {email}. También tiene derecho a presentar una queja ante la CNDP (Comisión Nacional de control de la protección de Datos de carácter Personal de Marruecos)."
+        "outro": "Para ejercer estos derechos, contáctenos en: {email}. También tiene derecho a presentar una queja ante la CNDP (comisión de protección de datos de Marruecos)."
       },
       "cookies": {
         "title": "8. Cookies",
-        "text": "Usamos cookies esenciales para que nuestro sitio funcione y cookies analíticas para mejorar nuestro servicio. Puede gestionar su consentimiento a través de nuestro banner de cookies."
+        "text": "Utilizamos cookies esenciales para que nuestro sitio funcione y cookies analíticas para mejorar nuestro servicio. Puede gestionar su consentimiento a través de nuestro banner de cookies."
       },
       "policyUpdates": {
         "title": "9. Actualizaciones de la Política",
-        "text": "Podemos actualizar esta política en cualquier momento. Cualquier cambio se publicará en esta página con una fecha de 'Última actualización' actualizada."
+        "text": "Podemos actualizar esta política en cualquier momento. Cualquier cambio se publicará en esta página con una fecha de 'Última Actualización' actualizada."
       },
       "contactUs": {
         "title": "10. Contáctenos",
@@ -490,15 +501,15 @@
   },
   "TermsPage": {
     "title": "Términos de Uso",
-    "lastUpdated": "Última actualización: 10 de noviembre de 2025",
+    "lastUpdated": "Última Actualización: 10 de Noviembre de 2025",
     "sections": {
       "agreement": {
-        "title": "1. Aceptación de los Términos",
-        "text": "Al acceder a nuestro sitio web ({brandName}.com) o reservar un servicio con nosotros, usted acepta estar sujeto a estos Términos de Uso. 'Nosotros' se refiere a {officialName}."
+        "title": "1. Acuerdo de Términos",
+        "text": "Al acceder a nuestro sitio web ({brandName}.com) o reservar un servicio con nosotros, usted acepta estar sujeto a estos Términos de Uso. 'Nosotros' o 'nos' se refiere a {officialName}."
       },
       "services": {
         "title": "2. Nuestros Servicios",
-        "text": "Proporcionamos servicios de operador turístico, incluyendo (entre otros) traslados al aeropuerto, circuitos de varios días, reservas de hotel y servicios de guía privado ('Servicios'). Todos los servicios están sujetos a disponibilidad y confirmación."
+        "text": "Proporcionamos servicios de operador turístico, incluyendo (pero no limitado a) traslados al aeropuerto, circuitos de varios días, reservas de hotel y servicios de guía privado ('Servicios'). Todos los servicios están sujetos a disponibilidad y confirmación."
       },
       "bookingsPayments": {
         "title": "3. Reservas y Pagos",
@@ -509,7 +520,7 @@
           },
           {
             "label": "Pagos:",
-            "text": "Se requiere un depósito (ej. 50%) para asegurar su reserva. El saldo final se debe pagar en una fecha específica antes del viaje o a la llegada, según se indique en su confirmación de reserva."
+            "text": "Se requiere un depósito (ej. 50%) para asegurar su reserva. El saldo final vence en una fecha específica antes del viaje o a la llegada, según lo indicado en su confirmación de reserva."
           },
           {
             "label": "Métodos de Pago:",
@@ -519,19 +530,19 @@
       },
       "cancellationsRefunds": {
         "title": "4. Cancelaciones y Reembolsos",
-        "intro": "Esta es la sección más crítica. Debes definirla claramente con tu hermano. Aquí hay una política profesional común:",
+        "intro": "Esta es la sección más crítica. Debe definir esto claramente con su hermano. Aquí hay una política común y profesional:",
         "subsections": [
           {
-            "title": "Cancelación por su parte:",
+            "title": "Cancelación por Usted:",
             "points": [
-              "Cancelaciones hechas con más de 30 días de antelación a la fecha de inicio del tour: Reembolso completo de su depósito.",
+              "Cancelaciones hechas más de 30 días antes de la fecha de inicio del tour: Reembolso completo de su depósito.",
               "Cancelaciones hechas 15-29 días antes: Reembolso del 50% de su depósito.",
-              "Cancelaciones hechas menos de 14 días antes: No hay reembolso del depósito."
+              "Cancelaciones hechas menos de 14 días antes: Sin reembolso del depósito."
             ]
           },
           {
-            "title": "Cancelación por nuestra parte:",
-            "text": "Nos reservamos el derecho de cancelar un tour en cualquier momento debido a circunstancias imprevistas (ej. desastres naturales, problemas de seguridad). En este caso, recibirá un reembolso completo del 100%."
+            "title": "Cancelación por Nosotros:",
+            "text": "Nos reservamos el derecho de cancelar un tour en cualquier momento debido a circunstancias imprevistas (ej. desastres naturales, problemas de seguridad). En este evento, recibirá un reembolso completo del 100%."
           }
         ]
       },
@@ -540,21 +551,21 @@
         "points": [
           {
             "label": "Seguro de Viaje:",
-            "text": "Usted está obligado a contratar un seguro de viaje completo antes de su viaje. Este seguro debe cubrir (como mínimo) emergencias médicas, lesiones personales y cancelación. No somos responsables de ningún incidente no cubierto por su seguro."
+            "text": "Se requiere que compre un seguro de viaje completo antes de su viaje. Este seguro debe cubrir (como mínimo) emergencias médicas, lesiones personales y cancelación. No somos responsables de ningún incidente no cubierto por su seguro."
           },
           {
             "label": "Documentos:",
-            "text": "Usted es responsable de asegurarse de que su pasaporte, visado y cualquier otro documento de viaje sean válidos para su viaje a Marruecos."
+            "text": "Usted es responsable de asegurar que su pasaporte, visa y cualquier otro documento de viaje sean válidos para su viaje a Marruecos."
           }
         ]
       },
       "liability": {
         "title": "6. Responsabilidad",
-        "text": "{officialName} actúa como un agente para hoteles, proveedores de transporte y otros contratistas. No somos responsables de ninguna lesión, daño, pérdida, accidente, retraso o irregularidad que pueda ocurrir debido al acto o incumplimiento de cualquier compañía o persona involucrada en el transporte del pasajero o en la ejecución de los arreglos del tour. No somos responsables de retrasos o problemas causados por 'fuerza mayor' (ej. clima, huelgas, disturbios políticos)."
+        "text": "{officialName} actúa como agente para hoteles, proveedores de transporte y otros contratistas. No somos responsables de ninguna lesión, daño, pérdida, accidente, retraso o irregularidad que pueda ocurrir debido al acto o incumplimiento de cualquier compañía o persona contratada para transportar al pasajero o llevar a cabo los arreglos del tour. No somos responsables de retrasos o problemas causados por 'fuerza mayor' (ej. clima, huelgas, disturbios políticos)."
       },
       "itineraryChanges": {
         "title": "7. Cambios en el Itinerario",
-        "text": "Haremos todo lo posible por adherirnos al itinerario confirmado. Sin embargo, nos reservamos el derecho de realizar cambios en el itinerario (ej. orden de las visitas, cambio de hotel) si es necesario debido a condiciones locales, clima u otras circunstancias imprevistas para garantizar su seguridad y comodidad."
+        "text": "Haremos todo lo posible para cumplir con el itinerario confirmado. Sin embargo, nos reservamos el derecho de hacer cambios en el itinerario (ej. orden de visitas, cambio de hotel) si es necesario debido a condiciones locales, clima u otras circunstancias imprevistas para garantizar su seguridad y comodidad."
       },
       "governingLaw": {
         "title": "8. Ley Aplicable",
@@ -563,15 +574,15 @@
     }
   },
   "CookieConsent": {
-    "message": "Usamos cookies para mejorar su experiencia de navegación, analizar el tráfico del sitio y personalizar el contenido.",
-    "privacyLinkText": "Más información en nuestra Política de Privacidad",
+    "message": "Utilizamos cookies para mejorar su experiencia de navegación, analizar el tráfico del sitio y personalizar el contenido.",
+    "privacyLinkText": "Aprenda más en nuestra Política de Privacidad",
     "acceptAll": "Aceptar Todo",
     "declineAll": "Rechazar Todo",
     "customize": "Personalizar",
     "modal": {
-      "title": "Gestionar sus Preferencias de Cookies",
+      "title": "Gestione Sus Preferencias de Cookies",
       "close": "Cerrar modal",
-      "description": "Puede elegir qué tipos de cookies permitir. Sus preferencias se guardarán durante 1 año.",
+      "description": "Puede elegir qué tipos de cookies permitir. Sus preferencias se guardarán por 1 año.",
       "save": "Guardar Preferencias",
       "necessary": {
         "title": "Estrictamente Necesarias",
@@ -579,12 +590,33 @@
       },
       "analytics": {
         "title": "Cookies Analíticas",
-        "description": "Estas cookies nos ayudan a comprender cómo interactúan los visitantes con nuestro sitio web mediante la recopilación de información anónima."
+        "description": "Estas cookies nos ayudan a entender cómo interactúan los visitantes con nuestro sitio web recopilando información anónima."
       },
       "marketing": {
         "title": "Cookies de Marketing",
-        "description": "Estas cookies se utilizan para rastrear a los visitantes en los sitios web para mostrar anuncios relevantes (por ejemplo, Facebook Pixel)."
+        "description": "Estas cookies se utilizan para rastrear a los visitantes en los sitios web para mostrar anuncios relevantes (ej. Píxel de Facebook)."
       }
     }
+  },
+  "ExperienceDetailsNew": {
+    "quickFactsTitle": "Detalles Clave del Tour",
+    "tourCodeLabel": "Código del Tour",
+    "groupSizeLabel": "Tamaño del Grupo",
+    "languagesLabel": "Idiomas",
+    "dailyDeparturesLabel": "Salidas Diarias",
+    "maxGuestsValue": "Máx {count} Huéspedes",
+    "highlightsTitle": "Lo Más Destacado",
+    "tourMapTitle": "Mapa del Tour y Punto de Encuentro",
+    "meetingPointLabel": "Punto de Encuentro",
+    "viewOnMapsButton": "Ver en Mapas",
+    "faqTitle": "Preguntas Frecuentes",
+    "helpBoxTitle": "¿Necesita Ayuda para Reservar?",
+    "helpBoxText": "Nuestros expertos locales en viajes están disponibles para responder sus preguntas.",
+    "whatsappButton": "Chatear en WhatsApp",
+    "shareTooltip": "Compartir experiencia",
+    "saveTooltip": "Guardar en lista de deseos",
+    "shareSuccess": "¡Enlace copiado al portapapeles!",
+    "shareError": "Error al copiar enlace.",
+    "shareMessage": "Mire esta increíble experiencia: {title}"
   }
 }

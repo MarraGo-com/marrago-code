@@ -2,10 +2,11 @@
 import { NextResponse as NextPublicResponse } from 'next/server';
 import { adminDb as adminDbPublic } from '@/lib/firebase-admin';
 
+// Revalidate this route every hour
 export const revalidate = 3600; 
 
-// The signature of the GET function is updated to correctly receive params
 type Params = Promise<{ id: string }>;
+
 export async function GET(request: Request, { params }: { params: Params }) {
    const { id } = await params;
   try {
@@ -19,17 +20,32 @@ export async function GET(request: Request, { params }: { params: Params }) {
     const data = docSnap.data();
     if (!data) { return NextPublicResponse.json({ error: 'Experience data is empty' }, { status: 404 }); }
 
+    // Construct the experience object, explicitly including ALL new fields
     const experience = {
       id: docSnap.id,
+      // Base fields
       price: data.price,
       locationId: data.locationId,
       coverImage: data.coverImage,
-      galleryImages: data.galleryImages || [], // <-- ADDED: Include gallery images in the response
+      galleryImages: data.galleryImages || [],
       duration: data.duration,
       translations: data.translations,
-      createdAt: data.createdAt.toDate().toISOString(),
+      createdAt: data.createdAt?.toDate().toISOString(),
+      
+      // ▼▼▼ INCLUDE NEW FIELDS IN RESPONSE ▼▼▼
+      tags: data.tags || [],
+      maxGuests: data.maxGuests,
+      tourCode: data.tourCode,
+      languages: data.languages || [],
+      startTimes: data.startTimes || [],
+      latitude: data.latitude,
+      longitude: data.longitude
+      // ▲▲▲
     };
     
+    // Add a debug log on the server to confirm what's being sent
+    console.log(`API (GET): Sending complete experience data for ${id}`);
+
     return NextPublicResponse.json({ experience }, { status: 200 });
   } catch (error) {
     console.error(`Error fetching public experience with id: ${id}`, error);

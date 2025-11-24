@@ -63,8 +63,8 @@
     "ctaButton": "Contact Us to Plan Your Trip"
   },
   "ExperienceCard": {
-    "learnMoreButton": "Learn More"
-  },
+  "bookNowButton": "Book Now"
+},
  "ExperienceDetails": {
     "inquireButton": "Request to Book",
     "includedTitle": "What's Included",
@@ -242,20 +242,32 @@
     "metaDescription": "Read our latest articles and travel guides about exploring the beautiful Souss-Massa region of Morocco."
   },
   "BookingForm": {
-    "bookNowButton": "Book This Tour",
-    "dialogTitle": "Request to Book: {experienceTitle}",
-    "dateLabel": "Select a Date",
-    "guestsLabel": "Number of Guests",
-    "nameLabel": "Your Full Name",
-    "emailLabel": "Your Email Address",
+    "title": "Book This Adventure",
+    "priceFrom": "From",
+    "bookNowButton": "Request Booking",
+    "dateLabel": "Select Date",
+    "guestsLabel": "Travelers",
+    "adultsLabel": "Adults",
+    "adultsAge": "Age 13+",
+    "childrenLabel": "Children",
+    "childrenAge": "Ages 2-12",
+    "dialogTitle": "Complete Your Request",
+    "dialogSubtitle": "Fill in your details below to secure your spot for {experienceTitle} on {date}.",
+    "nameLabel": "Full Name",
+    "emailLabel": "Email Address",
+    "phoneLabel": "Phone Number (WhatsApp)",
+    "notesLabel": "Additional Notes (Optional)",
+    "notesPlaceholder": "Dietary requirements, special requests, etc.",
     "cancelButton": "Cancel",
     "submitButton": "Submit Request",
     "successMessage": "Thank you! Your booking request has been sent. We will contact you shortly to confirm.",
-    "errorInvalidInput": "Please select a valid date and number of guests.",
+    "errorInvalidInput": "Please fill in all required fields correctly.",
+    "errorNoDate": "Please select a date.",
+    "errorNoGuests": "Please add at least one traveler.",
     "errorGeneric": "Something went wrong. Please try again.",
-     "submitButtonPay": "Proceed to Payment",
-    "submitButtonInquiry": "Send Booking Request",
-    "successMessageInquiry": "Thank you! Your request has been received. We will contact you by email shortly with a secure payment link to confirm."
+    "trustSignal1": "Secure Booking",
+    "trustSignal2": "Best Price Guarantee",
+    "trustSignal3": "Free Cancellation (48h)"
   },
   "BlogHighlights": {
     "title": "From Our Journal",
@@ -591,6 +603,26 @@
         "description": "These cookies are used to track visitors across websites to display relevant ads (e.g., Facebook Pixel)."
       }
     }
+  },
+  "ExperienceDetailsNew": {
+    "quickFactsTitle": "Tour Key Details",
+    "tourCodeLabel": "Tour Code",
+    "groupSizeLabel": "Group Size",
+    "languagesLabel": "Languages",
+    "dailyDeparturesLabel": "Daily Departures",
+    "maxGuestsValue": "Max {count} Guests",
+    "highlightsTitle": "Experience Highlights",
+    "tourMapTitle": "Tour Map & Meeting Point",
+    "meetingPointLabel": "Meeting Point",
+    "viewOnMapsButton": "View on Maps",
+    "faqTitle": "Frequently Asked Questions",
+    "helpBoxTitle": "Need Help Booking?",
+    "helpBoxText": "Our local travel experts are available to answer your questions.",
+    "whatsappButton": "Chat on WhatsApp",
+    "shareTooltip": "Share experience",
+    "saveTooltip": "Save to wishlist",
+    "shareSuccess": "Link copied to clipboard!",
+    "shareError": "Failed to copy link.",
+    "shareMessage": "Check out this amazing experience: {title}"
   }
-  
 }

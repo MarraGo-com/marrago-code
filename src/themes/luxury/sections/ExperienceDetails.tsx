@@ -2,167 +2,232 @@
 'use client';
 
 import React from 'react';
-import { Typography, Box, Container, Divider, Grid } from '@mui/material';
-import { useLocale, useTranslations } from 'next-intl';
+import { Grid, Typography, Box, Container, Divider, Paper } from '@mui/material';
+import { useLocale } from 'next-intl';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 // Import shared components
+import QuickFacts from '@/components/experience/QuickFacts';
+import Highlights from '@/components/experience/Highlights';
+import TourMap from '@/components/experience/TourMap';
+import FAQAccordion from '@/components/experience/FAQAccordion';
+import HelpBox from '@/components/experience/HelpBox';
+import HeroActions from '@/components/experience/HeroActions';
 import Inclusions from '@/components/experience/Inclusions';
 import Itinerary from '@/components/experience/Itinerary';
 import ImageGallery from '@/components/experience/ImageGallery';
 import { Experience } from '@/types/experience';
+import ReviewsList from '@/components/reviews/ReviewsList';
+import LeaveReviewForm from '@/components/reviews/LeaveReviewForm';
 import { locations } from '@/config/locations';
-import dynamic from 'next/dynamic';
-import { BookingWidgetProps } from '@/components/booking/StickyBookingWidget';
-import Image from 'next/image';
-import { ReviewsListProps } from '../reviews/ReviewsList';
-import { LeaveReviewFormProps } from '../reviews/LeaveReviewForm';
-
-//////////////////////////////////////////////////////////////////////////
-// Dynamically import the new luxury review components
-const theme = process.env.NEXT_PUBLIC_THEME || 'default';
-const ReviewsList = dynamic<ReviewsListProps>(() => import(`@/themes/${theme}/reviews/ReviewsList`));
-const LeaveReviewForm = dynamic<LeaveReviewFormProps>(() => import(`@/themes/${theme}/reviews/LeaveReviewForm`));
-const StickyBookingWidget = dynamic<BookingWidgetProps>(() => import(`@/components/booking/StickyBookingWidget`));
+import BookingForm from '@/components/booking/BookingForm';
 
 export type ExperienceDetailsProps = {
   experience: Experience;
-  clientConfig: { plugins: { hasReviews?: boolean } };
+  clientConfig?: { plugins: { hasReviews?: boolean; hasBookingEngine?: boolean } };
 };
 
 export default function ExperienceDetails({ experience, clientConfig }: ExperienceDetailsProps) {
   const locale = useLocale();
-  const t = useTranslations('ExperienceDetails');
+ // const theme = useTheme();
+ // const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
+  // Get the correct translation based on the current locale
   const translation = experience.translations?.[locale] || experience.translations?.en;
   const location = locations.find(loc => loc.id === experience.locationId);
 
+  // Get data for conditional rendering
+  const highlightsContent = translation?.highlights;
+  const experienceTitle = translation?.title  || '';
+  const faqsContent = translation?.faqs;
+  const hasFaqs = faqsContent && faqsContent.length > 0;
+
   return (
-    <Box sx={{ bgcolor: 'background.paper' }}>
-      {/* 1. Full-width, immersive cover image */}
+    <Box sx={{ bgcolor: 'background.default', pb: 10 }}>
+      
+      {/* 1. IMMERSIVE HERO SECTION */}
       <Box sx={{
         position: 'relative',
         width: '100%',
-        height: '70vh',
-        minHeight: '500px',
+        height: { xs: '50vh', md: '70vh' }, // Taller on desktop for impact
+        minHeight: '450px',
+        display: 'flex',
+        alignItems: 'flex-end',
         color: 'white',
+        backgroundImage: `url(${experience.coverImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
       }}>
-        <Image
-          src={experience.coverImage}
-          alt={translation?.title || experience.title || 'Cover image for the experience'}
-          fill
-          style={{ objectFit: 'cover' }}
-          priority
-        />
+        {/* Darker gradient for better text readability */}
+        <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'linear-gradient(to top, rgba(0,0,0,0.9) 10%, rgba(0,0,0,0.4) 50%, transparent 100%)' }} />
+        
+        <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 2, pb: { xs: 4, md: 8 } }}>
+          <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, justifyContent: 'space-between', alignItems: { xs: 'flex-start', md: 'flex-end' } }}>
+            
+            {/* Title & Location */}
+            <Box sx={{ maxWidth: { xs: '100%', md: '75%' } }}>
+              {location && (
+                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2, opacity: 0.9 }}>
+                  <LocationOnIcon fontSize="small" sx={{ mr: 0.5, color: 'primary.main' }} />
+                  <Typography variant="subtitle1" sx={{ fontWeight: 600, letterSpacing: 1 }}>
+                    {location.name.toUpperCase()}
+                  </Typography>
+                </Box>
+              )}
+              <Typography
+                variant="h2"
+                component="h1"
+                sx={{ 
+                  fontWeight: 800, 
+                  lineHeight: 1.1,
+                  fontSize: { xs: '2rem', md: '3.5rem' },
+                  textShadow: '0px 2px 4px rgba(0,0,0,0.5)'
+                }}
+              >
+                {experienceTitle}
+              </Typography>
+            </Box>
 
-        <Box sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 100%)' }} />
-
-        <Box sx={{
-          position: 'relative',
-          zIndex: 2,
-          height: '100%',
-          display: 'flex',
-          alignItems: 'flex-end',
-          justifyContent: 'center',
-          textAlign: 'center',
-        }}>
-          <Container maxWidth="lg" sx={{ pb: 8 }}>
-            <Typography
-              variant="h2"
-              component="h1"
-              sx={{ fontWeight: 'bold', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}
-            >
-              {translation?.title || experience.title}
-            </Typography>
-            {location && (
-              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 2 }}>
-                <LocationOnIcon fontSize="small" sx={{ mr: 1 }} />
-                <Typography variant="body1">{location.name}</Typography>
-              </Box>
-            )}
-          </Container>
-        </Box>
+            {/* Hero Actions (Desktop) */}
+            <Box sx={{ display: { xs: 'none', md: 'block' }, mb: 1 }}>
+              <HeroActions title={experienceTitle} />
+            </Box>
+          </Box>
+        </Container>
       </Box>
 
-      {/* 2. Centered, single-column content layout */}
-      <Container maxWidth="md" sx={{ py: { xs: 6, md: 10 } }}>
-        <Grid container justifyContent="center">
-          <Grid size={{ xs: 12, lg: 10 }}>
-            {/* Description - FIXED to use ReactMarkdown */}
+      {/* Hero Actions (Mobile - moved outside for easier tapping) */}
+      <Box sx={{ display: { xs: 'flex', md: 'none' }, justifyContent: 'flex-end', px: 2, py: 2, bgcolor: 'background.paper', borderBottom: 1, borderColor: 'divider' }}>
+         <HeroActions title={experienceTitle} />
+      </Box>
+
+      {/* 2. MAIN CONTENT GRID */}
+      <Container maxWidth="lg" sx={{ pt: { xs: 4, md: 8 } }}>
+        <Grid container spacing={6}>
+          
+          {/* === LEFT COLUMN: The Narrative === */}
+          <Grid size={{ xs: 12, md: 7 }}>
+            
+            {/* A. Quick Facts (Wrapped in Card for "Pro" feel) */}
+            <Paper elevation={0} variant="outlined" sx={{ p: 3, mb: 4, borderRadius: 3 }}>
+               <QuickFacts 
+                maxGuests={experience.maxGuests}
+                languages={experience.languages}
+                startTimes={experience.startTimes}
+                tourCode={experience.tourCode}
+              />
+            </Paper>
+
+            {/* B. Main Description */}
             <Box sx={{
                 mb: 4,
                 color: 'text.secondary',
-                fontSize: '1.1rem',
+                fontSize: '1.125rem',
                 lineHeight: 1.8,
-                fontStyle: 'italic',
-                // Add styles for Markdown elements to match the luxury theme
                 '& p': { marginBottom: '1.5em' },
-                '& strong': { fontWeight: 600, color: 'text.primary', fontStyle: 'normal' },
-                '& ul, & ol': { paddingLeft: '1.5em', marginBottom: '1.5em' },
-                '& li': { marginBottom: '0.5em' },
-                '& h3, & h4': { color: 'text.primary', fontWeight: 'bold', mt: 4, mb: 2, fontStyle: 'normal', textAlign: 'center' }
-            }}>
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                 {translation?.description || experience.description}
-              </ReactMarkdown>
+                '& strong': { fontWeight: 700, color: 'text.primary' },
+                '& h3, & h4': { color: 'text.primary', fontWeight: 700, mt: 4, mb: 2 }
+              }}>
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {translation?.description || ''}
+                </ReactMarkdown>
             </Box>
 
-            <Divider sx={{ my: 6 }} />
+            {/* C. Image Gallery (Moved to Main Column for better Mobile UX) */}
+            {/* Placing visuals right after the intro keeps the user engaged */}
+            <Box sx={{ my: 6 }}>
+               <ImageGallery
+                  coverImage={experience.coverImage}
+                  galleryImages={experience.galleryImages || []}
+                  altText={experienceTitle}
+                />
+            </Box>
 
-            {/* Gallery */}
-            <ImageGallery
-              coverImage={experience.coverImage}
-              galleryImages={experience.galleryImages || []}
-              altText={translation?.title || experience.title || ''}
-            />
+            {/* D. Highlights */}
+            {highlightsContent && (
+              <Box sx={{ mb: 6 }}>
+                <Highlights highlights={highlightsContent} />
+              </Box>
+            )}
 
-            <Divider sx={{ my: 6 }} />
+            <Divider sx={{ my: 4 }} />
 
-            {/* Inclusions */}
+            {/* E. Inclusions & Exclusions */}
             <Inclusions
               included={translation?.included}
               notIncluded={translation?.notIncluded}
             />
 
-            <Divider sx={{ my: 6 }} />
+            <Divider sx={{ my: 4 }} />
 
-            {/* Itinerary */}
+            {/* F. Detailed Itinerary */}
             <Itinerary itinerary={translation?.itinerary} />
 
-            {/* Important Info */}
-            {translation?.importantInfo && (
-              <>
-                <Divider sx={{ my: 6 }} />
-                <Box>
-                  <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 3, textAlign: 'center' }}>{t('importantInfoTitle')}</Typography>
-                  <Box sx={{ '& h2, & h3': { my: 2 }, '& p, & ul, & li': { color: 'text.secondary' }, lineHeight: 1.8, fontSize: '1.05rem' }}>
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{translation.importantInfo}</ReactMarkdown>
-                  </Box>
-                </Box>
-              </>
-            )}
-            
-            {/* Booking Widget at the end */}
-            <Divider sx={{ my: 8 }} />
-            <Box sx={{ position: 'sticky', top: '80px', py: 4 }}>
-              <StickyBookingWidget
-                  experience={experience}
-                  experienceId={experience.id}
-                  experienceTitle={translation?.title || experience.title || ''}
-              />
+            <Divider sx={{ my: 4 }} />
+
+            {/* G. Map */}
+            <Box sx={{ my: 4 }}>
+               <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 3 }}>
+                 Where You'll Go
+               </Typography>
+               <TourMap latitude={experience.latitude} longitude={experience.longitude} />
             </Box>
 
-             {/* Reviews section */}
-            {clientConfig?.plugins?.hasReviews && (
-              <>
-                <Divider sx={{ my: 8 }} />
+            {/* H. FAQs */}
+            {hasFaqs && (
+              <Box sx={{ mt: 6 }}>
+                 <Divider sx={{ mb: 6 }} />
+                 <FAQAccordion faqs={faqsContent} />
+              </Box>
+            )}
+
+            {/* I. Reviews (Integrated at the bottom of content) */}
+             {clientConfig?.plugins?.hasReviews && (
+              <Box sx={{ mt: 8 }}>
+                <Divider sx={{ mb: 6 }} />
                 <ReviewsList experienceId={experience.id} />
-                <LeaveReviewForm experienceId={experience.id} />
-              </>
+                <Box sx={{ mt: 4 }}>
+                   <LeaveReviewForm experienceId={experience.id} />
+                </Box>
+              </Box>
             )}
           </Grid>
+
+          {/* === RIGHT COLUMN: Sticky Sidebar (Action Oriented) === */}
+          <Grid size={{ xs: 12, md: 5 }}>
+            <Box sx={{ position: { md: 'sticky' }, top: '100px', mb: 4 }}>
+              
+              {/* 1. Booking Form (High Elevation to pop) */}
+              <Paper 
+                elevation={4} 
+                sx={{ 
+                  p: { xs: 3, md: 4 }, 
+                  borderRadius: 4, 
+                  mb: 3,
+                  border: '1px solid',
+                  borderColor: 'divider'
+                }}
+              >
+                <Typography variant="h5" component="p" sx={{ fontWeight: 800, mb: 3, textAlign: 'center' }}>
+                  Reserve Your Spot
+                </Typography>
+                <BookingForm
+                  experienceId={experience.id}
+                  experienceTitle={experienceTitle}
+                  price={experience.price}
+                />
+              </Paper>
+
+              {/* 2. Help Box (Reassurance) */}
+              <Box sx={{ px: 1 }}>
+                <HelpBox />
+              </Box>
+
+            </Box>
+          </Grid>
+
         </Grid>
       </Container>
     </Box>
