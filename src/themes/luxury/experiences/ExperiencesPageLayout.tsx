@@ -1,5 +1,5 @@
 // -------------------------------------------------------------------------
-// UPDATED FILE: /src/themes/[theme]/experiences/ExperiencesPageLayout.tsx
+// UPDATED FILE: /src/themes/luxury/experiences/ExperiencesPageLayout.tsx
 // -------------------------------------------------------------------------
 'use client'; // <-- 1. MUST be a client component
 

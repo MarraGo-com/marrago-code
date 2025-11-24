@@ -20,7 +20,7 @@ export async function POST() {
     // This can be useful for cleanup jobs if the user abandons the form.
     await newDocRef.set({
       createdAt: FieldValue.serverTimestamp(),
-      status: 'pending' // A temporary status
+      status: 'published' // A temporary status
     });
 
     // Send the new ID back to the client.

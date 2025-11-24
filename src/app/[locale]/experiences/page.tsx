@@ -63,7 +63,5 @@ export default async function ExperiencesPage() {
   // 5. Wrap the client component in the dynamic layout
   return (
     <ExperiencesPageLayout/>
-      /*  <ExperiencesClient/>
-    </ExperiencesPageLayout> */
   );
 }
