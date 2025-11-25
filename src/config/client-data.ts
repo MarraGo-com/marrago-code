@@ -46,21 +46,21 @@ const clientTextContent: SiteClientTextContent = {
         title: 'Professional Transport', // <-- UPDATED
         subtitle: 'Comfortable, air-conditioned transportation with professional and reliable drivers at your service.', // <-- UPDATED
         buttonText: 'Book a Transfer',
-        link: '/experiences#transfers',
+        link: '/contact',
       },
       {
         image: '/images/slides/marrago-atlas-4x4.webp', // (This is the van in the desert/mountain)
         title: 'Detailed Travel Itineraries', // <-- UPDATED
         subtitle: 'We plan your complete journey from south to north in advance, including all stops, hotels, and guides.', // <-- UPDATED
         buttonText: 'Plan Your Itinerary',
-        link: '/experiences#excursions',
+        link: '/experiences/7gJ8mZTsCdvAAY3eBj7B',
       },
       {
         image: '/images/slides/marrago-guide-medina.webp',
         title: 'Expert Local Guides', // <-- KEPT
         subtitle: 'Explore Morocco\'s rich history with a professional guide in each city to provide all the necessary information.', // <-- UPDATED
         buttonText: 'Meet Our Guides',
-        link: '/experiences#guides',
+        link: '/blog',
       },
     ],
     aboutPage: {
@@ -139,21 +139,21 @@ const clientTextContent: SiteClientTextContent = {
       title: 'Transport Professionnel',
       subtitle: 'Transport confortable et climatisé avec des chauffeurs professionnels et fiables à votre service.',
       buttonText: 'Réserver un Transfert',
-      link: '/experiences#transfers',
+      link: '/contact',
     },
     {
       image: '/images/slides/marrago-atlas-4x4.webp',
       title: 'Itinéraires de Voyage Détaillés',
       subtitle: 'Nous planifions votre voyage complet du sud au nord à l\'avance, incluant toutes les étapes, hôtels et guides.',
       buttonText: 'Planifiez Votre Itinéraire',
-      link: '/experiences#excursions',
+      link: '/experiences/7gJ8mZTsCdvAAY3eBj7B',
     },
     {
       image: '/images/slides/marrago-guide-medina.webp',
       title: 'Guides Locaux Experts',
       subtitle: "Explorez la riche histoire du Maroc avec un guide professionnel dans chaque ville pour fournir toutes les informations nécessaires.",
       buttonText: 'Rencontrez Nos Guides',
-      link: '/experiences#guides',
+      link: '/blog',
     },
   ],
   aboutPage: {
@@ -241,21 +241,21 @@ const clientTextContent: SiteClientTextContent = {
       title: 'نقل احترافي',
       subtitle: 'نقل مريح ومكيف مع سائقين محترفين وموثوق بهم في خدمتك.',
       buttonText: 'احجز خدمة نقل',
-      link: '/experiences#transfers',
+      link: '/contact',
     },
     {
       image: '/images/slides/marrago-atlas-4x4.webp',
       title: 'برامج رحلات مفصلة',
       subtitle: 'نخطط لرحلتك الكاملة من الجنوب إلى الشمال مسبقًا، بما في ذلك جميع المحطات والفنادق والمرشدين.',
       buttonText: 'خطط لرحلتك',
-      link: '/experiences#excursions',
+      link: '/experiences/7gJ8mZTsCdvAAY3eBj7B',
     },
     {
       image: '/images/slides/marrago-guide-medina.webp',
       title: 'مرشدون محليون خبراء',
       subtitle: 'استكشف تاريخ المغرب الغني مع مرشد محترف في كل مدينة لتقديم جميع المعلومات اللازمة.',
       buttonText: 'تعرف على مرشدينا',
-      link: '/experiences#guides',
+      link: '/blog',
     },
   ],
   aboutPage: {
@@ -343,21 +343,21 @@ const clientTextContent: SiteClientTextContent = {
       title: 'Transporte Profesional',
       subtitle: 'Transporte cómodo, con aire acondicionado y conductores profesionales y fiables a tu servicio.',
       buttonText: 'Reservar un Traslado',
-      link: '/experiences#transfers',
+      link: '/contact',
     },
     {
       image: '/images/slides/marrago-atlas-4x4.webp',
       title: 'Itinerarios de Viaje Detallados',
       subtitle: 'Planificamos tu viaje completo de sur a norte con antelación, incluyendo todas las paradas, hoteles y guías.',
       buttonText: 'Planifica Tu Itinerario',
-      link: '/experiences#excursions',
+      link: '/experiences/7gJ8mZTsCdvAAY3eBj7B',
     },
     {
       image: '/images/slides/marrago-guide-medina.webp',
       title: 'Guías Locales Expertos',
       subtitle: 'Explora la rica historia de Marruecos con un guía profesional en cada ciudad para proporcionar toda la información necesaria.',
       buttonText: 'Conoce a Nuestros Guías',
-      link: '/experiences#guides',
+      link: '/blog',
     },
   ],
   aboutPage: {

@@ -53,7 +53,7 @@ export default function WhyChooseUs() {
               boxShadow: '0 10px 40px rgba(0,0,0,0.2)',
             }}>
               <Image
-                src="/images/4x4-sahara-night.webp"
+                src="/images/todra-gorge2.webp"
                 alt={content.whyChooseUsTitle} // UPDATED
                 fill
                 loading='lazy'
