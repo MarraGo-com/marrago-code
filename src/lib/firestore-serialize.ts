@@ -8,6 +8,9 @@ export function serializeTimestamps<T = any>(value: T): T {
     try {
       return (value as any).toDate().toISOString();
     } catch (err) {
+      if(err instanceof Error) {
+        console.error("Error converting Firestore Timestamp to Date:", err.message);
+      } 
       return value;
     }
   }

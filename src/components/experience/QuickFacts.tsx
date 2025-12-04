@@ -2,7 +2,7 @@
 'use client';
 
 import React from 'react';
-import { Paper, Typography, Grid, Box, Stack, Avatar, useTheme } from '@mui/material';
+import { Typography, Grid, Box, Stack, Avatar, useTheme } from '@mui/material';
 // Import icons
 import GroupIcon from '@mui/icons-material/Group';
 import LanguageIcon from '@mui/icons-material/Translate';
