@@ -1,6 +1,7 @@
 // /src/app/api/experiences/route.ts
 import { NextResponse } from 'next/server';
 import { adminDb } from '@/lib/firebase-admin'; // <-- Use the Admin SDK for all operations
+import serializeTimestamps from '@/lib/firestore-serialize';
 // No need to import collection, getDocs, or orderBy from 'firebase-admin/firestore'
 
 // This tells Next.js to cache this server-side request for 1 hour
@@ -14,15 +15,12 @@ export async function GET() {
     
     const experiences = experiencesSnapshot.docs.map(doc => {
       const data = doc.data();
-      // We must serialize the timestamp here too, just like on the dashboard page
-      const createdAt = data.createdAt 
-        ? data.createdAt.toDate().toISOString() 
-        : new Date().toISOString();
+      const safe = serializeTimestamps(data as any) as Record<string, any>;
 
       return {
         id: doc.id,
-        ...data,
-        createdAt, // Override the original timestamp with the safe string version
+        ...safe,
+        createdAt: safe.createdAt ?? new Date().toISOString(),
       };
     });
 

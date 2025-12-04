@@ -19,21 +19,16 @@ async function getArticle(id: string) {
     const data = docSnap.data();
     if (!data) return null;
 
-    // We must serialize any Timestamps to strings before passing to a Client Component
-    const createdAt = data.createdAt ? data.createdAt.toDate().toISOString() : null;
-    const updatedAt = data.updatedAt ? data.updatedAt.toDate().toISOString() : null;
+    const safe = (await import('@/lib/firestore-serialize')).default(data as any) as Record<string, any>;
 
-    // --- THIS IS THE KEY FIX ---
-    // We now spread the original `data` object to include all fields
-    // like slug, status, translations, etc., before overriding the timestamps.
     return {
       id: docSnap.id,
-      ...data,
-      slug: data.slug ?? "",
-      status: data.status ?? "",
-      translations: data.translations ?? {},
-      createdAt,
-      updatedAt,
+      ...safe,
+      slug: safe.slug ?? "",
+      status: safe.status ?? "",
+      translations: safe.translations ?? {},
+      createdAt: safe.createdAt ?? null,
+      updatedAt: safe.updatedAt ?? null,
     };
   } catch (error) {
     console.error("Error fetching single article:", error);

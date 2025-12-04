@@ -4,6 +4,7 @@
 // -------------------------------------------------------------------------
 import { NextResponse } from 'next/server';
 import { adminDb } from '@/lib/firebase-admin';
+import serializeTimestamps from '@/lib/firestore-serialize';
 
 export const revalidate = 0; // We don't want to cache the admin list
 
@@ -16,10 +17,11 @@ export async function GET() {
     
     const reviews = reviewsSnapshot.docs.map(doc => {
       const data = doc.data();
+      const safe = serializeTimestamps(data as any) as Record<string, any>;
       return {
         id: doc.id,
-        ...data,
-        createdAt: data.createdAt.toDate().toISOString(),
+        ...safe,
+        createdAt: safe.createdAt,
       };
     });
 

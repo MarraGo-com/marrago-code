@@ -1,6 +1,7 @@
 // /src/app/api/admin/bookings/route.ts
 import { NextResponse } from 'next/server';
 import { adminDb } from '@/lib/firebase-admin';
+import serializeTimestamps from '@/lib/firestore-serialize';
 
 export const revalidate = 0; // Don't cache this admin route
 
@@ -12,28 +13,15 @@ export async function GET() {
     
     const bookings = bookingsSnapshot.docs.map(doc => {
       const data = doc.data();
+      const safe = serializeTimestamps(data as any) as Record<string, any>;
 
-      // ▼▼▼ FIX DATE HANDLING FOR OLD VS NEW DATA ▼▼▼
-      // Determine which field holds the booking date (old 'requestedDate' vs new 'date')
-      let bookingDateIso = null;
-
-      // Check for new format first ('date' field)
-      if (data.date && typeof data.date.toDate === 'function') {
-          bookingDateIso = data.date.toDate().toISOString();
-      // Fallback to old format ('requestedDate' field)
-      } else if (data.requestedDate && typeof data.requestedDate.toDate === 'function') {
-          bookingDateIso = data.requestedDate.toDate().toISOString();
-      }
-      // ▲▲▲
+      // Provide a standardized date field for the frontend UI to use
+      const bookingDate = safe.date ?? safe.requestedDate ?? null;
 
       return {
         id: doc.id,
-        // Spread all data fields (this includes new nested 'customer', 'guests', 'notes' objects)
-        ...data,
-        // Safe timestamp serialization
-        createdAt: data.createdAt?.toDate().toISOString(),
-        // Provide a standardized date field for the frontend UI to use
-        bookingDate: bookingDateIso, 
+        ...safe,
+        bookingDate,
       };
     });
 

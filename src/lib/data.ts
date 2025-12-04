@@ -188,6 +188,9 @@ export async function getAllAdminBookings(): Promise<Booking[]> {
         // before being sent to the client component.
         date: bookingDateIso, 
         requestedDate: bookingDateIso,
+        updatedAt: data.updatedAt && typeof data.updatedAt.toDate === 'function'
+          ? data.updatedAt.toDate().toISOString()
+          : null,
         createdAt: createdAtIso,
         // ▲▲▲ END OVERWRITES ▲▲▲
         

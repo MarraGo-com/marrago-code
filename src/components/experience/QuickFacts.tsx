@@ -34,7 +34,7 @@ export default function QuickFacts({ maxGuests, tourCode, languages, startTimes 
   // Shared styling for the icon avatars to ensure consistency
   const avatarStyle = {
     bgcolor: theme.palette.primary.light,
-    color: theme.palette.primary.main,
+    color: theme.palette.primary.dark,
     width: 48,
     height: 48,
   };
@@ -54,7 +54,7 @@ export default function QuickFacts({ maxGuests, tourCode, languages, startTimes 
   };
 
   return (
-    <Paper elevation={2} sx={{ p: { xs: 3, md: 4 }, borderRadius: 3, my: 5, bgcolor: 'background.paper' }}>
+    <Box>
       <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 4 }}>
         {/* ▼▼▼ TRANSLATED ▼▼▼ */}
         {t('quickFactsTitle')}
@@ -128,6 +128,6 @@ export default function QuickFacts({ maxGuests, tourCode, languages, startTimes 
             </Grid>
         )}
       </Grid>
-    </Paper>
+    </Box>
   );
 }
