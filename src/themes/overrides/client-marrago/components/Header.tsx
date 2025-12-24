@@ -1,4 +1,3 @@
-// /src/themes/luxury/ui/Header.tsx
 'use client';
 
 import { 

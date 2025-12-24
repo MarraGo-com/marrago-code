@@ -1,79 +1,70 @@
-// /src/components/experience/Inclusions.tsx
 'use client';
 
 import React from 'react';
-import { Grid, Typography, Box, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
-import { useTranslations } from 'next-intl';
-
-// Import icons for the lists
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import CancelIcon from '@mui/icons-material/Cancel';
+import { Box, Typography, Grid, Stack } from '@mui/material';
+import CheckIcon from '@mui/icons-material/Check';
+import CloseIcon from '@mui/icons-material/Close';
+import { useTranslations } from 'next-intl'; // <--- 1. Import Hook
 
 interface InclusionsProps {
-  included?: string;
-  notIncluded?: string;
+  included?: string | string[];    
+  notIncluded?: string | string[]; 
 }
 
-// Helper function to clean Markdown list items
-// It removes the leading "*" or "-" and the following space
-const cleanListItem = (item: string) => {
-    return item.replace(/^[\*\-]\s*/, '');
+// Helper to safely parse string OR array
+const parseList = (items: string | string[] | undefined): string[] => {
+  if (!items) return [];
+  if (Array.isArray(items)) return items;
+  return items.split('\n').filter(item => item.trim() !== '');
 };
 
 export default function Inclusions({ included, notIncluded }: InclusionsProps) {
+  // 2. Initialize Translations
   const t = useTranslations('ExperienceDetails');
 
-  // Split the multiline strings from the database into arrays
-  const includedItems = included?.split('\n').filter(item => item.trim() !== '') || [];
-  const notIncludedItems = notIncluded?.split('\n').filter(item => item.trim() !== '') || [];
+  // 1. Safe Parsing
+  const includedItems = parseList(included);
+  const notIncludedItems = parseList(notIncluded);
 
-  // Don't render anything if both lists are empty
+  // 2. Hide if empty
   if (includedItems.length === 0 && notIncludedItems.length === 0) {
     return null;
   }
 
   return (
-    <Box sx={{ my: 6 }}>
+    <Box sx={{ mb: 4, py: 4, borderTop: '1px solid', borderBottom: '1px solid', borderColor: 'divider' }}>
+      <Typography variant="h5" sx={{ fontWeight: 800, mb: 3 }}>
+        {t('inclusionsTitle')} {/* <--- 3. Use Dynamic Key */}
+      </Typography>
+      
       <Grid container spacing={4}>
-        {/* Included Section */}
-        {includedItems.length > 0 && (
-          <Grid size={{ xs: 12, md: 6 }}>
-            <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 3 }}>
-              {t('includedTitle')}
-            </Typography>
-            <List>
-              {includedItems.map((item, index) => (
-                <ListItem key={index} disablePadding sx={{ mb: 1 }}>
-                  <ListItemIcon sx={{ minWidth: '40px' }}>
-                    <CheckCircleIcon color="success" />
-                  </ListItemIcon>
-                  {/* ▼▼▼ FIX: Clean the item text before rendering ▼▼▼ */}
-                  <ListItemText primary={cleanListItem(item)} sx={{ '& span': { fontSize: '1.05rem' } }} />
-                </ListItem>
-              ))}
-            </List>
-          </Grid>
-        )}
+        
+        {/* INCLUDED COLUMN */}
+        <Grid size={{ xs: 12, md: 6 }}>
+            <Stack spacing={2}>
+                {includedItems.map((item, index) => (
+                    <Stack key={index} direction="row" spacing={1.5} alignItems="flex-start">
+                        <CheckIcon color="success" sx={{ fontSize: 20, mt: 0.3 }} />
+                        <Typography variant="body1">{item}</Typography>
+                    </Stack>
+                ))}
+            </Stack>
+        </Grid>
 
-        {/* Not Included Section */}
-        {notIncludedItems.length > 0 && (
-          <Grid size={{ xs: 12, md: 6 }}>
-            <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 3 }}>
-              {t('notIncludedTitle')}
-            </Typography>
-            <List>
-              {notIncludedItems.map((item, index) => (
-                <ListItem key={index} disablePadding sx={{ mb: 1 }}>
-                  <ListItemIcon sx={{ minWidth: '40px' }}>
-                    <CancelIcon color="error" />
-                  </ListItemIcon>
-                  {/* ▼▼▼ FIX: Clean the item text before rendering ▼▼▼ */}
-                  <ListItemText primary={cleanListItem(item)} sx={{ '& span': { fontSize: '1.05rem' } }} />
-                </ListItem>
-              ))}
-            </List>
-          </Grid>
-        )}
+        {/* NOT INCLUDED COLUMN */}
+        <Grid size={{ xs: 12, md: 6 }}>
+            <Stack spacing={2}>
+                {notIncludedItems.map((item, index) => (
+                    <Stack key={index} direction="row" spacing={1.5} alignItems="flex-start">
+                        <CloseIcon color="error" sx={{ fontSize: 20, mt: 0.3 }} />
+                        <Typography variant="body1" color="text.secondary" sx={{ textDecoration: 'line-through' }}>
+                            {item}
+                        </Typography>
+                    </Stack>
+                ))}
+            </Stack>
+        </Grid>
+
       </Grid>
     </Box>
   );

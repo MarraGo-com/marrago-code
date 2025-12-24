@@ -1,64 +1,46 @@
-// /src/components/experience/Highlights.tsx
 'use client';
 
 import React from 'react';
-import { Box, Typography, List, ListItem, ListItemIcon, ListItemText, Paper } from '@mui/material';
-import StarIcon from '@mui/icons-material/Star';
-import { useTheme } from '@mui/material/styles';
-// ▼▼▼ NEW IMPORT ▼▼▼
-import { useTranslations } from 'next-intl';
+import { Box, Typography, Stack } from '@mui/material';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 interface HighlightsProps {
-  highlights?: string; // This will hold the raw Markdown string
+  highlights: string | string[]; // <--- ALLOW BOTH TYPES
 }
 
-// Helper function to clean Markdown list items
-const cleanListItem = (item: string) => {
-    return item.replace(/^[\*\-\•]\s*/, '');
-};
-
 export default function Highlights({ highlights }: HighlightsProps) {
-  const theme = useTheme();
-  // ▼▼▼ GET TRANSLATIONS ▼▼▼
-  const t = useTranslations('ExperienceDetailsNew');
+  
+  // ROBUST PARSING: Handle Array (New Data) OR String (Old Data)
+  let highlightItems: string[] = [];
 
-  // 1. Split the string into an array based on new lines
-  // 2. Filter out any empty lines
-  const highlightItems = highlights?.split('\n').filter(item => item.trim() !== '') || [];
+  if (Array.isArray(highlights)) {
+    // It's already an array (New Seed Data)
+    highlightItems = highlights;
+  } else if (typeof highlights === 'string') {
+    // It's a string (Old/Manual Data) -> Split by new line
+    highlightItems = highlights.split('\n').filter(item => item.trim() !== '');
+  }
 
-  // If no highlights exist, don't render anything
-  if (highlightItems.length === 0) {
+  // Safety check: If empty, don't render
+  if (!highlightItems || highlightItems.length === 0) {
     return null;
   }
 
   return (
-    <Box sx={{ my: 6 }}>
-      <Typography variant="h4" component="h2" sx={{ fontWeight: 'bold', mb: 3 }}>
-        {/* ▼▼▼ TRANSLATED ▼▼▼ */}
-        {t('highlightsTitle')}
+    <Box sx={{ mb: 4 }}>
+      <Typography variant="h5" sx={{ fontWeight: 800, mb: 2 }}>
+        Highlights
       </Typography>
-      
-      <Paper elevation={1} sx={{ p: 3, bgcolor: 'background.paper', borderRadius: 2, border: `1px solid ${theme.palette.divider}` }}>
-        <List disablePadding>
-            {highlightItems.map((item, index) => (
-            <ListItem key={index} disablePadding sx={{ mb: 2, alignItems: 'flex-start' }}>
-                <ListItemIcon sx={{ minWidth: '40px', mt: 0.5, color: theme.palette.primary.main }}>
-                    <StarIcon fontSize="medium" />
-                </ListItemIcon>
-                <ListItemText
-                    primary={cleanListItem(item)}
-                    primaryTypographyProps={{
-                        variant: 'body1',
-                        fontSize: '1.1rem',
-                        fontWeight: 500,
-                        color: 'text.primary'
-                    }}
-                    sx={{ m: 0 }}
-                />
-            </ListItem>
-            ))}
-        </List>
-      </Paper>
+      <Stack spacing={1.5}>
+        {highlightItems.map((item, index) => (
+          <Stack key={index} direction="row" alignItems="flex-start" spacing={1.5}>
+             <CheckCircleIcon sx={{ color: 'success.main', fontSize: 20, mt: 0.3 }} />
+             <Typography variant="body1" sx={{ lineHeight: 1.6 }}>
+               {item}
+             </Typography>
+          </Stack>
+        ))}
+      </Stack>
     </Box>
   );
 }

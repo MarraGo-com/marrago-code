@@ -17,11 +17,12 @@ import {
   ListItemAvatar,
   Avatar,
   ListItemText,
+  Zoom, // Added Zoom for smooth entry
 } from '@mui/material';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import CloseIcon from '@mui/icons-material/Close';
 import { useLocale, useTranslations } from 'next-intl';
-import { siteConfig } from '@/config/client-data'; // Import your config
+import { siteConfig } from '@/config/client-data'; 
 import { WebsiteLanguage } from '@/config/types';
 
 /**
@@ -30,7 +31,6 @@ import { WebsiteLanguage } from '@/config/types';
  */
 export default function FloatingWhatsApp() {
   // --- 1. Get Generic UI Text from Translations ---
-  // These keys are generic and reusable for all business types
   const t = useTranslations('WhatsApp');
   const modalTitle = t('modalTitle');
   const modalCta = t('modalCta');
@@ -44,26 +44,21 @@ export default function FloatingWhatsApp() {
   const { whatsappNumber } = siteConfig.contact;
   const textContent = siteConfig.textContent;
 
-  // Safely get team members with 'en' fallback
   const teamMembers =
     textContent?.[locale]?.aboutPage?.teamMembers ||
     textContent?.en?.aboutPage?.teamMembers ||
     [];
   const [teamMember1, teamMember2] = teamMembers;
 
-  // --- THIS IS THE KEY UPDATE ---
-  // Get client-specific modal text with 'en' fallback
   const modalDescription =
     textContent?.[locale]?.whatsAppModalContent?.modalDescription ||
     textContent?.en?.whatsAppModalContent?.modalDescription ||
-    'Our team is ready to help. You will be speaking directly with:'; // Hardcoded safety fallback
+    'Our team is ready to help. You will be speaking directly with:'; 
 
-  // Get client-specific prefilled text with 'en' fallback
   const prefilledMessage =
     textContent?.[locale]?.whatsAppModalContent?.prefilledText ||
     textContent?.en?.whatsAppModalContent?.prefilledText ||
-    'Hello, I would like more information.'; // Hardcoded safety fallback
-  // --- END OF UPDATE ---
+    'Hello, I would like more information.'; 
 
   // Do not render if there's no WhatsApp number
   if (!whatsappNumber) {
@@ -74,79 +69,76 @@ export default function FloatingWhatsApp() {
   const handleClose = () => setOpen(false);
 
   // --- 4. Generate URL ---
-  // Safely get the current page URL (only runs on client)
-    const currentUrl = window.location.href;
-
-    // Combine the base message with the current URL
-    // \n\n adds two new lines for clean formatting
+  const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
   const finalMessage = `${prefilledMessage}\n\n(Regarding page: ${currentUrl})`;
   const encodedMessage = encodeURIComponent(finalMessage);
-  const whatsAppUrl = `https://wa.me/${whatsappNumber.replace(
-    /\D/g,
-    ''
-  )}?text=${encodedMessage}`;
+  const whatsAppUrl = `https://wa.me/${whatsappNumber.replace(/\D/g, '')}?text=${encodedMessage}`;
 
   return (
     <>
       {/* The Floating Button */}
-      <Box
-        sx={{
-          position: 'fixed',
-          bottom: { xs: 24, md: 32 },
-          right: { xs: 24, md: 32 },
-          zIndex: (theme) => theme.zIndex.fab,
-        }}
-      >
-        <Tooltip title={tooltip} arrow>
-          <Fab
-            aria-label="Chat on WhatsApp"
-            onClick={handleOpen}
-            sx={{
-              bgcolor: '#25D366',
-              color: 'white',
-              '&:hover': { bgcolor: '#128C7E' },
-            }}
-          >
-            <WhatsAppIcon />
-          </Fab>
-        </Tooltip>
-      </Box>
+      <Zoom in={true}>
+        <Box
+          sx={{
+            position: 'fixed',
+            // 🟢 THE FIX: Responsive Positioning
+            // xs: 90px (Clears the Mobile Nav Bar)
+            // md: 32px (Standard Desktop Position)
+            bottom: { xs: 90, md: 32 }, 
+            right: { xs: 24, md: 32 },
+            zIndex: (theme) => theme.zIndex.fab,
+          }}
+        >
+          <Tooltip title={tooltip} arrow placement="left">
+            <Fab
+              aria-label="Chat on WhatsApp"
+              onClick={handleOpen}
+              sx={{
+                bgcolor: '#25D366',
+                color: 'white',
+                '&:hover': { bgcolor: '#128C7E' },
+                boxShadow: 6
+              }}
+            >
+              <WhatsAppIcon sx={{ fontSize: 28 }} />
+            </Fab>
+          </Tooltip>
+        </Box>
+      </Zoom>
 
-      {/* The Contact Modal (The "Nice Card") */}
+      {/* The Contact Modal (Unchanged) */}
       <Dialog
         open={open}
         onClose={handleClose}
         aria-labelledby="whatsapp-dialog-title"
-        PaperProps={{ sx: { maxWidth: 400, width: '100%', m: 2 } }}
+        PaperProps={{ sx: { maxWidth: 400, width: '100%', m: 2, borderRadius: 3 } }}
       >
         <DialogTitle
           id="whatsapp-dialog-title"
-          sx={{ display: 'flex', alignItems: 'center', p: 2 }}
+          sx={{ display: 'flex', alignItems: 'center', p: 2, bgcolor: '#f5f5f5' }}
         >
           <WhatsAppIcon sx={{ color: '#25D366', mr: 1.5, fontSize: '2rem' }} />
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            {modalTitle} {/* <-- Uses generic translation */}
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: 'bold' }}>
+            {modalTitle} 
           </Typography>
-          <IconButton aria-label="close" onClick={handleClose} sx={{ p: 0.5 }}>
+          <IconButton aria-label="close" onClick={handleClose} size="small">
             <CloseIcon />
           </IconButton>
         </DialogTitle>
 
-        <DialogContent dividers sx={{ p: 2 }}>
-          {/* Client-specific description from siteConfig */}
-          <Typography gutterBottom>
-            {modalDescription} {/* <-- Uses client-specific config text */}
+        <DialogContent dividers sx={{ p: 3 }}>
+          <Typography variant="body1" gutterBottom>
+            {modalDescription} 
           </Typography>
 
-          {/* Render Team from siteConfig */}
-          <List sx={{ width: '100%' , py: 0 }}>
+          <List sx={{ width: '100%' , py: 1 }}>
             {teamMember1 && (
               <ListItem sx={{ px: 0 }}>
                 <ListItemAvatar>
-                  <Avatar src={teamMember1.image} />
+                  <Avatar src={teamMember1.image} sx={{ width: 50, height: 50 }} />
                 </ListItemAvatar>
                 <ListItemText
-                  primary={teamMember1.name}
+                  primary={<Typography fontWeight="bold">{teamMember1.name}</Typography>}
                   secondary={teamMember1.title}
                 />
               </ListItem>
@@ -154,10 +146,10 @@ export default function FloatingWhatsApp() {
             {teamMember2 && (
               <ListItem sx={{ px: 0 }}>
                 <ListItemAvatar>
-                  <Avatar src={teamMember2.image} />
+                  <Avatar src={teamMember2.image} sx={{ width: 50, height: 50 }} />
                 </ListItemAvatar>
                 <ListItemText
-                  primary={teamMember2.name}
+                  primary={<Typography fontWeight="bold">{teamMember2.name}</Typography>}
                   secondary={teamMember2.title}
                 />
               </ListItem>
@@ -165,7 +157,6 @@ export default function FloatingWhatsApp() {
           </List>
         </DialogContent>
 
-        {/* Action Button */}
         <DialogActions sx={{ p: 2, justifyContent: 'center' }}>
           <Button
             variant="contained"
@@ -182,10 +173,12 @@ export default function FloatingWhatsApp() {
               fontWeight: 'bold',
               fontSize: '1rem',
               width: '100%',
+              py: 1.5,
+              borderRadius: 2,
               '&:hover': { bgcolor: '#128C7E' },
             }}
           >
-            {modalCta} {/* <-- Uses generic translation */}
+            {modalCta}
           </Button>
         </DialogActions>
       </Dialog>

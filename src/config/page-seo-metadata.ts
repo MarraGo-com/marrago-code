@@ -24,6 +24,12 @@ export interface MetadataStore {
   reviews?: Record<Locale, PageMetadata>;
   faq?: Record<Locale, PageMetadata>;
   // Add other pages as needed
+  // --- NEW PAGES ---
+  planning?: Record<Locale, PageMetadata>;
+  sitemap?: Record<Locale, PageMetadata>;
+  signup?: Record<Locale, PageMetadata>;
+  login?: Record<Locale, PageMetadata>;
+  account?: Record<Locale, PageMetadata>;
 }
 
 /**
@@ -381,6 +387,125 @@ export function generatePageMetadata(siteConfig: SiteConfig): MetadataStore {
           alt: "Icono de escudo que representa la privacidad de los datos"
  }
       }
-    }
+    },
+// --- NEW PAGES: PLANNING ---
+    planning: {
+        en: {
+          title: `Plan Your Trip`,
+          description: `Create your dream Morocco itinerary with ${clientDisplayName}. Customize your route, select your dates, and let us handle the logistics.`,
+          ogImage: { src: "/images/og/og-marrago-planning.webp", alt: "A map of Morocco being planned out with a pen." }
+        },
+        fr: {
+          title: `Planifiez Votre Voyage`,
+          description: `Créez votre itinéraire de rêve au Maroc avec ${clientDisplayName}. Personnalisez votre parcours, sélectionnez vos dates et laissez-nous gérer la logistique.`,
+          ogImage: { src: "/images/og/og-marrago-planning.webp", alt: "Une carte du Maroc en cours de planification avec un stylo." }
+        },
+        ar: {
+          title: `خطط لرحلتك`,
+          description: `أنشئ مسار أحلامك في المغرب مع ${clientDisplayName}. خصص مسارك، واختر تواريخك، واترك لنا إدارة الخدمات اللوجستية.`,
+          ogImage: { src: "/images/og/og-marrago-planning.webp", alt: "خريطة للمغرب يتم التخطيط لها بقلم." }
+        },
+        es: {
+          title: `Planifica Tu Viaje`,
+          description: `Crea tu itinerario soñado por Marruecos con ${clientDisplayName}. Personaliza tu ruta, selecciona tus fechas y déjanos encargarnos de la logística.`,
+          ogImage: { src: "/images/og/og-marrago-planning.webp", alt: "Un mapa de Marruecos siendo planificado con un bolígrafo." }
+        }
+      },
+  
+      // --- NEW PAGES: SITEMAP ---
+      sitemap: {
+        en: {
+          title: `Sitemap`,
+          description: `Overview of all pages on the ${clientDisplayName} website to help you navigate our services and content.`,
+          ogImage: { src: "/images/og/og-default.webp", alt: "Sitemap overview." }
+        },
+        fr: {
+          title: `Plan du Site`,
+          description: `Aperçu de toutes les pages du site ${clientDisplayName} pour vous aider à naviguer dans nos services et contenus.`,
+          ogImage: { src: "/images/og/og-default.webp", alt: "Aperçu du plan du site." }
+        },
+        ar: {
+          title: `خريطة الموقع`,
+          description: `نظرة عامة على جميع الصفحات الموجودة على موقع ${clientDisplayName} لمساعدتك في تصفح خدماتنا ومحتوانا.`,
+          ogImage: { src: "/images/og/og-default.webp", alt: "نظرة عامة على خريطة الموقع." }
+        },
+        es: {
+          title: `Mapa del Sitio`,
+          description: `Resumen de todas las páginas del sitio web de ${clientDisplayName} para ayudarle a navegar por nuestros servicios y contenidos.`,
+          ogImage: { src: "/images/og/og-default.webp", alt: "Resumen del mapa del sitio." }
+        }
+      },
+  
+      // --- NEW PAGES: SIGNUP ---
+      signup: {
+        en: {
+          title: `Sign Up`,
+          description: `Create an account with ${clientDisplayName} to manage your bookings, save itineraries, and get exclusive travel offers.`,
+          ogImage: { src: "/images/og/og-default.webp", alt: "Sign up interface." }
+        },
+        fr: {
+          title: `S'inscrire`,
+          description: `Créez un compte avec ${clientDisplayName} pour gérer vos réservations, enregistrer vos itinéraires et obtenir des offres de voyage exclusives.`,
+          ogImage: { src: "/images/og/og-default.webp", alt: "Interface d'inscription." }
+        },
+        ar: {
+          title: `تسجيل`,
+          description: `أنشئ حسابًا مع ${clientDisplayName} لإدارة حجوزاتك وحفظ مسارات الرحلة والحصول على عروض سفر حصرية.`,
+          ogImage: { src: "/images/og/og-default.webp", alt: "واجهة التسجيل." }
+        },
+        es: {
+          title: `Registrarse`,
+          description: `Cree una cuenta con ${clientDisplayName} para gestionar sus reservas, guardar itinerarios y obtener ofertas de viaje exclusivas.`,
+          ogImage: { src: "/images/og/og-default.webp", alt: "Interfaz de registro." }
+        }
+      },
+  
+      // --- NEW PAGES: LOGIN ---
+      login: {
+        en: {
+          title: `Login`,
+          description: `Access your ${clientDisplayName} account to view your upcoming trips and manage your profile.`,
+          ogImage: { src: "/images/og/og-default.webp", alt: "Login interface." }
+        },
+        fr: {
+          title: `Connexion`,
+          description: `Accédez à votre compte ${clientDisplayName} pour consulter vos prochains voyages et gérer votre profil.`,
+          ogImage: { src: "/images/og/og-default.webp", alt: "Interface de connexion." }
+        },
+        ar: {
+          title: `تسجيل الدخول`,
+          description: `قم بالوصول إلى حساب ${clientDisplayName} الخاص بك لعرض رحلاتك القادمة وإدارة ملفك الشخصي.`,
+          ogImage: { src: "/images/og/og-default.webp", alt: "واجهة تسجيل الدخول." }
+        },
+        es: {
+          title: `Iniciar Sesión`,
+          description: `Acceda a su cuenta de ${clientDisplayName} para ver sus próximos viajes y gestionar su perfil.`,
+          ogImage: { src: "/images/og/og-default.webp", alt: "Interfaz de inicio de sesión." }
+        }
+      },
+  
+      // --- NEW PAGES: ACCOUNT ---
+      account: {
+        en: {
+          title: `My Account`,
+          description: `Manage your personal details, booking history, and preferences with ${clientDisplayName}.`,
+          ogImage: { src: "/images/og/og-default.webp", alt: "User account profile." }
+        },
+        fr: {
+          title: `Mon Compte`,
+          description: `Gérez vos informations personnelles, votre historique de réservation et vos préférences avec ${clientDisplayName}.`,
+          ogImage: { src: "/images/og/og-default.webp", alt: "Profil du compte utilisateur." }
+        },
+        ar: {
+          title: `حسابي`,
+          description: `قم بإدارة تفاصيلك الشخصية، وسجل الحجز، وتفضيلاتك مع ${clientDisplayName}.`,
+          ogImage: { src: "/images/og/og-default.webp", alt: "ملف حساب المستخدم." }
+        },
+        es: {
+          title: `Mi Cuenta`,
+          description: `Gestione sus datos personales, historial de reservas y preferencias con ${clientDisplayName}.`,
+          ogImage: { src: "/images/og/og-default.webp", alt: "Perfil de la cuenta de usuario." }
+        }
+      }
   };
 }

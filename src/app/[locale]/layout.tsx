@@ -21,7 +21,7 @@ import DeferredStylesheets from "@/components/custom/DeferredStylesheets";
 import AnalyticsScripts from "@/components/analytics/AnalyticsScripts";
 import { PageTransitionProps } from "@/themes/default/custom/PageTransition";
 import { fontVariables } from "@/config/fonts";
-import ConditionalHeader from "@/components/ui/ConditionalHeader";
+//import ConditionalHeader from "@/components/ui/ConditionalHeader";
 import { getMainJsonLd } from "@/config/json-ld";
 
 // --- ▼▼▼ CHANGES START HERE ▼▼▼ ---
@@ -29,14 +29,17 @@ import { getMainJsonLd } from "@/config/json-ld";
 // 1. Import our server-side loader
 import { getComponentImport } from "@/lib/theme-component-loader"; 
 import { CookieConsentProvider } from "@/contexts/CookieConsentContext";
-import FloatingWhatsApp from "@/components/ui/FloatingWhatsApp";
+//import FloatingWhatsApp from "@/components/ui/FloatingWhatsApp";
 import NewsletterPopup from "@/components/ui/NewsletterPopup";
+//import GlobalNavigation from "@/components/layout/header/GlobalNavigation";
+import { Box } from "@mui/material";
+import { AuthProvider } from "@/contexts/AuthContext";
 
 // 2. REMOVE the old 'theme' variable
 // const theme = process.env.NEXT_PUBLIC_THEME || 'default'; // <-- REMOVED
 
 // 3. Use getComponentImport to load the components
-const Footer = dynamic(getComponentImport('Footer', 'ui'));
+//const Footer = dynamic(getComponentImport('Footer', 'ui'));
 
 // const WhatsApp = dynamic(getComponentImport('WhatsApp', 'ui')); // <-- Updated, but still commented
 
@@ -104,27 +107,38 @@ export default async function RootLayout({
        </head>
        <body className={fontVariables}>
         <NextIntlClientProvider locale={locale} messages={messages}>
-           <CookieConsentProvider>
+           <AuthProvider>
+             <CookieConsentProvider>
               <QueryProvider>
              <ThemeContextProvider>
                <ThemeRegistry>
                  <div className="flex flex-col min-h-screen">
-                   <ConditionalHeader />
+                   {/* <GlobalNavigation /> */}
                    <main className="flex-grow">
+                    {/* ▼▼▼ THE PRO FIX: NAV SPACER ▼▼▼ */}
+                     {/* This pushes content down by exactly the height of the Navbar.
+                         Mobile: ~80px | Desktop: ~96px (64px toolbar + 32px padding) */}
+                     <Box sx={{ 
+                        height: { xs: '80px', md: '100px' }, 
+                        width: '100%',
+                        display: 'block' 
+                     }} />
+                     {/* ▲▲▲ FIX END ▲▲▲ */}
                      <PageTransition>
                        {children}
                      </PageTransition>
                    </main>
-                   <Footer />
+                   {/* <Footer /> */}
                  </div>
                </ThemeRegistry>
              </ThemeContextProvider>
            </QueryProvider>
            <AnalyticsScripts />
            <NewsletterPopup />
-           <FloatingWhatsApp />
-           </CookieConsentProvider>
-         </NextIntlClientProvider>
+           {/* <FloatingWhatsApp /> */}
+             </CookieConsentProvider>
+           </AuthProvider>
+        </NextIntlClientProvider>
 
        </body>
      </html>

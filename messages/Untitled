@@ -1,0 +1,9 @@
+"Newsletter": {
+    "title": "Unlock the Secrets of Morocco",
+    "subtitle": "Don't just visit. Experience the Kingdom like a local. Download our curated 2025 guide to hidden riads, secret surf spots, and authentic culinary gems.",
+    "emailLabel": "Enter your email for instant access",
+    "submitButton": "Send me the Free Guide",
+    "successMessage": "Check your inbox! Your Insider Guide is on its way.",
+    "privacy": "We respect your privacy. Unsubscribe at any time.",
+    "errorGeneric": "Something went wrong. Please try again."
+  },

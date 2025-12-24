@@ -1,102 +1,90 @@
 'use client';
 
 import React from 'react';
-import { Box, Typography, Container } from '@mui/material';
+import { Box, Typography, Container, Stack, Tooltip } from '@mui/material'; // Added Tooltip, Stack
 import { useLocale } from 'next-intl';
 import { siteConfig } from '@/config/client-data';
 import Image from 'next/image';
 import { WebsiteLanguage } from '@/config/types';
+import VerifiedIcon from '@mui/icons-material/Verified'; // Verified Icon
 
 export default function SocialProofSection() {
   const locale = useLocale() as WebsiteLanguage;
   const content = siteConfig.textContent[locale]?.homepage || siteConfig.textContent.en.homepage;
 
-  // --- NEW: DYNAMIC LOGIC ---
-  // Get both arrays from siteConfig. Default to empty arrays.
   const { trustBadges = [], partnerLogos = [] } = siteConfig;
 
-  // Prioritize official 'trustBadges'. If they exist, use them.
-  // Otherwise, fall back to the informal 'partnerLogos'.
-  const logosToShow = trustBadges.length > 0 ? trustBadges : partnerLogos;
+  // LOGIC: Prefer Trust Badges (Static Authority) over Partners (Scrolling Social Proof)
+  const isTrustMode = trustBadges.length > 0;
+  const logosToShow = isTrustMode ? trustBadges : partnerLogos;
 
-  // If *neither* list has any logos, do not render the component.
-  if (logosToShow.length === 0) {
-    return null;
-  }
-  // --- END OF NEW LOGIC ---
+  if (logosToShow.length === 0) return null;
 
   return (
-    // --- HERE ARE THE REVERTED PROPS ---
-    <Box sx={{ 
-      py: { xs: 8, md: 10 },    // <-- Changed back to original spacing
-      bgcolor: 'background.paper' // <-- Changed back to original background
-    }}>
-    {/* --- END OF CHANGES --- */}
-
-      <Container maxWidth="md">
-        <Typography
-          sx={{
-            textAlign: 'center',
-            color: 'text.secondary',
-            fontWeight: 'bold',
-            textTransform: 'uppercase',
-            letterSpacing: 2,
-            mb: 6,
-          }}
-        >
-          {/* This title is now dynamic, e.g., "Our Trusted Partners" */}
-          {content.socialProofTitle}
-        </Typography>
+    <Box sx={{ py: { xs: 8, md: 10 }, bgcolor: 'background.paper' }}>
+      <Container maxWidth="lg"> {/* Widened container for static row */}
         
-        <Box
-          sx={{
-            width: '100%',
-            overflow: 'hidden',
-            maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
-            WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
-          }}
-        >
-          <Box
+        {/* SECTION HEADER */}
+        <Stack direction="row" alignItems="center" justifyContent="center" spacing={1} mb={6}>
+            {isTrustMode && <VerifiedIcon color="primary" sx={{ fontSize: 20 }} />}
+            <Typography
             sx={{
-              display: 'flex',
-              width: 'fit-content',
-              '@keyframes scroll': {
-                '0%': { transform: 'translateX(0)' },
-                '100%': { transform: 'translateX(-50%)' },
-              },
-              animation: 'scroll 40s linear infinite',
-              '&:hover': {
-                animationPlayState: 'paused',
-              },
+                textAlign: 'center',
+                color: 'text.secondary',
+                fontWeight: 'bold',
+                textTransform: 'uppercase',
+                letterSpacing: 2,
+                fontSize: '0.875rem'
             }}
-          >
-            {/* --- UPDATED: Render the dynamic 'logosToShow' array --- */}
-            {[...logosToShow, ...logosToShow].map((logo, index) => (
-              <Box
-                key={`${logo.name}-${index}`}
-                sx={{
-                  position: 'relative',
-                  width: { xs: 130, sm: 160 },
-                  height: { xs: 65, sm: 80 },
-                  mx: { xs: 3, sm: 5 },
-                  flexShrink: 0,
-                    // Removed the grayscale filter to show full-color logos
-                }}
-              >
-                <Image
-                  src={logo.url}
-                  alt={`${logo.name} - ${siteConfig.siteName}`}
-                  fill
-                  loading='lazy'
-                  style={{
-                    objectFit: 'contain',
-                  }}
-                  sizes="160px"
-                />
-              </Box>
-            ))}
-          </Box>
-        </Box>
+            >
+            {content.socialProofTitle}
+            </Typography>
+        </Stack>
+
+        {/* --- MODE SWITCHER --- */}
+        {isTrustMode ? (
+            // === MODE A: STATIC TRUST (Viator/Gov Standard) ===
+            <Stack 
+                direction={{ xs: 'column', sm: 'row' }} 
+                alignItems="center" 
+                justifyContent="center" 
+                spacing={{ xs: 4, md: 8 }}
+                flexWrap="wrap"
+            >
+                {logosToShow.map((logo, index) => (
+                    <Tooltip key={`${logo.name}-${index}`} title={`Official Partner: ${logo.name}`} arrow>
+                        <Box sx={{ 
+                            position: 'relative', 
+                            width: { xs: 140, sm: 160 }, 
+                            height: { xs: 70, sm: 90 },
+                            opacity: 0.9,
+                            transition: 'all 0.3s ease',
+                            '&:hover': { opacity: 1, transform: 'scale(1.05)' } 
+                        }}>
+                            <Image
+                                src={logo.url}
+                                alt={logo.name}
+                                fill
+                                style={{ objectFit: 'contain' }}
+                                sizes="160px"
+                            />
+                        </Box>
+                    </Tooltip>
+                ))}
+            </Stack>
+        ) : (
+            // === MODE B: SCROLLING PARTNERS (SaaS Standard) ===
+            <Box sx={{ width: '100%', overflow: 'hidden', maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)' }}>
+                <Box sx={{ display: 'flex', width: 'fit-content', animation: 'scroll 40s linear infinite', '&:hover': { animationPlayState: 'paused' }, '@keyframes scroll': { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(-50%)' } } }}>
+                    {[...logosToShow, ...logosToShow].map((logo, index) => (
+                        <Box key={`${logo.name}-${index}`} sx={{ position: 'relative', width: { xs: 130, sm: 160 }, height: { xs: 65, sm: 80 }, mx: { xs: 3, sm: 5 }, flexShrink: 0 }}>
+                            <Image src={logo.url} alt={logo.name} fill loading='lazy' style={{ objectFit: 'contain' }} sizes="160px" />
+                        </Box>
+                    ))}
+                </Box>
+            </Box>
+        )}
+
       </Container>
     </Box>
   );

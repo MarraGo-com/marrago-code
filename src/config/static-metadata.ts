@@ -39,7 +39,13 @@ const pathStore: Partial<Record<StaticPageKey, string>> = {
   privacyPolicy: '/privacy-policy', // Added new legal pages
   termsOfUse: '/terms-of-use',     // Added new legal pages
   reviews: '/reviews',             // Assuming this will be a page
-  faq: '/faq'                      // Assuming this will be a page
+  faq: '/faq',                      // Assuming this will be a page
+  // --- NEW PAGE PATHS ---
+  planning: '/planning', // Maps to your TripWizard page
+  sitemap: '/sitemap',
+  signup: '/signup',
+  login: '/login',
+  account: '/account'
 };
 
 /**

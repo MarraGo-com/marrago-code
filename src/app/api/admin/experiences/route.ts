@@ -1,4 +1,3 @@
-// /src/app/api/admin/experiences/route.ts
 import { NextResponse } from 'next/server';
 import { adminDb } from '@/lib/firebase-admin';
 import { FieldValue } from 'firebase-admin/firestore';
@@ -7,7 +6,8 @@ import { revalidatePath } from 'next/cache';
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    // ▼▼▼ 1. DESTRUCTURE ALL NEW FIELDS ▼▼▼
+    
+    // ▼▼▼ 1. DESTRUCTURE ALL FIELDS (INCLUDING NEW PRO FIELDS) ▼▼▼
     const { 
       price, 
       locationId, 
@@ -15,25 +15,27 @@ export async function POST(request: Request) {
       galleryImages, 
       translations, 
       tags,
-      // New fields:
       duration,
       maxGuests,
       tourCode,
       languages,
       startTimes,
       latitude,
-      longitude
+      longitude,
+      // New Pro Fields:
+      scarcity,
+      bookingPolicy,
+      features
     } = body;
-    // ▲▲▲
 
     if (!translations?.en?.title || !price?.amount) {
       return NextResponse.json({ message: 'English title and price amount are required' }, { status: 400 });
     }
 
-    // Process the tags string into an array
-    const tagsArray = tags && typeof tags === 'string'
-      ? tags.split(',').map((tag: string) => tag.trim()).filter(Boolean)
-      : [];
+    // Fix: Handle tags whether they are a string (old way) or array (new way)
+    const tagsArray = Array.isArray(tags) 
+      ? tags 
+      : (tags && typeof tags === 'string' ? tags.split(',').map((tag: string) => tag.trim()).filter(Boolean) : []);
 
     const newData = {
       price: {
@@ -44,24 +46,29 @@ export async function POST(request: Request) {
       locationId,
       coverImage,
       galleryImages: galleryImages || [],
-      translations,
+      translations, // Saves 'program' timeline automatically
       tags: tagsArray,
 
-      // ▼▼▼ 2. SAVE ALL NEW FIELDS TO FIRESTORE ▼▼▼
-      duration: duration || '', // Ensure it's a string
-      maxGuests: maxGuests ?? null, // Use null for optional numbers
+      // Standard Fields
+      duration: duration || '',
+      maxGuests: maxGuests ?? null,
       tourCode: tourCode ?? '',
       languages: languages || [],
       startTimes: startTimes || [],
       latitude: latitude ?? null,
       longitude: longitude ?? null,
+
+      // ▼▼▼ 2. SAVE NEW PRO FIELDS ▼▼▼
+      scarcity: scarcity || null,
+      bookingPolicy: bookingPolicy || null,
+      features: features || null,
       // ▲▲▲
       
       isFeatured: true,
       createdAt: FieldValue.serverTimestamp(),
     };
     
-    console.log("API (POST): Creating new experience with data:", newData); // Add debug log
+    console.log("API (POST): Creating new experience with data:", newData);
 
     const docRef = await adminDb.collection('experiences').add(newData);
 

@@ -1,4 +1,3 @@
-// /src/app/api/admin/experiences/[id]/route.ts
 import { NextResponse } from 'next/server';
 import { adminDb } from '@/lib/firebase-admin';
 import { FieldValue } from 'firebase-admin/firestore';
@@ -16,7 +15,7 @@ export async function PUT(
     const { id } = await params;
     const body = await request.json();
 
-    // ▼▼▼ DESTRUCTURE ALL NEW FIELDS ▼▼▼
+    // ▼▼▼ DESTRUCTURE ALL FIELDS ▼▼▼
     const { 
       price, 
       locationId, 
@@ -24,27 +23,28 @@ export async function PUT(
       galleryImages, 
       translations, 
       tags,
-      // New fields:
-      duration, // <--- ADDED DURATION HERE
+      duration,
       maxGuests,
       tourCode,
       languages,
       startTimes,
       latitude,
-      longitude
+      longitude,
+      // New Pro Fields:
+      scarcity,
+      bookingPolicy,
+      features
     } = body;
-    // ▲▲▲
 
     if (!id) {
       return NextResponse.json({ message: 'Experience ID is required' }, { status: 400 });
     }
 
-    // The frontend already processes these into arrays, but we can keep this for safety
     const tagsArray = Array.isArray(tags) ? tags : [];
 
     const docRef = adminDb.collection('experiences').doc(id);
     
-    // ▼▼▼ ADD ALL FIELDS TO THE UPDATE DATA ▼▼▼
+    // ▼▼▼ UPDATE DATA OBJECT ▼▼▼
     const updateData = {
       price,
       locationId,
@@ -52,19 +52,23 @@ export async function PUT(
       galleryImages: galleryImages || [],
       translations,
       tags: tagsArray,
-      // NEW FIELD ADDED TO PAYLOAD
-      duration: duration || '', // Ensure it's a string
-      maxGuests: maxGuests ?? null, // Use null for Firestore if undefined
+      duration: duration || '',
+      maxGuests: maxGuests ?? null,
       tourCode: tourCode ?? "",
       languages: languages || [],
       startTimes: startTimes || [],
       latitude: latitude ?? null,
       longitude: longitude ?? null,
+      
+      // Save New Fields
+      scarcity: scarcity || null,
+      bookingPolicy: bookingPolicy || null,
+      features: features || null,
+      
       updatedAt: FieldValue.serverTimestamp(),
     };
-    // ▲▲▲
 
-    console.log("API (PUT): Updating experience with data:", updateData); // Debug log for server-side
+    console.log("API (PUT): Updating experience with data:", updateData);
 
     await docRef.update(updateData);
 
@@ -81,7 +85,7 @@ export async function PUT(
   }
 }
 
-// ... (The DELETE function remains the same as before, no changes needed there)
+// DELETE function remains unchanged but included for file completeness
 export async function DELETE(
   request: Request,
   { params }: { params: Params }

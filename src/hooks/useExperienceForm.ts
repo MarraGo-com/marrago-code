@@ -3,34 +3,67 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import imageCompression from 'browser-image-compression';
-import { Experience, GalleryImage, Translation } from '@/types/experience';
+import { 
+  Experience, 
+  GalleryImage, 
+  Translation, 
+  TimelineStep, 
+  DurationUnit 
+} from '@/types/experience';
 
 // Helper to create an empty translation object
 const emptyTranslation: Translation = { 
   title: '', 
   description: '', 
-  shortDescription: '', // <--- NEW FIELD INITIALIZATION
+  shortDescription: '', 
   highlights: '', 
   included: '', 
   notIncluded: '', 
   importantInfo: '', 
-  itinerary: '',
+  itinerary: '', 
+  program: [],   
   faqs: [] 
 };
 
-// The initial state
+// --- UPDATED INITIAL STATE (Strict Types) ---
 const initialFormData = {
   price: { amount: '', currency: 'EUR', prefix: 'from' },
   locationId: '',
   coverImage: '',
-  tags: '',
+  
+  // 1. UPDATED: Tags are now an Array
+  tags: [] as string[], 
+
   maxGuests: undefined as number | undefined,
   tourCode: '',
-  languages: '', 
-  startTimes: '',
+  
+  // 2. UPDATED: Languages are now an Array
+  languages: [] as string[], 
+
+  startTimes: '', // Still comma-separated string for now (as per your form)
+  
   latitude: undefined as number | undefined,
   longitude: undefined as number | undefined,
-  duration: '', // Added duration to base form data
+
+  // 3. UPDATED: Duration split into Value + Unit
+  durationValue: undefined as number | undefined,
+  durationUnit: 'hours' as DurationUnit,
+
+  // --- PRO FIELDS ---
+  scarcity: { 
+    isLikelyToSellOut: false, 
+    spotsLeft: undefined as number | undefined 
+  },
+  bookingPolicy: { 
+    cancellationHours: 24, 
+    isPayLater: true, 
+    instantConfirmation: true 
+  },
+  features: { 
+    mobileTicket: true, 
+    pickupIncluded: false 
+  },
+
   translations: {
     en: { ...emptyTranslation },
     fr: { ...emptyTranslation },
@@ -38,7 +71,7 @@ const initialFormData = {
   }
 };
 
-type LanguageCode = 'en' | 'fr' | 'es';
+type FormLanguageTab = 'en' | 'fr' | 'es';
 
 export function useExperienceForm(initialExperience: Experience | null) {
   const [formData, setFormData] = useState(initialFormData);
@@ -46,50 +79,72 @@ export function useExperienceForm(initialExperience: Experience | null) {
   const [coverImageFile, setCoverImageFile] = useState<File | null>(null);
   const [newGalleryImageFiles, setNewGalleryImageFiles] = useState<File[]>([]);
   const [isCompressing, setIsCompressing] = useState(false);
-  const [currentTab, setCurrentTab] = useState<LanguageCode>('en');
+  const [currentTab, setCurrentTab] = useState<FormLanguageTab>('en');
 
-  // ▼▼▼ THE DATA LOADING LOGIC ▼▼▼
+  // ▼▼▼ UPDATED DATA LOADING LOGIC ▼▼▼
   useEffect(() => {
     if (initialExperience) {
       const newFormState = {
-          // Explicitly map base fields
+          // Base fields
           locationId: initialExperience.locationId || '',
           coverImage: initialExperience.coverImage || '',
-          duration: initialExperience.duration || '',
           
-          // Handle Price conversion to string for input
+          // 4. MAPPING NEW STRICT FIELDS
+          durationValue: initialExperience.durationValue,
+          durationUnit: initialExperience.durationUnit || 'hours',
+          
+          tags: initialExperience.tags || [], // No more .join()
+          languages: initialExperience.languages || [], // No more .join()
+
+          // Price
           price: initialExperience.price ? { 
               ...initialExperience.price, 
               amount: initialExperience.price.amount !== undefined ? String(initialExperience.price.amount) : '' 
           } : initialFormData.price,
           
-          // Handle Arrays -> Comma-separated strings
-          tags: initialExperience.tags?.join(', ') || '',
-          languages: initialExperience.languages?.join(', ') || '',
           startTimes: initialExperience.startTimes?.join(', ') || '',
 
-          // Handle optional numbers & strings
+          // Optionals
           maxGuests: initialExperience.maxGuests,
           latitude: initialExperience.latitude,
           longitude: initialExperience.longitude,
           tourCode: initialExperience.tourCode || '',
+
+          // Pro Fields
+          scarcity: {
+            isLikelyToSellOut: initialExperience.scarcity?.isLikelyToSellOut ?? initialFormData.scarcity.isLikelyToSellOut,
+            spotsLeft: initialExperience.scarcity?.spotsLeft ?? initialFormData.scarcity.spotsLeft
+          },
+          bookingPolicy: {
+            cancellationHours: initialExperience.bookingPolicy?.cancellationHours ?? initialFormData.bookingPolicy.cancellationHours,
+            isPayLater: initialExperience.bookingPolicy?.isPayLater ?? initialFormData.bookingPolicy.isPayLater,
+            instantConfirmation: initialExperience.bookingPolicy?.instantConfirmation ?? initialFormData.bookingPolicy.instantConfirmation
+          },
+          features: {
+            mobileTicket: initialExperience.features?.mobileTicket ?? initialFormData.features.mobileTicket,
+            pickupIncluded: initialExperience.features?.pickupIncluded ?? initialFormData.features.pickupIncluded
+          },
           
-          // Handle complex nested translations
+          // Translations
           translations: {
               en: {
                 ...emptyTranslation, ...initialExperience.translations?.en,
-                faqs: initialExperience.translations?.en?.faqs || []
+                faqs: initialExperience.translations?.en?.faqs || [],
+                program: initialExperience.translations?.en?.program || []
               },
               fr: {
                 ...emptyTranslation, ...initialExperience.translations?.fr,
-                faqs: initialExperience.translations?.fr?.faqs || []
+                faqs: initialExperience.translations?.fr?.faqs || [],
+                program: initialExperience.translations?.fr?.program || []
               },
               es: {
                 ...emptyTranslation, ...initialExperience.translations?.es,
-                faqs: initialExperience.translations?.es?.faqs || []
+                faqs: initialExperience.translations?.es?.faqs || [],
+                program: initialExperience.translations?.es?.program || []
               }
           }
       };
+      
       setFormData(newFormState);
       setInitialGalleryImages(initialExperience.galleryImages || []);
     } else {
@@ -100,16 +155,17 @@ export function useExperienceForm(initialExperience: Experience | null) {
     setNewGalleryImageFiles([]);
   }, [initialExperience]);
 
-  // --- No changes below this line ---
+  // --- Change Handlers ---
   const handleNestedChange = useCallback((path: string) => (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = event.target;
+    const { name, value, type } = event.target;
+    const checked = type === 'checkbox' && 'checked' in event.target ? event.target.checked : false;
     setFormData(prev => {
         const newState = JSON.parse(JSON.stringify(prev));
         let currentLevel = newState;
         const parts = path.split('.');
         for (let i = 0; i < parts.length; i++) {
             if (i === parts.length - 1) {
-                currentLevel[parts[i]][name] = value;
+                currentLevel[parts[i]][name] = type === 'checkbox' ? checked : value;
             } else {
                 currentLevel = currentLevel[parts[i]];
             }
@@ -118,7 +174,8 @@ export function useExperienceForm(initialExperience: Experience | null) {
     });
   }, []);
 
-  const handleAddFaq = (lang: LanguageCode) => {
+  // --- FAQ Handlers ---
+  const handleAddFaq = (lang: FormLanguageTab) => {
     setFormData(prev => {
       const newState = { ...prev };
       const currentFaqs = newState.translations[lang].faqs || [];
@@ -127,7 +184,7 @@ export function useExperienceForm(initialExperience: Experience | null) {
     });
   };
 
-  const handleFaqChange = (lang: LanguageCode, index: number, field: 'question' | 'answer', value: string) => {
+  const handleFaqChange = (lang: FormLanguageTab, index: number, field: 'question' | 'answer', value: string) => {
     setFormData(prev => {
       const newState = { ...prev };
       const newFaqs = [...(newState.translations[lang].faqs || [])];
@@ -137,7 +194,7 @@ export function useExperienceForm(initialExperience: Experience | null) {
     });
   };
 
-  const handleRemoveFaq = (lang: LanguageCode, index: number) => {
+  const handleRemoveFaq = (lang: FormLanguageTab, index: number) => {
     setFormData(prev => {
       const newState = { ...prev };
       const currentFaqs = newState.translations[lang].faqs || [];
@@ -146,6 +203,43 @@ export function useExperienceForm(initialExperience: Experience | null) {
     });
   };
 
+  // --- TIMELINE HANDLERS ---
+  const handleAddTimelineStep = (lang: FormLanguageTab) => {
+    setFormData(prev => {
+      const newState = { ...prev };
+      const currentProgram = newState.translations[lang].program || [];
+      const newStep: TimelineStep = { 
+        title: '', 
+        type: 'stop', 
+        duration: '', 
+        admission: 'free',
+        description: ''
+      };
+      newState.translations[lang].program = [...currentProgram, newStep];
+      return newState;
+    });
+  };
+
+  const handleTimelineStepChange = (lang: FormLanguageTab, index: number, field: keyof TimelineStep, value: any) => {
+    setFormData(prev => {
+      const newState = { ...prev };
+      const newProgram = [...(newState.translations[lang].program || [])];
+      newProgram[index] = { ...newProgram[index], [field]: value };
+      newState.translations[lang].program = newProgram;
+      return newState;
+    });
+  };
+
+  const handleRemoveTimelineStep = (lang: FormLanguageTab, index: number) => {
+    setFormData(prev => {
+      const newState = { ...prev };
+      const currentProgram = newState.translations[lang].program || [];
+      newState.translations[lang].program = currentProgram.filter((_, i) => i !== index);
+      return newState;
+    });
+  };
+
+  // --- Image Handlers ---
   const handleCoverImageChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return;
@@ -209,6 +303,9 @@ export function useExperienceForm(initialExperience: Experience | null) {
     setFormData,
     handleAddFaq,
     handleFaqChange,
-    handleRemoveFaq
+    handleRemoveFaq,
+    handleAddTimelineStep,
+    handleTimelineStepChange,
+    handleRemoveTimelineStep
   };
 }

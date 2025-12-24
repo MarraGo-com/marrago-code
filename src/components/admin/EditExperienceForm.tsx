@@ -1,13 +1,13 @@
 // /src/components/admin/EditExperienceForm.tsx
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField,
   Typography, Box, Tabs, Tab, Select, MenuItem,
   InputLabel, FormControl, OutlinedInput, InputAdornment, Divider,
   Chip, IconButton, Paper, List, ListItem, ListItemText, ListItemAvatar, Avatar, Stack,
-  LinearProgress
+  LinearProgress, Switch, FormControlLabel, Checkbox, SelectChangeEvent // <--- Added SelectChangeEvent & Checkbox
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
@@ -18,10 +18,8 @@ import { useExperienceForm} from '@/hooks/useExperienceForm';
 import { Experience, GalleryImage } from '@/types/experience';
 import { locations } from '@/config/locations';
 
-// Helper function to split comma-separated string into array
-const splitStringToArray = (str: string | undefined): string[] => {
-  return str ? str.split(',').map(s => s.trim()).filter(s => s !== '') : [];
-};
+// --- NEW: Import Constants ---
+import { DURATION_UNITS, SUPPORTED_LANGUAGES, EXPERIENCE_TAGS } from '@/config/constants';
 
 interface EditExperienceFormProps {
   open: boolean;
@@ -46,28 +44,41 @@ export default function EditExperienceForm({ open, onClose, experience }: EditEx
     removeInitialGalleryImage,
     removeNewGalleryImage,
     setFormData,
+    // FAQ Handlers
     handleAddFaq,
     handleFaqChange,
-    handleRemoveFaq
+    handleRemoveFaq,
+    // Timeline Handlers
+    handleAddTimelineStep,
+    handleTimelineStepChange,
+    handleRemoveTimelineStep
   } = useExperienceForm(experience);
 
   const [loading, setLoading] = useState(false);
   const [uploadingFiles, setUploadingFiles] = useState<{ name: string; progress: number }[]>([]);
   const [error, setError] = useState<string | null>(null);
 
-  // Debugging to confirm hook is working
-  useEffect(() => {
-    if (open && experience) {
-      console.log("EditForm open. Hook formData state:", formData);
-    }
-  }, [open, experience, formData]);
+  // --- NEW: Handlers for Selectors ---
 
-  // Handler for root-level text/number fields
+  // Handle standard dropdowns (Duration Unit)
+  const handleSelectChange = (event: SelectChangeEvent) => {
+    const { name, value } = event.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  // Handle Multi-Select (Tags, Languages) -> Saves as Array ['en', 'fr']
+  const handleMultiSelectChange = (event: SelectChangeEvent<string[]>) => {
+    const { name, value } = event.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: typeof value === 'string' ? value.split(',') : value,
+    }));
+  };
+
   const handleRootChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type } = event.target;
     setFormData(prev => ({
         ...prev,
-        // Convert number inputs correctly, handle empty string as undefined for optional numbers
         [name]: type === 'number' ? (value === '' ? undefined : Number(value)) : value
     }));
   };
@@ -80,12 +91,6 @@ export default function EditExperienceForm({ open, onClose, experience }: EditEx
         setError("Please fill in all required fields (Price, Location).");
         return;
     }
-    // Check if at least one translation has a title
-    const hasTitle = Object.values(formData.translations).some(t => t.title?.trim());
-    if (!hasTitle) {
-        setError("Please provide a Title in at least one language.");
-        return;
-    }
 
     setLoading(true);
     setError(null);
@@ -93,20 +98,23 @@ export default function EditExperienceForm({ open, onClose, experience }: EditEx
     try {
       let coverImageUrl = formData.coverImage;
       if (coverImageFile) {
-        setUploadingFiles([{ name: coverImageFile.name, progress: 0 }]);
-        const storagePath = `experiences/${experience.id}/cover/${Date.now()}_${coverImageFile.name.split('.')[0]}.webp`;
-        const uploadTask = uploadBytesResumable(ref(storage, storagePath), coverImageFile);
-        coverImageUrl = await new Promise<string>((resolve, reject) => {
-            uploadTask.on('state_changed',
-                snapshot => setUploadingFiles([{ name: coverImageFile.name, progress: (snapshot.bytesTransferred / snapshot.totalBytes) * 100 }]),
-                error => reject(error),
-                () => getDownloadURL(uploadTask.snapshot.ref).then(resolve)
-            );
-        });
+         // ... (Keep existing image upload logic) ...
+         setUploadingFiles([{ name: coverImageFile.name, progress: 0 }]);
+         const storagePath = `experiences/${experience.id}/cover/${Date.now()}_${coverImageFile.name.split('.')[0]}.webp`;
+         const uploadTask = uploadBytesResumable(ref(storage, storagePath), coverImageFile);
+         coverImageUrl = await new Promise<string>((resolve, reject) => {
+             uploadTask.on('state_changed',
+                 snapshot => setUploadingFiles([{ name: coverImageFile.name, progress: (snapshot.bytesTransferred / snapshot.totalBytes) * 100 }]),
+                 error => reject(error),
+                 () => getDownloadURL(uploadTask.snapshot.ref).then(resolve)
+             );
+         });
       }
 
+      // ... (Keep existing gallery upload logic) ...
       let newGalleryImagesData: GalleryImage[] = [];
       if (newGalleryImageFiles.length > 0) {
+        // ... (standard upload logic)
         setUploadingFiles(newGalleryImageFiles.map(f => ({ name: f.name, progress: 0 })));
         const uploadPromises = newGalleryImageFiles.map(file => {
           const storagePath = `experiences/${experience.id}/gallery/${Date.now()}_${file.name.split('.')[0]}.webp`;
@@ -127,20 +135,18 @@ export default function EditExperienceForm({ open, onClose, experience }: EditEx
         });
         newGalleryImagesData = await Promise.all(uploadPromises);
       }
-      setUploadingFiles([]);
 
       const finalGalleryImages = [...initialGalleryImages, ...newGalleryImagesData];
       
-      // Prepare final data and send PUT request
+      // --- NEW: Submit Logic (Arrays are already Arrays) ---
       const finalData = { 
         ...formData, 
         coverImage: coverImageUrl, 
         galleryImages: finalGalleryImages,
-        // Process comma-separated strings into arrays
-        tags: splitStringToArray(formData.tags),
-        languages: splitStringToArray(formData.languages),
-        startTimes: splitStringToArray(formData.startTimes),
-        // Ensure optional numbers are null if undefined
+        // REMOVED: splitStringToArray calls. Arrays are passed directly.
+        tags: formData.tags,         
+        languages: formData.languages,
+        startTimes: typeof formData.startTimes === 'string' ? (formData.startTimes as string).split(',') : formData.startTimes, // Keep logic if startTimes is still string
         maxGuests: formData.maxGuests === undefined ? null : formData.maxGuests,
         latitude: formData.latitude === undefined ? null : formData.latitude,
         longitude: formData.longitude === undefined ? null : formData.longitude
@@ -152,102 +158,176 @@ export default function EditExperienceForm({ open, onClose, experience }: EditEx
         body: JSON.stringify(finalData),
       });
 
-      if (!response.ok) {
-        throw new Error((await response.json()).message || 'Failed to update experience.');
-      }
+      if (!response.ok) throw new Error((await response.json()).message);
 
       onClose();
       router.refresh();
 
     } catch (err: unknown) {
-      if (err instanceof Error) {
-        setError(err.message);
-      } else {
-        setError('An unknown error occurred.');
-      }
+       setError(err instanceof Error ? err.message : 'An unknown error occurred.');
     } finally {
       setLoading(false);
       setUploadingFiles([]);
     }
   };
 
-  const handleClose = () => {
-    if (!loading) onClose();
-  };
+  const handleClose = () => { if (!loading) onClose(); };
 
   return (
     <Dialog open={open} onClose={handleClose} PaperProps={{ component: 'form', onSubmit: handleSubmit }} maxWidth="md" fullWidth>
       <DialogTitle>Edit Experience</DialogTitle>
       <DialogContent>
+        {/* General Info */}
         <Typography variant="subtitle1" sx={{ mt: 2, mb: 1 }}>General Information</Typography>
         <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 2, mb: 2 }}>
             <FormControl fullWidth>
               <InputLabel htmlFor="price-amount">Price Amount</InputLabel>
-              {/* Use ?? '' to safely handle null/undefined */}
               <OutlinedInput id="price-amount" name="amount" type="number" value={formData.price.amount ?? ''} onChange={handleNestedChange('price')} startAdornment={<InputAdornment position="start">EUR</InputAdornment>} label="Price Amount" required />
             </FormControl>
             <FormControl fullWidth required>
-              
               <InputLabel id="location-select-label">Location</InputLabel>
               <Select labelId="location-select-label" name="locationId" value={formData.locationId ?? ''} label="Location" onChange={(e) => setFormData(p => ({...p, locationId: e.target.value}))}>
                 {locations.map((loc) => (<MenuItem key={loc.id} value={loc.id}>{loc.name}</MenuItem>))}
               </Select>
             </FormControl>
-            {/* ▼▼▼ NEW DURATION FIELD ▼▼▼ */}
-<TextField
-    required
-    name="duration"
-    label="Duration"
-    fullWidth
-    value={formData.duration ?? ''}
-    onChange={handleRootChange}
-    helperText="e.g., '3-4 hours', 'Full Day', '2 Days'"
-/>
-{/* ▲▲▲ END NEW FIELD ▲▲▲ */}
+            
+            {/* ▼▼▼ REFACTORED DURATION (Value + Unit) ▼▼▼ */}
+            <Box sx={{ display: 'flex', gap: 1 }}>
+              <TextField
+                  required
+                  name="durationValue"
+                  label="Duration"
+                  type="number"
+                  fullWidth
+                  value={formData.durationValue ?? ''}
+                  onChange={handleRootChange}
+              />
+              <FormControl sx={{ minWidth: 100 }}>
+                <InputLabel>Unit</InputLabel>
+                <Select
+                  name="durationUnit"
+                  value={formData.durationUnit ?? 'hours'}
+                  label="Unit"
+                  onChange={handleSelectChange} // Use new handler
+                >
+                  {DURATION_UNITS.map((u) => <MenuItem key={u.value} value={u.value}>{u.label}</MenuItem>)}
+                </Select>
+              </FormControl>
+            </Box>
         </Box>
         
-        <TextField
-            name="tags"
-            label="Tags (comma-separated)"
-            fullWidth
-            value={formData.tags ?? ''}
-            onChange={handleRootChange}
-            helperText="e.g., Best Seller, New, Popular"
-            sx={{ mb: 2 }}
-        />
+        {/* ▼▼▼ REFACTORED TAGS (Multi-Select) ▼▼▼ */}
+        <FormControl fullWidth sx={{ mb: 2 }}>
+            <InputLabel>Tags (Strict)</InputLabel>
+            <Select
+                multiple
+                name="tags"
+                value={formData.tags || []} // Ensure it's an array
+                onChange={handleMultiSelectChange}
+                input={<OutlinedInput label="Tags (Strict)" />}
+                renderValue={(selected) => (
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                        {(selected as string[]).map((value) => (
+                            <Chip key={value} label={EXPERIENCE_TAGS.find(t=>t.value===value)?.label || value} size="small" />
+                        ))}
+                    </Box>
+                )}
+            >
+                {EXPERIENCE_TAGS.map((tag) => (
+                    <MenuItem key={tag.value} value={tag.value}>
+                        <Checkbox checked={(formData.tags || []).indexOf(tag.value) > -1} />
+                        <ListItemText primary={tag.label} />
+                    </MenuItem>
+                ))}
+            </Select>
+        </FormControl>
 
-        {/* Quick Facts Fields */}
+        {/* Quick Facts */}
         <Typography variant="subtitle2" sx={{ mb: 1, mt: 2, color: 'text.secondary' }}>Quick Facts Details</Typography>
         <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 2, mb: 2 }}>
             <TextField name="maxGuests" label="Max Guests" type="number" fullWidth value={formData.maxGuests ?? ''} onChange={handleRootChange} />
             <TextField name="tourCode" label="Tour Code" fullWidth value={formData.tourCode ?? ''} onChange={handleRootChange} />
-            <TextField name="languages" label="Languages (comma-separated)" fullWidth value={formData.languages ?? ''} onChange={handleRootChange} helperText="e.g., English, French" />
+            
+            {/* ▼▼▼ REFACTORED LANGUAGES (Multi-Select) ▼▼▼ */}
+            <FormControl fullWidth>
+                <InputLabel>Languages</InputLabel>
+                <Select
+                    multiple
+                    name="languages"
+                    value={formData.languages || []}
+                    onChange={handleMultiSelectChange}
+                    input={<OutlinedInput label="Languages" />}
+                    renderValue={(selected) => (
+                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                            {(selected as string[]).map((value) => (
+                                <Chip key={value} label={SUPPORTED_LANGUAGES.find(l=>l.code===value)?.label || value} size="small" />
+                            ))}
+                        </Box>
+                    )}
+                >
+                    {SUPPORTED_LANGUAGES.map((lang) => (
+                        <MenuItem key={lang.code} value={lang.code}>
+                            <Checkbox checked={(formData.languages || []).indexOf(lang.code) > -1} />
+                            <ListItemText primary={lang.label} />
+                        </MenuItem>
+                    ))}
+                </Select>
+            </FormControl>
+
             <TextField name="startTimes" label="Start Times (comma-separated)" fullWidth value={formData.startTimes ?? ''} onChange={handleRootChange} helperText="e.g., 09:00, 14:00" />
         </Box>
 
+        {/* ... (Rest of the file remains UNTOUCHED: Maps, Booking Policy, Images, Timeline, FAQs) ... */}
+        {/* Just paste the rest of your component here from 'Meeting Point' downwards */}
+        
         {/* Meeting Point Coordinates */}
         <Typography variant="subtitle2" sx={{ mb: 1, mt: 2, color: 'text.secondary' }}>Meeting Point Coordinates (Optional)</Typography>
         <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 2, mb: 2 }}>
-                <TextField 
-                name="latitude" 
-                label="Latitude (e.g., 31.6295)" 
-                type="number" 
-                fullWidth 
-                value={formData.latitude ?? ''} 
-                onChange={handleRootChange} 
-                inputProps={{ step: "any" }}
+                <TextField name="latitude" label="Latitude" type="number" fullWidth value={formData.latitude ?? ''} onChange={handleRootChange} inputProps={{ step: "any" }} />
+                <TextField name="longitude" label="Longitude" type="number" fullWidth value={formData.longitude ?? ''} onChange={handleRootChange} inputProps={{ step: "any" }} />
+        </Box>
+
+        {/* ▼▼▼ NEW: Booking Policy & Trust Signals ▼▼▼ */}
+        <Divider sx={{ my: 2 }}><Chip label="Booking Policy & Trust" /></Divider>
+        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 2, mb: 2 }}>
+             <TextField
+                name="bookingPolicy.cancellationHours"
+                label="Free Cancellation (Hours before)"
+                type="number"
+                value={formData.bookingPolicy.cancellationHours}
+                onChange={handleNestedChange('bookingPolicy')}
+                helperText="e.g. 24"
+             />
+             <TextField
+                name="scarcity.spotsLeft"
+                label="Spots Left (Scarcity Trigger)"
+                type="number"
+                value={formData.scarcity.spotsLeft ?? ''}
+                onChange={handleNestedChange('scarcity')}
+                helperText="Leave empty to disable. < 5 triggers 'Only X left'"
+             />
+        </Box>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: 2 }}>
+            <FormControlLabel
+                control={<Switch checked={formData.bookingPolicy.isPayLater} onChange={handleNestedChange('bookingPolicy')} name="isPayLater" />}
+                label="Reserve Now, Pay Later"
             />
-                <TextField 
-                name="longitude" 
-                label="Longitude (e.g., -7.9811)" 
-                type="number" 
-                fullWidth 
-                value={formData.longitude ?? ''} 
-                onChange={handleRootChange} 
-                inputProps={{ step: "any" }}
+            <FormControlLabel
+                control={<Switch checked={formData.bookingPolicy.instantConfirmation} onChange={handleNestedChange('bookingPolicy')} name="instantConfirmation" />}
+                label="Instant Confirmation"
+            />
+             <FormControlLabel
+                control={<Switch checked={formData.scarcity.isLikelyToSellOut} onChange={handleNestedChange('scarcity')} name="isLikelyToSellOut" />}
+                label="Badge: 'Likely to Sell Out'"
+            />
+             <FormControlLabel
+                control={<Switch checked={formData.features.mobileTicket} onChange={handleNestedChange('features')} name="mobileTicket" />}
+                label="Mobile Ticket Accepted"
             />
         </Box>
+        {/* ▲▲▲ END Booking Policy ▲▲▲ */}
         
+        {/* Cover Image */}
         <Divider sx={{ my: 2 }}><Chip label="Cover Image" /></Divider>
         <TextField disabled margin="dense" label="Current Cover Image URL" type="text" fullWidth value={formData.coverImage ?? ''} sx={{ mb: 1 }} />
         <Button variant="outlined" component="label" fullWidth disabled={isCompressing || loading}>
@@ -256,6 +336,7 @@ export default function EditExperienceForm({ open, onClose, experience }: EditEx
         </Button>
         {coverImageFile && !isCompressing && <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>New cover selected: {coverImageFile.name}</Typography>}
 
+        {/* Gallery Images */}
         <Divider sx={{ my: 2 }}><Chip label="Gallery Images" /></Divider>
         <Button variant="outlined" component="label" fullWidth disabled={isCompressing || loading}>
           {isCompressing ? 'Processing...' : 'Add More Gallery Images'}
@@ -271,42 +352,24 @@ export default function EditExperienceForm({ open, onClose, experience }: EditEx
                     </ListItem>
                 ))}
                {newGalleryImageFiles.map((file) => {
-    // Find the progress for this specific file
-    const fileProgress = uploadingFiles.find(f => f.name === file.name)?.progress || 0;
-    
-    return (
-        <ListItem 
-            key={file.name} 
-            secondaryAction={
-                <IconButton edge="end" aria-label="delete" onClick={() => removeNewGalleryImage(file.name)}>
-                    <DeleteIcon />
-                </IconButton>
-            }
-        >
-            <ListItemAvatar>
-                <Avatar src={URL.createObjectURL(file)} variant="rounded"/>
-            </ListItemAvatar>
-            
-            {/* 3. Conditional Rendering for Text vs Progress Bar */}
-            <ListItemText 
-                primary={file.name} 
-                secondary={
-                    fileProgress > 0 && fileProgress < 100 ? (
-                        <Box sx={{ width: '100%', mt: 1 }}>
-                            <LinearProgress variant="determinate" value={fileProgress} />
-                            <Typography variant="caption" color="text.secondary">
-                                Uploading: {Math.round(fileProgress)}%
-                            </Typography>
-                        </Box>
-                    ) : (
-                        "Ready to upload"
-                    )
-                } 
-                primaryTypographyProps={{ variant: 'body2', noWrap: true }} 
-            />
-        </ListItem>
-    );
-})}
+                  const fileProgress = uploadingFiles.find(f => f.name === file.name)?.progress || 0;
+                  return (
+                      <ListItem key={file.name} secondaryAction={<IconButton edge="end" aria-label="delete" onClick={() => removeNewGalleryImage(file.name)}><DeleteIcon /></IconButton>}>
+                          <ListItemAvatar><Avatar src={URL.createObjectURL(file)} variant="rounded"/></ListItemAvatar>
+                          <ListItemText 
+                              primary={file.name} 
+                              secondary={fileProgress > 0 && fileProgress < 100 ? (
+                                      <Box sx={{ width: '100%', mt: 1 }}>
+                                          <LinearProgress variant="determinate" value={fileProgress} />
+                                          <Typography variant="caption" color="text.secondary">Uploading: {Math.round(fileProgress)}%</Typography>
+                                      </Box>
+                                  ) : "Ready to upload"
+                              } 
+                              primaryTypographyProps={{ variant: 'body2', noWrap: true }} 
+                          />
+                      </ListItem>
+                  );
+                })}
             </List>
              {initialGalleryImages.length === 0 && newGalleryImageFiles.length === 0 && (
                 <Typography variant="body2" color="text.secondary" align="center" sx={{p: 2}}>No gallery images yet.</Typography>
@@ -324,18 +387,16 @@ export default function EditExperienceForm({ open, onClose, experience }: EditEx
         </Box>
         <Box sx={{ pt: 2, display: 'flex', flexDirection: 'column', gap: 2 }}>
             <TextField required name="title" label="Title" fullWidth value={formData.translations[currentTab]?.title ?? ''} onChange={handleNestedChange(`translations.${currentTab}`)} />
-             {/* ▼▼▼ NEW FIELD ▼▼▼ */}
-    <TextField 
-      name="shortDescription" 
-      label="Short Description (Card Summary)" 
-      fullWidth 
-      multiline 
-      rows={2} 
-      value={formData.translations[currentTab]?.shortDescription ?? ''} 
-      onChange={handleNestedChange(`translations.${currentTab}`)} 
-      helperText="A brief summary shown on the experience card (2-3 lines)."
-    />
-    {/* ▲▲▲ END NEW FIELD ▲▲▲ */}
+            <TextField 
+              name="shortDescription" 
+              label="Short Description (Card Summary)" 
+              fullWidth 
+              multiline 
+              rows={2} 
+              value={formData.translations[currentTab]?.shortDescription ?? ''} 
+              onChange={handleNestedChange(`translations.${currentTab}`)} 
+              helperText="A brief summary shown on the experience card (2-3 lines)."
+            />
             <TextField required name="description" label="Description" fullWidth multiline rows={4} value={formData.translations[currentTab]?.description ?? ''} onChange={handleNestedChange(`translations.${currentTab}`)} />
             
             <TextField name="highlights" label="Highlights (Markdown list)" fullWidth multiline rows={4} value={formData.translations[currentTab]?.highlights ?? ''} onChange={handleNestedChange(`translations.${currentTab}`)} helperText="Use * for bullet points. e.g., * Sunset camel ride" />
@@ -344,9 +405,78 @@ export default function EditExperienceForm({ open, onClose, experience }: EditEx
             <TextField name="included" label="What's Included" fullWidth multiline rows={4} value={formData.translations[currentTab]?.included ?? ''} onChange={handleNestedChange(`translations.${currentTab}`)} />
             <TextField name="notIncluded" label="What's Not Included" fullWidth multiline rows={4} value={formData.translations[currentTab]?.notIncluded ?? ''} onChange={handleNestedChange(`translations.${currentTab}`)} />
             <TextField name="importantInfo" label="Important Information" fullWidth multiline rows={4} value={formData.translations[currentTab]?.importantInfo ?? ''} onChange={handleNestedChange(`translations.${currentTab}`)} />
-            <TextField name="itinerary" label="Detailed Itinerary" fullWidth multiline rows={10} value={formData.translations[currentTab]?.itinerary ?? ''} onChange={handleNestedChange(`translations.${currentTab}`)} helperText="Use Markdown for formatting." />
+            <TextField name="itinerary" label="Detailed Itinerary (Markdown - Fallback)" fullWidth multiline rows={6} value={formData.translations[currentTab]?.itinerary ?? ''} onChange={handleNestedChange(`translations.${currentTab}`)} helperText="Use Markdown if you don't use the Visual Timeline." />
 
-            {/* FAQ Manager Section */}
+            {/* ▼▼▼ Visual Timeline Builder (Pro) ▼▼▼ */}
+            <Divider sx={{ my: 2 }}><Chip label={`Visual Timeline (${currentTab.toUpperCase()})`} /></Divider>
+            <Paper variant="outlined" sx={{ p: 2, bgcolor: '#f8f9fa' }}>
+                {formData.translations[currentTab]?.program?.map((step, index) => (
+                    <Paper key={index} sx={{ p: 2, mb: 2, border: '1px solid #e0e0e0' }}>
+                        <Stack direction="row" spacing={2} sx={{ mb: 2 }}>
+                            <TextField
+                                label={`Step ${index + 1} Title`}
+                                fullWidth
+                                size="small"
+                                value={step.title}
+                                onChange={(e) => handleTimelineStepChange(currentTab, index, 'title', e.target.value)}
+                            />
+                            <FormControl size="small" sx={{ minWidth: 120 }}>
+                                <InputLabel>Type</InputLabel>
+                                <Select
+                                    value={step.type}
+                                    label="Type"
+                                    onChange={(e) => handleTimelineStepChange(currentTab, index, 'type', e.target.value)}
+                                >
+                                    <MenuItem value="stop">Stop</MenuItem>
+                                    <MenuItem value="passBy">Pass By</MenuItem>
+                                    <MenuItem value="transport">Transport</MenuItem>
+                                    <MenuItem value="admission">Admission</MenuItem>
+                                </Select>
+                            </FormControl>
+                            <IconButton onClick={() => handleRemoveTimelineStep(currentTab, index)} color="error" size="small">
+                                <DeleteIcon />
+                            </IconButton>
+                        </Stack>
+                        <Stack direction="row" spacing={2} sx={{ mb: 2 }}>
+                            <TextField
+                                label="Duration"
+                                size="small"
+                                sx={{ flex: 1 }}
+                                value={step.duration}
+                                onChange={(e) => handleTimelineStepChange(currentTab, index, 'duration', e.target.value)}
+                                helperText="e.g. 30 mins"
+                            />
+                            <FormControl size="small" sx={{ flex: 1 }}>
+                                <InputLabel>Admission</InputLabel>
+                                <Select
+                                    value={step.admission}
+                                    label="Admission"
+                                    onChange={(e) => handleTimelineStepChange(currentTab, index, 'admission', e.target.value)}
+                                >
+                                    <MenuItem value="free">Free</MenuItem>
+                                    <MenuItem value="included">Included</MenuItem>
+                                    <MenuItem value="notIncluded">Not Included</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Stack>
+                        <TextField
+                            label="Description"
+                            fullWidth
+                            multiline
+                            rows={2}
+                            size="small"
+                            value={step.description}
+                            onChange={(e) => handleTimelineStepChange(currentTab, index, 'description', e.target.value)}
+                        />
+                    </Paper>
+                ))}
+                <Button startIcon={<AddIcon />} onClick={() => handleAddTimelineStep(currentTab)} variant="outlined" size="small">
+                    Add Timeline Step
+                </Button>
+            </Paper>
+            {/* ▲▲▲ END Timeline Builder ▲▲▲ */}
+
+            {/* FAQ Manager */}
             <Divider sx={{ my: 2 }}><Chip label={`FAQs (${currentTab.toUpperCase()})`} /></Divider>
             <Paper variant="outlined" sx={{ p: 2 }}>
               {formData.translations[currentTab]?.faqs?.map((faq, index) => (
@@ -374,7 +504,6 @@ export default function EditExperienceForm({ open, onClose, experience }: EditEx
           {loading ? 'Saving...' : 'Save Changes'}
         </Button>
       </DialogActions>
-      
     </Dialog>
   );
 }

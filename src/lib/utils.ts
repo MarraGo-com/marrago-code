@@ -1,29 +1,50 @@
-// -------------------------------------------------------------------------
-// 2. UPDATED FILE: /src/lib/utils.ts
-// We are adding a helper function to create clean text summaries.
-// -------------------------------------------------------------------------
-/**
- * Strips Markdown syntax from a string and truncates it.
- * @param markdown - The input string with Markdown.
- * @param length - The desired length of the output string.
- * @returns A plain text string summary.
- */
-export function createSummary(markdown: string, length: number = 100): string {
-  if (!markdown) return '';
+// src/lib/utils.ts
 
-  // This removes Markdown syntax using regular expressions
-  const plainText = markdown
-    .replace(/#{1,6}\s/g, '') // Headings
-    .replace(/(\*\*|__)(.*?)\1/g, '$2') // Bold
-    .replace(/(\*|_)(.*?)\1/g, '$2') // Italic
-    .replace(/!\[(.*?)\]\(.*?\)/g, '') // Images
-    .replace(/\[(.*?)\]\(.*?\)/g, '$1') // Links
-    .replace(/`{1,3}(.*?)`{1,3}/g, '$1') // Code
-    .replace(/(\r\n|\n|\r)/gm, ' '); // Newlines
+import { type ClassValue, clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
 
-  if (plainText.length <= length) {
-    return plainText;
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+
+// 🟢 UPDATED: Handles both TipTap JSON and Old Markdown Strings
+export function createSummary(content: any, limit: number = 150): string {
+  if (!content) return '';
+
+  let text = '';
+
+  // CASE A: Content is the new TipTap JSON Object
+  if (typeof content === 'object' && content !== null) {
+    if (content.content && Array.isArray(content.content)) {
+      // Loop through blocks (paragraphs, headings, etc.)
+      for (const block of content.content) {
+        if (block.content && Array.isArray(block.content)) {
+          // Loop through text spans inside the block
+          for (const span of block.content) {
+            if (span.type === 'text' && span.text) {
+              text += span.text + ' ';
+            }
+          }
+        }
+        // Stop processing if we already have enough text
+        if (text.length >= limit) break;
+      }
+    }
+  } 
+  // CASE B: Content is an old String (Markdown)
+  else if (typeof content === 'string') {
+    text = content
+      .replace(/#{1,6}\s/g, '') // Remove Headings
+      .replace(/(\*\*|__)(.*?)\1/g, '$2') // Remove Bold
+      .replace(/(\*|_)(.*?)\1/g, '$2') // Remove Italic
+      .replace(/!\[(.*?)\]\(.*?\)/g, '') // Remove Images
+      .replace(/\[(.*?)\]\(.*?\)/g, '$1') // Remove Links
+      .replace(/>\s/g, ''); // Remove Blockquotes
   }
 
-  return plainText.substring(0, length).trim() + '...';
+  // Final Cleanup & Truncate
+  const cleanText = text.trim();
+  if (cleanText.length <= limit) return cleanText;
+  
+  return cleanText.substring(0, limit).trim() + '...';
 }

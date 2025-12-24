@@ -1,288 +1,323 @@
-// src/components/footers/AdventureFooter.tsx (or your actual file path)
 'use client';
 
 import React from 'react';
-import { Grid, Typography, Box, Container, IconButton, Divider, Stack, SxProps, Theme } from '@mui/material';
-import { usePathname, Link } from '@/i18n/navigation';
-import {useLocale, useTranslations } from 'next-intl';
-import dynamic from 'next/dynamic';
+import { 
+  Box, 
+  Container, 
+  Grid, 
+  Typography, 
+  IconButton, 
+  Button, 
+  InputBase, 
+  Paper, 
+  Accordion, 
+  AccordionSummary, 
+  AccordionDetails, 
+  useMediaQuery, 
+  useTheme,
+  Stack,
+  alpha
+} from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Facebook, Instagram, Twitter, WhatsApp } from '@mui/icons-material';
+import TiktokIcon from '@/components/icons/TiktokIcon'; // Ensure this path is correct
+import { Link } from '@/i18n/navigation';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-
-
-// --- Icon Imports ---
-import FacebookIcon from '@mui/icons-material/Facebook';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import PhoneIcon from '@mui/icons-material/Phone';
-import EmailIcon from '@mui/icons-material/Email';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { siteConfig } from '@/config/client-data';
-import { WebsiteLanguage } from '@/config/types';
-import TiktokIcon from '@/components/icons/TiktokIcon';
 
-// --- Dynamic Imports ---
-const InteractiveMap = dynamic(
-  () => import('@/components/ui/InteractiveMap'),
-  {
-    ssr: false,
-    loading: () => <Box sx={{ height: '100%', bgcolor: 'action.hover' }} />
-  }
-);
-
-// --- Reusable Style for Animated Links ---
-const animatedLinkSx: SxProps<Theme> = {
-  display: 'inline-block',
-  position: 'relative',
-  color: 'grey.400',
-  '&:hover': { color: 'common.white' },
-  '&::after': {
-    content: '""',
-    position: 'absolute',
-    width: '100%',
-    transform: 'scaleX(0)',
-    height: '1px',
-    bottom: '-2px',
-    left: 0,
-    backgroundColor: 'primary.main',
-    transformOrigin: 'bottom left',
-    transition: 'transform 0.25s ease-out',
-  },
-  '&:hover::after': {
-    transform: 'scaleX(1)',
-    transformOrigin: 'bottom left',
-  },
+// --- VISUAL CONSTANTS (High Trust Dark Theme) ---
+const COLORS = {
+  bg: '#1A1A1A', // Deep Charcoal (Luxury Standard)
+  text: '#E5E5E5',
+  textDim: '#A3A3A3',
+  primary: siteConfig.colors.primaryColor || '#C86B52', // Dynamic Brand Color
+  border: 'rgba(255,255,255,0.1)'
 };
 
+// --- HELPER: Responsive Column ---
+const FooterColumn = ({ title, children, defaultOpen = false }: { title: string, children: React.ReactNode, defaultOpen?: boolean }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
-// --- Sub-components for Organization ---
-
-const BrandInfo = ({ t, aboutSummary }: { t: any, aboutSummary: string }) => (
-    <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-        <Box sx={{ display: 'flex', alignItems: 'center', mb: 1.5 }}>
-            <Image 
-                src={siteConfig.logo}
-                alt={`${siteConfig.siteName} Logo`}
-                width={60} 
-                height={60} 
-                style={{ marginRight: '10px' }}
-            />
-            <Typography variant="h6" component="p" sx={{ color: 'common.white', fontWeight: 'bold' }}>
-                {siteConfig.siteName}
-            </Typography>
-        </Box>
-        {siteConfig.slogan && (
-            <Typography variant="subtitle2" sx={{ color: 'grey.400', mb: 2 }}>
-                {siteConfig.slogan}
-            </Typography>
-        )}
-        {/* RECTIFICATION: Conditional display for aboutUsContent with fallback */}
-    {aboutSummary ? (
-      <Typography variant="body2" sx={{ color: 'grey.400' }}> {/* Added color for consistency */}
-        {aboutSummary.length > 150 ? `${aboutSummary.substring(0, 150)}...` : aboutSummary}
-      </Typography>
-    ) : (
-      <Typography variant="body2" sx={{ color: 'grey.400' }}> {/* Added color for consistency */}
-        {t('defaultAboutText')}
-      </Typography>
-    )}
-    </Grid>
-);
-
-const FooterLinks = ({ t_nav }: { t_nav: any }) => {
-  // RECTIFICATION: Determine if this Grid column should render at all
- /*  const hasConditionalLinks = 
-    siteConfig.hasReviewsSystem ||
-    siteConfig.hasBlogSystem ||
-    siteConfig.hasExperiencesSection ||
-    siteConfig.hasFaqSection; */
-
-  // The 'About', 'Contact', 'Privacy Policy', and 'Terms of Use' links are always present,
-  // so this section will always render. The conditional check for column rendering
-  // should only happen if you intend to hide the *entire* links column if *only*
-  // the mandatory links are present, which is typically not desired.
-
-  return (
-    <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-        <Typography variant="h6" component="p" sx={{ color: 'common.white', fontWeight: 'bold', mb: 2 }}>
-            {t_nav('linksTitle')}
-        </Typography>
-        <Box component="nav" sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-            {/* RECTIFICATION: Conditional rendering using siteConfig.has... properties */}
-            {siteConfig.hasReviewsSystem && <Link href="/reviews" style={{ textDecoration: 'none' }}><Typography sx={animatedLinkSx}>{t_nav('reviewsLink')}</Typography></Link>}
-            {siteConfig.hasBlogSystem && <Link href="/blog" style={{ textDecoration: 'none' }}><Typography sx={animatedLinkSx}>{t_nav('blogLink')}</Typography></Link>}
-            {siteConfig.hasExperiencesSection && <Link href="/experiences" style={{ textDecoration: 'none' }}><Typography sx={animatedLinkSx}>{t_nav('experiencesLink')}</Typography></Link>}
-            {siteConfig.hasFaqSection && <Link href="/faq" style={{ textDecoration: 'none' }}><Typography sx={animatedLinkSx}>{t_nav('faqLink')}</Typography></Link>}
-            <Link href="/about" style={{ textDecoration: 'none' }}><Typography sx={animatedLinkSx}>{t_nav('about')}</Typography></Link>
-            <Link href="/contact" style={{ textDecoration: 'none' }}><Typography sx={animatedLinkSx}>{t_nav('contact')}</Typography></Link>
-            {/* RECTIFICATION: Added Privacy Policy and Terms of Use links, using animatedLinkSx */}
-            <Link href="/privacy-policy" style={{ textDecoration: 'none' }}><Typography sx={animatedLinkSx}>{t_nav('privacyPolicyLink')}</Typography></Link>
-            <Link href="/terms-of-use" style={{ textDecoration: 'none' }}><Typography sx={animatedLinkSx}>{t_nav('termsOfUseLink')}</Typography></Link>
-        </Box>
-    </Grid>
-  );
-};
-
-const ContactDetails = ({ t }: { t: any }) => {
-  // RECTIFICATION: Only render this Grid column if there is ANY contact info
-  const hasContactInfo = 
-    siteConfig.contact.address ||
-    siteConfig.contact.phone ||
-    siteConfig.contact.whatsappNumber ||
-    siteConfig.contact.email ||
-    siteConfig.social.facebook ||
-    siteConfig.social.instagram ||
-    siteConfig.social.twitter ||
-    siteConfig.social.tiktok;
-
-  if (!hasContactInfo) {
-    return null; // Don't render the entire column if no contact details are present
-  }
-
-  return (
-    <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-      <Typography variant="h6" component="p" sx={{ color: 'common.white', fontWeight: 'bold', mb: 2 }}>
-          {t('contactTitle')}
-      </Typography>
-      <Stack spacing={1}>
-          {siteConfig.contact.address && (
-              <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1 }}>
-                  <LocationOnIcon fontSize="small" sx={{ mt: '2px', color: 'grey.400' }} />
-                  <Typography variant="body2" sx={{ color: 'grey.400' }}>{siteConfig.contact.address}</Typography>
-              </Box>
-          )}
-          {siteConfig.contact.phone && (
-              <Link href={`tel:${siteConfig.contact.phone}`} style={{ textDecoration: 'none' }}>
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                      <PhoneIcon fontSize="small" sx={{ color: 'grey.400' }} />
-                      <Typography variant="body2" sx={animatedLinkSx}>{siteConfig.contact.phone}</Typography>
-                  </Box>
-              </Link>
-          )}
-          {siteConfig.contact.whatsappNumber && (
-              <Link href={`https://wa.me/${siteConfig.contact.whatsappNumber.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                      <WhatsAppIcon fontSize="small" sx={{ color: 'grey.400' }} />
-                      <Typography variant="body2" sx={animatedLinkSx}>{siteConfig.contact.whatsappNumber}</Typography>
-                  </Box>
-              </Link>
-          )}
-          {siteConfig.contact.email && (
-              <Link href={`mailto:${siteConfig.contact.email}`} style={{ textDecoration: 'none' }}>
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                      <EmailIcon fontSize="small" sx={{ color: 'grey.400' }} />
-                      <Typography variant="body2" sx={animatedLinkSx}>{siteConfig.contact.email}</Typography>
-                  </Box>
-              </Link>
-          )}
-      </Stack>
-      <Box sx={{ mt: 2 }}>
-          {/* RECTIFICATION: Conditional rendering for social icons */}
-          {siteConfig.social.facebook && (
-              <IconButton aria-label="Facebook" sx={{ color: 'grey.400', '&:hover': { color: 'common.white' } }} href={siteConfig.social.facebook} target="_blank" rel="noopener noreferrer"><FacebookIcon /></IconButton>
-          )}
-          {siteConfig.social.instagram && (
-              <IconButton aria-label="Instagram" sx={{ color: 'grey.400', '&:hover': { color: 'common.white' } }} href={siteConfig.social.instagram} target="_blank" rel="noopener noreferrer"><InstagramIcon /></IconButton>
-          )}
-          {siteConfig.social.twitter && (
-              <IconButton aria-label="Twitter" sx={{ color: 'grey.400', '&:hover': { color: 'common.white' } }} href={siteConfig.social.twitter} target="_blank" rel="noopener noreferrer"><TwitterIcon /></IconButton>
-          )}
-          {siteConfig.social.tiktok && (
-              <IconButton aria-label="Twitter" sx={{ color: 'grey.400', '&:hover': { color: 'common.white' } }} href={siteConfig.social.tiktok} target="_blank" rel="noopener noreferrer">
-                <TiktokIcon sx={{ transform: 'scale(1.5)' }}/>
-              </IconButton>
-          )}
-      </Box>
-    </Grid>
-  );
-};
-
-const CopyrightBar = ({ t }: { t: any }) => {
-    const agencyUrl = "https://www.upmerce.com";
+  if (isMobile) {
     return (
-        <Box sx={{ pt: 4, textAlign: 'center' }}>
-            <Typography variant="body2" sx={{ mb: 2 }}>
-                &copy; {new Date().getFullYear()} {siteConfig.brandName}. {t('allRightsReserved')}
-            </Typography>
-            <Box
-                component="a"
-                href={agencyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                sx={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    textDecoration: 'none',
-                    color: 'grey.400',
-                    opacity: 0.7,
-                    transition: 'opacity 0.3s',
-                    '&:hover': { opacity: 1 }
-                }}
-            >
-                <Typography variant="caption" sx={{ mr: 1 }}>{t('poweredBy')}</Typography>
-                <Image 
-                    src="/upmerce.webp"
-                    alt="upmerce logo"
-                    loading='lazy'
-                    width={20}
-                    height={20}
-                    sizes="20px"
-                    // The 'style' prop with the filter has been removed based on your guidance.
-                />
-                <Typography variant="caption" sx={{ ml: 1, fontWeight: 'bold' }}>
-                    {t('agencyName')}
-                </Typography>
-            </Box>
-        </Box>
+      <Accordion 
+        defaultExpanded={defaultOpen} 
+        disableGutters 
+        elevation={0} 
+        sx={{ 
+          bgcolor: 'transparent', 
+          '&:before': { display: 'none' },
+          color: COLORS.text 
+        }}
+      >
+        <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: COLORS.primary }} />}>
+          <Typography variant="subtitle1" fontWeight="bold">{title}</Typography>
+        </AccordionSummary>
+        <AccordionDetails sx={{ pt: 0, pb: 2, display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+          {children}
+        </AccordionDetails>
+      </Accordion>
     );
+  }
+
+  return (
+    <Box>
+      <Typography variant="h6" fontWeight="bold" gutterBottom sx={{ color: 'white', mb: 2 }}>
+        {title}
+      </Typography>
+      <Box display="flex" flexDirection="column" gap={1.5}>
+        {children}
+      </Box>
+    </Box>
+  );
 };
 
-
-// --- Main Footer Component ---
-
-export default function AdventureFooter() { // Renamed to AdventureFooter for clarity
-  const t = useTranslations('Footer');
-  const t_nav = useTranslations('Header'); // Uses 'Header' translations for navigation links
-  const pathname = usePathname();
-  const locale = useLocale() as WebsiteLanguage;
-  // RECTIFICATION: Conditional map display logic
-  const showMap = 
-    pathname !== '/contact' && 
-    siteConfig.contact.latitude !== undefined && 
-    siteConfig.contact.latitude !== null &&
-    siteConfig.contact.longitude !== undefined &&
-    siteConfig.contact.longitude !== null &&
-    (siteConfig.contact.latitude !== 0 || siteConfig.contact.longitude !== 0); // Only show if explicit non-zero coordinates exist
-    const aboutSummary = siteConfig.textContent?.[locale]?.aboutPage?.summary || siteConfig.textContent?.en?.aboutPage?.summary || '';
-  return (
-    <Box 
-      component="footer" 
+// --- HELPER: Footer Link ---
+const FooterLink = ({ href, children }: { href: string, children: React.ReactNode }) => (
+  <Link href={href} style={{ textDecoration: 'none' }}>
+    <Typography 
+      variant="body2" 
       sx={{ 
-        bgcolor: 'grey.900', 
-        color: 'grey.400',
-        py: { xs: 6, md: 8 },
+        color: COLORS.textDim, 
+        transition: 'color 0.2s', 
+        '&:hover': { color: COLORS.primary, transform: 'translateX(2px)' },
+        display: 'inline-block'
       }}
     >
-      <Container maxWidth="lg">
-        {/* --- Top Row: Information Columns --- */}
-        <Grid container spacing={5} sx={{ mb: 6 }}>
-          <BrandInfo t={t} aboutSummary= {aboutSummary}/>
-          <FooterLinks t_nav={t_nav} />
-          <ContactDetails t={t} />
-        </Grid>
+      {children}
+    </Typography>
+  </Link>
+);
 
-        {/* --- Map Section --- */}
-        {showMap && (
-          <Box sx={{ height: 300, borderRadius: 2, overflow: 'hidden', mb: 6, border: '1px solid', borderColor: 'rgba(255,255,255,0.1)' }}>
-              <InteractiveMap latitude={siteConfig.contact.latitude || 0} longitude={siteConfig.contact.longitude || 0} />
+export default function Footer() {
+  const t = useTranslations('Footer');
+  const currentYear = new Date().getFullYear();
+  
+  // DYNAMIC DATA: Get cities from siteConfig
+  // We slice the top 6 to avoid cluttering the footer
+  const popularLocations = siteConfig.tourLocationsServed.slice(0, 6);
+
+  return (
+    <Box component="footer" sx={{ bgcolor: COLORS.bg, color: COLORS.text, borderTop: `1px solid ${COLORS.primary}` }}>
+      
+      {/* 1. PRE-FOOTER (Newsletter Lite) */}
+      <Box sx={{ borderBottom: `1px solid ${COLORS.border}` }}>
+        <Container maxWidth="lg">
+          <Box py={6} display="flex" flexDirection={{ xs: 'column', md: 'row' }} alignItems="center" justifyContent="space-between" gap={4}>
+            <Box maxWidth={500}>
+              <Typography variant="h5" fontFamily='"Playfair Display", serif' gutterBottom sx={{ fontWeight: 700 }}>
+                {t('newsletterTitle')}
+              </Typography>
+              <Typography variant="body2" color={COLORS.textDim}>
+                {t('newsletterSubtitle')}
+              </Typography>
+            </Box>
+            
+            <Paper 
+              component="form" 
+              sx={{ 
+                p: '4px', display: 'flex', alignItems: 'center', width: { xs: '100%', md: 400 }, 
+                bgcolor: 'rgba(255,255,255,0.05)', border: `1px solid ${COLORS.border}`, borderRadius: 50 
+              }}
+            >
+              <InputBase
+                sx={{ ml: 2, flex: 1, color: 'white', fontSize: '0.9rem' }}
+                placeholder={t('emailPlaceholder')}
+                inputProps={{ 'aria-label': 'join newsletter' }}
+              />
+              <Button 
+                sx={{ 
+                    bgcolor: COLORS.primary, 
+                    color: 'white', 
+                    px: 3, 
+                    borderRadius: 50,
+                    fontWeight: 'bold',
+                    '&:hover': { bgcolor: alpha(COLORS.primary, 0.8) } 
+                }}
+              >
+                {t('joinButton')}
+              </Button>
+            </Paper>
           </Box>
-        )}
-        
-        <Divider sx={{ borderColor: 'rgba(255,255,255,0.1)' }}/>
+        </Container>
+      </Box>
 
-        {/* --- Bottom Row: Copyright --- */}
-        <CopyrightBar t={t} />
+      {/* 2. MAIN LINKS (The SEO Grid) */}
+      <Container maxWidth="lg" sx={{ py: 8 }}>
+        <Grid container spacing={{ xs: 2, md: 8 }}>
+          
+          {/* COL 1: BRAND IDENTITY (Always visible) */}
+          <Grid size={{ xs: 12, md: 4 }}>
+            <Box mb={3} display="flex" alignItems="center" gap={1}>
+                {/* Fallback to text if logo fails, but assume logo exists */}
+               {siteConfig.logo ? (
+                   <Box sx={{ position: 'relative', width: 140, height: 50 }}>
+                        <Image 
+                            src={siteConfig.logo} 
+                            alt={`${siteConfig.brandName} Logo`} 
+                            fill 
+                            style={{ objectFit: 'contain', objectPosition: 'left' }} 
+                        />
+                   </Box>
+               ) : (
+                   <Typography variant="h5" fontWeight="bold" fontFamily='"Playfair Display", serif'>{siteConfig.brandName}</Typography>
+               )}
+            </Box>
+            <Typography variant="body2" color={COLORS.textDim} mb={3} lineHeight={1.6}>
+              {t('brandTagline')}
+              <br /><br />
+              {siteConfig.contact.address && `📍 ${siteConfig.contact.address}`}
+            </Typography>
+            <Stack direction="row" spacing={1}>
+              {siteConfig.social.instagram && <IconButton size="small" sx={{ color: 'white', '&:hover': { color: '#E1306C' } }} href={siteConfig.social.instagram}><Instagram /></IconButton>}
+              {siteConfig.social.facebook && <IconButton size="small" sx={{ color: 'white', '&:hover': { color: '#1877F2' } }} href={siteConfig.social.facebook}><Facebook /></IconButton>}
+              {siteConfig.social.twitter && <IconButton size="small" sx={{ color: 'white', '&:hover': { color: '#1DA1F2' } }} href={siteConfig.social.twitter}><Twitter /></IconButton>}
+              {siteConfig.social.tiktok && <IconButton size="small" sx={{ color: 'white', '&:hover': { color: '#000000', bgcolor: 'white' } }} href={siteConfig.social.tiktok}><TiktokIcon /></IconButton>}
+            </Stack>
+          </Grid>
+
+          {/* COL 2: DESTINATIONS (Dynamic National Scope) */}
+          <Grid size={{ xs: 12, md: 2 }}>
+            <FooterColumn title={t('colDestinations')}>
+              {/* Dynamically Map Top 6 Cities from Config */}
+              {popularLocations.map((city) => (
+                  <FooterLink key={city} href={`/experiences?q=${city}`}>
+                      {city}
+                  </FooterLink>
+              ))}
+              <FooterLink href="/experiences">View All Locations</FooterLink>
+            </FooterColumn>
+          </Grid>
+
+          {/* COL 3: INTERESTS (Static Categories) */}
+          <Grid size={{ xs: 12, md: 3 }}>
+            <FooterColumn title={t('colExperiences')}>
+              <FooterLink href="/experiences?category=surf">Surf Coaching & Camps</FooterLink>
+              <FooterLink href="/experiences?category=desert">Desert & 4x4 Tours</FooterLink>
+              <FooterLink href="/experiences?category=culture">Souk & City Tours</FooterLink>
+              <FooterLink href="/experiences?category=wellness">Hammam & Spa</FooterLink>
+              <FooterLink href="/blog">Travel Journal</FooterLink>
+            </FooterColumn>
+          </Grid>
+
+          {/* COL 4: SUPPORT (Trust & Conversion) */}
+          <Grid size={{ xs: 12, md: 3 }}>
+            <FooterColumn title={t('colHelp')} defaultOpen={true}>
+              <Button 
+                startIcon={<WhatsApp />} 
+                variant="outlined" 
+                href={`https://wa.me/${siteConfig.contact.whatsappNumber?.replace(/\D/g, '')}`}
+                sx={{ 
+                  color: '#25D366', 
+                  borderColor: '#25D366', 
+                  justifyContent: 'flex-start',
+                  textTransform: 'none',
+                  mb: 2,
+                  '&:hover': { bgcolor: 'rgba(37, 211, 102, 0.1)', borderColor: '#25D366' } 
+                }}
+              >
+                {t('chatWhatsapp')}
+              </Button>
+              <FooterLink href="/contact">{t('helpCenter')}</FooterLink>
+              <FooterLink href="/contact">{t('partnerWithUs')}</FooterLink>
+              <FooterLink href="/terms">{t('cancellationPolicy')}</FooterLink>
+            </FooterColumn>
+          </Grid>
+
+        </Grid>
       </Container>
+
+      {/* 3. TRUST BAR (The Footer Bottom) */}
+      <Box sx={{ borderTop: `1px solid ${COLORS.border}`, bgcolor: '#111' }}>
+        <Container maxWidth="lg">
+          <Box py={3} display="flex" flexDirection={{ xs: 'column', md: 'row' }} justifyContent="space-between" alignItems="center" gap={3}>
+            
+            {/* A. LEFT: Copyright & License */}
+            <Box textAlign={{ xs: 'center', md: 'left' }}>
+               <Typography variant="caption" display="block" color={COLORS.textDim}>
+                 © {currentYear} {siteConfig.brandName}. {t('rightsReserved')}
+               </Typography>
+               <Typography variant="caption" color={COLORS.textDim} sx={{ opacity: 0.6 }}>
+                 {t('officialLicense')}
+               </Typography>
+            </Box>
+
+            {/* B. CENTER: Payment Badges */}
+            <Stack direction="row" spacing={2} sx={{ opacity: 0.8, alignItems: 'center' }}>
+                <Box sx={{ width: 40, height: 25, position: 'relative', bgcolor: 'background.paper', borderRadius: 1 }}>
+                    <Image src="/images/payment/visa.webp" alt="Visa" fill style={{ objectFit: 'contain', padding: '2px' }} />
+                </Box>
+                <Box sx={{ width: 40, height: 25, position: 'relative', bgcolor: 'background.paper', borderRadius: 1 }}>
+                    <Image src="/images/payment/mastercard.webp" alt="Mastercard" fill style={{ objectFit: 'contain', padding: '2px' }} />
+                </Box>
+                <Box sx={{ width: 40, height: 25, position: 'relative', bgcolor: 'background.paper', borderRadius: 1 }}>
+                    <Image src="/images/payment/paypal.webp" alt="PayPal" fill style={{ objectFit: 'contain', padding: '2px' }} />
+                </Box>
+            </Stack>
+
+            {/* C. RIGHT: Legal Links & Upmerce Credit (Consolidated) */}
+            <Stack alignItems={{ xs: 'center', md: 'flex-end' }} spacing={1} sx={{ pr: { xs: 0, md: 10 } }}>
+                
+                {/* 1. Legal Links Row (Terms, Privacy, Sitemap) */}
+                <Stack direction="row" spacing={3}>
+                    <Link href="/terms-of-use" style={{ textDecoration: 'none' }}>
+                        <Typography variant="caption" color={COLORS.textDim} sx={{'&:hover':{color:COLORS.primary}}}>
+                            {t('terms')}
+                        </Typography>
+                    </Link>
+                    <Link href="/privacy-policy" style={{ textDecoration: 'none' }}>
+                        <Typography variant="caption" color={COLORS.textDim} sx={{'&:hover':{color:COLORS.primary}}}>
+                            {t('privacy')}
+                        </Typography>
+                    </Link>
+                    <Link href="/sitemap" style={{ textDecoration: 'none' }}>
+                        <Typography variant="caption" color={COLORS.textDim} sx={{'&:hover':{color:COLORS.primary}}}>
+                            {t('sitemap')}
+                        </Typography>
+                    </Link>
+                </Stack>
+
+                {/* 2. Upmerce Credit (Localized) */}
+                <Box 
+                    component="a" 
+                    href="https://upmerce.com" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    sx={{ 
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        gap: 0.8, 
+                        opacity: 0.4, 
+                        transition: 'all 0.2s', 
+                        textDecoration: 'none',
+                        cursor: 'pointer',
+                        '&:hover': { opacity: 1, transform: 'translateY(-1px)' } 
+                    }}
+                >
+                    <Typography 
+                        variant="caption" 
+                        color={COLORS.textDim} 
+                        sx={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: 0.5, fontWeight: 500 }}
+                    >
+                        {t('poweredBy')}
+                    </Typography>
+
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, pl: 0.5, borderLeft: `1px solid ${COLORS.textDim}` }}>
+                        <Box sx={{ width: 14, height: 14, position: 'relative' }}>
+                             <Image src="/upmerce.webp" alt="Upmerce" fill style={{ objectFit: 'contain' }} />
+                        </Box>
+                        <Typography variant="caption" fontWeight="800" color="white" sx={{ fontSize: '0.7rem', letterSpacing: 0.5 }}>
+                            UPMERCE
+                        </Typography>
+                    </Box>
+                </Box>
+            </Stack>
+
+          </Box>
+        </Container>
+      </Box>
     </Box>
   );
 }

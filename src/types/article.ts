@@ -1,18 +1,18 @@
-// -------------------------------------------------------------------------
-// 1. NEW FILE: /src/types/article.ts
-// Create a new 'types' folder in your 'src' directory for this file.
-// -------------------------------------------------------------------------
-// Define the shape of a single translation object for an article
+// src/types/article.ts
+
+// 1. Define the shape of a single translation object
 export interface ArticleTranslation {
   title: string;
-  content: string;
+  // CHANGED: 'any' allows the complex Rich Text JSON structure (p, h, list, image, product cards, etc.)
+  // We no longer use 'string' because that would only support basic text/markdown.
+  content: any; 
   description: string;
-  locale: string; // e.g., 'en', 'fr'
-  slug: string; // Unique slug for the article in this locale
-  author?: string; // Optional author field
+  locale: string;
+  slug: string;
+  author?: string;
 }
 
-// Define the comprehensive shape of our article data
+// 2. Define the comprehensive shape of our article data
 export interface Article {
   id: string;
   title: string; // The title for the current locale for display purposes
@@ -20,12 +20,12 @@ export interface Article {
   status: 'published' | 'draft';
   coverImage: string;
   createdAt: string; // Serialized as an ISO string
-  updatedAt?: string | null; // Optional, serialized as an ISO string,
+  updatedAt?: string | null;
   author: string;
   translations: {
     en?: ArticleTranslation;
     fr?: ArticleTranslation;
-    es?: ArticleTranslation; // <-- ADD THIS LINE
+    es?: ArticleTranslation;
     [key: string]: ArticleTranslation | undefined;
   };
 }

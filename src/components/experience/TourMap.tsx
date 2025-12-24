@@ -1,4 +1,3 @@
-// /src/components/experience/TourMap.tsx
 'use client';
 
 import React from 'react';
@@ -6,28 +5,39 @@ import { Box, Typography, Paper, Button, useTheme } from '@mui/material';
 import MapIcon from '@mui/icons-material/Map';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { useTranslations } from 'next-intl';
-// ▼▼▼ LEAFLET IMPORTS ▼▼▼
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
-// Fix for default Leaflet marker icons in Next.js / Webpack
-// Without this, the marker icon will be broken.
-const iconUrl = 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon.png';
-const iconRetinaUrl = 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon-2x.png';
-const shadowUrl = 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png';
-
-const defaultIcon = L.icon({
-    iconUrl: iconUrl,
-    iconRetinaUrl: iconRetinaUrl,
-    shadowUrl: shadowUrl,
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41]
-});
-L.Marker.prototype.options.icon = defaultIcon;
-// ▲▲▲ END LEAFLET FIX ▲▲▲
+// --- CUSTOM MARKER ---
+const createCustomIcon = (color: string) => {
+  return L.divIcon({
+    className: 'custom-map-marker',
+    html: `
+      <div style="
+        background-color: ${color};
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        border: 3px solid white;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        position: relative;
+      ">
+        <div style="
+          position: absolute;
+          top: 50%; left: 50%;
+          transform: translate(-50%, -50%);
+          width: 8px; height: 8px;
+          background-color: white;
+          border-radius: 50%;
+        "></div>
+      </div>
+    `,
+    iconSize: [24, 24],
+    iconAnchor: [12, 12],
+    popupAnchor: [0, -16]
+  });
+};
 
 interface TourMapProps {
   latitude?: number;
@@ -36,102 +46,116 @@ interface TourMapProps {
 
 export default function TourMap({ latitude, longitude }: TourMapProps) {
   const theme = useTheme();
-  const t = useTranslations('ExperienceDetailsNew');
+  const t = useTranslations('ExperienceDetails.map'); //
 
-  // 1. Check for valid coordinates. If missing or 0, don't render the map.
   const hasValidCoordinates = latitude !== undefined && longitude !== undefined && latitude !== 0 && longitude !== 0;
 
-  if (!hasValidCoordinates) {
-    return null;
-  }
+  if (!hasValidCoordinates) return null;
 
-  const position: [number, number] = [latitude, longitude];
+  const position: [number, number] = [latitude!, longitude!];
+  const customIcon = createCustomIcon(theme.palette.primary.main);
 
   const handleOpenGoogleMaps = () => {
-    // Open location in Google Maps in a new tab
     window.open(`https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`, '_blank');
   };
 
+  // 🎨 DARK MODE STRATEGY:
+  // We switch the Tile URL based on the theme mode.
+  // Light: CartoDB Voyager (Clean, colorful)
+  // Dark:  CartoDB Dark Matter (High contrast dark mode)
+  const isDark = theme.palette.mode === 'dark';
+  const tileUrl = isDark 
+    ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+    : "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png";
+
   return (
-    <Box sx={{ my: 6 }}>
-      <Typography variant="h4" component="h2" sx={{ fontWeight: 'bold', mb: 3 }}>
-        {t('tourMapTitle')}
-      </Typography>
-      
+    <Box sx={{ width: '100%', height: '100%' }}>
       <Paper 
         elevation={2} 
         sx={{ 
           position: 'relative',
-          borderRadius: 3, 
+          borderRadius: 4, 
           overflow: 'hidden',
           bgcolor: 'background.paper',
           border: `1px solid ${theme.palette.divider}`,
-          height: '400px' // Fixed height for the map container
+          height: { xs: '350px', md: '450px' } // Responsive height
         }}
       >
-        {/* ▼▼▼ THE REACT LEAFLET MAP ▼▼▼ */}
         <MapContainer 
             center={position} 
-            zoom={13} 
+            zoom={14} 
             scrollWheelZoom={false} 
-            style={{ height: '100%', width: '100%', zIndex: 1 }}
+            style={{ height: '100%', width: '100%', zIndex: 1, background: isDark ? '#202020' : '#ddd' }}
         >
-            {/* OpenStreetMap Tiles (Free & reliable) */}
             <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; <a href="https://carto.com/">CARTO</a>'
+                url={tileUrl}
             />
-            {/* Meeting Point Marker */}
-            <Marker position={position}>
-                <Popup>
-                    {t('meetingPointLabel')}
+            
+            <Marker position={position} icon={customIcon}>
+                <Popup className="custom-popup">
+                    <Typography variant="subtitle2" fontWeight="bold">
+                        {t('meetingPoint')}
+                    </Typography>
                 </Popup>
             </Marker>
         </MapContainer>
-        {/* ▲▲▲ END MAP ▲▲▲ */}
 
-        {/* Overlay Info & Button */}
-        <Box sx={{ 
-            position: 'absolute', 
-            bottom: 0, 
-            left: 0, 
-            width: '100%', 
-            p: 2,
-            // Add a subtle gradient background to make text readable over the map
-            background: 'linear-gradient(to top, rgba(255,255,255,0.95) 60%, rgba(255,255,255,0) 100%)',
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'space-between',
-            zIndex: 2 // Ensure it sits on top of the map
-        }}>
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <MapIcon sx={{ mr: 1.5, color: theme.palette.primary.main }} />
+        {/* FLOATING CARD */}
+        <Paper 
+            elevation={3}
+            sx={{ 
+                position: 'absolute', 
+                bottom: 20, 
+                left: 20, 
+                right: 20,
+                width: { md: 'auto' },
+                maxWidth: { md: 400 },
+                p: 2,
+                borderRadius: 3,
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'space-between',
+                zIndex: 1000,
+                bgcolor: 'background.paper', // Auto adapts to dark mode
+                border: '1px solid',
+                borderColor: 'divider'
+            }}
+        >
+            <Box sx={{ display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
+                <Box 
+                    sx={{ 
+                        width: 40, height: 40, 
+                        borderRadius: '50%', 
+                        // Subtle transparent background works on both dark/light
+                        bgcolor: isDark ? 'rgba(255,255,255,0.1)' : 'primary.light', 
+                        color: 'primary.main',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        mr: 2, flexShrink: 0
+                    }}
+                >
+                    <MapIcon />
+                </Box>
                 <Box>
-                    <Typography variant="subtitle1" fontWeight="bold" color="text.primary">
-                        {t('meetingPointLabel')}
+                    <Typography variant="subtitle2" fontWeight="bold" noWrap>
+                        {t('meetingPoint')}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                        {/* Show coordinates as a fallback descriptor */}
-                        {latitude.toFixed(4)}, {longitude.toFixed(4)}
+                    <Typography variant="caption" color="text.secondary" display="block" noWrap>
+                        {t('getDirections')}
                     </Typography>
                 </Box>
             </Box>
 
             <Button 
-                variant="contained" 
-                color="primary"
-                endIcon={<OpenInNewIcon />}
-                sx={{ 
-                    borderRadius: '20px',
-                    textTransform: 'none',
-                    fontWeight: 'bold',
-                    boxShadow: theme.shadows[2]
-                }}
+                variant="outlined" 
+                size="small"
                 onClick={handleOpenGoogleMaps}
+                endIcon={<OpenInNewIcon sx={{ fontSize: 16 }} />}
+                sx={{ ml: 2, whiteSpace: 'nowrap', borderRadius: 10, textTransform: 'none', fontWeight: 'bold' }}
             >
-                {t('viewOnMapsButton')}
+                {t('openMaps')}
             </Button>
-        </Box>
+        </Paper>
       </Paper>
     </Box>
   );

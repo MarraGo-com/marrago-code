@@ -1,4 +1,29 @@
-{
+{  
+  "Common": {
+    "languages": {
+      "en": "English",
+      "fr": "French",
+      "es": "Spanish",
+      "de": "German",
+      "it": "Italian",
+      "ar": "Arabic"
+    },
+    "units": {
+      "minutes": "{count, plural, =1 {Minute} other {Minutes}}",
+      "hours": "{count, plural, =1 {Hour} other {Hours}}",
+      "days": "{count, plural, =1 {Day} other {Days}}"
+    },
+    "tags": {
+      "new": "New",
+      "popular": "Popular",
+      "bestseller": "Best Seller",
+      "likelyToSellOut": "Likely to sell out"
+    },
+    "boolean": {
+      "yes": "Yes",
+      "no": "No"
+    }
+  },
   "Header": {
     "experiences": "Experiences",
     "about": "About",
@@ -14,27 +39,70 @@
     "faq": "FAQs",
     "linksTitle": "Links",
     "privacyPolicyLink": "Privacy Policy",
-    "termsOfUseLink": "Terms of Use"
+    "termsOfUseLink": "Terms of Use",
+    "navDestinations": "Destinations",
+    "navInterests": "Interests",
+    "navJournal": "Journal",
+    "ctaPlanTrip": "Plan My Trip",
+    "ariaSearch": "Search destinations",
+    "ariaSettings": "Change Language or Currency",
+    "menuDestinationsTitle": "Popular Destinations",
+  "menuInterestsTitle": "Browse by Interest",
+  "menuViewAll": "View All Destinations",
+  "menuNext": "Next",
+  "menuPrev": "Previous",
+  "explore": "Explore"
   },
   "HeroSection": {
     "title": "Discover the Soul of Morocco",
     "subtitle": "Authentic journeys through the stunning landscapes and rich culture of the Souss-Massa region.",
-    "ctaButton": "Explore Our Tours"
+    "ctaButton": "Explore Our Tours",
+    "placeholder": "Where do you want to go? (e.g. Agafay Desert)",
+  "searchButton": "Search",
+  "labelWhere": "Where",
+  "labelWhen": "When",
+  "addDates": "Add dates",
+  "categories": {
+    "desert": "Desert",
+    "food": "Culinary",
+    "city": "City Tours",
+    "adventure": "Hiking",
+    "transfers": "Drivers",
+    "featured": "Icons"
+  }
   },
   "FeaturedExperiences": {
     "title": "Featured Experiences",
-    "genericError": "An error occurred while loading experiences."
+    "genericError": "An error occurred while loading experiences.",
+    "sellingFastTitle": "Selling Out Fast",
+    "sellingFastSubtitle": "Book these top-rated tours before they're gone.",
+    "travelersChoiceTitle": "Travelers' Choice",
+    "travelersChoiceSubtitle": "Our highest-rated premium experiences.",
+    "bestValueTitle": "Best Value Deals",
+    "bestValueSubtitle": "Unforgettable memories that won't break the bank.",
+    "featuredTitle": "Our Featured Experiences",
+    "featuredSubtitle": "Explore our handpicked selection of tours.",
+    "viewAll": "View All"
   },
   "WhyChooseUs": {
-    "title": "Why Travel With Us?",
     "feature1_title": "Expert Local Guides",
     "feature1_desc": "Our guides are born and raised in Morocco, offering you unparalleled insight and access to authentic experiences.",
     "feature2_title": "Bespoke Itineraries",
     "feature2_desc": "We don't do 'one-size-fits-all'. Every trip is crafted around your interests, budget, and travel style.",
     "feature3_title": "24/7 On-Trip Support",
-    "feature3_desc": "Travel with complete peace of mind. Our team is available around the clock to ensure your journey is seamless."
+    "feature3_desc": "Travel with complete peace of mind. Our team is available around the clock to ensure your journey is seamless.",
+    "title": "Why Book With Marrago?",
+    "subtitle": "Travel with Confidence", 
+    "trustBadgeTitle": "100% Verified Operators",
+    "trustBadgeDesc": "We screen every guide for safety & quality.",
+    "pillar1Title": "Free Cancellation",
+    "pillar1Desc": "Change of plans? No problem. Cancel up to 24 hours before your activity for a full refund.",
+    "pillar2Title": "Reserve Now, Pay Later",
+    "pillar2Desc": "Book your spot today and pay nothing until you're ready. Keep your travel plans flexible.",
+    "pillar3Title": "24/7 Expert Support",
+    "pillar3Desc": "We are locals. Reach our support team anytime via WhatsApp for tips or emergencies."
   },
-    "AboutSection": {
+  "AboutSection": {
     "title": "Our Story",
     "subtitle": "More than just tours, we offer genuine connections to the heart of Morocco.",
     "paragraph1": "Founded by local experts with a passion for sharing the authentic beauty of the Souss-Massa region, our mission is to create unforgettable travel memories. We believe in responsible tourism that supports local communities and showcases the rich culture and stunning landscapes of our home.",
@@ -63,14 +131,130 @@
     "ctaButton": "Contact Us to Plan Your Trip"
   },
   "ExperienceCard": {
-  "bookNowButton": "Book Now"
+  "bookNowButton": "Book Now",
+  "likelyToSellOut": "Likely to Sell Out",
+  "newActivity": "New Activity",
+  "from": "From",
+  "viewDetails": "View Details & Book",
+  "callUs": "Call Us",
+  "chatWhatsApp": "Chat on WhatsApp"
 },
  "ExperienceDetails": {
+  "inclusionsTitle": "What's Included",  
+  "map": {
+    "meetingPoint": "Meeting Point",
+    "getDirections": "Get directions to start point",
+    "openMaps": "Open Maps"
+  },
+    "scarcity": {
+
+"likelyToSellOut": "Likely to sell out"
+
+  },
+
+    "trust": {
+
+"freeCancellation": "Free Cancellation up to 24h",
+
+"instantConfirmation": "Instant Confirmation"
+
+  },
+
+  "breadcrumbs": {
+
+"experiences": "Experiences",
+
+"country": "Morocco"
+
+},
+  "mapTitle": "Where You'll Go",
     "inquireButton": "Request to Book",
     "includedTitle": "What's Included",
     "notIncludedTitle": "What's Not Included",
     "importantInfoTitle": "Important Information",
-    "itineraryTitle": "Detailed Itinerary" 
+    "itineraryTitle": "Detailed Itinerary",
+    "stickyHeader": {
+      "from": "From",
+      "bookNow": "Book Now"
+    },
+    "mobileBar": {
+      "perPerson": "/ person",
+      "checkAvailability": "Check Availability"
+    },
+    "quickFacts": {
+      "groupSize": "Max Group Size",
+      "startTime": "Start Time",
+      "mobileTicket": "Mobile Ticket",
+      "cancellation": "Free Cancellation",
+      "tourCode": "Tour Code",
+      "duration": "Duration",
+      "languages": "Languages",
+      "maxGuests": "Max Group Size",
+      "meetingPoint": "Meeting Point",
+      "people": "{count, plural, =1 {person} other {people}}"
+      
+    },
+    "itinerary": {
+      "title": "Itinerary",
+      "expandAll": "Expand All",
+      "collapseAll": "Collapse All"
+    },
+    "provider": {
+     "title": "Activity Provider",
+     "memberSince": "Member since {year}",
+     "verified": "Identity Verified",
+     "contact": "Contact Provider"
+    },
+    "similarTours": "You Might Also Like",
+    "hero": {
+      "viewGallery": "View Gallery",
+      "showAllPhotos": "Show all photos"
+    },
+    "booking": {
+      "title": "Book this Experience",
+      "selectDate": "Select Date",
+      "guests": "Guests",
+      "adults": "Adults (Age 13+)",
+      "children": "Children (Age 2-12)",
+      "infants": "Infants (Under 2)",
+      "total": "Total",
+      "reserve": "Reserve Now",
+      "unavailable": "Unavailable on this date",
+      "loading": "Checking availability...",
+      "nameLabel": "Full Name",
+      "emailLabel": "Email Address",
+      "phoneLabel": "Phone Number (WhatsApp)",
+      "notesLabel": "Special Requests (Optional)",
+      "dialogTitle": "Confirm your Booking",
+      "dialogSubtitle": "You are booking {tour} on {date}.",
+      "cancel": "Cancel",
+      "submit": "Confirm Booking",
+      "scarcityWarning": "High demand! Only {count} spots left.",
+    "reserveNowPayLater": "Reserve now & pay later",
+    "cancellationPolicy": {
+      "beforeDate": "Cancel before {date} for a full refund.",
+      "upToHours": "Free cancellation up to {hours}h in advance"
+    },
+    "cta": {
+      "bookNow": "Book Now",
+      "checkAvailability": "Check Availability"
+    }
+    },
+    "timeline": {
+    "title": "Itinerary",
+    "ticketIncluded": "Ticket Included",
+    "freeAdmission": "Free Admission",
+    "notIncluded": "Admission Not Included",
+    "types": {
+      "stop": "Stop",
+      "passBy": "Pass By",
+      "transport": "Transport",
+      "admission": "Admission",
+      "activity": "Activity",
+      "meal": "Meal" 
+    }
+  }
+   
   },
  "ExperienceFilters": {
     "locationLabel": "Filter by Location",
@@ -81,9 +265,37 @@
     "sortPriceDesc": "Price: High to Low"
   },
   "ExperiencesPage": {
-    "title": "Our Adventures",
-    "subtitle": "Browse our complete collection of curated tours and authentic experiences across the beautiful Souss-Massa region.",
-    "noResults": "No experiences match your current filter. Please try another selection."
+    "title": "All Experiences",
+    "subtitle": "Explore our handpicked selection of premium Morocco tours.",
+    "searchPlaceholder": "Search by title or location...",
+    "filterPrice": "Price Range",
+    "filterDuration": "Duration",
+    "sortBy": "Sort by",
+    "sortPopular": "Most Popular",
+    "sortPriceLow": "Lowest Price",
+    "sortPriceHigh": "Highest Price",
+    "sortRating": "Top Rated",
+    "noResults": "No experiences found matching your criteria.",
+    "resetFilters": "Reset Filters",
+    "showingResults": "Showing {count} experiences",
+    "showMap": "Show Map",
+    "filters_": "Filters",
+    "showResults": "Show Results",
+    "searchResultsLabel": "Search Results",
+    "showList": "Show List",
+    "filters": {
+    "priceRange": "Price Range",
+    "guestRating": "Guest Rating",
+    "anyRating": "Any Rating",
+    "features": "Features",
+    "freeCancellation": "Free Cancellation",
+    "likelyToSellOut": "Likely to Sell Out",
+    "mobileTicket": "Mobile Ticket",
+    "title": "Filters",
+    "reset": "Reset",
+    "price": "Price Range"
+  }
+
   },
   "ContactSection": {
     "title": "Get In Touch",
@@ -92,11 +304,50 @@
     "address": "Biougra, Souss-Massa, Morocco",
     "phone": "+212 123 456 789",
     "email": "contact@souss-massatours.com",
-    "formNameLabel": "Your Name",
-    "formEmailLabel": "Your Email",
+   
     "formMessageLabel": "Your Message",
     "formSubmitButton": "Send Message",
-    "alertSuccess": "Thank you for your message! We will get back to you shortly."
+    "alertSuccess": "Thank you for your message! We will get back to you shortly.",
+    "formNameLabel": "Your Name",
+  "formEmailLabel": "Your Email",
+  
+ 
+  "formBookingRef": "Booking Reference (Optional)",
+  
+  "alertError": "Something went wrong. Please try again.",
+  
+  "supportHubLabel": "SUPPORT HUB",
+  "heroTitle": "How can we help you today?",
+  "heroSubtitle": "Our Agadir-based team is ready to assist. Select a topic below to get the fastest response.",
+  
+  "cardPlanTitle": "Plan a Trip",
+  "cardPlanDesc": "I want to book a new experience or customize an itinerary.",
+  "cardBookingTitle": "My Booking",
+  "cardBookingDesc": "I have a question about an existing reservation.",
+  "cardGeneralTitle": "General / Media",
+  "cardGeneralDesc": "Partnerships, press, or general questions.",
+  
+  "chatTitle": "Chat with a Travel Designer",
+  "chatSubtitle": "We typically reply in under 5 minutes.",
+  "btnWhatsapp": "Start WhatsApp Chat",
+  "btnPlanner": "Use Trip Planner",
+  "waPlanMessage": "Hi! I'm interested in planning a trip...",
+  
+  "urgencyQuestion": "Is this urgent?",
+  "urgencyYes": "Yes, within 24h",
+  "urgencyNo": "No, upcoming trip",
+  "priorityTitle": "Priority Support Line",
+  "priorityDesc": "For urgent issues (pickups, last-minute changes), please use our dedicated WhatsApp line.",
+  "btnDispatch": "Chat with Dispatch (24/7)",
+  "waUrgentMessage": "URGENT Booking Issue:",
+  
+  "generalFormTitle": "Send us a message",
+  
+  "hqTitle": "Visit our HQ.",
+  "hqDesc": "We are real people, not just a website. Come say hi, drink some tea, and let's plan your adventure in person.",
+  "labelAddress": "Address",
+  "labelHours": "Office Hours",
+  "labelPhone": "Phone"
   },
  "Footer": {
     "siteTitle": "Souss-Massa Tours",
@@ -112,9 +363,9 @@
     "address": "Biougra, Souss-Massa, Morocco",
     "phone": "+212 123 456 789",
     "email": "contact@souss-massatours.com",
+    "poweredBy": "Powered by",
     "socialTitle": "Follow Us",
     "copyright": "© {year} Souss-Massa Tours. All Rights Reserved.",
-    "poweredBy": "Website by",
     "agencyName": "Upmerce Solutions",
     "companyTitle": "Company",
     "exploreTitle": "Explore",
@@ -123,7 +374,24 @@
     "reviewsLink": "Reviews", 
     "faqLink": "FAQs",
     "privacyPolicyLink": "Privacy Policy",
-    "termsOfUseLink": "Terms of Use"
+    "termsOfUseLink": "Terms of Use",
+    "newsletterTitle": "Get the Morocco Insider's Guide",
+    "newsletterSubtitle": "Join 15,000+ travelers getting weekly updates, hidden gem alerts, and exclusive itineraries.",
+    "emailPlaceholder": "Email address",
+    "joinButton": "Join",
+    "brandTagline": "Crafting premium experiences in the Kingdom of Morocco since 2015.",
+    "colDestinations": "Explore Morocco",
+    "colExperiences": "Experiences",
+    "colHelp": "Help & Contact",
+    "chatWhatsapp": "Chat on WhatsApp",
+    "helpCenter": "Help Center",
+    "partnerWithUs": "Partner with us",
+    "cancellationPolicy": "Cancellation Policy",
+    "rightsReserved": "All rights reserved.",
+    "officialLicense": "Official Tourism License N°: 12345/AT",
+    "terms": "Terms",
+    "privacy": "Privacy",
+    "sitemap": "Sitemap"
   }
   ,
   "LoginForm": {
@@ -239,7 +507,36 @@
     "subtitle": "Travel guides, stories, and inspiration from the heart of Morocco.",
     "noArticles": "No articles have been published yet. Please check back soon!",
     "metaTitle": "Blog | Souss-Massa Tours",
-    "metaDescription": "Read our latest articles and travel guides about exploring the beautiful Souss-Massa region of Morocco."
+    "metaDescription": "Read our latest articles and travel guides about exploring the beautiful Souss-Massa region of Morocco.",
+    "journalLabel": "The Journal",
+    "heroTitle": "Morocco: Beyond the Resort",
+    "watchFilm": "Watch Film",
+    "editorsPick": "Editor's Pick",
+    "heroSubtitle": "The ultimate guide to exploring the hidden gems of the Souss-Massa region.",
+    "filters": {
+      "all": "All Stories",
+      "adventure": "Adventure",
+      "food": "Food & Drink",
+      "culture": "Culture",
+      "relaxation": "Relaxation"
+    },
+    "ad": {
+      "title": "Don't just read about it. Experience it.",
+      "button": "Reserve Spot",
+      "price": "From €35"
+    },
+    "card": {
+      "readStory": "Read Story",
+      "guide": "Guide",
+      "promoted": "Promoted",
+      "instantBook": "Instant Book",
+      "from": "From"
+    },
+   "homeInspiration": {
+      "title": "The Morocco Edit",
+      "subtitle": "Curated stories, guides, and local secrets from across the Kingdom.",
+      "viewAll": "View All Stories"
+    }
   },
   "BookingForm": {
     "title": "Book This Adventure",
@@ -280,12 +577,13 @@
     "title": "Hear From Our Travelers",
     "subtitle": "Discover what our guests have to say about their unforgettable experiences with us."
   },
-  "Newsletter": {
-    "title": "Join Our Journey",
-    "subtitle": "Subscribe to our newsletter for exclusive travel tips, special offers, and stories from the heart of Morocco.",
-    "emailLabel": "Your Email Address",
-    "submitButton": "Subscribe",
-    "successMessage": "Thank you for subscribing!",
+ "Newsletter": {
+    "title": "Unlock the Secrets of Morocco",
+    "subtitle": "Don't just visit. Experience the Kingdom like a local. Download our curated 2025 guide to hidden riads, secret surf spots, and authentic culinary gems.",
+    "emailLabel": "Enter your email for instant access",
+    "submitButton": "Send me the Free Guide",
+    "successMessage": "Check your inbox! Your Insider Guide is on its way.",
+    "privacy": "We respect your privacy. Unsubscribe at any time.",
     "errorGeneric": "Something went wrong. Please try again."
   },
   "BookingStatusPage": {
@@ -624,5 +922,292 @@
     "shareSuccess": "Link copied to clipboard!",
     "shareError": "Failed to copy link.",
     "shareMessage": "Check out this amazing experience: {title}"
+  },
+
+"TripWizard": {
+  "step1Title": "Where do you want to go?",
+  "step1Subtitle": "Select all the places that spark your interest.",
+  "step2Title": "What is your travel vibe?",
+  "step2Subtitle": "Help us design the perfect rhythm for your trip.",
+  "step3Title": "Logistics & Preferences",
+  "labelDuration": "How long are you staying?",
+  "labelBudget": "What is your budget style?",
+  "step4Title": "Where should we send your plan?",
+  "step4Subtitle": "Our travel designers will create a custom PDF for you.",
+  "inputName": "Full Name",
+  "inputEmail": "Email Address",
+  "inputWhatsapp": "WhatsApp Number (Recommended)",
+  "btnNext": "Next Step",
+  "btnSubmit": "Get My Free Plan",
+  "alertSuccess": "Success! We are working on your itinerary.",
+  
+    "steps": {
+      "1": {
+        "title": "Which regions interest you?",
+        "subtitle": "Select all that apply. We will craft a route that connects them logically."
+      },
+      "2": {
+        "title": "What is your travel vibe?",
+        "subtitle": "Help us match you with the right activities and pace."
+      },
+      "3": {
+        "title": "Trip Logistics",
+        "travelersLabel": "Who is traveling?",
+        "dateLabel": "When?",
+        "datePlaceholder": "e.g. October 2025",
+        "dateHelper": "Approximate dates are fine",
+        "durationLabel": "Duration",
+        "budgetLabel": "Budget Level"
+      },
+      "4": {
+        "guestTitle": "Save Your Trip",
+        "guestSubtitle": "Create an account to save this itinerary and receive your custom quote.",
+        "userTitle": "Confirm & Send",
+        "userSubtitle": "Review your details below before sending.",
+        "unlockCard": {
+          "title": "Unlock Your Itinerary",
+          "text": "We need to know where to send your custom plan. Please sign in or create an account. (We will save your progress!)",
+          "button": "Sign In / Create Account"
+        },
+        "successAlert": "Signed in as",
+        "whatsappLabel": "WhatsApp Number (Optional)",
+        "whatsappHelper": "Faster communication for your quote"
+      }
+    },
+    "options": {
+      "travelers": {
+        "Solo": "Solo",
+        "Couple": "Couple",
+        "Family": "Family",
+        "Group": "Group",
+        "Friends": "Friends"
+      },
+      "duration": {
+        "3-5 Days": "3-5 Days",
+        "1 Week": "1 Week",
+        "10 Days": "10 Days",
+        "2 Weeks+": "2 Weeks+"
+      },
+      "budget": {
+        "Economy": "Economy",
+        "Comfort": "Comfort",
+        "Luxury": "Luxury"
+      },
+      "interests": {
+        "Surfing": "Surfing",
+        "Relaxation": "Relaxation",
+        "Culinary": "Culinary",
+        "Adventure": "Adventure"
+      }
+    },
+    "form": {
+      "nameLabel": "Full Name",
+      "emailLabel": "Email Address",
+      "submitButton": "Save & Continue",
+      "sendButton": "Send Request",
+      "sending": "Sending..."
+    },
+    "errors": {
+      "selectRegion": "Please select at least one region 🌍",
+      "selectInterest": "Please select at least one interest 🏄",
+      "selectTravelers": "Who is traveling with you? 👥",
+      "selectDate": "When are you planning to go? 📅",
+      "selectDuration": "Please select a duration ⏱️",
+      "selectBudget": "Please select a budget range 💰",
+      "confirmName": "Please confirm your name 👤",
+      "confirmEmail": "Please confirm your email 📧",
+      "generic": "Something went wrong. Please try again."
+    },
+    "success": {
+      "requestSent": "Request sent successfully! Check your email."
+    }
+  },
+  "AccountPage": {
+    "header": {
+      "title": "My Travel Hub",
+      "settings": "Settings"
+    },
+    "emptyState": {
+      "title": "Your Next Chapter is Unwritten.",
+      "subtitle": "The Atlantic coast and the Atlas mountains are vast, but your itinerary is currently blank. Let’s fill this space with sunset surfs, hidden riads, and desert starlight.",
+      "button": "Design My Journey",
+      "note": "Takes 2 minutes • No payment required"
+    },
+    "dashboard": {
+      "heroTitle": "Your Moroccan Adventure\nis in the works.",
+      "heroDrafting": "Drafting escape to:",
+      "statusPill": "Status: In Progress",
+      "designProgressTitle": "Design Progress",
+      "designProgressText": "We are crafting a bespoke proposal based on your request for <strong>{travelers}</strong>."
+    },
+    "tracker": {
+      "title": "LIVE STATUS:",
+      "step1": "Request Received",
+      "step2": "Checking availability...",
+      "step3": "Curating hotel options...",
+      "step4": "Finalizing Proposal"
+    },
+    "concierge": {
+      "name": "Latifa",
+      "role": "Souss Region Expert",
+      "status": "Online",
+      "greeting": "Marhba! I'm reviewing your request for <strong>{travelers}</strong>. I'll have a proposal ready shortly.",
+      "button": "Message Latifa",
+      "trust1": "No payment required yet",
+      "trust2": "Free adjustments included"
+    },
+    "tuner": {
+      "title": "While Latifa builds your itinerary, help us get it perfect:",
+      "option1": "Prefer Riad Courtyards",
+      "option2": "Early Riser (Dawn Patrol)"
+    },
+    "settings": {
+      "title": "Account Settings",
+      "labelName": "Display Name",
+      "logout": "Log Out",
+      "save": "Save Changes",
+      "saving": "Saving..."
+    }
+  },
+  "AuthLayout": {
+    "close": "Close",
+    "images": {
+      "0": {
+        "quote": "Travel is the only thing you buy that makes you richer.",
+        "alt": "Sahara Desert at Sunset"
+      },
+      "1": {
+        "quote": "Find your sanctuary behind the red walls.",
+        "alt": "Luxury Riad Courtyard"
+      },
+      "2": {
+        "quote": "Adventure is waiting just outside your door.",
+        "alt": "Traditional Moroccan Archway"
+      }
+    }
+  },
+  "Auth": {
+    "common": {
+      "googleBtn": "Continue with Google",
+      "googleBtnSignup": "Sign up with Google",
+      "or": "or",
+      "orEmail": "or with email",
+      "emailLabel": "Email Address",
+      "passwordLabel": "Password",
+      "createPasswordLabel": "Create Password",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "placeholderEmail": "name@example.com",
+      "placeholderPass": "••••••••",
+      "placeholderName": "e.g. John"
+    },
+    "login": {
+      "title": "Welcome back",
+      "subtitle": "Please enter your details to sign in.",
+      "submit": "Sign In",
+      "loading": "Signing In...",
+      "footerText": "Don't have an account?",
+      "footerLink": "Create Account",
+      "forgotPassword": "Forgot Password?"
+    },
+    "signup": {
+      "title": "Create an account",
+      "subtitle": "Join us to plan your perfect trip to Morocco.",
+      "submit": "Create Account",
+      "loading": "Creating Account...",
+      "footerText": "Already have an account?",
+      "footerLink": "Sign In",
+      "terms": "By creating an account, you agree to our <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy>."
+    },
+    "errors": {
+      "invalidCreds": "Invalid email or password.",
+      "emailInUse": "This email is already registered. Please log in.",
+      "googleFailed": "Could not sign in with Google.",
+      "generic": "Something went wrong. Please try again."
+    }
+  },
+  "Navigation": {
+    "menu": {
+      "home": "Home",
+      "destinations": "Destinations",
+      "experiences": "Experiences",
+      "about": "About Us",
+      "contact": "Contact"
+    },
+    "buttons": {
+      "signIn": "Sign In",
+      "getStarted": "Get Started",
+      "myAccount": "My Account",
+      "logout": "Log Out"
+    },
+    "aria": {
+      "openMenu": "Open main menu",
+      "closeMenu": "Close main menu"
+    }
+  },
+  "Locations": {
+    "marrakech-region": {
+      "title": "Marrakech & Surroundings",
+      "subtitle": "The Red City, Agafay Desert, and Atlas foothills."
+    },
+    "agadir-coast": {
+      "title": "Agadir & Surf Coast",
+      "subtitle": "Sun, surf, and endless Atlantic horizons."
+    },
+    "deep-desert": {
+      "title": "The Great Sahara",
+      "subtitle": "Golden dunes, starry nights, and ancient Kasbahs."
+    },
+    "imperial-north": {
+      "title": "Fes & Imperial Cities",
+      "subtitle": "Centuries of history in Fes, Meknes, and Volubilis."
+    },
+    "tangier-rif": {
+      "title": "The North & Blue City",
+      "subtitle": "Where the Mediterranean meets the mountains."
+    },
+    "atlas-mountains": {
+      "title": "High Atlas Mountains",
+      "subtitle": "Hiking peaks and authentic Berber villages."
+    },
+    "southern-oasis": {
+      "title": "Road of 1000 Kasbahs",
+      "subtitle": "Ouarzazate, Skoura, and the Dades Valley."
+    },
+    "casablanca-rabat": {
+      "title": "Atlantic Capitals",
+      "subtitle": "Modern hubs of culture, business, and history."
+    },
+    "essaouira-mogador": {
+      "title": "Essaouira & Coast",
+      "subtitle": "Wind, art, and the charm of the ancient Mogador."
+    },
+    "dakhla-south": {
+      "title": "Dakhla & Deep South",
+      "subtitle": "Where the desert meets the ocean lagoon."
+    }
+  },
+  "Interests": {
+    "adventure": {
+      "title": "Adventure & Sport",
+      "description": "Quad biking, hiking & thrills"
+    },
+    "culture": {
+      "title": "Culture & History",
+      "description": "City tours, museums & heritage"
+    },
+    "food": {
+      "title": "Food & Culinary",
+      "description": "Cooking classes & food tours"
+    },
+    "wellness": {
+      "title": "Wellness & Relax",
+      "description": "Hammam, spa & yoga retreats"
+    }
+  },
+  "Reviews": {
+    "verifiedBooking": "Verified Booking",
+    "traveledAs": "Traveled as",
+    "readMore": "Read full review"
   }
 }

@@ -6,7 +6,8 @@ import {
   Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField,
   Typography, Box, LinearProgress, Tabs, Tab, Select, MenuItem,
   InputLabel, FormControl, OutlinedInput, InputAdornment, Divider,
-  Chip, IconButton, Paper, List, ListItem, ListItemText, ListItemAvatar, Avatar, Stack
+  Chip, IconButton, Paper, List, ListItem, ListItemText, ListItemAvatar, Avatar, Stack,
+  Switch, FormControlLabel, Checkbox, SelectChangeEvent // <--- NEW IMPORTS
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -17,16 +18,13 @@ import { useExperienceForm} from '@/hooks/useExperienceForm';
 import { GalleryImage } from '@/types/experience';
 import { locations } from '@/config/locations'; 
 
-// Helper function to split comma-separated string into array
-const splitStringToArray = (str: string | undefined): string[] => {
-  return str ? str.split(',').map(s => s.trim()).filter(s => s !== '') : [];
-};
+// --- NEW: Import Constants ---
+import { DURATION_UNITS, SUPPORTED_LANGUAGES, EXPERIENCE_TAGS } from '@/config/constants';
 
 export default function CreateExperience() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
 
-  // Note: currentTab needs to be typed as one of the valid language codes
   const {
     formData,
     setFormData,
@@ -40,22 +38,41 @@ export default function CreateExperience() {
     handleGalleryImagesChange,
     removeNewGalleryImage,
     resetForm,
-    // Get new FAQ handlers from hook
+    // FAQ handlers
     handleAddFaq,
     handleFaqChange,
-    handleRemoveFaq
+    handleRemoveFaq,
+    // Timeline handlers
+    handleAddTimelineStep,
+    handleTimelineStepChange,
+    handleRemoveTimelineStep
   } = useExperienceForm(null);
 
   const [loading, setLoading] = useState(false);
   const [uploadingFiles, setUploadingFiles] = useState<{ name: string; progress: number }[]>([]);
   const [error, setError] = useState<string | null>(null);
   
-  // Handler for root-level text/number fields
+  // --- NEW: Handlers for Selectors ---
+
+  // Handle standard dropdowns (Duration Unit)
+  const handleSelectChange = (event: SelectChangeEvent) => {
+    const { name, value } = event.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  // Handle Multi-Select (Tags, Languages) -> Saves as Array ['en', 'fr']
+  const handleMultiSelectChange = (event: SelectChangeEvent<string[]>) => {
+    const { name, value } = event.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: typeof value === 'string' ? value.split(',') : value,
+    }));
+  };
+
   const handleRootChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type } = event.target;
     setFormData(prev => ({
         ...prev,
-        // Convert number inputs correctly, handle empty string as undefined for optional numbers
         [name]: type === 'number' ? (value === '' ? undefined : Number(value)) : value
     }));
   };
@@ -114,20 +131,18 @@ export default function CreateExperience() {
       }
       setUploadingFiles([]);
 
-      // STEP 3: Prepare final data and send PUT request
+      // STEP 3: Prepare final data
       const finalData = { 
           ...formData, 
           coverImage: coverImageUrl, 
           galleryImages: newGalleryImagesData,
-          tags: splitStringToArray(formData.tags),
-          languages: splitStringToArray(formData.languages),
-          startTimes: splitStringToArray(formData.startTimes),
-          // Ensure maxGuests is either a number or null (not undefined) for Firestore
+          // --- CHANGED: No more splitting strings. We pass arrays directly. ---
+          tags: formData.tags || [],
+          languages: formData.languages || [],
+          startTimes: typeof formData.startTimes === 'string' ? (formData.startTimes as string).split(',') : formData.startTimes,
           maxGuests: formData.maxGuests === undefined ? null : formData.maxGuests,
-          // ▼▼▼ NEW: Add Meeting Point Coordinates ▼▼▼
           latitude: formData.latitude === undefined ? null : formData.latitude,
           longitude: formData.longitude === undefined ? null : formData.longitude
-          // ▲▲▲
       };
 
       const response = await fetch(`/api/admin/experiences/${experienceId}`, {
@@ -181,59 +196,145 @@ export default function CreateExperience() {
                   <OutlinedInput id="price-amount" name="amount" type="number" value={formData.price.amount} onChange={handleNestedChange('price')} startAdornment={<InputAdornment position="start">EUR</InputAdornment>} label="Price Amount" />
                 </FormControl>
                 <FormControl fullWidth required>
-                
-                <InputLabel id="location-select-label">Location</InputLabel>
-                <Select labelId="location-select-label" name="locationId" value={formData.locationId} label="Location" onChange={(e) => setFormData(p => ({...p, locationId: e.target.value}))}>
-                    {locations.map((loc) => (<MenuItem key={loc.id} value={loc.id}>{loc.name}</MenuItem>))}
-                </Select>
+                  <InputLabel id="location-select-label">Location</InputLabel>
+                  <Select labelId="location-select-label" name="locationId" value={formData.locationId} label="Location" onChange={(e) => setFormData(p => ({...p, locationId: e.target.value}))}>
+                      {locations.map((loc) => (<MenuItem key={loc.id} value={loc.id}>{loc.name}</MenuItem>))}
+                  </Select>
                 </FormControl>
-                {/* ▼▼▼ NEW DURATION FIELD ▼▼▼ */}
-                <TextField
-                    required
-                    name="duration"
-                    label="Duration"
-                    fullWidth
-                    value={formData.duration ?? ''}
-                    onChange={handleRootChange}
-                    helperText="e.g., '3-4 hours', 'Full Day', '2 Days'"
-                />
-                {/* ▲▲▲ END NEW FIELD ▲▲▲ */}
+                
+                {/* ▼▼▼ REFACTORED DURATION (Value + Unit) ▼▼▼ */}
+                <Box sx={{ display: 'flex', gap: 1 }}>
+                  <TextField
+                      required
+                      name="durationValue"
+                      label="Duration"
+                      type="number"
+                      fullWidth
+                      value={formData.durationValue ?? ''}
+                      onChange={handleRootChange}
+                  />
+                  <FormControl sx={{ minWidth: 100 }}>
+                    <InputLabel>Unit</InputLabel>
+                    <Select
+                      name="durationUnit"
+                      value={formData.durationUnit ?? 'hours'}
+                      label="Unit"
+                      onChange={handleSelectChange}
+                    >
+                      {DURATION_UNITS.map((u) => <MenuItem key={u.value} value={u.value}>{u.label}</MenuItem>)}
+                    </Select>
+                  </FormControl>
+                </Box>
             </Box>
 
-            <TextField name="tags" label="Tags (comma-separated)" fullWidth value={formData.tags} onChange={handleRootChange} helperText="e.g., Best Seller, New" sx={{ mb: 2 }} />
+            {/* ▼▼▼ REFACTORED TAGS (Multi-Select) ▼▼▼ */}
+            <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel>Tags (Strict)</InputLabel>
+                <Select
+                    multiple
+                    name="tags"
+                    value={formData.tags || []} 
+                    onChange={handleMultiSelectChange}
+                    input={<OutlinedInput label="Tags (Strict)" />}
+                    renderValue={(selected) => (
+                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                            {(selected as string[]).map((value) => (
+                                <Chip key={value} label={EXPERIENCE_TAGS.find(t=>t.value===value)?.label || value} size="small" />
+                            ))}
+                        </Box>
+                    )}
+                >
+                    {EXPERIENCE_TAGS.map((tag) => (
+                        <MenuItem key={tag.value} value={tag.value}>
+                            <Checkbox checked={(formData.tags || []).indexOf(tag.value) > -1} />
+                            <ListItemText primary={tag.label} />
+                        </MenuItem>
+                    ))}
+                </Select>
+            </FormControl>
 
             {/* Quick Facts Fields */}
             <Typography variant="subtitle2" sx={{ mb: 1, mt: 2, color: 'text.secondary' }}>Quick Facts Details</Typography>
             <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 2, mb: 2 }}>
                 <TextField name="maxGuests" label="Max Guests" type="number" fullWidth value={formData.maxGuests === undefined ? '' : formData.maxGuests} onChange={handleRootChange} />
                 <TextField name="tourCode" label="Tour Code" fullWidth value={formData.tourCode} onChange={handleRootChange} />
-                <TextField name="languages" label="Languages (comma-separated)" fullWidth value={formData.languages} onChange={handleRootChange} helperText="e.g., English, French" />
+                
+                {/* ▼▼▼ REFACTORED LANGUAGES (Multi-Select) ▼▼▼ */}
+                <FormControl fullWidth>
+                    <InputLabel>Languages</InputLabel>
+                    <Select
+                        multiple
+                        name="languages"
+                        value={formData.languages || []}
+                        onChange={handleMultiSelectChange}
+                        input={<OutlinedInput label="Languages" />}
+                        renderValue={(selected) => (
+                            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                                {(selected as string[]).map((value) => (
+                                    <Chip key={value} label={SUPPORTED_LANGUAGES.find(l=>l.code===value)?.label || value} size="small" />
+                                ))}
+                            </Box>
+                        )}
+                    >
+                        {SUPPORTED_LANGUAGES.map((lang) => (
+                            <MenuItem key={lang.code} value={lang.code}>
+                                <Checkbox checked={(formData.languages || []).indexOf(lang.code) > -1} />
+                                <ListItemText primary={lang.label} />
+                            </MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
+
                 <TextField name="startTimes" label="Start Times (comma-separated)" fullWidth value={formData.startTimes} onChange={handleRootChange} helperText="e.g., 09:00, 14:00" />
             </Box>
-            {/* ▼▼▼ NEW Meeting Point Section ▼▼▼ */}
+
+            {/* Meeting Point Coordinates */}
             <Typography variant="subtitle2" sx={{ mb: 1, mt: 2, color: 'text.secondary' }}>Meeting Point Coordinates (Optional)</Typography>
             <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 2, mb: 2 }}>
-                 <TextField 
-                    name="latitude" 
-                    label="Latitude (e.g., 31.6295)" 
-                    type="number" 
-                    fullWidth 
-                    // Important: Handle undefined value to avoid React warnings
-                    value={formData.latitude === undefined ? '' : formData.latitude} 
-                    onChange={handleRootChange} 
-                    inputProps={{ step: "any" }} // Allow decimals
+                 <TextField name="latitude" label="Latitude (e.g., 31.6295)" type="number" fullWidth value={formData.latitude === undefined ? '' : formData.latitude} onChange={handleRootChange} inputProps={{ step: "any" }} />
+                 <TextField name="longitude" label="Longitude (e.g., -7.9811)" type="number" fullWidth value={formData.longitude === undefined ? '' : formData.longitude} onChange={handleRootChange} inputProps={{ step: "any" }} />
+            </Box>
+
+            {/* ▼▼▼ NEW: Booking Policy & Trust Signals ▼▼▼ */}
+            <Divider sx={{ my: 2 }}><Chip label="Booking Policy & Trust" /></Divider>
+            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 2, mb: 2 }}>
+                 <TextField
+                    name="bookingPolicy.cancellationHours"
+                    label="Free Cancellation (Hours before)"
+                    type="number"
+                    value={formData.bookingPolicy.cancellationHours}
+                    onChange={handleNestedChange('bookingPolicy')}
+                    helperText="e.g. 24"
+                 />
+                 <TextField
+                    name="scarcity.spotsLeft"
+                    label="Spots Left (Scarcity Trigger)"
+                    type="number"
+                    value={formData.scarcity.spotsLeft ?? ''}
+                    onChange={handleNestedChange('scarcity')}
+                    helperText="Leave empty to disable. < 5 triggers 'Only X left'"
+                 />
+            </Box>
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: 2 }}>
+                <FormControlLabel
+                    control={<Switch checked={formData.bookingPolicy.isPayLater} onChange={handleNestedChange('bookingPolicy')} name="isPayLater" />}
+                    label="Reserve Now, Pay Later"
                 />
-                 <TextField 
-                    name="longitude" 
-                    label="Longitude (e.g., -7.9811)" 
-                    type="number" 
-                    fullWidth 
-                    value={formData.longitude === undefined ? '' : formData.longitude} 
-                    onChange={handleRootChange} 
-                    inputProps={{ step: "any" }} // Allow decimals
+                <FormControlLabel
+                    control={<Switch checked={formData.bookingPolicy.instantConfirmation} onChange={handleNestedChange('bookingPolicy')} name="instantConfirmation" />}
+                    label="Instant Confirmation"
+                />
+                 <FormControlLabel
+                    control={<Switch checked={formData.scarcity.isLikelyToSellOut} onChange={handleNestedChange('scarcity')} name="isLikelyToSellOut" />}
+                    label="Badge: 'Likely to Sell Out'"
+                />
+                 <FormControlLabel
+                    control={<Switch checked={formData.features.mobileTicket} onChange={handleNestedChange('features')} name="mobileTicket" />}
+                    label="Mobile Ticket Accepted"
                 />
             </Box>
-            {/* ▲▲▲ END New Section ▲▲▲ */}
+            {/* ▲▲▲ END Booking Policy ▲▲▲ */}
+
             {/* Images Section */}
             <Divider sx={{ my: 2 }}><Chip label="Images" /></Divider>
             <Button variant="outlined" component="label" fullWidth disabled={isCompressing || loading} sx={{ mb: 2 }}>
@@ -270,21 +371,18 @@ export default function CreateExperience() {
             </Box>
             <Box sx={{ pt: 3, display: 'flex', flexDirection: 'column', gap: 2 }}>
                 <TextField required name="title" label="Title" fullWidth value={formData.translations[currentTab].title} onChange={handleNestedChange(`translations.${currentTab}`)} />
-                                         {/* ▼▼▼ NEW FIELD ▼▼▼ */}
-    <TextField 
-      name="shortDescription" 
-      label="Short Description (Card Summary)" 
-      fullWidth 
-      multiline 
-      rows={2} 
-      value={formData.translations[currentTab].shortDescription ?? ''} 
-      onChange={handleNestedChange(`translations.${currentTab}`)} 
-      helperText="A brief summary shown on the experience card (2-3 lines)."
-    />
-    {/* ▲▲▲ END NEW FIELD ▲▲▲ */}
+                <TextField 
+                  name="shortDescription" 
+                  label="Short Description (Card Summary)" 
+                  fullWidth 
+                  multiline 
+                  rows={2} 
+                  value={formData.translations[currentTab].shortDescription ?? ''} 
+                  onChange={handleNestedChange(`translations.${currentTab}`)} 
+                  helperText="A brief summary shown on the experience card (2-3 lines)."
+                />
                 <TextField required name="description" label="Description (Markdown)" fullWidth multiline rows={4} value={formData.translations[currentTab].description} onChange={handleNestedChange(`translations.${currentTab}`)} helperText="Use Markdown for formatting."/>
                 
-                {/* Highlights Field */}
                 <TextField name="highlights" label="Highlights (Markdown list)" fullWidth multiline rows={4} value={formData.translations[currentTab].highlights} onChange={handleNestedChange(`translations.${currentTab}`)} helperText="Use * for bullet points. e.g., * Sunset camel ride" />
 
                 <Divider sx={{ my: 1 }} />
@@ -293,14 +391,81 @@ export default function CreateExperience() {
                 <TextField name="importantInfo" label="Important Information" fullWidth multiline rows={3} value={formData.translations[currentTab].importantInfo} onChange={handleNestedChange(`translations.${currentTab}`)} />
                 <TextField name="itinerary" label="Detailed Itinerary (Markdown)" fullWidth multiline rows={6} value={formData.translations[currentTab].itinerary} onChange={handleNestedChange(`translations.${currentTab}`)} />
 
-                {/* ▼▼▼ FAQ Manager Section (Now inside translations) ▼▼▼ */}
+                {/* ▼▼▼ Visual Timeline Builder (Pro) ▼▼▼ */}
+                <Divider sx={{ my: 2 }}><Chip label={`Visual Timeline (${currentTab.toUpperCase()})`} /></Divider>
+                <Paper variant="outlined" sx={{ p: 2, bgcolor: '#f8f9fa' }}>
+                    {formData.translations[currentTab].program?.map((step, index) => (
+                        <Paper key={index} sx={{ p: 2, mb: 2, border: '1px solid #e0e0e0' }}>
+                            <Stack direction="row" spacing={2} sx={{ mb: 2 }}>
+                                <TextField
+                                    label={`Step ${index + 1} Title`}
+                                    fullWidth
+                                    size="small"
+                                    value={step.title}
+                                    onChange={(e) => handleTimelineStepChange(currentTab, index, 'title', e.target.value)}
+                                />
+                                <FormControl size="small" sx={{ minWidth: 120 }}>
+                                    <InputLabel>Type</InputLabel>
+                                    <Select
+                                        value={step.type}
+                                        label="Type"
+                                        onChange={(e) => handleTimelineStepChange(currentTab, index, 'type', e.target.value)}
+                                    >
+                                        <MenuItem value="stop">Stop</MenuItem>
+                                        <MenuItem value="passBy">Pass By</MenuItem>
+                                        <MenuItem value="transport">Transport</MenuItem>
+                                        <MenuItem value="admission">Admission</MenuItem>
+                                    </Select>
+                                </FormControl>
+                                <IconButton onClick={() => handleRemoveTimelineStep(currentTab, index)} color="error" size="small">
+                                    <DeleteIcon />
+                                </IconButton>
+                            </Stack>
+                            <Stack direction="row" spacing={2} sx={{ mb: 2 }}>
+                                <TextField
+                                    label="Duration"
+                                    size="small"
+                                    sx={{ flex: 1 }}
+                                    value={step.duration}
+                                    onChange={(e) => handleTimelineStepChange(currentTab, index, 'duration', e.target.value)}
+                                    helperText="e.g. 30 mins"
+                                />
+                                <FormControl size="small" sx={{ flex: 1 }}>
+                                    <InputLabel>Admission</InputLabel>
+                                    <Select
+                                        value={step.admission}
+                                        label="Admission"
+                                        onChange={(e) => handleTimelineStepChange(currentTab, index, 'admission', e.target.value)}
+                                    >
+                                        <MenuItem value="free">Free</MenuItem>
+                                        <MenuItem value="included">Included</MenuItem>
+                                        <MenuItem value="notIncluded">Not Included</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </Stack>
+                            <TextField
+                                label="Description"
+                                fullWidth
+                                multiline
+                                rows={2}
+                                size="small"
+                                value={step.description}
+                                onChange={(e) => handleTimelineStepChange(currentTab, index, 'description', e.target.value)}
+                            />
+                        </Paper>
+                    ))}
+                    <Button startIcon={<AddIcon />} onClick={() => handleAddTimelineStep(currentTab)} variant="outlined" size="small">
+                        Add Timeline Step
+                    </Button>
+                </Paper>
+                {/* ▲▲▲ END Timeline Builder ▲▲▲ */}
+
+                {/* FAQ Manager */}
                 <Divider sx={{ my: 2 }}><Chip label={`FAQs (${currentTab.toUpperCase()})`} /></Divider>
                 <Paper variant="outlined" sx={{ p: 2 }}>
-                  {/* Iterate over FAQs for the current tab */}
                   {formData.translations[currentTab].faqs?.map((faq, index) => (
                     <Stack key={index} direction="row" spacing={2} alignItems="flex-start" sx={{ mb: 2, p: 2, bg: 'white', borderRadius: 1, border: '1px solid #eee' }}>
                       <Box sx={{ flexGrow: 1 }}>
-                        {/* Pass currentTab to handlers */}
                         <TextField label={`Question ${index + 1}`} fullWidth value={faq.question} onChange={(e) => handleFaqChange(currentTab, index, 'question', e.target.value)} sx={{ mb: 1 }} size="small" />
                         <TextField label="Answer" fullWidth multiline rows={2} value={faq.answer} onChange={(e) => handleFaqChange(currentTab, index, 'answer', e.target.value)} size="small" />
                       </Box>
@@ -309,12 +474,10 @@ export default function CreateExperience() {
                       </IconButton>
                     </Stack>
                   ))}
-                  {/* Pass currentTab to add handler */}
                   <Button startIcon={<AddIcon />} onClick={() => handleAddFaq(currentTab)} variant="outlined" size="small">
                     Add FAQ ({currentTab.toUpperCase()})
                   </Button>
                 </Paper>
-                {/* ▲▲▲ END FAQ Manager ▲▲▲ */}
             </Box>
 
             {error && <Typography color="error" sx={{ mt: 2 }}>Error: {error}</Typography>}

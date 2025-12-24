@@ -2,7 +2,7 @@
 'use client';
 
 import React from 'react';
-import { Grid, Typography, Box, Container, Divider, Paper } from '@mui/material';
+import { Grid, Typography, Box, Container, Divider, Paper, useTheme } from '@mui/material';
 import { useLocale } from 'next-intl';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ReactMarkdown from 'react-markdown';
@@ -31,7 +31,7 @@ export type ExperienceDetailsProps = {
 
 export default function ExperienceDetails({ experience, clientConfig }: ExperienceDetailsProps) {
   const locale = useLocale();
- // const theme = useTheme();
+  const theme = useTheme();
  // const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   // Get the correct translation based on the current locale
@@ -111,7 +111,7 @@ export default function ExperienceDetails({ experience, clientConfig }: Experien
           <Grid size={{ xs: 12, md: 7 }}>
             
             {/* A. Quick Facts (Wrapped in Card for "Pro" feel) */}
-            <Paper elevation={0} variant="outlined" sx={{ p: 3, mb: 4, borderRadius: 3 }}>
+            <Paper elevation={0} variant="outlined" sx={{ p: 3, mb: 4, borderRadius: 3  }}>
                <QuickFacts 
                 maxGuests={experience.maxGuests}
                 languages={experience.languages}

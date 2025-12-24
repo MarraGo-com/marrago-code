@@ -1,4 +1,29 @@
-{
+{  
+  "Common": {
+    "languages": {
+      "en": "Anglais",
+      "fr": "Français",
+      "es": "Espagnol",
+      "de": "Allemand",
+      "it": "Italien",
+      "ar": "Arabe"
+    },
+    "units": {
+      "minutes": "{count, plural, =1 {Minute} other {Minutes}}",
+      "hours": "{count, plural, =1 {Heure} other {Heures}}",
+      "days": "{count, plural, =1 {Jour} other {Jours}}"
+    },
+    "tags": {
+      "new": "Nouveau",
+      "popular": "Populaire",
+      "bestseller": "Meilleure vente",
+      "likelyToSellOut": "Bientôt complet"
+    },
+    "boolean": {
+      "yes": "Oui",
+      "no": "Non"
+    }
+  },
   "Header": {
     "experiences": "Expériences",
     "about": "À propos",
@@ -6,33 +31,76 @@
     "blogLink": "Blog",
     "mobileMenuTitle": "Menu",
     "allExperiences": "Voir toutes les expériences",
-    "login": "Se connecter",
-    "experiencesLink": "Expériences",
-    "reviewsLink": "Avis",
+    "login": "Connexion",
+    "experiencesLink": "Expériences", 
+    "reviewsLink": "Avis", 
     "faqLink": "FAQ",
     "reviews": "Avis",
     "faq": "FAQ",
     "linksTitle": "Liens",
     "privacyPolicyLink": "Politique de confidentialité",
-    "termsOfUseLink": "Conditions d'utilisation"
+    "termsOfUseLink": "Conditions d'utilisation",
+    "navDestinations": "Destinations",
+    "navInterests": "Centres d'intérêt",
+    "navJournal": "Journal",
+    "ctaPlanTrip": "Planifier mon voyage",
+    "ariaSearch": "Rechercher des destinations",
+    "ariaSettings": "Changer la langue ou la devise",
+    "menuDestinationsTitle": "Destinations populaires",
+  "menuInterestsTitle": "Parcourir par centres d'intérêt",
+  "menuViewAll": "Voir toutes les destinations",
+  "menuNext": "Suivant",
+  "menuPrev": "Précédent",
+  "explore": "Explorer"
   },
   "HeroSection": {
-    "title": "Découvrez l'âme du Maroc",
-    "subtitle": "Des voyages authentiques à travers les paysages époustouflants et la riche culture de la région Souss-Massa.",
-    "ctaButton": "Explorer nos circuits"
+   "title": "Découvrez l'âme du Maroc",
+  "subtitle": "Des voyages authentiques à travers les paysages époustouflants et la riche culture de la région Souss-Massa.",
+  "ctaButton": "Explorer nos circuits",
+  "placeholder": "Où souhaitez-vous aller ? (ex. Désert d'Agafay)",
+  "searchButton": "Rechercher",
+  "labelWhere": "Où",
+  "labelWhen": "Quand",
+  "addDates": "Ajouter des dates",
+  "categories": {
+    "desert": "Désert",
+    "food": "Cuisine",
+    "city": "Ville",
+    "adventure": "Aventure",
+    "transfers": "Chauffeurs",
+    "featured": "Vedettes"
+  }
   },
   "FeaturedExperiences": {
     "title": "Expériences en vedette",
-    "genericError": "Une erreur est survenue lors du chargement des expériences."
+    "genericError": "Une erreur est survenue lors du chargement des expériences.",
+    "sellingFastTitle": "Ventes Flash",
+    "sellingFastSubtitle": "Réservez ces circuits les mieux notés avant qu'ils ne soient complets.",
+    "travelersChoiceTitle": "Choix des Voyageurs",
+    "travelersChoiceSubtitle": "Nos expériences premium les mieux notées.",
+    "bestValueTitle": "Meilleur Rapport Qualité-Prix",
+    "bestValueSubtitle": "Des souvenirs inoubliables sans se ruiner.",
+    "featuredTitle": "Nos Expériences en Vedette",
+    "featuredSubtitle": "Explorez notre sélection triée sur le volet.",
+    "viewAll": "Voir Tout"
   },
-  "WhyChooseUs": {
-    "title": "Pourquoi voyager avec nous ?",
+"WhyChooseUs": {
     "feature1_title": "Guides locaux experts",
-    "feature1_desc": "Nos guides sont nés et ont grandi au Maroc, vous offrant une vision inégalée et un accès à des expériences authentiques.",
+    "feature1_desc": "Nos guides sont nés et ont grandi au Maroc, vous offrant une perspective unique et un accès à des expériences authentiques.",
     "feature2_title": "Itinéraires sur mesure",
-    "feature2_desc": "Pas de taille unique. Chaque voyage est conçu en fonction de vos intérêts, de votre budget et de votre style de voyage.",
-    "feature3_title": "Assistance 24/7 pendant le voyage",
-    "feature3_desc": "Voyagez en toute tranquillité. Notre équipe est disponible 24h/24 pour assurer le bon déroulement de votre séjour."
+    "feature2_desc": "Nous ne proposons pas de voyages standardisés. Chaque séjour est conçu selon vos intérêts, votre budget et votre style.",
+    "feature3_title": "Assistance 24h/24 et 7j/7",
+    "feature3_desc": "Voyagez en toute sérénité. Notre équipe est disponible à tout moment pour assurer le bon déroulement de votre séjour.",
+    "title": "Pourquoi réserver avec Marrago ?",
+    "subtitle": "Voyagez en toute confiance",
+    "trustBadgeTitle": "Opérateurs 100 % vérifiés",
+    "trustBadgeDesc": "Nous vérifions chaque guide pour garantir sécurité et qualité.",
+    "pillar1Title": "Annulation gratuite",
+    "pillar1Desc": "Changement de programme ? Pas de problème. Annulez jusqu'à 24 heures avant votre activité pour un remboursement complet.",
+    "pillar2Title": "Réservez maintenant, payez plus tard",
+    "pillar2Desc": "Réservez votre place aujourd'hui et ne payez rien avant d'être prêt. Gardez vos projets de voyage flexibles.",
+    "pillar3Title": "Assistance d'experts 24/7",
+    "pillar3Desc": "Nous sommes des locaux. Contactez notre équipe à tout moment via WhatsApp pour des conseils ou en cas d'urgence."
   },
   "AboutSection": {
     "title": "Notre histoire",
@@ -63,14 +131,122 @@
     "ctaButton": "Contactez-nous pour planifier votre voyage"
   },
   "ExperienceCard": {
-  "bookNowButton": "Réserver maintenant"
+  "bookNowButton": "Réserver maintenant",
+  "likelyToSellOut": "Vendu rapidement",
+  "newActivity": "Nouvelle activité",
+  "from": "À partir de",
+  "viewDetails": "Voir les détails et réserver",
+  "callUs": "Nous appeler",
+  "chatWhatsApp": "Discuter sur WhatsApp"
 },
   "ExperienceDetails": {
+    "inclusionsTitle": "Ce qui est inclus",
+    "map": {
+    "meetingPoint": "Point de Rendez-vous",
+    "getDirections": "Obtenir l'itinéraire",
+    "openMaps": "Ouvrir Maps"
+   
+  },
+   "scarcity": {
+    "likelyToSellOut": "Bientôt complet"
+  },
+  "trust": {
+    "freeCancellation": "Annulation gratuite jusqu'à 24h",
+    "instantConfirmation": "Confirmation immédiate"
+  },
+  "breadcrumbs": {
+    "experiences": "Expériences",
+    "country": "Maroc"
+  },
+  "mapTitle": "Votre Itinéraire",
     "inquireButton": "Demande de réservation",
     "includedTitle": "Ce qui est inclus",
     "notIncludedTitle": "Ce qui n'est pas inclus",
     "importantInfoTitle": "Informations importantes",
-    "itineraryTitle": "Itinéraire détaillé"
+    "itineraryTitle": "Itinéraire détaillé",
+    "stickyHeader": {
+      "from": "À partir de",
+      "bookNow": "Réserver"
+    },
+    "mobileBar": {
+      "perPerson": "/ personne",
+      "checkAvailability": "Voir les dates"
+    },
+    "quickFacts": {
+      "groupSize": "Taille du groupe",
+      "startTime": "Heure de départ",
+      "mobileTicket": "Billet mobile",
+      "cancellation": "Annulation gratuite",
+      "tourCode": "Code Voyage",
+      "duration": "Durée",
+      "languages": "Langues",
+      "maxGuests": "Taille du groupe",
+      "meetingPoint": "Point de rencontre",
+      "people": "{count, plural, =1 {personne} other {personnes}}"
+    },
+    "itinerary": {
+      "title": "Itinéraire",
+      "expandAll": "Tout ouvrir",
+      "collapseAll": "Tout fermer"
+    },
+    "provider": {
+      "hostedBy": "Organisé par MarraGo",
+      "verified": "Partenaire Vérifié",
+      "responseRate": "Taux de réponse : 100%",
+      "title": "Prestataire d'activités",
+      "memberSince": "Membre depuis {year}",
+      "contact": "Contacter le prestataire"
+    },
+    "similarTours": "Vous aimerez aussi",
+    "hero": {
+      "viewGallery": "Voir la Galerie",
+      "showAllPhotos": "Voir toutes les photos"
+    },
+    "booking": {
+      "title": "Réserver cette expérience",
+      "selectDate": "Choisir une date",
+      "guests": "Voyageurs",
+      "adults": "Adultes (13+ ans)",
+      "children": "Enfants (2-12 ans)",
+      "infants": "Bébés (Moins de 2 ans)",
+      "total": "Total",
+      "reserve": "Réserver",
+      "unavailable": "Non disponible à cette date",
+      "loading": "Vérification...",
+      "nameLabel": "Nom Complet",
+      "emailLabel": "Adresse Email",
+      "phoneLabel": "Numéro de téléphone (WhatsApp)",
+      "notesLabel": "Demandes spéciales (Optionnel)",
+      "dialogTitle": "Confirmez votre réservation",
+      "dialogSubtitle": "Vous réservez {tour} le {date}.",
+      "cancel": "Annuler",
+      "submit": "Confirmer la réservation",
+      "scarcityWarning": "Forte demande ! Plus que {count} places disponibles.",
+    "reserveNowPayLater": "Réservez maintenant, payez plus tard",
+    "cancellationPolicy": {
+      "beforeDate": "Annulez avant le {date} pour un remboursement complet.",
+      "upToHours": "Annulation gratuite jusqu'à {hours}h à l'avance"
+    },
+    "cta": {
+      "bookNow": "Réserver maintenant",
+      "checkAvailability": "Vérifier la disponibilité"
+    }
+    },
+    "timeline": {
+    "title": "Itinéraire",
+    "ticketIncluded": "Billet inclus",
+    "freeAdmission": "Entrée gratuite",
+    "notIncluded": "Entrée non incluse",
+    "types": {
+      "stop": "Arrêt",
+      "passBy": "Passage devant",
+      "transport": "Transport",
+      "admission": "Entrée",
+      "activity": "Activité",
+      "meal": "Repas"
+    }
+  }
+  
   },
   "ExperienceFilters": {
     "locationLabel": "Filtrer par lieu",
@@ -81,26 +257,83 @@
     "sortPriceDesc": "Prix : Décroissant"
   },
   "ExperiencesPage": {
-    "title": "Nos Aventures",
-    "subtitle": "Parcourez notre collection complète de circuits sélectionnés et d'expériences authentiques à travers la magnifique région de Souss-Massa.",
-    "noResults": "Aucune expérience ne correspond à votre filtre actuel. Veuillez essayer une autre sélection."
+   "title": "Toutes les Expériences",
+    "subtitle": "Explorez notre sélection triée sur le volet de circuits premium au Maroc.",
+    "searchPlaceholder": "Rechercher par titre ou lieu...",
+    "filterPrice": "Fourchette de prix",
+    "filterDuration": "Durée",
+    "sortBy": "Trier par",
+    "sortPopular": "Plus Populaires",
+    "sortPriceLow": "Prix Croissant",
+    "sortPriceHigh": "Prix Décroissant",
+    "sortRating": "Mieux Notés",
+    "noResults": "Aucune expérience ne correspond à vos critères.",
+    "resetFilters": "Réinitialiser",
+    "showingResults": "Affichage de {count} expériences",
+    "showMap": "Voir la Carte",
+    "showList": "Voir la Liste",
+    "filters_": "Filtres",
+    "showResults": "Afficher les Résultats",
+    "searchResultsLabel": "Résultats de recherche",
+    "filters": {
+    "priceRange": "Fourchette de prix",
+    "guestRating": "Note des voyageurs",
+    "anyRating": "Toutes les notes",
+    "features": "Caractéristiques",
+    "freeCancellation": "Annulation Gratuite",
+    "likelyToSellOut": "Populaire (Vite Complet)",
+    "mobileTicket": "Billet Mobile",
+    "title": "Filtres",
+    "reset": "Réinitialiser",
+    "price": "Fourchette de prix"
+  }
+   
   },
-  "ContactSection": {
+ "ContactSection": {
     "title": "Contactez-nous",
     "infoTitle": "Informations de contact",
-    "infoSubtitle": "Vous avez des questions ou êtes prêt à planifier votre aventure ? Contactez-nous ! Nous sommes là pour vous aider à créer le voyage marocain parfait.",
+    "infoSubtitle": "Vous avez des questions ou êtes prêt à planifier votre aventure ? Écrivez-nous ! Nous sommes là pour vous aider à créer le voyage parfait au Maroc.",
     "address": "Biougra, Souss-Massa, Maroc",
     "phone": "+212 123 456 789",
     "email": "contact@souss-massatours.com",
-    "formNameLabel": "Votre nom",
-    "formEmailLabel": "Votre e-mail",
     "formMessageLabel": "Votre message",
     "formSubmitButton": "Envoyer le message",
-    "alertSuccess": "Merci pour votre message ! Nous vous répondrons sous peu."
+    "alertSuccess": "Merci pour votre message ! Nous vous répondrons sous peu.",
+    "formNameLabel": "Votre nom",
+    "formEmailLabel": "Votre e-mail",
+    "formBookingRef": "Référence de réservation (Facultatif)",
+    "alertError": "Une erreur s'est produite. Veuillez réessayer.",
+    "supportHubLabel": "CENTRE D'AIDE",
+    "heroTitle": "Comment pouvons-nous vous aider ?",
+    "heroSubtitle": "Notre équipe basée à Agadir est prête à vous assister. Sélectionnez un sujet ci-dessous pour une réponse rapide.",
+    "cardPlanTitle": "Planifier un voyage",
+    "cardPlanDesc": "Je souhaite réserver une nouvelle expérience ou personnaliser un itinéraire.",
+    "cardBookingTitle": "Ma réservation",
+    "cardBookingDesc": "J'ai une question concernant une réservation existante.",
+    "cardGeneralTitle": "Général / Presse",
+    "cardGeneralDesc": "Partenariats, presse ou questions générales.",
+    "chatTitle": "Discuter avec un expert voyage",
+    "chatSubtitle": "Nous répondons généralement en moins de 5 minutes.",
+    "btnWhatsapp": "Lancer le chat WhatsApp",
+    "btnPlanner": "Utiliser le planificateur",
+    "waPlanMessage": "Bonjour ! Je suis intéressé par l'organisation d'un voyage...",
+    "urgencyQuestion": "Est-ce urgent ?",
+    "urgencyYes": "Oui, dans les 24h",
+    "urgencyNo": "Non, voyage à venir",
+    "priorityTitle": "Ligne d'assistance prioritaire",
+    "priorityDesc": "Pour les problèmes urgents (ramassages, changements de dernière minute), veuillez utiliser notre ligne WhatsApp dédiée.",
+    "btnDispatch": "Contacter la régulation (24/7)",
+    "waUrgentMessage": "URGENT Problème Réservation :",
+    "generalFormTitle": "Envoyez-nous un message",
+    "hqTitle": "Visitez notre QG.",
+    "hqDesc": "Nous sommes de vraies personnes, pas juste un site web. Venez nous dire bonjour, boire un thé et planifions votre aventure en personne.",
+    "labelAddress": "Adresse",
+    "labelHours": "Heures d'ouverture",
+    "labelPhone": "Téléphone"
   },
   "Footer": {
     "siteTitle": "Souss-Massa Tours",
-    "aboutText": "Création de voyages authentiques et inoubliables au cœur du Maroc. Découvrez la vraie région de Souss-Massa avec des experts locaux.",
+    "aboutText": "Création de voyages authentiques et inoubliables au cœur du Maroc. Découvrez la vraie région Souss-Massa avec des experts locaux.",
     "linksTitle": "Liens rapides",
     "contactUsTitle": "Contactez-nous",
     "aboutLink": "À propos",
@@ -114,16 +347,33 @@
     "email": "contact@souss-massatours.com",
     "socialTitle": "Suivez-nous",
     "copyright": "© {year} Souss-Massa Tours. Tous droits réservés.",
-    "poweredBy": "Site web par",
     "agencyName": "Upmerce Solutions",
     "companyTitle": "Entreprise",
     "exploreTitle": "Explorer",
     "privacyPolicy": "Politique de confidentialité",
-    "termsOfService": "Conditions de service",
+    "termsOfService": "Conditions d'utilisation",
     "reviewsLink": "Avis",
     "faqLink": "FAQ",
     "privacyPolicyLink": "Politique de confidentialité",
-    "termsOfUseLink": "Conditions d'utilisation"
+    "termsOfUseLink": "Conditions d'utilisation",
+    "newsletterTitle": "Recevez le guide de l'initié au Maroc",
+    "newsletterSubtitle": "Rejoignez plus de 15 000 voyageurs recevant des mises à jour hebdomadaires, des alertes sur des pépites cachées et des itinéraires exclusifs.",
+    "emailPlaceholder": "Adresse e-mail",
+    "joinButton": "Rejoindre",
+    "brandTagline": "Création d'expériences premium au Royaume du Maroc depuis 2015.",
+    "colDestinations": "Explorer le Maroc",
+    "colExperiences": "Expériences",
+    "colHelp": "Aide & Contact",
+    "chatWhatsapp": "Discuter sur WhatsApp",
+    "helpCenter": "Centre d'aide",
+    "partnerWithUs": "Devenir partenaire",
+    "poweredBy": "Propulsé par",
+    "cancellationPolicy": "Politique d'annulation",
+    "rightsReserved": "Tous droits réservés.",
+    "officialLicense": "Licence Officielle de Tourisme N° : 12345/AT",
+    "terms": "Conditions",
+    "privacy": "Confidentialité",
+    "sitemap": "Plan du site"
   },
   "LoginForm": {
     "title": "Connexion Admin",
@@ -228,11 +478,40 @@
     "faqLuxuryAnswer3": "Nos tours privés de luxe garantissent votre exclusivité. Vous aurez un guide expert dédié et un véhicule privé haut de gamme climatisé (comme un Mercedes Classe V ou Toyota Prado) pour votre groupe seul. Cela permet une flexibilité ultime pour ajuster votre emploi du temps, explorer des lieux hors des sentiers battus et voyager à votre propre rythme."
   },
   "BlogPage": {
-    "title": "Notre journal",
-    "subtitle": "Guides de voyage, histoires et inspiration du cœur du Maroc.",
-    "noArticles": "Aucun article n'a encore été publié. Veuillez revenir bientôt !",
+    "title": "Notre Journal",
+    "subtitle": "Guides de voyage, histoires et inspirations du cœur du Maroc.",
+    "noArticles": "Aucun article n'a encore été publié. Revenez bientôt !",
     "metaTitle": "Blog | Souss-Massa Tours",
-    "metaDescription": "Lisez nos derniers articles et guides de voyage sur l'exploration de la magnifique région Souss-Massa au Maroc."
+    "metaDescription": "Lisez nos derniers articles et guides de voyage sur l'exploration de la magnifique région de Souss-Massa au Maroc.",
+    "journalLabel": "Le Journal",
+    "heroTitle": "Maroc : Au-delà des hôtels",
+    "watchFilm": "Voir le film",
+    "editorsPick": "Le choix de l'éditeur",
+    "heroSubtitle": "Le guide ultime pour explorer les trésors cachés de la région Souss-Massa.",
+    "filters": {
+      "all": "Toutes les histoires",
+      "adventure": "Aventure",
+      "food": "Gastronomie",
+      "culture": "Culture",
+      "relaxation": "Détente"
+    },
+    "ad": {
+      "title": "Ne faites pas que lire. Vivez l'expérience.",
+      "button": "Réserver",
+      "price": "À partir de 35 €"
+    },
+    "card": {
+      "readStory": "Lire l'histoire",
+      "guide": "Guide",
+      "promoted": "Sponsorisé",
+      "instantBook": "Réservation instantanée",
+      "from": "À partir de"
+    },
+    "homeInspiration": {
+    "title": "L'Édition Maroc",
+    "subtitle": "Récits choisis, guides et secrets locaux à travers le Royaume.",
+    "viewAll": "Voir tous les récits"
+    }
   },
   "BookingForm": {
     "title": "Réserver cette aventure",
@@ -273,13 +552,14 @@
     "title": "La parole à nos voyageurs",
     "subtitle": "Découvrez ce que nos invités disent de leurs expériences inoubliables avec nous."
   },
-  "Newsletter": {
-    "title": "Rejoignez notre voyage",
-    "subtitle": "Abonnez-vous à notre newsletter pour des conseils de voyage exclusifs, des offres spéciales et des histoires du cœur du Maroc.",
-    "emailLabel": "Votre adresse e-mail",
-    "submitButton": "S'abonner",
-    "successMessage": "Merci de vous être abonné !",
-    "errorGeneric": "Une erreur est survenue. Veuillez réessayer."
+ "Newsletter": {
+    "title": "Découvrez les secrets du Maroc",
+    "subtitle": "Ne faites pas que visiter. Vivez le Royaume comme un local. Téléchargez notre guide 2025 exclusif des riads cachés, spots de surf secrets et trésors culinaires authentiques.",
+    "emailLabel": "Entrez votre e-mail pour un accès immédiat",
+    "submitButton": "Envoyez-moi le guide gratuit",
+    "successMessage": "Vérifiez votre boîte de réception ! Votre guide d'initié est en route.",
+    "privacy": "Nous respectons votre vie privée. Désabonnez-vous à tout moment.",
+    "errorGeneric": "Une erreur s'est produite. Veuillez réessayer."
   },
   "BookingStatusPage": {
     "successTitle": "Paiement réussi !",
@@ -618,5 +898,291 @@
     "shareSuccess": "Lien copié dans le presse-papiers !",
     "shareError": "Échec de la copie du lien.",
     "shareMessage": "Découvrez cette expérience incroyable : {title}"
+  },
+
+"TripWizard": {
+  "step1Title": "Où souhaitez-vous aller ?",
+  "step1Subtitle": "Sélectionnez tous les lieux qui vous inspirent.",
+  "step2Title": "Quel est votre style de voyage ?",
+  "step2Subtitle": "Aidez-nous à concevoir le rythme parfait pour votre séjour.",
+  "step3Title": "Logistique et préférences",
+  "labelDuration": "Quelle est la durée de votre séjour ?",
+  "labelBudget": "Quel est votre type de budget ?",
+  "step4Title": "Où devons-nous envoyer votre programme ?",
+  "step4Subtitle": "Nos concepteurs de voyages créeront un PDF personnalisé pour vous.",
+  "inputName": "Nom complet",
+  "inputEmail": "Adresse e-mail",
+  "inputWhatsapp": "Numéro WhatsApp (Recommandé)",
+  "btnNext": "Étape suivante",
+  "btnSubmit": "Recevoir mon programme gratuit",
+  "alertSuccess": "C'est envoyé ! Nous travaillons sur votre itinéraire.",
+    "steps": {
+      "1": {
+        "title": "Quelles régions vous intéressent ?",
+        "subtitle": "Sélectionnez toutes les régions qui s'appliquent. Nous créerons un itinéraire logique pour les relier."
+      },
+      "2": {
+        "title": "Quel est votre style de voyage ?",
+        "subtitle": "Aidez-nous à trouver les activités et le rythme qui vous conviennent."
+      },
+      "3": {
+        "title": "Logistique du voyage",
+        "travelersLabel": "Qui voyage ?",
+        "dateLabel": "Quand ?",
+        "datePlaceholder": "ex. Octobre 2025",
+        "dateHelper": "Des dates approximatives suffisent",
+        "durationLabel": "Durée",
+        "budgetLabel": "Niveau de budget"
+      },
+      "4": {
+        "guestTitle": "Sauvegarder votre voyage",
+        "guestSubtitle": "Créez un compte pour enregistrer cet itinéraire et recevoir votre devis personnalisé.",
+        "userTitle": "Confirmer et envoyer",
+        "userSubtitle": "Vérifiez vos informations ci-dessous avant d'envoyer.",
+        "unlockCard": {
+          "title": "Débloquez votre itinéraire",
+          "text": "Nous devons savoir où envoyer votre programme personnalisé. Veuillez vous connecter ou créer un compte. (Nous sauvegarderons votre progression !)",
+          "button": "Connexion / Créer un compte"
+        },
+        "successAlert": "Connecté en tant que",
+        "whatsappLabel": "Numéro WhatsApp (Facultatif)",
+        "whatsappHelper": "Communication plus rapide pour votre devis"
+      }
+    },
+    "options": {
+      "travelers": {
+        "Solo": "Solo",
+        "Couple": "Couple",
+        "Family": "Famille",
+        "Group": "Groupe",
+        "Friends": "Amis"
+      },
+      "duration": {
+        "3-5 Days": "3-5 Jours",
+        "1 Week": "1 Semaine",
+        "10 Days": "10 Jours",
+        "2 Weeks+": "2 Semaines+"
+      },
+      "budget": {
+        "Economy": "Économique",
+        "Comfort": "Confort",
+        "Luxury": "Luxe"
+      },
+      "interests": {
+        "Surfing": "Surf",
+        "Relaxation": "Détente",
+        "Culinary": "Culinaire",
+        "Adventure": "Aventure"
+      }
+    },
+    "form": {
+      "nameLabel": "Nom complet",
+      "emailLabel": "Adresse e-mail",
+      "submitButton": "Sauvegarder et continuer",
+      "sendButton": "Envoyer la demande",
+      "sending": "Envoi en cours..."
+    },
+    "errors": {
+      "selectRegion": "Veuillez sélectionner au moins une région 🌍",
+      "selectInterest": "Veuillez sélectionner au moins un centre d'intérêt 🏄",
+      "selectTravelers": "Qui voyage avec vous ? 👥",
+      "selectDate": "Quand prévoyez-vous de partir ? 📅",
+      "selectDuration": "Veuillez sélectionner une durée ⏱️",
+      "selectBudget": "Veuillez sélectionner une fourchette de budget 💰",
+      "confirmName": "Veuillez confirmer votre nom 👤",
+      "confirmEmail": "Veuillez confirmer votre e-mail 📧",
+      "generic": "Une erreur s'est produite. Veuillez réessayer."
+    },
+    "success": {
+      "requestSent": "Demande envoyée avec succès ! Vérifiez votre e-mail."
+    }
+  },
+  "AccountPage": {
+    "header": {
+      "title": "Mon Espace Voyage",
+      "settings": "Paramètres"
+    },
+    "emptyState": {
+      "title": "Votre prochain chapitre reste à écrire.",
+      "subtitle": "La côte atlantique et les montagnes de l'Atlas sont vastes, mais votre itinéraire est actuellement vide. Remplissons cet espace avec des sessions de surf au coucher du soleil, des riads cachés et la lumière des étoiles du désert.",
+      "button": "Concevoir mon voyage",
+      "note": "Prend 2 minutes • Aucun paiement requis"
+    },
+    "dashboard": {
+      "heroTitle": "Votre aventure marocaine\nest en préparation.",
+      "heroDrafting": "Préparation de l'évasion vers :",
+      "statusPill": "Statut : En cours",
+      "designProgressTitle": "Avancement de la conception",
+      "designProgressText": "Nous élaborons une proposition sur mesure basée sur votre demande pour <strong>{travelers}</strong>."
+    },
+    "tracker": {
+      "title": "STATUT EN DIRECT :",
+      "step1": "Demande reçue",
+      "step2": "Vérification des disponibilités...",
+      "step3": "Sélection des hôtels...",
+      "step4": "Finalisation de la proposition"
+    },
+    "concierge": {
+      "name": "Latifa",
+      "role": "Experte Région Souss",
+      "status": "En ligne",
+      "greeting": "Marhba ! J'examine votre demande pour <strong>{travelers}</strong>. J'aurai une proposition prête sous peu.",
+      "button": "Envoyer un message à Latifa",
+      "trust1": "Aucun paiement requis pour l'instant",
+      "trust2": "Ajustements gratuits inclus"
+    },
+    "tuner": {
+      "title": "Pendant que Latifa construit votre itinéraire, aidez-nous à le rendre parfait :",
+      "option1": "Préférer les patios de Riad",
+      "option2": "Lève-tôt (Aube)"
+    },
+    "settings": {
+      "title": "Paramètres du compte",
+      "labelName": "Nom d'affichage",
+      "logout": "Déconnexion",
+      "save": "Enregistrer les modifications",
+      "saving": "Enregistrement..."
+    }
+  },
+  "AuthLayout": {
+    "close": "Fermer",
+    "images": {
+      "0": {
+        "quote": "Le voyage est la seule chose que l'on achète qui nous rend plus riche.",
+        "alt": "Désert du Sahara au coucher du soleil"
+      },
+      "1": {
+        "quote": "Trouvez votre sanctuaire derrière les murs rouges.",
+        "alt": "Patio de Riad de luxe"
+      },
+      "2": {
+        "quote": "L'aventure vous attend juste devant votre porte.",
+        "alt": "Arche marocaine traditionnelle"
+      }
+    }
+  },
+  "Auth": {
+    "common": {
+      "googleBtn": "Continuer avec Google",
+      "googleBtnSignup": "S'inscrire avec Google",
+      "or": "ou",
+      "orEmail": "ou avec une adresse e-mail",
+      "emailLabel": "Adresse e-mail",
+      "passwordLabel": "Mot de passe",
+      "createPasswordLabel": "Créer un mot de passe",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "placeholderEmail": "nom@exemple.com",
+      "placeholderPass": "••••••••",
+      "placeholderName": "ex. Jean"
+    },
+    "login": {
+      "title": "Bon retour",
+      "subtitle": "Veuillez entrer vos coordonnées pour vous connecter.",
+      "submit": "Se connecter",
+      "loading": "Connexion en cours...",
+      "footerText": "Vous n'avez pas de compte ?",
+      "footerLink": "Créer un compte",
+      "forgotPassword": "Mot de passe oublié ?"
+    },
+    "signup": {
+      "title": "Créer un compte",
+      "subtitle": "Rejoignez-nous pour planifier votre voyage parfait au Maroc.",
+      "submit": "Créer un compte",
+      "loading": "Création du compte...",
+      "footerText": "Vous avez déjà un compte ?",
+      "footerLink": "Se connecter",
+      "terms": "En créant un compte, vous acceptez nos <terms>Conditions d'utilisation</terms> et notre <privacy>Politique de confidentialité</privacy>."
+    },
+    "errors": {
+      "invalidCreds": "E-mail ou mot de passe incorrect.",
+      "emailInUse": "Cet e-mail est déjà enregistré. Veuillez vous connecter.",
+      "googleFailed": "Impossible de se connecter avec Google.",
+      "generic": "Une erreur s'est produite. Veuillez réessayer."
+    }
+  },
+  "Navigation": {
+    "menu": {
+      "home": "Accueil",
+      "destinations": "Destinations",
+      "experiences": "Expériences",
+      "about": "À propos de nous",
+      "contact": "Contact"
+    },
+    "buttons": {
+      "signIn": "Se connecter",
+      "getStarted": "Commencer",
+      "myAccount": "Mon compte",
+      "logout": "Déconnexion"
+    },
+    "aria": {
+      "openMenu": "Ouvrir le menu principal",
+      "closeMenu": "Fermer le menu principal"
+    }
+  },
+  "Locations": {
+    "marrakech-region": {
+      "title": "Marrakech et ses environs",
+      "subtitle": "La Ville Rouge, le désert d'Agafay et les contreforts de l'Atlas."
+    },
+    "agadir-coast": {
+      "title": "Agadir et la côte du surf",
+      "subtitle": "Soleil, surf et horizons atlantiques infinis."
+    },
+    "deep-desert": {
+      "title": "Le Grand Sahara",
+      "subtitle": "Dunes dorées, nuits étoilées et Kasbahs anciennes."
+    },
+    "imperial-north": {
+      "title": "Fès et les Villes Impériales",
+      "subtitle": "Des siècles d'histoire à Fès, Meknès et Volubilis."
+    },
+    "tangier-rif": {
+      "title": "Le Nord et la Ville Bleue",
+      "subtitle": "Là où la Méditerranée rencontre les montagnes."
+    },
+    "atlas-mountains": {
+      "title": "Haut Atlas",
+      "subtitle": "Randonnées en sommets et villages berbères authentiques."
+    },
+    "southern-oasis": {
+      "title": "La Route des 1000 Kasbahs",
+      "subtitle": "Ouarzazate, Skoura et la vallée du Dadès."
+    },
+    "casablanca-rabat": {
+      "title": "Capitales de l'Atlantique",
+      "subtitle": "Centres modernes de culture, d'affaires et d'histoire."
+    },
+    "essaouira-mogador": {
+      "title": "Essaouira et la côte",
+      "subtitle": "Vent, art et le charme de l'ancienne Mogador."
+    },
+    "dakhla-south": {
+      "title": "Dakhla et le Grand Sud",
+      "subtitle": "Là où le désert rencontre le lagon de l'océan."
+    }
+  },
+  "Interests": {
+    "adventure": {
+      "title": "Aventure et Sport",
+      "description": "Quad, randonnée et sensations fortes"
+    },
+    "culture": {
+      "title": "Culture et Histoire",
+      "description": "Visites de villes, musées et patrimoine"
+    },
+    "food": {
+      "title": "Gastronomie et Culinaire",
+      "description": "Cours de cuisine et circuits gourmands"
+    },
+    "wellness": {
+      "title": "Bien-être et Détente",
+      "description": "Hammam, spa et retraites de yoga"
+    }
+  },
+  "Reviews": {
+    "verifiedBooking": "Réservation vérifiée",
+    "traveledAs": "A voyagé en",
+    "readMore": "Lire l'avis complet"
   }
 }

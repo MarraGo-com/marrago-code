@@ -105,22 +105,55 @@ export const getExperienceById = cache(async (id: string) =>  {
   }
 });
 
-// --- NEW: FOR REVIEWS ---
-export const getFeaturedReviews = cache(async () => {
+export const getFeaturedReviews = cache(async (): Promise<Review[]> => {
   try {
     const reviewsSnapshot = await adminDb.collection('reviews')
       .where('isApproved', '==', true)
       .where('rating', '==', 5)
       .orderBy('createdAt', 'desc')
       .limit(3).get();
+
     const reviews = reviewsSnapshot.docs.map(doc => {
-      const data = doc.data();
-      return {
+      // Cast the raw data to a loose type first
+      const data = doc.data() as any; 
+      
+      const createdDate = data.createdAt?.toDate ? data.createdAt.toDate() : new Date();
+
+      // Explicitly construct the Review object to satisfy the interface
+      const review: Review = {
+        // --- REQUIRED FIELDS (from src/types/review.ts) ---
         id: doc.id,
-        ...data,
-        createdAt: data.createdAt.toDate().toISOString(),
+        authorName: data.authorName || "Anonymous", // Fallback prevents TS error
+        rating: Number(data.rating) || 5,           // Ensure number
+        text: data.text || "",
+        experienceId: data.experienceId || "",
+        isApproved: data.isApproved ?? true,
+        createdAt: createdDate.toISOString(),
+
+        // --- OPTIONAL / LEGACY FIELDS ---
+        location: data.location || "",
+        avatar: data.avatar || "",
+        experienceTitle: data.experienceTitle || data.tourName || "",
+        comment: data.comment || "",
+
+        // --- "WORLD CLASS" UI ADAPTER FIELDS ---
+        // Map 'authorName' to 'author' for the UI
+        author: data.authorName || "Anonymous",
+        
+        // Map tour title
+        tourName: data.experienceTitle || data.tourName || "Morocco Experience",
+
+        // Formatted Date
+        date: new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(createdDate),
+
+        // Trust Signals (Default to true/verified for featured reviews)
+        isVerifiedBooking: data.isVerifiedBooking ?? true,
+        travelerType: data.travelerType || "Verified Traveler"
       };
+
+      return review;
     });
+
     return reviews;
   } catch (error) {
     console.error("Error fetching featured reviews:", error);

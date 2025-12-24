@@ -1,0 +1,272 @@
+[
+    {
+      "id": "exp-agafay-luxury",
+      "title": "Agafay Desert Luxury Sunset: Camel Ride & Berber Dinner Under Stars",
+      "shortDescription": "Escape the city for a magical evening in the stone desert. Enjoy a private sunset camel trek followed by a gourmet 3-course dinner in a luxury tented camp.",
+      "fullDescription": "Experience the mystic silence of the Agafay Desert, located just 45 minutes south of Marrakech. Unlike the sandy Sahara, Agafay offers dramatic rolling stone dunes and moon-like landscapes. Your journey begins with a golden-hour camel ride dressed in traditional Tuareg attire, offering the perfect vantage point for the setting sun.\n\nAs night falls, retreat to a luxury bivouac camp illuminated by lanterns. Indulge in a traditional Moroccan feast—featuring Harira soup, slow-cooked Tagine, and seasonal fruits—while being entertained by live Gnawa music and fire-eaters under a canopy of stars.",
+      "highlights": [
+        "VIP Private Transfer in an A/C 4x4",
+        "Sunset camel trek with traditional nomadic attire",
+        "3-course gourmet dinner in a private tent",
+        "Live campfire entertainment (Gnawa music)"
+      ],
+      "price": 85,
+      "duration": "6 Hours",
+      "location": "Agafay Desert",
+      "coordinates": {
+        "lat": 31.4234,
+        "lng": -8.1345
+      },
+      "tags": ["Luxury", "Best Seller", "Romantic", "Dinner"],
+      "scarcity": true,
+      "bookingPolicy": "Free cancellation up to 24h",
+      "timeline": [
+        {
+          "title": "Hotel Pickup",
+          "type": "Transport",
+          "duration": "45 mins",
+          "description": "Luxury 4x4 pickup from your Riad or Hotel in Marrakech."
+        },
+        {
+          "title": "Camel Trek",
+          "type": "Activity",
+          "duration": "1 Hour",
+          "description": "Ride across the stone dunes as the sun sets over the Atlas Mountains."
+        },
+        {
+          "title": "Camp Arrival",
+          "type": "Stop",
+          "duration": "15 mins",
+          "description": "Welcome mint tea ceremony and Moroccan pastries."
+        },
+        {
+          "title": "Dinner & Show",
+          "type": "Meal",
+          "duration": "2 Hours",
+          "description": "Candlelit dinner with live music and fire performance."
+        },
+        {
+          "title": "Return Transfer",
+          "type": "Transport",
+          "duration": "45 mins",
+          "description": "Drop-off at your accommodation."
+        }
+      ]
+    },
+    {
+      "id": "exp-merzouga-3day",
+      "title": "The Grand Sahara: 3-Day Luxury Expedition to Merzouga Dunes",
+      "shortDescription": "The ultimate Moroccan road trip. Cross the High Atlas, explore the Dades Valley, and sleep in a luxury glamping tent amidst the towering Erg Chebbi dunes.",
+      "fullDescription": "Embark on a once-in-a-lifetime journey across Morocco’s most dramatic landscapes. This 3-day expedition takes you through the Tizi n'Tichka pass, past the UNESCO heritage site of Ait Ben Haddou, and into the lush Dades Valley.\n\nThe climax of the trip is Merzouga. Abandon the vehicle for camels and trek into the heart of the Erg Chebbi dunes to watch the sunset. Spend the night in a luxury desert camp equipped with private ensuite bathrooms, hot showers, and a king-sized bed, surrounded by nothing but silence and sand.",
+      "highlights": [
+        "Luxury Glamping accommodation (Private Ensuite)",
+        "Visit Ait Ben Haddou (Game of Thrones set)",
+        "Sunset and Sunrise Camel treks in Erg Chebbi",
+        "Scenic drive through the Dades and Todra Gorges"
+      ],
+      "price": 240,
+      "duration": "3 Days",
+      "location": "Merzouga",
+      "coordinates": {
+        "lat": 31.0802,
+        "lng": -4.0133
+      },
+      "tags": ["Adventure", "Multi-day", "Luxury", "Nature"],
+      "scarcity": false,
+      "bookingPolicy": "Free cancellation up to 48h",
+      "timeline": [
+        {
+          "title": "Crossing the Atlas",
+          "type": "Transport",
+          "duration": "4 Hours",
+          "description": "Drive through the winding Tizi n'Tichka pass with panoramic stops."
+        },
+        {
+          "title": "Ait Ben Haddou",
+          "type": "Stop",
+          "duration": "1.5 Hours",
+          "description": "Guided walking tour of the ancient Kasbah fortress."
+        },
+        {
+          "title": "Dades Valley Stay",
+          "type": "Accommodation",
+          "duration": "Overnight",
+          "description": "Night 1 in a boutique Riad overlooking the gorges."
+        },
+        {
+          "title": "Erg Chebbi Trek",
+          "type": "Activity",
+          "duration": "1.5 Hours",
+          "description": "Camel trek into the deep dunes to reach the luxury camp."
+        },
+        {
+          "title": "Desert Glamping",
+          "type": "Accommodation",
+          "duration": "Overnight",
+          "description": "Night 2 under the stars with campfire music and dinner."
+        }
+      ]
+    },
+    {
+      "id": "exp-ouzoud-hike",
+      "title": "Ouzoud Waterfalls: Guided Hike, Boat Ride & Wild Monkey Encounter",
+      "shortDescription": "Escape the heat of the city to the highest waterfalls in North Africa. Hike through olive groves, spot wild Barbary macaques, and take a refreshing boat ride.",
+      "fullDescription": "Located in the Middle Atlas Mountains, the Ouzoud Waterfalls drop a dramatic 110 meters into a lush canyon. Your day begins with a scenic drive through Berber countryside before meeting your local guide.\n\nDescend the winding paths through ancient olive trees, where you will encounter friendly wild Barbary apes. At the bottom, board a traditional hand-rowed boat to get close to the cascading water (prepare to get misty!). Enjoy a traditional Tagine lunch on a terrace overlooking the falls before the hike back up.",
+      "highlights": [
+        "See the highest waterfalls in North Africa (110m)",
+        "Encounter wild Barbary Macaque monkeys",
+        "Traditional boat ride at the base of the falls",
+        "Hiking through shaded olive groves"
+      ],
+      "price": 45,
+      "duration": "9 Hours",
+      "location": "Azilal / Ouzoud",
+      "coordinates": {
+        "lat": 32.0142,
+        "lng": -6.7186
+      },
+      "tags": ["Nature", "Hiking", "Family Friendly"],
+      "scarcity": false,
+      "bookingPolicy": "Free cancellation up to 24h",
+      "timeline": [
+        {
+          "title": "Scenic Drive",
+          "type": "Transport",
+          "duration": "2.5 Hours",
+          "description": "Journey through the Middle Atlas plains."
+        },
+        {
+          "title": "The Descent",
+          "type": "Activity",
+          "duration": "1 Hour",
+          "description": "Guided hike down the cliffside paths to the water."
+        },
+        {
+          "title": "Wild Monkeys",
+          "type": "Stop",
+          "duration": "20 mins",
+          "description": "Photo opportunity with the resident Barbary apes."
+        },
+        {
+          "title": "Boat Ride",
+          "type": "Activity",
+          "duration": "30 mins",
+          "description": "Hand-rowed boat trip to the base of the falls."
+        },
+        {
+          "title": "Panoramic Lunch",
+          "type": "Meal",
+          "duration": "1 Hour",
+          "description": "Lunch at a cliffside restaurant (Not included in price)."
+        }
+      ]
+    },
+    {
+      "id": "exp-essaouira-daytrip",
+      "title": "Essaouira Coastal Escape: Medina History & Atlantic Breezes",
+      "shortDescription": "A relaxed day trip to the 'Windy City' of Africa. Explore the Portuguese fortress, wander the blue-and-white Medina, and enjoy fresh seafood by the port.",
+      "fullDescription": "Leave the chaos of Marrakech behind for the laid-back artistic vibe of Essaouira. Formerly known as Mogador, this UNESCO World Heritage site blends Portuguese architecture with Moroccan culture.\n\nUpon arrival, you are free to explore at your own pace. Walk the historic Skala de la Ville ramparts (famous for Game of Thrones scenes), watch the fishing boats return to the blue port, or relax on the vast sandy beach. Don't miss the chance to visit a women's Argan oil cooperative on the way.",
+      "highlights": [
+        "Visit the Skala de la Ville ramparts",
+        "Explore the UNESCO Medina and Souks",
+        "Watch goats climbing Argan trees (seasonal)",
+        "Free time to swim or eat fresh grilled sardines"
+      ],
+      "price": 25,
+      "duration": "10 Hours",
+      "location": "Essaouira",
+      "coordinates": {
+        "lat": 31.5085,
+        "lng": -9.7595
+      },
+      "tags": ["Culture", "Best Value", "Beach", "History"],
+      "scarcity": false,
+      "bookingPolicy": "Free cancellation up to 24h",
+      "timeline": [
+        {
+          "title": "Argan Stop",
+          "type": "Stop",
+          "duration": "30 mins",
+          "description": "Visit a women's cooperative to see Argan oil production."
+        },
+        {
+          "title": "Arrival in Essaouira",
+          "type": "Transport",
+          "duration": "10:30 AM",
+          "description": "Drop-off near the Medina gates."
+        },
+        {
+          "title": "The Ramparts",
+          "type": "Activity",
+          "duration": "1 Hour",
+          "description": "Walk the historic Portuguese fortress walls."
+        },
+        {
+          "title": "Free Exploration",
+          "type": "Activity",
+          "duration": "4 Hours",
+          "description": "Shopping in the souks, lunch at the port, or beach time."
+        },
+        {
+          "title": "Return Drive",
+          "type": "Transport",
+          "duration": "2.5 Hours",
+          "description": "Relaxing drive back to Marrakech."
+        }
+      ]
+    },
+    {
+      "id": "exp-atlas-3valleys",
+      "title": "Atlas Mountains & 3 Valleys: Berber Villages, Hiking & Waterfall Lunch",
+      "shortDescription": "Immerse yourself in Berber culture. Visit the Ourika, Asni, and Sidi Fares valleys, visit a traditional home, and hike to the Setta Fatma waterfalls.",
+      "fullDescription": "This comprehensive tour takes you deep into the High Atlas Mountains. You will explore three distinct valleys, each offering different landscapes from lush rivers to arid rocky peaks.\n\nThe highlight of the day is a visit to a traditional Berber house, where you will learn how to make mint tea and see how the locals live. Afterward, head to the Ourika Valley for a guided hike to the seven waterfalls, followed by a delicious lunch with your feet in the cool river water.",
+      "highlights": [
+        "Explore 3 distinct valleys (Ourika, Asni, Sidi Fares)",
+        "Tea ceremony in a real Berber family home",
+        "Guided hike to the Setti Fatma waterfalls",
+        "Panoramic views of Mount Toubkal (North Africa's highest peak)"
+      ],
+      "price": 45,
+      "duration": "8 Hours",
+      "location": "Ourika Valley",
+      "coordinates": {
+        "lat": 31.3426,
+        "lng": -7.7663
+      },
+      "tags": ["Culture", "Hiking", "Mountains", "Food"],
+      "scarcity": true,
+      "bookingPolicy": "Free cancellation up to 24h",
+      "timeline": [
+        {
+          "title": "Lalla Takerkoust",
+          "type": "Stop",
+          "duration": "20 mins",
+          "description": "Photo stop at the picturesque reservoir dam."
+        },
+        {
+          "title": "Berber House",
+          "type": "Activity",
+          "duration": "45 mins",
+          "description": "Tea ceremony and bread dipping with a local family."
+        },
+        {
+          "title": "Sidi Fares Valley",
+          "type": "Transport",
+          "duration": "1 Hour",
+          "description": "Off-road scenic drive through authentic villages."
+        },
+        {
+          "title": "Waterfall Hike",
+          "type": "Activity",
+          "duration": "1 Hour",
+          "description": "Moderate hike to the Ourika waterfalls."
+        },
+        {
+          "title": "River Lunch",
+          "type": "Meal",
+          "duration": "1.5 Hours",
+          "description": "Traditional lunch served at tables in the river stream."
+        }
+      ]
+    }
+  ]
