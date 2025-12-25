@@ -20,18 +20,14 @@ export default function FloatingConcierge() {
   const [isOpen, setIsOpen] = useState(false); // Mobile toggle state
 
   // --- CONFIGURATION ---
-  // Use the founder's image to build extreme trust.
   const conciergeImage = "/images/marrago/ops-founder-male.webp"; 
   const conciergeName = "Omar";
-  // Personalized message
   const welcomeMessage = "Salaam! I'm Omar. Ready to plan your trip?";
   
-  // Pre-filled WhatsApp Message
   const whatsappUrl = `https://wa.me/${siteConfig.contact.whatsappNumber?.replace(/\D/g, '')}?text=${encodeURIComponent("Hello Omar, I would like to plan a trip with MarraGo.")}`;
 
   const handleInteraction = () => {
     if (isMobile) {
-        // On mobile: 1st tap opens bubble, 2nd tap goes to WhatsApp
         if (!isOpen) setIsOpen(true);
         else window.open(whatsappUrl, '_blank');
     } else {
@@ -43,19 +39,20 @@ export default function FloatingConcierge() {
     <Box
       sx={{
         position: 'fixed',
-        // --- SMART POSITIONING ---
-        // We lift it slightly higher on Desktop (40px) to clear the Footer's bottom copyright line
-        bottom: { xs: 24, md: 40 },
+        // --- SMART POSITIONING FIX ---
+        // xs (Mobile): 100px from bottom to clear the "Check Availability" bar
+        // md (Desktop): 40px from bottom (standard position)
+        bottom: { xs: 100, md: 40 }, 
         right: { xs: 24, md: 40 },
-        zIndex: 9999, // Ensure it floats above everything
+        zIndex: 1300, // Still high, but allows modals to go over it if needed
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-end',
         gap: 2,
-        pointerEvents: 'none', // Allows clicking "through" the empty space around the button
+        pointerEvents: 'none', 
       }}
     >
-      {/* 2. THE "SPEECH BUBBLE" (Appears on Hover or Click) */}
+      {/* 2. THE "SPEECH BUBBLE" */}
       <Slide direction="up" in={isHovered || isOpen} mountOnEnter unmountOnExit>
         <Paper
             elevation={6}
@@ -66,7 +63,7 @@ export default function FloatingConcierge() {
                 color: 'text.primary',
                 p: 2,
                 borderRadius: 3,
-                borderBottomRightRadius: 4, // Subtle "speech bubble" shape
+                borderBottomRightRadius: 4, 
                 mb: 1,
                 maxWidth: '280px',
                 cursor: 'pointer',
@@ -100,7 +97,7 @@ export default function FloatingConcierge() {
         </Paper>
       </Slide>
 
-      {/* 3. THE TRIGGER (Avatar with Status Dot) */}
+      {/* 3. THE TRIGGER BUTTON */}
       <Box
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -113,7 +110,6 @@ export default function FloatingConcierge() {
             '&:hover': { transform: 'scale(1.05)' }
         }}
       >
-        {/* The "Online" Pulse Ring */}
         <Box
             sx={{
                 position: 'absolute',
@@ -124,7 +120,6 @@ export default function FloatingConcierge() {
             }}
         />
 
-        {/* The Avatar */}
         <Avatar
             src={conciergeImage}
             alt={conciergeName}
@@ -137,11 +132,9 @@ export default function FloatingConcierge() {
                 zIndex: 1
             }}
         >
-            {/* Fallback Initial if image fails */}
             {conciergeName.charAt(0)}
         </Avatar>
 
-        {/* The "Online" Green Dot */}
         <Box
             sx={{
                 position: 'absolute',
@@ -149,7 +142,7 @@ export default function FloatingConcierge() {
                 right: 2,
                 width: 16,
                 height: 16,
-                bgcolor: '#25D366', // WhatsApp Green
+                bgcolor: '#25D366', 
                 border: '2px solid white',
                 borderRadius: '50%',
                 zIndex: 2,

@@ -119,7 +119,7 @@ export default async function RootLayout({
                      {/* This pushes content down by exactly the height of the Navbar.
                          Mobile: ~80px | Desktop: ~96px (64px toolbar + 32px padding) */}
                      <Box sx={{ 
-                        height: { xs: '80px', md: '100px' }, 
+                        height: { xs: '100px', md: '100px' }, 
                         width: '100%',
                         display: 'block' 
                      }} />
