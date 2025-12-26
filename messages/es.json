@@ -54,6 +54,8 @@
   "explore": "Explorar"
   },
   "HeroSection": {
+   "mobileHeroTitle": "Encuentra tu aventura marroquí",
+   "mobileHeroSubtitle": "Tours, conductores y experiencias auténticas",
    "title": "Descubre el alma de Marruecos",
   "subtitle": "Viajes auténticos por los impresionantes paisajes y la rica cultura de la región de Souss-Massa.",
   "ctaButton": "Explorar nuestros tours",

@@ -54,6 +54,8 @@
   "explore": "Explore"
   },
   "HeroSection": {
+    "mobileHeroTitle": "Find Your Moroccan Adventure",
+    "mobileHeroSubtitle": "Tours, Drivers & Authentic Experiences",
     "title": "Discover the Soul of Morocco",
     "subtitle": "Authentic journeys through the stunning landscapes and rich culture of the Souss-Massa region.",
     "ctaButton": "Explore Our Tours",

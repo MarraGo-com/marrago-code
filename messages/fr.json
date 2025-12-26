@@ -54,6 +54,8 @@
   "explore": "Explorer"
   },
   "HeroSection": {
+   "mobileHeroTitle": "Trouvez votre aventure marocaine",
+   "mobileHeroSubtitle": "Circuits, chauffeurs et expériences authentiques",
    "title": "Découvrez l'âme du Maroc",
   "subtitle": "Des voyages authentiques à travers les paysages époustouflants et la riche culture de la région Souss-Massa.",
   "ctaButton": "Explorer nos circuits",

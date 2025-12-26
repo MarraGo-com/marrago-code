@@ -112,7 +112,7 @@ export default function SignupForm() {
          {/* Rich Text for Terms & Privacy */}
          <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 4, lineHeight: 1.5 }}>
             {t.rich('signup.terms', {
-                terms: (chunks) => <Link href="/terms" style={{ color: 'inherit', textDecoration: 'underline' }}>{chunks}</Link>,
+                terms: (chunks) => <Link href="/terms-of-use" style={{ color: 'inherit', textDecoration: 'underline' }}>{chunks}</Link>,
                 privacy: (chunks) => <Link href="/privacy" style={{ color: 'inherit', textDecoration: 'underline' }}>{chunks}</Link>
             })}
          </Typography>
