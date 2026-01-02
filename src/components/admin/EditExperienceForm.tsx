@@ -7,7 +7,7 @@ import {
   Typography, Box, Tabs, Tab, Select, MenuItem,
   InputLabel, FormControl, OutlinedInput, InputAdornment, Divider,
   Chip, IconButton, Paper, List, ListItem, ListItemText, ListItemAvatar, Avatar, Stack,
-  LinearProgress, Switch, FormControlLabel, Checkbox, SelectChangeEvent // <--- Added SelectChangeEvent & Checkbox
+  LinearProgress, Switch, FormControlLabel, Checkbox, SelectChangeEvent, useTheme, useMediaQuery
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
@@ -17,8 +17,8 @@ import { useRouter } from 'next/navigation';
 import { useExperienceForm} from '@/hooks/useExperienceForm';
 import { Experience, GalleryImage } from '@/types/experience';
 import { locations } from '@/config/locations';
+import { useTranslations } from 'next-intl';
 
-// --- NEW: Import Constants ---
 import { DURATION_UNITS, SUPPORTED_LANGUAGES, EXPERIENCE_TAGS } from '@/config/constants';
 
 interface EditExperienceFormProps {
@@ -28,7 +28,12 @@ interface EditExperienceFormProps {
 }
 
 export default function EditExperienceForm({ open, onClose, experience }: EditExperienceFormProps) {
+  const t = useTranslations('admin.experiences');
   const router = useRouter();
+  
+  // Mobile Responsiveness
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
   
   const {
     formData,
@@ -58,15 +63,13 @@ export default function EditExperienceForm({ open, onClose, experience }: EditEx
   const [uploadingFiles, setUploadingFiles] = useState<{ name: string; progress: number }[]>([]);
   const [error, setError] = useState<string | null>(null);
 
-  // --- NEW: Handlers for Selectors ---
-
-  // Handle standard dropdowns (Duration Unit)
+  // Handle standard dropdowns
   const handleSelectChange = (event: SelectChangeEvent) => {
     const { name, value } = event.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  // Handle Multi-Select (Tags, Languages) -> Saves as Array ['en', 'fr']
+  // Handle Multi-Select
   const handleMultiSelectChange = (event: SelectChangeEvent<string[]>) => {
     const { name, value } = event.target;
     setFormData(prev => ({
@@ -98,7 +101,6 @@ export default function EditExperienceForm({ open, onClose, experience }: EditEx
     try {
       let coverImageUrl = formData.coverImage;
       if (coverImageFile) {
-         // ... (Keep existing image upload logic) ...
          setUploadingFiles([{ name: coverImageFile.name, progress: 0 }]);
          const storagePath = `experiences/${experience.id}/cover/${Date.now()}_${coverImageFile.name.split('.')[0]}.webp`;
          const uploadTask = uploadBytesResumable(ref(storage, storagePath), coverImageFile);
@@ -111,10 +113,8 @@ export default function EditExperienceForm({ open, onClose, experience }: EditEx
          });
       }
 
-      // ... (Keep existing gallery upload logic) ...
       let newGalleryImagesData: GalleryImage[] = [];
       if (newGalleryImageFiles.length > 0) {
-        // ... (standard upload logic)
         setUploadingFiles(newGalleryImageFiles.map(f => ({ name: f.name, progress: 0 })));
         const uploadPromises = newGalleryImageFiles.map(file => {
           const storagePath = `experiences/${experience.id}/gallery/${Date.now()}_${file.name.split('.')[0]}.webp`;
@@ -138,15 +138,13 @@ export default function EditExperienceForm({ open, onClose, experience }: EditEx
 
       const finalGalleryImages = [...initialGalleryImages, ...newGalleryImagesData];
       
-      // --- NEW: Submit Logic (Arrays are already Arrays) ---
       const finalData = { 
         ...formData, 
         coverImage: coverImageUrl, 
         galleryImages: finalGalleryImages,
-        // REMOVED: splitStringToArray calls. Arrays are passed directly.
         tags: formData.tags,         
         languages: formData.languages,
-        startTimes: typeof formData.startTimes === 'string' ? (formData.startTimes as string).split(',') : formData.startTimes, // Keep logic if startTimes is still string
+        startTimes: typeof formData.startTimes === 'string' ? (formData.startTimes as string).split(',') : formData.startTimes,
         maxGuests: formData.maxGuests === undefined ? null : formData.maxGuests,
         latitude: formData.latitude === undefined ? null : formData.latitude,
         longitude: formData.longitude === undefined ? null : formData.longitude
@@ -174,41 +172,48 @@ export default function EditExperienceForm({ open, onClose, experience }: EditEx
   const handleClose = () => { if (!loading) onClose(); };
 
   return (
-    <Dialog open={open} onClose={handleClose} PaperProps={{ component: 'form', onSubmit: handleSubmit }} maxWidth="md" fullWidth>
-      <DialogTitle>Edit Experience</DialogTitle>
+    <Dialog 
+        open={open} 
+        onClose={handleClose} 
+        fullScreen={fullScreen} 
+        PaperProps={{ component: 'form', onSubmit: handleSubmit }} 
+        maxWidth="md" 
+        fullWidth
+    >
+      <DialogTitle>{t('editTitle')}</DialogTitle>
       <DialogContent>
         {/* General Info */}
-        <Typography variant="subtitle1" sx={{ mt: 2, mb: 1 }}>General Information</Typography>
+        <Typography variant="subtitle1" sx={{ mt: 2, mb: 1 }}>{t('sections.general')}</Typography>
         <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 2, mb: 2 }}>
             <FormControl fullWidth>
-              <InputLabel htmlFor="price-amount">Price Amount</InputLabel>
-              <OutlinedInput id="price-amount" name="amount" type="number" value={formData.price.amount ?? ''} onChange={handleNestedChange('price')} startAdornment={<InputAdornment position="start">EUR</InputAdornment>} label="Price Amount" required />
+              <InputLabel htmlFor="price-amount">{t('labels.price')}</InputLabel>
+              <OutlinedInput id="price-amount" name="amount" type="number" value={formData.price.amount ?? ''} onChange={handleNestedChange('price')} startAdornment={<InputAdornment position="start">EUR</InputAdornment>} label={t('labels.price')} required />
             </FormControl>
             <FormControl fullWidth required>
-              <InputLabel id="location-select-label">Location</InputLabel>
-              <Select labelId="location-select-label" name="locationId" value={formData.locationId ?? ''} label="Location" onChange={(e) => setFormData(p => ({...p, locationId: e.target.value}))}>
+              <InputLabel id="location-select-label">{t('labels.location')}</InputLabel>
+              <Select labelId="location-select-label" name="locationId" value={formData.locationId ?? ''} label={t('labels.location')} onChange={(e) => setFormData(p => ({...p, locationId: e.target.value}))}>
                 {locations.map((loc) => (<MenuItem key={loc.id} value={loc.id}>{loc.name}</MenuItem>))}
               </Select>
             </FormControl>
             
-            {/* ▼▼▼ REFACTORED DURATION (Value + Unit) ▼▼▼ */}
+            {/* DURATION */}
             <Box sx={{ display: 'flex', gap: 1 }}>
               <TextField
                   required
                   name="durationValue"
-                  label="Duration"
+                  label={t('labels.duration')}
                   type="number"
                   fullWidth
                   value={formData.durationValue ?? ''}
                   onChange={handleRootChange}
               />
               <FormControl sx={{ minWidth: 100 }}>
-                <InputLabel>Unit</InputLabel>
+                <InputLabel>{t('labels.unit')}</InputLabel>
                 <Select
                   name="durationUnit"
                   value={formData.durationUnit ?? 'hours'}
-                  label="Unit"
-                  onChange={handleSelectChange} // Use new handler
+                  label={t('labels.unit')}
+                  onChange={handleSelectChange}
                 >
                   {DURATION_UNITS.map((u) => <MenuItem key={u.value} value={u.value}>{u.label}</MenuItem>)}
                 </Select>
@@ -216,15 +221,15 @@ export default function EditExperienceForm({ open, onClose, experience }: EditEx
             </Box>
         </Box>
         
-        {/* ▼▼▼ REFACTORED TAGS (Multi-Select) ▼▼▼ */}
+        {/* TAGS */}
         <FormControl fullWidth sx={{ mb: 2 }}>
-            <InputLabel>Tags (Strict)</InputLabel>
+            <InputLabel>{t('labels.tags')}</InputLabel>
             <Select
                 multiple
                 name="tags"
-                value={formData.tags || []} // Ensure it's an array
+                value={formData.tags || []}
                 onChange={handleMultiSelectChange}
-                input={<OutlinedInput label="Tags (Strict)" />}
+                input={<OutlinedInput label={t('labels.tags')} />}
                 renderValue={(selected) => (
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                         {(selected as string[]).map((value) => (
@@ -243,20 +248,20 @@ export default function EditExperienceForm({ open, onClose, experience }: EditEx
         </FormControl>
 
         {/* Quick Facts */}
-        <Typography variant="subtitle2" sx={{ mb: 1, mt: 2, color: 'text.secondary' }}>Quick Facts Details</Typography>
+        <Typography variant="subtitle2" sx={{ mb: 1, mt: 2, color: 'text.secondary' }}>{t('sections.quickFacts')}</Typography>
         <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 2, mb: 2 }}>
-            <TextField name="maxGuests" label="Max Guests" type="number" fullWidth value={formData.maxGuests ?? ''} onChange={handleRootChange} />
-            <TextField name="tourCode" label="Tour Code" fullWidth value={formData.tourCode ?? ''} onChange={handleRootChange} />
+            <TextField name="maxGuests" label={t('labels.maxGuests')} type="number" fullWidth value={formData.maxGuests ?? ''} onChange={handleRootChange} />
+            <TextField name="tourCode" label={t('labels.tourCode')} fullWidth value={formData.tourCode ?? ''} onChange={handleRootChange} />
             
-            {/* ▼▼▼ REFACTORED LANGUAGES (Multi-Select) ▼▼▼ */}
+            {/* LANGUAGES */}
             <FormControl fullWidth>
-                <InputLabel>Languages</InputLabel>
+                <InputLabel>{t('labels.languages')}</InputLabel>
                 <Select
                     multiple
                     name="languages"
                     value={formData.languages || []}
                     onChange={handleMultiSelectChange}
-                    input={<OutlinedInput label="Languages" />}
+                    input={<OutlinedInput label={t('labels.languages')} />}
                     renderValue={(selected) => (
                         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                             {(selected as string[]).map((value) => (
@@ -274,72 +279,68 @@ export default function EditExperienceForm({ open, onClose, experience }: EditEx
                 </Select>
             </FormControl>
 
-            <TextField name="startTimes" label="Start Times (comma-separated)" fullWidth value={formData.startTimes ?? ''} onChange={handleRootChange} helperText="e.g., 09:00, 14:00" />
+            <TextField name="startTimes" label={t('labels.startTimes')} fullWidth value={formData.startTimes ?? ''} onChange={handleRootChange} helperText={t('placeholders.startTimesHelper')} />
         </Box>
-
-        {/* ... (Rest of the file remains UNTOUCHED: Maps, Booking Policy, Images, Timeline, FAQs) ... */}
-        {/* Just paste the rest of your component here from 'Meeting Point' downwards */}
         
         {/* Meeting Point Coordinates */}
-        <Typography variant="subtitle2" sx={{ mb: 1, mt: 2, color: 'text.secondary' }}>Meeting Point Coordinates (Optional)</Typography>
+        <Typography variant="subtitle2" sx={{ mb: 1, mt: 2, color: 'text.secondary' }}>{t('sections.meetingPoint')}</Typography>
         <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 2, mb: 2 }}>
-                <TextField name="latitude" label="Latitude" type="number" fullWidth value={formData.latitude ?? ''} onChange={handleRootChange} inputProps={{ step: "any" }} />
-                <TextField name="longitude" label="Longitude" type="number" fullWidth value={formData.longitude ?? ''} onChange={handleRootChange} inputProps={{ step: "any" }} />
+                <TextField name="latitude" label={t('labels.latitude')} type="number" fullWidth value={formData.latitude ?? ''} onChange={handleRootChange} inputProps={{ step: "any" }} />
+                <TextField name="longitude" label={t('labels.longitude')} type="number" fullWidth value={formData.longitude ?? ''} onChange={handleRootChange} inputProps={{ step: "any" }} />
         </Box>
 
-        {/* ▼▼▼ NEW: Booking Policy & Trust Signals ▼▼▼ */}
-        <Divider sx={{ my: 2 }}><Chip label="Booking Policy & Trust" /></Divider>
+        {/* Booking Policy & Trust Signals */}
+        <Divider sx={{ my: 2 }}><Chip label={t('sections.policy')} /></Divider>
         <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 2, mb: 2 }}>
              <TextField
                 name="bookingPolicy.cancellationHours"
-                label="Free Cancellation (Hours before)"
+                label={t('labels.cancelHours')}
                 type="number"
                 value={formData.bookingPolicy.cancellationHours}
                 onChange={handleNestedChange('bookingPolicy')}
-                helperText="e.g. 24"
+                helperText={t('placeholders.cancelHelper')}
              />
              <TextField
                 name="scarcity.spotsLeft"
-                label="Spots Left (Scarcity Trigger)"
+                label={t('labels.spotsLeft')}
                 type="number"
                 value={formData.scarcity.spotsLeft ?? ''}
                 onChange={handleNestedChange('scarcity')}
-                helperText="Leave empty to disable. < 5 triggers 'Only X left'"
+                helperText={t('placeholders.spotsHelper')}
              />
         </Box>
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: 2 }}>
             <FormControlLabel
                 control={<Switch checked={formData.bookingPolicy.isPayLater} onChange={handleNestedChange('bookingPolicy')} name="isPayLater" />}
-                label="Reserve Now, Pay Later"
+                label={t('labels.payLater')}
             />
             <FormControlLabel
                 control={<Switch checked={formData.bookingPolicy.instantConfirmation} onChange={handleNestedChange('bookingPolicy')} name="instantConfirmation" />}
-                label="Instant Confirmation"
+                label={t('labels.instantConfirm')}
             />
              <FormControlLabel
                 control={<Switch checked={formData.scarcity.isLikelyToSellOut} onChange={handleNestedChange('scarcity')} name="isLikelyToSellOut" />}
-                label="Badge: 'Likely to Sell Out'"
+                label={t('labels.sellOutBadge')}
             />
              <FormControlLabel
                 control={<Switch checked={formData.features.mobileTicket} onChange={handleNestedChange('features')} name="mobileTicket" />}
-                label="Mobile Ticket Accepted"
+                label={t('labels.mobileTicket')}
             />
         </Box>
-        {/* ▲▲▲ END Booking Policy ▲▲▲ */}
         
         {/* Cover Image */}
         <Divider sx={{ my: 2 }}><Chip label="Cover Image" /></Divider>
         <TextField disabled margin="dense" label="Current Cover Image URL" type="text" fullWidth value={formData.coverImage ?? ''} sx={{ mb: 1 }} />
         <Button variant="outlined" component="label" fullWidth disabled={isCompressing || loading}>
-          {isCompressing ? 'Compressing...' : 'Upload New Cover Image'}
+          {isCompressing ? 'Compressing...' : t('buttons.uploadCover')}
           <input type="file" hidden accept="image/*" onChange={handleCoverImageChange} />
         </Button>
         {coverImageFile && !isCompressing && <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>New cover selected: {coverImageFile.name}</Typography>}
 
         {/* Gallery Images */}
-        <Divider sx={{ my: 2 }}><Chip label="Gallery Images" /></Divider>
+        <Divider sx={{ my: 2 }}><Chip label={t('sections.images')} /></Divider>
         <Button variant="outlined" component="label" fullWidth disabled={isCompressing || loading}>
-          {isCompressing ? 'Processing...' : 'Add More Gallery Images'}
+          {isCompressing ? 'Processing...' : t('buttons.addGallery')}
           <input type="file" hidden multiple accept="image/*" onChange={handleGalleryImagesChange} />
         </Button>
         
@@ -377,54 +378,59 @@ export default function EditExperienceForm({ open, onClose, experience }: EditEx
         </Paper>
 
         {/* Translations & Content Section */}
-        <Typography variant="subtitle1" sx={{ mt: 3, mb: 1 }}>Translations</Typography>
+        <Typography variant="subtitle1" sx={{ mt: 3, mb: 1 }}>{t('sections.content')}</Typography>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <Tabs value={currentTab} onChange={(e, newValue) => setCurrentTab(newValue)}>
+          <Tabs 
+            value={currentTab} 
+            onChange={(e, newValue) => setCurrentTab(newValue)}
+            variant="scrollable" 
+            scrollButtons="auto"
+          >
              <Tab label="English" value="en" />
              <Tab label="French" value="fr" />
              <Tab label="Spanish" value="es" />
           </Tabs>
         </Box>
         <Box sx={{ pt: 2, display: 'flex', flexDirection: 'column', gap: 2 }}>
-            <TextField required name="title" label="Title" fullWidth value={formData.translations[currentTab]?.title ?? ''} onChange={handleNestedChange(`translations.${currentTab}`)} />
+            <TextField required name="title" label={t('labels.title')} fullWidth value={formData.translations[currentTab]?.title ?? ''} onChange={handleNestedChange(`translations.${currentTab}`)} />
             <TextField 
               name="shortDescription" 
-              label="Short Description (Card Summary)" 
+              label={t('labels.shortDesc')} 
               fullWidth 
               multiline 
               rows={2} 
               value={formData.translations[currentTab]?.shortDescription ?? ''} 
               onChange={handleNestedChange(`translations.${currentTab}`)} 
-              helperText="A brief summary shown on the experience card (2-3 lines)."
             />
-            <TextField required name="description" label="Description" fullWidth multiline rows={4} value={formData.translations[currentTab]?.description ?? ''} onChange={handleNestedChange(`translations.${currentTab}`)} />
+            <TextField required name="description" label={t('labels.desc')} fullWidth multiline rows={4} value={formData.translations[currentTab]?.description ?? ''} onChange={handleNestedChange(`translations.${currentTab}`)} />
             
-            <TextField name="highlights" label="Highlights (Markdown list)" fullWidth multiline rows={4} value={formData.translations[currentTab]?.highlights ?? ''} onChange={handleNestedChange(`translations.${currentTab}`)} helperText="Use * for bullet points. e.g., * Sunset camel ride" />
+            <TextField name="highlights" label={t('labels.highlights')} fullWidth multiline rows={4} value={formData.translations[currentTab]?.highlights ?? ''} onChange={handleNestedChange(`translations.${currentTab}`)} />
 
             <Divider sx={{ my: 2 }}><Chip label="Inclusions & Details" /></Divider>
-            <TextField name="included" label="What's Included" fullWidth multiline rows={4} value={formData.translations[currentTab]?.included ?? ''} onChange={handleNestedChange(`translations.${currentTab}`)} />
-            <TextField name="notIncluded" label="What's Not Included" fullWidth multiline rows={4} value={formData.translations[currentTab]?.notIncluded ?? ''} onChange={handleNestedChange(`translations.${currentTab}`)} />
-            <TextField name="importantInfo" label="Important Information" fullWidth multiline rows={4} value={formData.translations[currentTab]?.importantInfo ?? ''} onChange={handleNestedChange(`translations.${currentTab}`)} />
-            <TextField name="itinerary" label="Detailed Itinerary (Markdown - Fallback)" fullWidth multiline rows={6} value={formData.translations[currentTab]?.itinerary ?? ''} onChange={handleNestedChange(`translations.${currentTab}`)} helperText="Use Markdown if you don't use the Visual Timeline." />
+            <TextField name="included" label={t('labels.included')} fullWidth multiline rows={4} value={formData.translations[currentTab]?.included ?? ''} onChange={handleNestedChange(`translations.${currentTab}`)} />
+            <TextField name="notIncluded" label={t('labels.notIncluded')} fullWidth multiline rows={4} value={formData.translations[currentTab]?.notIncluded ?? ''} onChange={handleNestedChange(`translations.${currentTab}`)} />
+            <TextField name="importantInfo" label={t('labels.importantInfo')} fullWidth multiline rows={4} value={formData.translations[currentTab]?.importantInfo ?? ''} onChange={handleNestedChange(`translations.${currentTab}`)} />
+            <TextField name="itinerary" label={t('labels.itinerary')} fullWidth multiline rows={6} value={formData.translations[currentTab]?.itinerary ?? ''} onChange={handleNestedChange(`translations.${currentTab}`)} />
 
-            {/* ▼▼▼ Visual Timeline Builder (Pro) ▼▼▼ */}
-            <Divider sx={{ my: 2 }}><Chip label={`Visual Timeline (${currentTab.toUpperCase()})`} /></Divider>
+            {/* Visual Timeline Builder */}
+            <Divider sx={{ my: 2 }}><Chip label={`${t('sections.timeline')} (${currentTab.toUpperCase()})`} /></Divider>
             <Paper variant="outlined" sx={{ p: 2, bgcolor: '#f8f9fa' }}>
                 {formData.translations[currentTab]?.program?.map((step, index) => (
                     <Paper key={index} sx={{ p: 2, mb: 2, border: '1px solid #e0e0e0' }}>
-                        <Stack direction="row" spacing={2} sx={{ mb: 2 }}>
+                        {/* Mobile: Stack Direction */}
+                        <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mb: 2 }}>
                             <TextField
-                                label={`Step ${index + 1} Title`}
+                                label={`${t('timeline.stepTitle')} ${index + 1}`}
                                 fullWidth
                                 size="small"
                                 value={step.title}
                                 onChange={(e) => handleTimelineStepChange(currentTab, index, 'title', e.target.value)}
                             />
                             <FormControl size="small" sx={{ minWidth: 120 }}>
-                                <InputLabel>Type</InputLabel>
+                                <InputLabel>{t('timeline.type')}</InputLabel>
                                 <Select
                                     value={step.type}
-                                    label="Type"
+                                    label={t('timeline.type')}
                                     onChange={(e) => handleTimelineStepChange(currentTab, index, 'type', e.target.value)}
                                 >
                                     <MenuItem value="stop">Stop</MenuItem>
@@ -437,20 +443,19 @@ export default function EditExperienceForm({ open, onClose, experience }: EditEx
                                 <DeleteIcon />
                             </IconButton>
                         </Stack>
-                        <Stack direction="row" spacing={2} sx={{ mb: 2 }}>
+                        <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mb: 2 }}>
                             <TextField
-                                label="Duration"
+                                label={t('timeline.duration')}
                                 size="small"
                                 sx={{ flex: 1 }}
                                 value={step.duration}
                                 onChange={(e) => handleTimelineStepChange(currentTab, index, 'duration', e.target.value)}
-                                helperText="e.g. 30 mins"
                             />
                             <FormControl size="small" sx={{ flex: 1 }}>
-                                <InputLabel>Admission</InputLabel>
+                                <InputLabel>{t('timeline.admission')}</InputLabel>
                                 <Select
                                     value={step.admission}
-                                    label="Admission"
+                                    label={t('timeline.admission')}
                                     onChange={(e) => handleTimelineStepChange(currentTab, index, 'admission', e.target.value)}
                                 >
                                     <MenuItem value="free">Free</MenuItem>
@@ -460,7 +465,7 @@ export default function EditExperienceForm({ open, onClose, experience }: EditEx
                             </FormControl>
                         </Stack>
                         <TextField
-                            label="Description"
+                            label={t('timeline.description')}
                             fullWidth
                             multiline
                             rows={2}
@@ -471,13 +476,12 @@ export default function EditExperienceForm({ open, onClose, experience }: EditEx
                     </Paper>
                 ))}
                 <Button startIcon={<AddIcon />} onClick={() => handleAddTimelineStep(currentTab)} variant="outlined" size="small">
-                    Add Timeline Step
+                    {t('buttons.addTimeline')}
                 </Button>
             </Paper>
-            {/* ▲▲▲ END Timeline Builder ▲▲▲ */}
-
+            
             {/* FAQ Manager */}
-            <Divider sx={{ my: 2 }}><Chip label={`FAQs (${currentTab.toUpperCase()})`} /></Divider>
+            <Divider sx={{ my: 2 }}><Chip label={`${t('sections.faq')} (${currentTab.toUpperCase()})`} /></Divider>
             <Paper variant="outlined" sx={{ p: 2 }}>
               {formData.translations[currentTab]?.faqs?.map((faq, index) => (
                 <Stack key={index} direction="row" spacing={2} alignItems="flex-start" sx={{ mb: 2, p: 2, bg: 'white', borderRadius: 1, border: '1px solid #eee' }}>
@@ -491,7 +495,7 @@ export default function EditExperienceForm({ open, onClose, experience }: EditEx
                 </Stack>
               ))}
               <Button startIcon={<AddIcon />} onClick={() => handleAddFaq(currentTab)} variant="outlined" size="small">
-                Add FAQ ({currentTab.toUpperCase()})
+                {t('buttons.addFaq')} ({currentTab.toUpperCase()})
               </Button>
             </Paper>
         </Box>
@@ -499,9 +503,9 @@ export default function EditExperienceForm({ open, onClose, experience }: EditEx
         {error && <Typography color="error" sx={{ mt: 2 }}>Error: {error}</Typography>}
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} disabled={loading}>Cancel</Button>
+        <Button onClick={handleClose} disabled={loading}>{t('buttons.cancel')}</Button>
         <Button type="submit" variant="contained" disabled={loading || isCompressing}>
-          {loading ? 'Saving...' : 'Save Changes'}
+          {loading ? 'Saving...' : t('buttons.save')}
         </Button>
       </DialogActions>
     </Dialog>

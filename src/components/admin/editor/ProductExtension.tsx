@@ -6,12 +6,14 @@ import { Box, Typography, Chip, IconButton, Card, Button } from '@mui/material';
 import { Edit as EditIcon, ArrowForward, LocalActivity, Star } from '@mui/icons-material';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 // --- THE SMART COMPONENT ---
 const ProductCardComponent = (props: any) => {
+  const t = useTranslations('admin.editor.productCard');
   const { title, price, image, badge, link } = props.node.attrs;
   
-  // 🟢 MAGICAL CHECK: Are we in the Admin Panel or Public Blog?
+  // Are we in the Admin Panel or Public Blog?
   const isEditable = props.editor.isEditable;
 
   const handleEdit = (e: React.MouseEvent) => {
@@ -30,15 +32,23 @@ const ProductCardComponent = (props: any) => {
       <Card 
         elevation={4} 
         sx={{ 
-            position: 'relative', display: 'flex', overflow: 'hidden', my: 4, 
-            borderRadius: 4, maxWidth: 700, mx: 'auto', bgcolor: 'background.paper',
+            position: 'relative', 
+            display: 'flex', 
+            flexDirection: { xs: 'column', sm: 'row' }, // 🟢 Stack on mobile
+            overflow: 'hidden', 
+            my: 4, 
+            borderRadius: 4, 
+            maxWidth: 700, 
+            mx: 'auto', 
+            bgcolor: 'background.paper',
             transition: 'all 0.3s ease',
-            border: '1px solid', borderColor: 'divider',
+            border: '1px solid', 
+            borderColor: 'divider',
             '&:hover': { transform: 'translateY(-4px)', boxShadow: 6, borderColor: 'primary.main' },
             '&:hover .edit-btn': { opacity: 1, transform: 'scale(1)' }
         }}
       >
-        {/* 🟢 ADMIN ONLY: Edit Pencil */}
+        {/* ADMIN ONLY: Edit Pencil */}
         {isEditable && (
             <IconButton 
                 className="edit-btn"
@@ -55,14 +65,20 @@ const ProductCardComponent = (props: any) => {
         )}
 
         {/* IMAGE SIDE */}
-        <Box sx={{ width: '40%', minWidth: 200, position: 'relative' }}>
-<Image 
-  src={image || '/images/placeholder.jpg'} 
-  alt={title} 
-  fill 
-  style={{ objectFit: 'cover' }}
-  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-/>            <Box sx={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 100%)' }} />
+        <Box sx={{ 
+            width: { xs: '100%', sm: '40%' }, 
+            height: { xs: 200, sm: 'auto' }, // Fixed height on mobile
+            minWidth: { sm: 200 }, 
+            position: 'relative' 
+        }}>
+          <Image 
+            src={image || '/images/placeholder.jpg'} 
+            alt={title} 
+            fill 
+            style={{ objectFit: 'cover' }}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />            
+          <Box sx={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 100%)' }} />
              {badge && (
                 <Chip 
                     label={badge} size="small" color="secondary" icon={<Star style={{ fontSize: 14 }} />}
@@ -75,7 +91,9 @@ const ProductCardComponent = (props: any) => {
         <Box sx={{ p: 3, flex: 1, display: 'flex', flexDirection: 'column' }}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1, opacity: 0.7 }}>
                 <LocalActivity fontSize="inherit" color="primary" />
-                <Typography variant="caption" fontWeight="bold" color="primary" sx={{ textTransform: 'uppercase', letterSpacing: 0.5 }}>Experience</Typography>
+                <Typography variant="caption" fontWeight="bold" color="primary" sx={{ textTransform: 'uppercase', letterSpacing: 0.5 }}>
+                   {t('experience')}
+                </Typography>
             </Box>
 
             <Typography variant="h5" fontWeight="800" sx={{ mb: 1, lineHeight: 1.2, fontFamily: 'serif' }}>{title}</Typography>
@@ -83,32 +101,29 @@ const ProductCardComponent = (props: any) => {
             <Box sx={{ mt: 'auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', pt: 2 }}>
             <Box>
                     <Typography variant="caption" color="text.secondary" display="block">
-                        Starting from
+                        {t('startingFrom')}
                     </Typography>
                     
-                    {/* 🟢 CHANGED COLOR HERE */}
                     <Typography 
                         variant="h5" 
                         sx={{ 
                             fontWeight: 'bold',
-                            color: '#ff9800', // Bright Orange (Visible on Dark & Light)
-                            // OR use: color: 'primary.main' (if your primary is bright)
-                            // OR use: color: 'text.primary' (White in dark mode, Black in light)
+                            color: '#ff9800', 
                         }}
                     >
                         €{price}
                     </Typography>
                 </Box>
 
-                {/* 🟢 PUBLIC: Real Link / ADMIN: Fake Button */}
+                {/* PUBLIC: Real Link / ADMIN: Fake Button */}
                 {isEditable ? (
                     <Button variant="contained" color="primary" endIcon={<ArrowForward />} size="small" sx={{ borderRadius: 20, px: 3, textTransform: 'none', fontWeight: 'bold' }}>
-                        Book Now
+                        {t('bookNow')}
                     </Button>
                 ) : (
                     <Link href={link || '#'} passHref>
                         <Button variant="contained" color="primary" endIcon={<ArrowForward />} size="small" sx={{ borderRadius: 20, px: 3, textTransform: 'none', fontWeight: 'bold' }}>
-                            Book Now
+                            {t('bookNow')}
                         </Button>
                     </Link>
                 )}

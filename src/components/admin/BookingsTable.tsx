@@ -1,27 +1,25 @@
-// /src/components/admin/BookingsTable.tsx
+// src/components/admin/BookingsTable.tsx
 'use client';
 
 import React, { useState } from 'react';
 import { 
   Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, 
-  Typography, Chip, IconButton, Menu, MenuItem, Stack, Tooltip 
+  Typography, Chip, IconButton, Menu, MenuItem, Stack, Tooltip, 
+  useTheme, useMediaQuery, Card, Box, Divider 
 } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import NoteIcon from '@mui/icons-material/Note';
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday'; 
+import PeopleIcon from '@mui/icons-material/People'; 
 import { useAppRouter } from '@/hooks/router/useAppRouter';
+import { useTranslations } from 'next-intl';
 
-// Defines the structure of a Booking object as returned by the Admin API.
-// It must accommodate both old and new data structures.
 interface Booking {
   id: string;
   experienceTitle: string;
   status: 'pending' | 'confirmed' | 'cancelled';
-  
-  // New standardized date field from API
   bookingDate?: string;
-
-  // New Nested Objects
   customer?: {
     name: string;
     email: string;
@@ -33,8 +31,6 @@ interface Booking {
     total: number;
   };
   notes?: string;
-
-  // Legacy fields (for old records)
   customerName?: string;
   customerEmail?: string;
   requestedDate?: string;
@@ -46,7 +42,11 @@ interface BookingsTableProps {
 }
 
 export default function BookingsTable({ bookings }: BookingsTableProps) {
+  const t = useTranslations('admin.AdminBookingsTable');
   const router = useAppRouter();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md')); 
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [selectedBookingId, setSelectedBookingId] = useState<string | null>(null);
   const open = Boolean(anchorEl);
@@ -84,11 +84,9 @@ export default function BookingsTable({ bookings }: BookingsTableProps) {
     }
   };
 
-  // Helper to format dates safely
   const formatDate = (dateString?: string) => {
     if (!dateString) return 'N/A';
     try {
-      // Use UTC to avoid timezone shifts on the server date
       return new Date(dateString).toLocaleDateString('en-GB', {
         year: 'numeric',
         month: 'short',
@@ -96,122 +94,192 @@ export default function BookingsTable({ bookings }: BookingsTableProps) {
         timeZone: 'UTC' 
       });
     } catch (e) {
-      return e instanceof Error ? e.message : 'Invalid date';
+      return 'Invalid date';
     }
   };
 
+  // Localized Status Chips
   const getStatusChip = (status: string) => {
     switch (status) {
       case 'confirmed':
-        return <Chip label="Confirmed" color="success" size="small" />;
+        return <Chip label={t('status.confirmed')} color="success" size="small" sx={{ fontWeight: 'bold' }} />;
       case 'cancelled':
-        return <Chip label="Cancelled" color="error" size="small" />;
+        return <Chip label={t('status.cancelled')} color="error" size="small" sx={{ fontWeight: 'bold' }} />;
       default:
-        return <Chip label="Pending" color="warning" size="small" />;
+        return <Chip label={t('status.pending')} color="warning" size="small" sx={{ fontWeight: 'bold' }} />;
     }
   };
 
+  // --- MOBILE CARD RENDERER ---
+  const renderMobileCard = (row: Booking) => {
+      const name = row.customer?.name || row.customerName || 'Unknown';
+      const email = row.customer?.email || row.customerEmail || 'N/A';
+      const phone = row.customer?.phone;
+      const totalGuests = row.guests?.total ?? row.numberOfGuests ?? 0;
+      const dateToUse = row.bookingDate || row.requestedDate;
+
+      return (
+        <Card 
+          key={row.id} 
+          sx={{ 
+            bgcolor: 'background.paper', // Replaced #1a1a1a
+            color: 'text.primary',       // Replaced 'white'
+            border: 1,
+            borderColor: 'divider',      // Replaced '1px solid rgba...'
+            borderRadius: 2, 
+            mb: 2, 
+            overflow: 'visible' 
+          }}
+        >
+            <Box sx={{ p: 2 }}>
+                {/* Header: Name + Status + Menu */}
+                <Stack direction="row" justifyContent="space-between" alignItems="flex-start" sx={{ mb: 1.5 }}>
+                    <Box>
+                        <Typography variant="subtitle1" sx={{ fontWeight: 'bold', lineHeight: 1.2 }}>{name}</Typography>
+                        <Typography variant="caption" sx={{ color: 'text.secondary' }}>{email}</Typography> {/* Replaced text.secondary (was already good but double checking) */}
+                    </Box>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 1 }}>
+                        {getStatusChip(row.status)}
+                        <IconButton 
+                            size="small" 
+                            onClick={(e) => handleClick(e, row.id)}
+                            sx={{ color: 'text.secondary', m: -1, mt: 0 }} // Replaced rgba(255,255,255,0.5)
+                        >
+                            <MoreVertIcon fontSize="small" />
+                        </IconButton>
+                    </Box>
+                </Stack>
+
+                <Divider sx={{ mb: 2 }} /> {/* Standard Divider uses theme colors */}
+
+                {/* Details Grid */}
+                <Stack spacing={1.5}>
+                    <Box>
+                        <Typography variant="caption" sx={{ color: 'text.secondary', textTransform: 'uppercase', fontSize: '0.7rem' }}>
+                            {t('headers.experience')}
+                        </Typography>
+                        <Typography variant="body2" sx={{ fontWeight: 500 }}>{row.experienceTitle}</Typography>
+                    </Box>
+
+                    <Stack direction="row" spacing={3}>
+                        <Stack direction="row" alignItems="center" spacing={1}>
+                            {/* Replaced #D97706 with primary.main */}
+                            <CalendarTodayIcon sx={{ fontSize: 16, color: 'primary.main' }} />
+                            <Typography variant="body2">{formatDate(dateToUse)}</Typography>
+                        </Stack>
+                        <Stack direction="row" alignItems="center" spacing={1}>
+                             {/* Replaced #D97706 with primary.main */}
+                            <PeopleIcon sx={{ fontSize: 16, color: 'primary.main' }} />
+                            <Typography variant="body2">{totalGuests} {t('headers.guests')}</Typography>
+                        </Stack>
+                    </Stack>
+                </Stack>
+
+                {/* Footer: WhatsApp */}
+                {phone && (
+                   <Box sx={{ mt: 2, pt: 1.5, borderTop: 1, borderColor: 'divider' }}> {/* Replaced manual border */}
+                        <Stack direction="row" alignItems="center" spacing={1}>
+                            <WhatsAppIcon fontSize="small" color="success" />
+                            <Typography 
+                                variant="body2" 
+                                component="a" 
+                                href={`https://wa.me/${phone.replace(/[^0-9]/g, '')}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                sx={{ color: 'success.main', textDecoration: 'none', fontWeight: 'bold' }}
+                            >
+                                {t('actions.chatWhatsApp')}
+                            </Typography>
+                        </Stack>
+                   </Box>
+                )}
+            </Box>
+        </Card>
+      );
+  };
+
+  // --- MAIN RENDER ---
   return (
     <>
-      <TableContainer component={Paper} sx={{ bgcolor: 'background.paper' }}>
-        <Table sx={{ minWidth: 750 }} aria-label="bookings table">
-          <TableHead>
-            <TableRow>
-              <TableCell sx={{ fontWeight: 'bold' }}>Customer</TableCell>
-              <TableCell sx={{ fontWeight: 'bold' }}>Experience</TableCell>
-              <TableCell sx={{ fontWeight: 'bold' }}>Booked For</TableCell>
-              <TableCell sx={{ fontWeight: 'bold' }}>Guests</TableCell>
-              <TableCell sx={{ fontWeight: 'bold' }}>Status</TableCell>
-              <TableCell align="right" sx={{ fontWeight: 'bold' }}>Actions</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {bookings.map((row) => {
-              // --- Data Normalization (Handle Old vs New) ---
-              const name = row.customer?.name || row.customerName || 'Unknown';
-              const email = row.customer?.email || row.customerEmail || 'N/A';
-              const phone = row.customer?.phone;
-              const totalGuests = row.guests?.total ?? row.numberOfGuests ?? 0;
-              const adults = row.guests?.adults;
-              const children = row.guests?.children;
-              const dateToUse = row.bookingDate || row.requestedDate;
-              // ----------------------------------------------
+      {bookings.length === 0 ? (
+          <Typography sx={{ textAlign: 'center', py: 4, color: 'text.secondary' }}>
+            {t('noBookings')}
+          </Typography>
+      ) : (
+        <>
+            {/* MOBILE VIEW */}
+            {isMobile ? (
+                <Stack spacing={0}>
+                    {bookings.map((row) => renderMobileCard(row))}
+                </Stack>
+            ) : (
+            /* DESKTOP VIEW */
+            <TableContainer component={Paper} sx={{ bgcolor: 'background.paper' }}>
+                <Table sx={{ minWidth: 750 }} aria-label="bookings table">
+                <TableHead>
+                    <TableRow>
+                    <TableCell sx={{ fontWeight: 'bold' }}>{t('headers.customer')}</TableCell>
+                    <TableCell sx={{ fontWeight: 'bold' }}>{t('headers.experience')}</TableCell>
+                    <TableCell sx={{ fontWeight: 'bold' }}>{t('headers.date')}</TableCell>
+                    <TableCell sx={{ fontWeight: 'bold' }}>{t('headers.guests')}</TableCell>
+                    <TableCell sx={{ fontWeight: 'bold' }}>{t('headers.status')}</TableCell>
+                    <TableCell align="right" sx={{ fontWeight: 'bold' }}>{t('headers.actions')}</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {bookings.map((row) => {
+                    const name = row.customer?.name || row.customerName || 'Unknown';
+                    const email = row.customer?.email || row.customerEmail || 'N/A';
+                    const phone = row.customer?.phone;
+                    const totalGuests = row.guests?.total ?? row.numberOfGuests ?? 0;
+                    const dateToUse = row.bookingDate || row.requestedDate;
 
-              return (
-                <TableRow key={row.id} hover>
-                  {/* CUSTOMER COLUMN */}
-                  <TableCell>
-                    <Stack direction="row" alignItems="center" spacing={1}>
-                      <Typography variant="body2" sx={{ fontWeight: 'bold' }}>{name}</Typography>
-                      {/* Show note icon if notes exist */}
-                      {row.notes && (
-                        <Tooltip title={<Typography variant="body2">{row.notes}</Typography>} arrow placement="top">
-                          <NoteIcon color="action" fontSize="small" sx={{ cursor: 'help' }}/>
-                        </Tooltip>
-                      )}
-                    </Stack>
-                    <Typography variant="caption" display="block" sx={{ color: 'text.secondary' }}>{email}</Typography>
-                    {phone && (
-                      <Stack direction="row" alignItems="center" spacing={0.5} sx={{ mt: 0.5 }}>
-                        <WhatsAppIcon fontSize="inherit" color="success" />
-                        <Typography 
-                          variant="caption" 
-                          component="a" 
-                          // Clean phone number for WhatsApp link (remove spaces, +, etc.)
-                          href={`https://wa.me/${phone.replace(/[^0-9]/g, '')}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          sx={{ color: 'success.main', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}
-                        >
-                          {phone}
-                        </Typography>
-                      </Stack>
-                    )}
-                  </TableCell>
-
-                  {/* EXPERIENCE COLUMN */}
-                  <TableCell>{row.experienceTitle}</TableCell>
-
-                  {/* DATE COLUMN */}
-                  <TableCell>{formatDate(dateToUse)}</TableCell>
-
-                  {/* GUESTS COLUMN */}
-                  <TableCell>
-                    <Typography variant="body2">{totalGuests} Guests</Typography>
-                    {adults !== undefined && children !== undefined && (
-                      <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-                        ({adults} Adults, {children} Children)
-                      </Typography>
-                    )}
-                  </TableCell>
-
-                  {/* STATUS COLUMN */}
-                  <TableCell>{getStatusChip(row.status)}</TableCell>
-
-                  {/* ACTIONS COLUMN */}
-                  <TableCell align="right">
-                    <IconButton
-                      aria-label="more"
-                      onClick={(e) => handleClick(e, row.id)}
-                    >
-                      <MoreVertIcon />
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer>
+                    return (
+                        <TableRow key={row.id} hover>
+                        <TableCell>
+                            <Stack direction="row" alignItems="center" spacing={1}>
+                            <Typography variant="body2" sx={{ fontWeight: 'bold' }}>{name}</Typography>
+                            {row.notes && (
+                                <Tooltip title={<Typography variant="body2">{row.notes}</Typography>} arrow placement="top">
+                                <NoteIcon color="action" fontSize="small" sx={{ cursor: 'help' }}/>
+                                </Tooltip>
+                            )}
+                            </Stack>
+                            <Typography variant="caption" display="block" sx={{ color: 'text.secondary' }}>{email}</Typography>
+                        </TableCell>
+                        <TableCell>{row.experienceTitle}</TableCell>
+                        <TableCell>{formatDate(dateToUse)}</TableCell>
+                        <TableCell>
+                            <Typography variant="body2">{totalGuests} {t('headers.guests')}</Typography>
+                        </TableCell>
+                        <TableCell>{getStatusChip(row.status)}</TableCell>
+                        <TableCell align="right">
+                            <IconButton
+                            aria-label="more"
+                            onClick={(e) => handleClick(e, row.id)}
+                            >
+                            <MoreVertIcon />
+                            </IconButton>
+                        </TableCell>
+                        </TableRow>
+                    );
+                    })}
+                </TableBody>
+                </Table>
+            </TableContainer>
+            )}
+        </>
+      )}
       
+      {/* Menu for Actions */}
       <Menu
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={() => handleStatusChange('confirmed')}>Mark as Confirmed</MenuItem>
-        <MenuItem onClick={() => handleStatusChange('pending')}>Mark as Pending</MenuItem>
-        <MenuItem onClick={() => handleStatusChange('cancelled')}>Mark as Cancelled</MenuItem>
+        <MenuItem onClick={() => handleStatusChange('confirmed')}>{t('actions.markConfirmed')}</MenuItem>
+        <MenuItem onClick={() => handleStatusChange('pending')}>{t('actions.markPending')}</MenuItem>
+        <MenuItem onClick={() => handleStatusChange('cancelled')}>{t('actions.markCancelled')}</MenuItem>
       </Menu>
     </>
   );

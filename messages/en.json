@@ -676,7 +676,8 @@
       "blog": "Blog",
       "bookings": "Bookings",
       "reviews": "Reviews",
-      "settings": "Settings"
+      "settings": "Settings",
+      "logout": "Log Out"
     },
     "AdminBlogCreatePage": {
       "createArticleTitle": "Create New Article"
@@ -696,7 +697,218 @@
     },
     "AdminReviewsPage": {
       "manageReviewsTitle": "Manage Customer Reviews"
+    },
+    "AdminBookingsTable": {
+  "headers": {
+    "customer": "Customer",
+    "experience": "Experience",
+    "date": "Booked For",
+    "guests": "Guests",
+    "status": "Status",
+    "actions": "Actions"
+  },
+  "status": {
+    "confirmed": "Confirmed",
+    "cancelled": "Cancelled",
+    "pending": "Pending"
+  },
+  "actions": {
+    "markConfirmed": "Mark as Confirmed",
+    "markPending": "Mark as Pending",
+    "markCancelled": "Mark as Cancelled",
+    "chatWhatsApp": "Chat on WhatsApp"
+  },
+  "noBookings": "No bookings found."
+},
+   "ExperiencesTable": {
+      "headerTitle": "Title",
+      "headerLocation": "Location",
+      "headerPrice": "Price",
+      "headerActions": "Actions",
+      "noItemsFound": "No experiences found.",
+      "deleteDialogTitle": "Confirm Deletion",
+      "deleteDialogWarning": "Are you sure you want to delete \"{title}\"?",
+      "cancelButton": "Cancel",
+      "deleteButton": "Delete",
+      "untitled": "Untitled",
+      "unknownLocation": "Unknown Location"
+    },
+    "AdminBlogTable": {
+      "headers": {
+        "title": "Title",
+        "status": "Status",
+        "date": "Date Created",
+        "actions": "Actions"
+      },
+      "status": {
+        "published": "Published",
+        "draft": "Draft"
+      },
+      "noArticles": "No articles found.",
+      "deleteDialog": {
+        "title": "Confirm Deletion",
+        "message": "Are you sure you want to permanently delete the article: \"{title}\"? This action cannot be undone.",
+        "cancel": "Cancel",
+        "confirm": "Delete"
+      },
+      "errors": {
+        "deleteFailed": "Error: Could not delete article."
+      }
+    },
+    "AdminReviewsTable": {
+      "headers": {
+        "author": "Author",
+        "review": "Review",
+        "rating": "Rating",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "status": {
+        "approved": "Approved",
+        "pending": "Pending"
+      },
+      "actions": {
+        "approve": "Approve",
+        "delete": "Delete",
+        "cancel": "Cancel"
+      },
+      "deleteDialog": {
+        "title": "Confirm Deletion",
+        "message": "Are you sure you want to permanently delete the review by {name}? This action cannot be undone."
+      },
+      "errors": {
+        "approveFailed": "Error: Could not approve review.",
+        "deleteFailed": "Error: Could not delete review."
+      },
+      "noReviews": "No reviews found."
+    },
+    "experiences": {
+      "createTitle": "Create New Experience",
+      "editTitle": "Edit Experience",
+      "buttons": {
+        "add": "Add Experience",
+        "cancel": "Cancel",
+        "create": "Create Experience",
+        "save": "Save Changes",
+        "uploadCover": "Upload Cover Image",
+        "addGallery": "Add Gallery Images",
+        "addTimeline": "Add Timeline Step",
+        "addFaq": "Add FAQ"
+      },
+      "sections": {
+        "general": "General Information",
+        "quickFacts": "Quick Facts",
+        "meetingPoint": "Meeting Point Coordinates",
+        "policy": "Booking Policy & Trust",
+        "images": "Images",
+        "content": "Translations & Content",
+        "timeline": "Visual Timeline",
+        "faq": "FAQs"
+      },
+      "labels": {
+        "price": "Price Amount",
+        "location": "Location",
+        "duration": "Duration",
+        "unit": "Unit",
+        "tags": "Tags (Strict)",
+        "maxGuests": "Max Guests",
+        "tourCode": "Tour Code",
+        "languages": "Languages",
+        "startTimes": "Start Times",
+        "latitude": "Latitude",
+        "longitude": "Longitude",
+        "cancelHours": "Free Cancellation (Hours before)",
+        "spotsLeft": "Spots Left (Scarcity Trigger)",
+        "payLater": "Reserve Now, Pay Later",
+        "instantConfirm": "Instant Confirmation",
+        "sellOutBadge": "Badge: 'Likely to Sell Out'",
+        "mobileTicket": "Mobile Ticket Accepted",
+        "title": "Title",
+        "shortDesc": "Short Description",
+        "desc": "Description (Markdown)",
+        "highlights": "Highlights",
+        "included": "What's Included",
+        "notIncluded": "What's Not Included",
+        "importantInfo": "Important Information",
+        "itinerary": "Detailed Itinerary"
+      },
+      "timeline": {
+        "stepTitle": "Step Title",
+        "type": "Type",
+        "duration": "Duration",
+        "admission": "Admission",
+        "description": "Description"
+      },
+      "placeholders": {
+        "cancelHelper": "e.g. 24",
+        "spotsHelper": "Leave empty to disable",
+        "startTimesHelper": "e.g. 09:00, 14:00"
+      }
+    },
+    "blog": {
+      "createTitle": "Create New Article",
+      "editTitle": "Edit Article",
+      "labels": {
+        "slug": "URL Slug",
+        "slugHelper": "Auto-generated from English title",
+        "status": "Status",
+        "title": "Article Title",
+        "content": "Article Content",
+        "coverImage": "Cover Image",
+        "changeImage": "Change Image",
+        "uploadImage": "Upload Cover Image",
+        "usingSaved": "Using saved image",
+        "newSelected": "New image selected (will upload on save)"
+      },
+      "statusOptions": {
+        "draft": "Draft",
+        "published": "Published"
+      },
+      "buttons": {
+        "save": "Save Changes",
+        "saving": "Saving...",
+        "create": "Create Article",
+        "creating": "Creating...",
+        "clear": "Clear",
+        "copyFromEn": "Copy from English"
+      },
+      "messages": {
+        "imageRequired": "Cover Image is required!",
+        "titleRequired": "English Title is required!",
+        "slugRequired": "URL Slug is required!",
+        "createdSuccess": "Article created successfully!",
+        "updatedSuccess": "Article updated successfully!",
+        "cleared": "Cleared {lang} content.",
+        "copied": "Copied English layout to {lang}!",
+        "copyError": "No English content to copy!",
+        "confirmClear": "Are you sure you want to clear this language?"
+      }
+    },
+    "editor": {
+      "placeholder": "Start writing your story...",
+      "tooltips": {
+        "uploadImage": "Upload Image",
+        "insertCard": "Insert Experience Card"
+      },
+      "productCard": {
+        "experience": "Experience",
+        "startingFrom": "Starting from",
+        "bookNow": "Book Now",
+        "edit": "Edit Experience Card",
+        "insert": "Insert Experience Card",
+        "uploadImage": "Click to Upload Card Image",
+        "uploading": "Uploading...",
+        "titleLabel": "Experience Title",
+        "priceLabel": "Price (€)",
+        "slugLabel": "Link Slug",
+        "badgeLabel": "Badge (Optional)",
+        "slugHelper": "Will link to: /experiences/{slug}",
+        "cancel": "Cancel",
+        "update": "Update Card",
+        "insertBtn": "Insert Card"
+      }
     }
+    
   },
   "PrivacyPage": {
     "title": "Privacy Policy",
@@ -1090,6 +1302,7 @@
   },
   "Auth": {
     "common": {
+      "passwordHint": "Must be at least 8 characters",
       "googleBtn": "Continue with Google",
       "googleBtnSignup": "Sign up with Google",
       "or": "or",

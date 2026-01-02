@@ -1,3 +1,4 @@
+// src/components/admin/editor/TipTapEditor.tsx
 'use client';
 
 import React, { useCallback, useState, useEffect, useRef } from 'react';
@@ -14,9 +15,12 @@ import {
   FormatBold, FormatItalic, FormatListBulleted, FormatQuote, 
   AddPhotoAlternate, LocalOffer 
 } from '@mui/icons-material';
+import { useTranslations } from 'next-intl';
 
 // --- TOOLBAR ---
 const MenuBar = ({ editor, onOpenProductModal }: { editor: any, onOpenProductModal: () => void }) => {
+  const t = useTranslations('admin.editor');
+  
   const addImage = useCallback(() => {
     if (!editor) return;
     const input = document.createElement('input');
@@ -35,20 +39,40 @@ const MenuBar = ({ editor, onOpenProductModal }: { editor: any, onOpenProductMod
   if (!editor) return null;
 
   return (
-    <Stack direction="row" spacing={1} sx={{ p: 1, borderBottom: '1px solid', borderColor: 'divider', bgcolor: 'background.paper', position: 'sticky', top: 0, zIndex: 10 }}>
+    <Stack 
+      direction="row" 
+      spacing={1} 
+      flexWrap="wrap" // 🟢 ALLOW WRAPPING ON MOBILE
+      sx={{ 
+        p: 1, 
+        borderBottom: '1px solid', 
+        borderColor: 'divider', 
+        bgcolor: 'background.paper', 
+        position: 'sticky', 
+        top: 0, 
+        zIndex: 10,
+        gap: 1 // Gap for wrapped items
+      }}
+    >
         <ToggleButtonGroup size="small" exclusive>
           <ToggleButton value="bold" selected={editor.isActive('bold')} onClick={() => editor.chain().focus().toggleBold().run()}><FormatBold /></ToggleButton>
           <ToggleButton value="italic" selected={editor.isActive('italic')} onClick={() => editor.chain().focus().toggleItalic().run()}><FormatItalic /></ToggleButton>
         </ToggleButtonGroup>
-        <Divider flexItem orientation="vertical" sx={{ mx: 0.5 }} />
+        
+        <Divider flexItem orientation="vertical" sx={{ mx: 0.5, display: { xs: 'none', sm: 'block' } }} />
+        
         <ToggleButtonGroup size="small" exclusive>
            <ToggleButton value="bulletList" selected={editor.isActive('bulletList')} onClick={() => editor.chain().focus().toggleBulletList().run()}><FormatListBulleted /></ToggleButton>
            <ToggleButton value="blockquote" selected={editor.isActive('blockquote')} onClick={() => editor.chain().focus().toggleBlockquote().run()}><FormatQuote /></ToggleButton>
         </ToggleButtonGroup>
-        <Divider flexItem orientation="vertical" sx={{ mx: 0.5 }} />
-        <Tooltip title="Upload Image"><IconButton size="small" onClick={addImage}><AddPhotoAlternate color="primary" /></IconButton></Tooltip>
         
-        <Tooltip title="Insert Experience Card">
+        <Divider flexItem orientation="vertical" sx={{ mx: 0.5, display: { xs: 'none', sm: 'block' } }} />
+        
+        <Tooltip title={t('tooltips.uploadImage')}>
+          <IconButton size="small" onClick={addImage}><AddPhotoAlternate color="primary" /></IconButton>
+        </Tooltip>
+        
+        <Tooltip title={t('tooltips.insertCard')}>
             <IconButton 
                 size="small" 
                 onClick={onOpenProductModal} 
@@ -68,6 +92,7 @@ interface TipTapEditorProps {
 }
 
 export default function TipTapEditor({ content, onChange }: TipTapEditorProps) {
+  const t = useTranslations('admin.editor');
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editingData, setEditingData] = useState<any>(null); 
   const updateCallbackRef = useRef<((data: any) => void) | null>(null);
@@ -78,7 +103,7 @@ export default function TipTapEditor({ content, onChange }: TipTapEditorProps) {
       StarterKit,
       ImageExtension.configure({ inline: true }),
       LinkExtension.configure({ openOnClick: false }),
-      Placeholder.configure({ placeholder: 'Start writing your story...' }),
+      Placeholder.configure({ placeholder: t('placeholder') }),
       ProductExtension,
     ],
     content: content,
@@ -93,7 +118,6 @@ export default function TipTapEditor({ content, onChange }: TipTapEditorProps) {
     }
   });
 
-  // 🟢 FIX: Cast storage to 'any' here as well
   useEffect(() => {
     if (editor) {
         const storage = editor.storage as any;

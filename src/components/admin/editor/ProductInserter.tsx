@@ -1,3 +1,4 @@
+// src/components/admin/editor/ProductInserter.tsx
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -9,6 +10,7 @@ import {
 import { CloudUpload, Delete, Link as LinkIcon } from '@mui/icons-material';
 import { compressAndUploadImage } from '@/utils/upload-helper';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 interface ProductData {
   title: string;
@@ -25,13 +27,12 @@ interface ProductInserterProps {
   initialData?: ProductData | null;
 }
 
-// 🟢 HELPER: Strict Slug Cleaner
-// Converts "Merveille : Roche" -> "merveille-roche"
+// Helper: Strict Slug Cleaner
 const cleanSlug = (text: string) => {
   if (!text) return '';
   return text
     .toLowerCase()
-    .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Remove accents (é -> e)
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Remove accents
     .replace(/:/g, '')        // Remove colons
     .replace(/[^\w\s-]/g, '') // Remove special chars
     .replace(/[\s_-]+/g, '-') // Replace spaces with dashes
@@ -39,6 +40,7 @@ const cleanSlug = (text: string) => {
 };
 
 export default function ProductInserter({ open, onClose, onInsert, initialData }: ProductInserterProps) {
+  const t = useTranslations('admin.editor.productCard');
   const [values, setValues] = useState({
     title: '',
     price: '',
@@ -49,19 +51,15 @@ export default function ProductInserter({ open, onClose, onInsert, initialData }
   
   const [uploading, setUploading] = useState(false);
 
-  // 🟢 UPDATED: Clean the slug immediately when opening
   useEffect(() => {
     if (open && initialData) {
-      // Extract the raw slug from the full URL
       let rawSlug = initialData.link.replace('/experiences/', '').replace('/', '');
-      
-      // Auto-clean it!
       rawSlug = cleanSlug(rawSlug);
 
       setValues({
         title: initialData.title || '',
         price: initialData.price?.toString() || '',
-        slug: rawSlug, // Set the clean version
+        slug: rawSlug, 
         image: initialData.image || '',
         badge: initialData.badge || ''
       });
@@ -97,7 +95,6 @@ export default function ProductInserter({ open, onClose, onInsert, initialData }
   const handleSubmit = () => {
     if (!values.title) return;
     
-    // Final clean check before saving
     const finalSlug = cleanSlug(values.slug);
 
     onInsert({
@@ -114,22 +111,24 @@ export default function ProductInserter({ open, onClose, onInsert, initialData }
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
       <DialogTitle sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-        {initialData ? '✏️ Edit Experience Card' : '🛍️ Insert Experience Card'}
+        {initialData ? `✏️ ${t('edit')}` : `🛍️ ${t('insert')}`}
       </DialogTitle>
       
       <DialogContent dividers>
         <Stack spacing={3} sx={{ mt: 1 }}>
           
+          {/* Image Uploader */}
           <Box sx={{ border: '2px dashed', borderColor: 'divider', borderRadius: 2, p: 2, textAlign: 'center', bgcolor: 'background.default' }}>
             {values.image ? (
                <Box sx={{ position: 'relative', width: '100%', height: 200 }}>
-<Image 
-  src={values.image} 
-  alt="Preview" 
-  fill 
-  style={{ objectFit: 'cover', borderRadius: '8px' }}
-  sizes="(max-width: 768px) 100vw, 400px" // Optimization for performance
-/>                  <IconButton 
+                 <Image 
+                    src={values.image} 
+                    alt="Preview" 
+                    fill 
+                    style={{ objectFit: 'cover', borderRadius: '8px' }}
+                    sizes="(max-width: 768px) 100vw, 400px" 
+                 />                  
+                 <IconButton 
                     size="small" onClick={() => setValues({ ...values, image: '' })}
                     sx={{ position: 'absolute', top: 8, right: 8, bgcolor: 'rgba(0,0,0,0.6)', color: 'white', '&:hover': { bgcolor: 'error.main' } }}
                   >
@@ -142,32 +141,33 @@ export default function ProductInserter({ open, onClose, onInsert, initialData }
                 startIcon={uploading ? <CircularProgress size={20} /> : <CloudUpload />}
                 sx={{ height: 100, flexDirection: 'column', gap: 1 }}
               >
-                {uploading ? "Uploading..." : "Click to Upload Card Image"}
+                {uploading ? t('uploading') : t('uploadImage')}
                 <input type="file" hidden accept="image/*" onChange={handleImageUpload} />
               </Button>
             )}
           </Box>
 
-          <Stack direction="row" spacing={2}>
-             <TextField label="Experience Title" size="small" fullWidth value={values.title} onChange={handleChange('title')} />
-             <TextField label="Price (€)" size="small" type="number" sx={{ width: 120 }} value={values.price} onChange={handleChange('price')} />
+          {/* Title & Price Stack */}
+          <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
+             <TextField label={t('titleLabel')} size="small" fullWidth value={values.title} onChange={handleChange('title')} />
+             <TextField label={t('priceLabel')} size="small" type="number" sx={{ width: { xs: '100%', sm: 120 } }} value={values.price} onChange={handleChange('price')} />
           </Stack>
 
           <TextField 
-            label="Link Slug" size="small" fullWidth value={values.slug} onChange={handleChange('slug')} 
+            label={t('slugLabel')} size="small" fullWidth value={values.slug} onChange={handleChange('slug')} 
             placeholder="camel-ride"
-            helperText={`Will link to: /experiences/${values.slug}`}
+            helperText={t('slugHelper', { slug: values.slug || '...' })}
             InputProps={{ startAdornment: (<InputAdornment position="start"><LinkIcon color="action" fontSize="small" /> /experiences/</InputAdornment>) }}
           />
 
-          <TextField label="Badge (Optional)" size="small" fullWidth value={values.badge} onChange={handleChange('badge')} />
+          <TextField label={t('badgeLabel')} size="small" fullWidth value={values.badge} onChange={handleChange('badge')} />
 
         </Stack>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>Cancel</Button>
+        <Button onClick={onClose}>{t('cancel')}</Button>
         <Button onClick={handleSubmit} variant="contained" color="primary" disabled={!values.title || !values.slug || uploading}>
-          {initialData ? 'Update Card' : 'Insert Card'}
+          {initialData ? t('update') : t('insertBtn')}
         </Button>
       </DialogActions>
     </Dialog>

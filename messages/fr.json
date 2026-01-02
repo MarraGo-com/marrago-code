@@ -644,16 +644,17 @@
     "TransportService": "Service de transport",
     "Other": "Autre"
   },
-  "admin": {
+ "admin": {
     "AdminSidebar": {
-      "adminPanel": "Panneau Admin",
-      "dashboard": "Tableau de bord",
-      "experiences": "Expériences",
-      "blog": "Blog",
-      "bookings": "Réservations",
-      "reviews": "Avis",
-      "settings": "Paramètres"
-    },
+    "adminPanel": "Panneau d'admin",
+    "dashboard": "Tableau de bord",
+    "experiences": "Expériences",
+    "blog": "Blog",
+    "bookings": "Réservations",
+    "reviews": "Avis",
+    "settings": "Paramètres",
+    "logout": "Déconnexion"
+  },
     "AdminBlogCreatePage": {
       "createArticleTitle": "Créer un nouvel article"
     },
@@ -672,6 +673,216 @@
     },
     "AdminReviewsPage": {
       "manageReviewsTitle": "Gérer les avis clients"
+    },
+    "AdminBookingsTable": {
+      "headers": {
+        "customer": "Client",
+        "experience": "Expérience",
+        "date": "Réservé pour",
+        "guests": "Participants",
+        "status": "Statut",
+        "actions": "Actions"
+      },
+      "status": {
+        "confirmed": "Confirmé",
+        "cancelled": "Annulé",
+        "pending": "En attente"
+      },
+      "actions": {
+        "markConfirmed": "Marquer comme confirmé",
+        "markPending": "Marquer comme en attente",
+        "markCancelled": "Marquer comme annulé",
+        "chatWhatsApp": "Discuter sur WhatsApp"
+      },
+      "noBookings": "Aucune réservation trouvée."
+    },
+    "ExperiencesTable": {
+      "headerTitle": "Titre",
+      "headerLocation": "Lieu",
+      "headerPrice": "Prix",
+      "headerActions": "Actions",
+      "noItemsFound": "Aucune expérience trouvée.",
+      "deleteDialogTitle": "Confirmer la suppression",
+      "deleteDialogWarning": "Êtes-vous sûr de vouloir supprimer \"{title}\" ?",
+      "cancelButton": "Annuler",
+      "deleteButton": "Supprimer",
+      "untitled": "Sans titre",
+      "unknownLocation": "Lieu inconnu"
+    },
+    "AdminBlogTable": {
+      "headers": {
+        "title": "Titre",
+        "status": "Statut",
+        "date": "Date de création",
+        "actions": "Actions"
+      },
+      "status": {
+        "published": "Publié",
+        "draft": "Brouillon"
+      },
+      "noArticles": "Aucun article trouvé.",
+      "deleteDialog": {
+        "title": "Confirmer la suppression",
+        "message": "Êtes-vous sûr de vouloir supprimer définitivement l'article : \"{title}\" ? Cette action est irréversible.",
+        "cancel": "Annuler",
+        "confirm": "Supprimer"
+      },
+      "errors": {
+        "deleteFailed": "Erreur : Impossible de supprimer l'article."
+      }
+    },
+    "AdminReviewsTable": {
+      "headers": {
+        "author": "Auteur",
+        "review": "Avis",
+        "rating": "Note",
+        "status": "Statut",
+        "actions": "Actions"
+      },
+      "status": {
+        "approved": "Approuvé",
+        "pending": "En attente"
+      },
+      "actions": {
+        "approve": "Approuver",
+        "delete": "Supprimer",
+        "cancel": "Annuler"
+      },
+      "deleteDialog": {
+        "title": "Confirmer la suppression",
+        "message": "Êtes-vous sûr de vouloir supprimer définitivement l'avis de {name} ? Cette action est irréversible."
+      },
+      "errors": {
+        "approveFailed": "Erreur : Impossible d'approuver l'avis.",
+        "deleteFailed": "Erreur : Impossible de supprimer l'avis."
+      },
+      "noReviews": "Aucun avis trouvé."
+    },
+    "experiences": {
+      "createTitle": "Créer une nouvelle expérience",
+      "editTitle": "Modifier l'expérience",
+      "buttons": {
+        "add": "Ajouter une expérience",
+        "cancel": "Annuler",
+        "create": "Créer l'expérience",
+        "save": "Enregistrer les modifications",
+        "uploadCover": "Télécharger l'image de couverture",
+        "addGallery": "Ajouter des images à la galerie",
+        "addTimeline": "Ajouter une étape",
+        "addFaq": "Ajouter une FAQ"
+      },
+      "sections": {
+        "general": "Informations générales",
+        "quickFacts": "Faits rapides",
+        "meetingPoint": "Point de rendez-vous (Coordonnées)",
+        "policy": "Politique de réservation et confiance",
+        "images": "Images",
+        "content": "Traductions et contenu",
+        "timeline": "Chronologie visuelle",
+        "faq": "FAQ"
+      },
+      "labels": {
+        "price": "Montant du prix",
+        "location": "Lieu",
+        "duration": "Durée",
+        "unit": "Unité",
+        "tags": "Tags (Strict)",
+        "maxGuests": "Invités max",
+        "tourCode": "Code du tour",
+        "languages": "Langues",
+        "startTimes": "Heures de départ",
+        "latitude": "Latitude",
+        "longitude": "Longitude",
+        "cancelHours": "Annulation gratuite (heures avant)",
+        "spotsLeft": "Places restantes (Déclencheur rareté)",
+        "payLater": "Réserver maintenant, payer plus tard",
+        "instantConfirm": "Confirmation instantanée",
+        "sellOutBadge": "Badge : 'Susceptible d'être complet'",
+        "mobileTicket": "Billet mobile accepté",
+        "title": "Titre",
+        "shortDesc": "Description courte",
+        "desc": "Description (Markdown)",
+        "highlights": "Points forts",
+        "included": "Inclus",
+        "notIncluded": "Non inclus",
+        "importantInfo": "Informations importantes",
+        "itinerary": "Itinéraire détaillé"
+      },
+      "timeline": {
+        "stepTitle": "Titre de l'étape",
+        "type": "Type",
+        "duration": "Durée",
+        "admission": "Admission",
+        "description": "Description"
+      },
+      "placeholders": {
+        "cancelHelper": "ex. 24",
+        "spotsHelper": "Laisser vide pour désactiver",
+        "startTimesHelper": "ex. 09:00, 14:00"
+      }
+    },
+    "blog": {
+      "createTitle": "Créer un nouvel article",
+      "editTitle": "Modifier l'article",
+      "labels": {
+        "slug": "Slug URL",
+        "slugHelper": "Généré automatiquement depuis le titre anglais",
+        "status": "Statut",
+        "title": "Titre de l'article",
+        "content": "Contenu de l'article",
+        "coverImage": "Image de couverture",
+        "changeImage": "Changer l'image",
+        "uploadImage": "Télécharger l'image",
+        "usingSaved": "Image enregistrée utilisée",
+        "newSelected": "Nouvelle image sélectionnée (sera téléchargée à l'enregistrement)"
+      },
+      "statusOptions": {
+        "draft": "Brouillon",
+        "published": "Publié"
+      },
+      "buttons": {
+        "save": "Enregistrer",
+        "saving": "Enregistrement...",
+        "create": "Créer l'article",
+        "creating": "Création...",
+        "clear": "Effacer",
+        "copyFromEn": "Copier depuis l'anglais"
+      },
+      "messages": {
+        "imageRequired": "L'image de couverture est requise !",
+        "titleRequired": "Le titre anglais est requis !",
+        "slugRequired": "Le slug URL est requis !",
+        "createdSuccess": "Article créé avec succès !",
+        "updatedSuccess": "Article mis à jour avec succès !",
+        "cleared": "Contenu {lang} effacé.",
+        "copied": "Mise en page anglaise copiée vers {lang} !",
+        "copyError": "Pas de contenu anglais à copier !",
+        "confirmClear": "Êtes-vous sûr de vouloir effacer cette langue ?"
+      }
+    },
+    "editor": {
+      "placeholder": "Commencez à écrire votre histoire...",
+      "tooltips": {
+        "uploadImage": "Télécharger une image",
+        "insertCard": "Insérer une carte d'expérience"
+      },
+      "productCard": {
+        "experience": "Expérience",
+        "startingFrom": "À partir de",
+        "bookNow": "Réserver",
+        "edit": "Modifier la carte",
+        "insert": "Insérer la carte",
+        "uploadImage": "Cliquez pour télécharger l'image",
+        "uploading": "Téléchargement...",
+        "titleLabel": "Titre de l'expérience",
+        "priceLabel": "Prix (€)",
+        "slugLabel": "Slug du lien",
+        "badgeLabel": "Badge (Optionnel)",
+        "slugHelper": "Liera vers : /experiences/{slug}",
+        "cancel": "Annuler",
+        "update": "Mettre à jour",
+        "insertBtn": "Insérer"
+      }
     }
   },
   "PrivacyPage": {
@@ -1057,7 +1268,7 @@
         "quote": "Trouvez votre sanctuaire derrière les murs rouges.",
         "alt": "Patio de Riad de luxe"
       },
-      "2": {
+      "2":  {
         "quote": "L'aventure vous attend juste devant votre porte.",
         "alt": "Arche marocaine traditionnelle"
       }
@@ -1065,6 +1276,7 @@
   },
   "Auth": {
     "common": {
+      "passwordHint": "Doit contenir au moins 8 caractères",
       "googleBtn": "Continuer avec Google",
       "googleBtnSignup": "S'inscrire avec Google",
       "or": "ou",

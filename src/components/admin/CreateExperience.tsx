@@ -7,7 +7,7 @@ import {
   Typography, Box, LinearProgress, Tabs, Tab, Select, MenuItem,
   InputLabel, FormControl, OutlinedInput, InputAdornment, Divider,
   Chip, IconButton, Paper, List, ListItem, ListItemText, ListItemAvatar, Avatar, Stack,
-  Switch, FormControlLabel, Checkbox, SelectChangeEvent // <--- NEW IMPORTS
+  Switch, FormControlLabel, Checkbox, SelectChangeEvent, useTheme, useMediaQuery
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -17,13 +17,19 @@ import { useRouter } from 'next/navigation';
 import { useExperienceForm} from '@/hooks/useExperienceForm';
 import { GalleryImage } from '@/types/experience';
 import { locations } from '@/config/locations'; 
+import { useTranslations } from 'next-intl';
 
-// --- NEW: Import Constants ---
+// --- Import Constants ---
 import { DURATION_UNITS, SUPPORTED_LANGUAGES, EXPERIENCE_TAGS } from '@/config/constants';
 
 export default function CreateExperience() {
+  const t = useTranslations('admin.experiences');
   const router = useRouter();
   const [open, setOpen] = useState(false);
+
+  // Mobile Responsiveness Hooks
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
   const {
     formData,
@@ -52,15 +58,13 @@ export default function CreateExperience() {
   const [uploadingFiles, setUploadingFiles] = useState<{ name: string; progress: number }[]>([]);
   const [error, setError] = useState<string | null>(null);
   
-  // --- NEW: Handlers for Selectors ---
-
   // Handle standard dropdowns (Duration Unit)
   const handleSelectChange = (event: SelectChangeEvent) => {
     const { name, value } = event.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  // Handle Multi-Select (Tags, Languages) -> Saves as Array ['en', 'fr']
+  // Handle Multi-Select (Tags, Languages)
   const handleMultiSelectChange = (event: SelectChangeEvent<string[]>) => {
     const { name, value } = event.target;
     setFormData(prev => ({
@@ -88,9 +92,9 @@ export default function CreateExperience() {
     setError(null);
 
     try {
-      // STEP 1: Initiate creation and get ID
+      // STEP 1: Initiate creation
       const initiateResponse = await fetch('/api/admin/experiences/initiate', { method: 'POST' });
-      if (!initiateResponse.ok) throw new Error('Failed to get a new experience ID from the server.');
+      if (!initiateResponse.ok) throw new Error('Failed to get a new experience ID.');
       const { id: experienceId } = await initiateResponse.json();
       if (!experienceId) throw new Error('Server did not return a valid experience ID.');
 
@@ -136,7 +140,6 @@ export default function CreateExperience() {
           ...formData, 
           coverImage: coverImageUrl, 
           galleryImages: newGalleryImagesData,
-          // --- CHANGED: No more splitting strings. We pass arrays directly. ---
           tags: formData.tags || [],
           languages: formData.languages || [],
           startTimes: typeof formData.startTimes === 'string' ? (formData.startTimes as string).split(',') : formData.startTimes,
@@ -183,42 +186,49 @@ export default function CreateExperience() {
   return (
     <Box>
       <Button variant="contained" startIcon={<AddIcon />} onClick={handleOpen} sx={{ mb: 2 }}>
-        Add New Experience
+        {t('buttons.add')}
       </Button>
-      <Dialog open={open} onClose={handleClose} PaperProps={{ component: 'form', onSubmit: handleSubmit }} maxWidth="md" fullWidth>
-        <DialogTitle>Create a New Experience</DialogTitle>
+      <Dialog 
+        open={open} 
+        onClose={handleClose} 
+        fullScreen={fullScreen} 
+        PaperProps={{ component: 'form', onSubmit: handleSubmit }} 
+        maxWidth="md" 
+        fullWidth
+      >
+        <DialogTitle>{t('createTitle')}</DialogTitle>
         <DialogContent>
             {/* General Information Section */}
-            <Divider sx={{ my: 2 }}><Chip label="General Information" /></Divider>
+            <Divider sx={{ my: 2 }}><Chip label={t('sections.general')} /></Divider>
             <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 2, mb: 2 }}>
                 <FormControl fullWidth required>
-                  <InputLabel htmlFor="price-amount">Price Amount</InputLabel>
-                  <OutlinedInput id="price-amount" name="amount" type="number" value={formData.price.amount} onChange={handleNestedChange('price')} startAdornment={<InputAdornment position="start">EUR</InputAdornment>} label="Price Amount" />
+                  <InputLabel htmlFor="price-amount">{t('labels.price')}</InputLabel>
+                  <OutlinedInput id="price-amount" name="amount" type="number" value={formData.price.amount} onChange={handleNestedChange('price')} startAdornment={<InputAdornment position="start">EUR</InputAdornment>} label={t('labels.price')} />
                 </FormControl>
                 <FormControl fullWidth required>
-                  <InputLabel id="location-select-label">Location</InputLabel>
-                  <Select labelId="location-select-label" name="locationId" value={formData.locationId} label="Location" onChange={(e) => setFormData(p => ({...p, locationId: e.target.value}))}>
+                  <InputLabel id="location-select-label">{t('labels.location')}</InputLabel>
+                  <Select labelId="location-select-label" name="locationId" value={formData.locationId} label={t('labels.location')} onChange={(e) => setFormData(p => ({...p, locationId: e.target.value}))}>
                       {locations.map((loc) => (<MenuItem key={loc.id} value={loc.id}>{loc.name}</MenuItem>))}
                   </Select>
                 </FormControl>
                 
-                {/* ▼▼▼ REFACTORED DURATION (Value + Unit) ▼▼▼ */}
+                {/* DURATION (Value + Unit) */}
                 <Box sx={{ display: 'flex', gap: 1 }}>
                   <TextField
                       required
                       name="durationValue"
-                      label="Duration"
+                      label={t('labels.duration')}
                       type="number"
                       fullWidth
                       value={formData.durationValue ?? ''}
                       onChange={handleRootChange}
                   />
                   <FormControl sx={{ minWidth: 100 }}>
-                    <InputLabel>Unit</InputLabel>
+                    <InputLabel>{t('labels.unit')}</InputLabel>
                     <Select
                       name="durationUnit"
                       value={formData.durationUnit ?? 'hours'}
-                      label="Unit"
+                      label={t('labels.unit')}
                       onChange={handleSelectChange}
                     >
                       {DURATION_UNITS.map((u) => <MenuItem key={u.value} value={u.value}>{u.label}</MenuItem>)}
@@ -227,15 +237,15 @@ export default function CreateExperience() {
                 </Box>
             </Box>
 
-            {/* ▼▼▼ REFACTORED TAGS (Multi-Select) ▼▼▼ */}
+            {/* TAGS (Multi-Select) */}
             <FormControl fullWidth sx={{ mb: 2 }}>
-                <InputLabel>Tags (Strict)</InputLabel>
+                <InputLabel>{t('labels.tags')}</InputLabel>
                 <Select
                     multiple
                     name="tags"
                     value={formData.tags || []} 
                     onChange={handleMultiSelectChange}
-                    input={<OutlinedInput label="Tags (Strict)" />}
+                    input={<OutlinedInput label={t('labels.tags')} />}
                     renderValue={(selected) => (
                         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                             {(selected as string[]).map((value) => (
@@ -254,20 +264,20 @@ export default function CreateExperience() {
             </FormControl>
 
             {/* Quick Facts Fields */}
-            <Typography variant="subtitle2" sx={{ mb: 1, mt: 2, color: 'text.secondary' }}>Quick Facts Details</Typography>
+            <Typography variant="subtitle2" sx={{ mb: 1, mt: 2, color: 'text.secondary' }}>{t('sections.quickFacts')}</Typography>
             <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 2, mb: 2 }}>
-                <TextField name="maxGuests" label="Max Guests" type="number" fullWidth value={formData.maxGuests === undefined ? '' : formData.maxGuests} onChange={handleRootChange} />
-                <TextField name="tourCode" label="Tour Code" fullWidth value={formData.tourCode} onChange={handleRootChange} />
+                <TextField name="maxGuests" label={t('labels.maxGuests')} type="number" fullWidth value={formData.maxGuests === undefined ? '' : formData.maxGuests} onChange={handleRootChange} />
+                <TextField name="tourCode" label={t('labels.tourCode')} fullWidth value={formData.tourCode} onChange={handleRootChange} />
                 
-                {/* ▼▼▼ REFACTORED LANGUAGES (Multi-Select) ▼▼▼ */}
+                {/* LANGUAGES (Multi-Select) */}
                 <FormControl fullWidth>
-                    <InputLabel>Languages</InputLabel>
+                    <InputLabel>{t('labels.languages')}</InputLabel>
                     <Select
                         multiple
                         name="languages"
                         value={formData.languages || []}
                         onChange={handleMultiSelectChange}
-                        input={<OutlinedInput label="Languages" />}
+                        input={<OutlinedInput label={t('labels.languages')} />}
                         renderValue={(selected) => (
                             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                                 {(selected as string[]).map((value) => (
@@ -285,66 +295,65 @@ export default function CreateExperience() {
                     </Select>
                 </FormControl>
 
-                <TextField name="startTimes" label="Start Times (comma-separated)" fullWidth value={formData.startTimes} onChange={handleRootChange} helperText="e.g., 09:00, 14:00" />
+                <TextField name="startTimes" label={t('labels.startTimes')} fullWidth value={formData.startTimes} onChange={handleRootChange} helperText={t('placeholders.startTimesHelper')} />
             </Box>
 
             {/* Meeting Point Coordinates */}
-            <Typography variant="subtitle2" sx={{ mb: 1, mt: 2, color: 'text.secondary' }}>Meeting Point Coordinates (Optional)</Typography>
+            <Typography variant="subtitle2" sx={{ mb: 1, mt: 2, color: 'text.secondary' }}>{t('sections.meetingPoint')}</Typography>
             <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 2, mb: 2 }}>
-                 <TextField name="latitude" label="Latitude (e.g., 31.6295)" type="number" fullWidth value={formData.latitude === undefined ? '' : formData.latitude} onChange={handleRootChange} inputProps={{ step: "any" }} />
-                 <TextField name="longitude" label="Longitude (e.g., -7.9811)" type="number" fullWidth value={formData.longitude === undefined ? '' : formData.longitude} onChange={handleRootChange} inputProps={{ step: "any" }} />
+                 <TextField name="latitude" label={t('labels.latitude')} type="number" fullWidth value={formData.latitude === undefined ? '' : formData.latitude} onChange={handleRootChange} inputProps={{ step: "any" }} />
+                 <TextField name="longitude" label={t('labels.longitude')} type="number" fullWidth value={formData.longitude === undefined ? '' : formData.longitude} onChange={handleRootChange} inputProps={{ step: "any" }} />
             </Box>
 
-            {/* ▼▼▼ NEW: Booking Policy & Trust Signals ▼▼▼ */}
-            <Divider sx={{ my: 2 }}><Chip label="Booking Policy & Trust" /></Divider>
+            {/* Booking Policy & Trust Signals */}
+            <Divider sx={{ my: 2 }}><Chip label={t('sections.policy')} /></Divider>
             <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 2, mb: 2 }}>
                  <TextField
                     name="bookingPolicy.cancellationHours"
-                    label="Free Cancellation (Hours before)"
+                    label={t('labels.cancelHours')}
                     type="number"
                     value={formData.bookingPolicy.cancellationHours}
                     onChange={handleNestedChange('bookingPolicy')}
-                    helperText="e.g. 24"
+                    helperText={t('placeholders.cancelHelper')}
                  />
                  <TextField
                     name="scarcity.spotsLeft"
-                    label="Spots Left (Scarcity Trigger)"
+                    label={t('labels.spotsLeft')}
                     type="number"
                     value={formData.scarcity.spotsLeft ?? ''}
                     onChange={handleNestedChange('scarcity')}
-                    helperText="Leave empty to disable. < 5 triggers 'Only X left'"
+                    helperText={t('placeholders.spotsHelper')}
                  />
             </Box>
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: 2 }}>
                 <FormControlLabel
                     control={<Switch checked={formData.bookingPolicy.isPayLater} onChange={handleNestedChange('bookingPolicy')} name="isPayLater" />}
-                    label="Reserve Now, Pay Later"
+                    label={t('labels.payLater')}
                 />
                 <FormControlLabel
                     control={<Switch checked={formData.bookingPolicy.instantConfirmation} onChange={handleNestedChange('bookingPolicy')} name="instantConfirmation" />}
-                    label="Instant Confirmation"
+                    label={t('labels.instantConfirm')}
                 />
                  <FormControlLabel
                     control={<Switch checked={formData.scarcity.isLikelyToSellOut} onChange={handleNestedChange('scarcity')} name="isLikelyToSellOut" />}
-                    label="Badge: 'Likely to Sell Out'"
+                    label={t('labels.sellOutBadge')}
                 />
                  <FormControlLabel
                     control={<Switch checked={formData.features.mobileTicket} onChange={handleNestedChange('features')} name="mobileTicket" />}
-                    label="Mobile Ticket Accepted"
+                    label={t('labels.mobileTicket')}
                 />
             </Box>
-            {/* ▲▲▲ END Booking Policy ▲▲▲ */}
 
             {/* Images Section */}
-            <Divider sx={{ my: 2 }}><Chip label="Images" /></Divider>
+            <Divider sx={{ my: 2 }}><Chip label={t('sections.images')} /></Divider>
             <Button variant="outlined" component="label" fullWidth disabled={isCompressing || loading} sx={{ mb: 2 }}>
-                {isCompressing ? 'Compressing...' : 'Upload Cover Image (Required)'}
+                {isCompressing ? 'Compressing...' : t('buttons.uploadCover')}
                 <input type="file" hidden required accept="image/*" onChange={handleCoverImageChange} />
             </Button>
             {coverImageFile && !isCompressing && <Typography variant="body2" color="text.secondary" sx={{ mt: 1, mb: 2 }}>Selected: {coverImageFile.name}</Typography>}
 
             <Button variant="outlined" component="label" fullWidth disabled={isCompressing || loading}>
-                {isCompressing ? 'Processing...' : 'Add Gallery Images'}
+                {isCompressing ? 'Processing...' : t('buttons.addGallery')}
                 <input type="file" hidden multiple accept="image/*" onChange={handleGalleryImagesChange} />
             </Button>
 
@@ -361,54 +370,59 @@ export default function CreateExperience() {
             </Paper>
 
             {/* Translations & Content Section */}
-            <Divider sx={{ my: 3 }}><Chip label="Translations & Content" /></Divider>
+            <Divider sx={{ my: 3 }}><Chip label={t('sections.content')} /></Divider>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-               <Tabs value={currentTab} onChange={(e, newValue) => setCurrentTab(newValue)}>
+               <Tabs 
+                 value={currentTab} 
+                 onChange={(e, newValue) => setCurrentTab(newValue)}
+                 variant="scrollable" // Make tabs scrollable on mobile
+                 scrollButtons="auto"
+               >
                  <Tab label="English" value="en" />
                  <Tab label="French" value="fr" />
                  <Tab label="Spanish" value="es" />
               </Tabs>
             </Box>
             <Box sx={{ pt: 3, display: 'flex', flexDirection: 'column', gap: 2 }}>
-                <TextField required name="title" label="Title" fullWidth value={formData.translations[currentTab].title} onChange={handleNestedChange(`translations.${currentTab}`)} />
+                <TextField required name="title" label={t('labels.title')} fullWidth value={formData.translations[currentTab].title} onChange={handleNestedChange(`translations.${currentTab}`)} />
                 <TextField 
                   name="shortDescription" 
-                  label="Short Description (Card Summary)" 
+                  label={t('labels.shortDesc')} 
                   fullWidth 
                   multiline 
                   rows={2} 
                   value={formData.translations[currentTab].shortDescription ?? ''} 
                   onChange={handleNestedChange(`translations.${currentTab}`)} 
-                  helperText="A brief summary shown on the experience card (2-3 lines)."
                 />
-                <TextField required name="description" label="Description (Markdown)" fullWidth multiline rows={4} value={formData.translations[currentTab].description} onChange={handleNestedChange(`translations.${currentTab}`)} helperText="Use Markdown for formatting."/>
+                <TextField required name="description" label={t('labels.desc')} fullWidth multiline rows={4} value={formData.translations[currentTab].description} onChange={handleNestedChange(`translations.${currentTab}`)} />
                 
-                <TextField name="highlights" label="Highlights (Markdown list)" fullWidth multiline rows={4} value={formData.translations[currentTab].highlights} onChange={handleNestedChange(`translations.${currentTab}`)} helperText="Use * for bullet points. e.g., * Sunset camel ride" />
+                <TextField name="highlights" label={t('labels.highlights')} fullWidth multiline rows={4} value={formData.translations[currentTab].highlights} onChange={handleNestedChange(`translations.${currentTab}`)} />
 
                 <Divider sx={{ my: 1 }} />
-                <TextField name="included" label="What's Included" fullWidth multiline rows={3} value={formData.translations[currentTab].included} onChange={handleNestedChange(`translations.${currentTab}`)} />
-                <TextField name="notIncluded" label="What's Not Included" fullWidth multiline rows={3} value={formData.translations[currentTab].notIncluded} onChange={handleNestedChange(`translations.${currentTab}`)} />
-                <TextField name="importantInfo" label="Important Information" fullWidth multiline rows={3} value={formData.translations[currentTab].importantInfo} onChange={handleNestedChange(`translations.${currentTab}`)} />
-                <TextField name="itinerary" label="Detailed Itinerary (Markdown)" fullWidth multiline rows={6} value={formData.translations[currentTab].itinerary} onChange={handleNestedChange(`translations.${currentTab}`)} />
+                <TextField name="included" label={t('labels.included')} fullWidth multiline rows={3} value={formData.translations[currentTab].included} onChange={handleNestedChange(`translations.${currentTab}`)} />
+                <TextField name="notIncluded" label={t('labels.notIncluded')} fullWidth multiline rows={3} value={formData.translations[currentTab].notIncluded} onChange={handleNestedChange(`translations.${currentTab}`)} />
+                <TextField name="importantInfo" label={t('labels.importantInfo')} fullWidth multiline rows={3} value={formData.translations[currentTab].importantInfo} onChange={handleNestedChange(`translations.${currentTab}`)} />
+                <TextField name="itinerary" label={t('labels.itinerary')} fullWidth multiline rows={6} value={formData.translations[currentTab].itinerary} onChange={handleNestedChange(`translations.${currentTab}`)} />
 
-                {/* ▼▼▼ Visual Timeline Builder (Pro) ▼▼▼ */}
-                <Divider sx={{ my: 2 }}><Chip label={`Visual Timeline (${currentTab.toUpperCase()})`} /></Divider>
+                {/* Visual Timeline Builder */}
+                <Divider sx={{ my: 2 }}><Chip label={`${t('sections.timeline')} (${currentTab.toUpperCase()})`} /></Divider>
                 <Paper variant="outlined" sx={{ p: 2, bgcolor: '#f8f9fa' }}>
                     {formData.translations[currentTab].program?.map((step, index) => (
                         <Paper key={index} sx={{ p: 2, mb: 2, border: '1px solid #e0e0e0' }}>
-                            <Stack direction="row" spacing={2} sx={{ mb: 2 }}>
+                            {/* Mobile Adjustment: Stack direction */}
+                            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mb: 2 }}>
                                 <TextField
-                                    label={`Step ${index + 1} Title`}
+                                    label={`${t('timeline.stepTitle')} ${index + 1}`}
                                     fullWidth
                                     size="small"
                                     value={step.title}
                                     onChange={(e) => handleTimelineStepChange(currentTab, index, 'title', e.target.value)}
                                 />
                                 <FormControl size="small" sx={{ minWidth: 120 }}>
-                                    <InputLabel>Type</InputLabel>
+                                    <InputLabel>{t('timeline.type')}</InputLabel>
                                     <Select
                                         value={step.type}
-                                        label="Type"
+                                        label={t('timeline.type')}
                                         onChange={(e) => handleTimelineStepChange(currentTab, index, 'type', e.target.value)}
                                     >
                                         <MenuItem value="stop">Stop</MenuItem>
@@ -421,20 +435,20 @@ export default function CreateExperience() {
                                     <DeleteIcon />
                                 </IconButton>
                             </Stack>
-                            <Stack direction="row" spacing={2} sx={{ mb: 2 }}>
+                            {/* Mobile Adjustment: Stack direction */}
+                            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mb: 2 }}>
                                 <TextField
-                                    label="Duration"
+                                    label={t('timeline.duration')}
                                     size="small"
                                     sx={{ flex: 1 }}
                                     value={step.duration}
                                     onChange={(e) => handleTimelineStepChange(currentTab, index, 'duration', e.target.value)}
-                                    helperText="e.g. 30 mins"
                                 />
                                 <FormControl size="small" sx={{ flex: 1 }}>
-                                    <InputLabel>Admission</InputLabel>
+                                    <InputLabel>{t('timeline.admission')}</InputLabel>
                                     <Select
                                         value={step.admission}
-                                        label="Admission"
+                                        label={t('timeline.admission')}
                                         onChange={(e) => handleTimelineStepChange(currentTab, index, 'admission', e.target.value)}
                                     >
                                         <MenuItem value="free">Free</MenuItem>
@@ -444,7 +458,7 @@ export default function CreateExperience() {
                                 </FormControl>
                             </Stack>
                             <TextField
-                                label="Description"
+                                label={t('timeline.description')}
                                 fullWidth
                                 multiline
                                 rows={2}
@@ -455,13 +469,12 @@ export default function CreateExperience() {
                         </Paper>
                     ))}
                     <Button startIcon={<AddIcon />} onClick={() => handleAddTimelineStep(currentTab)} variant="outlined" size="small">
-                        Add Timeline Step
+                        {t('buttons.addTimeline')}
                     </Button>
                 </Paper>
-                {/* ▲▲▲ END Timeline Builder ▲▲▲ */}
-
+                
                 {/* FAQ Manager */}
-                <Divider sx={{ my: 2 }}><Chip label={`FAQs (${currentTab.toUpperCase()})`} /></Divider>
+                <Divider sx={{ my: 2 }}><Chip label={`${t('sections.faq')} (${currentTab.toUpperCase()})`} /></Divider>
                 <Paper variant="outlined" sx={{ p: 2 }}>
                   {formData.translations[currentTab].faqs?.map((faq, index) => (
                     <Stack key={index} direction="row" spacing={2} alignItems="flex-start" sx={{ mb: 2, p: 2, bg: 'white', borderRadius: 1, border: '1px solid #eee' }}>
@@ -475,14 +488,13 @@ export default function CreateExperience() {
                     </Stack>
                   ))}
                   <Button startIcon={<AddIcon />} onClick={() => handleAddFaq(currentTab)} variant="outlined" size="small">
-                    Add FAQ ({currentTab.toUpperCase()})
+                    {t('buttons.addFaq')} ({currentTab.toUpperCase()})
                   </Button>
                 </Paper>
             </Box>
 
             {error && <Typography color="error" sx={{ mt: 2 }}>Error: {error}</Typography>}
             
-            {/* Upload Progress */}
             {uploadingFiles.length > 0 && (
                 <Box sx={{mt: 2}}>
                     {uploadingFiles.map(file => (
@@ -496,9 +508,9 @@ export default function CreateExperience() {
 
         </DialogContent>
         <DialogActions sx={{ p: 3 }}>
-          <Button onClick={handleClose} disabled={loading}>Cancel</Button>
+          <Button onClick={handleClose} disabled={loading}>{t('buttons.cancel')}</Button>
           <Button type="submit" variant="contained" disabled={loading || isCompressing} size="large">
-            {loading ? 'Creating...' : 'Create Experience'}
+            {loading ? 'Creating...' : t('buttons.create')}
           </Button>
         </DialogActions>
       </Dialog>

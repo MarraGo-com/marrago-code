@@ -4,7 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Box, TextField, Button, Select, MenuItem, InputLabel, 
-  FormControl, CircularProgress, Tabs, Tab, Typography
+  FormControl, CircularProgress, Tabs, Tab, Typography, useTheme, useMediaQuery
 } from '@mui/material';
 import { CloudUpload, ContentCopy, DeleteSweep } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
@@ -15,6 +15,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 import TipTapEditor from '@/components/admin/editor/TipTapEditor';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 // Helper for slugs
 const generateSlug = (title: string) => {
@@ -45,7 +46,10 @@ interface Article {
 }
 
 export default function EditArticleForm({ article }: { article: Article }) {
+  const t = useTranslations('admin.blog');
   const router = useRouter();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   // 1. FORM STATE
   const [formData, setFormData] = useState({
@@ -128,7 +132,7 @@ export default function EditArticleForm({ article }: { article: Article }) {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading(true);
-    const toastId = toast.loading("Updating article...");
+    const toastId = toast.loading(t('buttons.saving'));
 
     try {
       let finalCoverImageUrl = article.coverImage;
@@ -154,7 +158,7 @@ export default function EditArticleForm({ article }: { article: Article }) {
 
       if (!response.ok) throw new Error('Failed to update article.');
 
-      toast.success("Article updated successfully!", { id: toastId });
+      toast.success(t('messages.updatedSuccess'), { id: toastId });
       router.refresh(); 
 
     } catch (err: unknown) {
@@ -169,27 +173,33 @@ export default function EditArticleForm({ article }: { article: Article }) {
     <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
       <Toaster position="top-center" />
 
-      {/* TOP BAR */}
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      {/* TOP BAR: Responsive Stack */}
+      <Box sx={{ 
+          display: 'flex', 
+          flexDirection: { xs: 'column', sm: 'row' }, 
+          justifyContent: 'space-between', 
+          alignItems: { xs: 'stretch', sm: 'center' },
+          gap: 2
+      }}>
          <TextField 
             required 
-            label="URL Slug" 
+            label={t('labels.slug')}
             size="small"
             value={formData.slug} 
             onChange={(e) => setFormData(prev => ({...prev, slug: e.target.value}))} 
-            sx={{ width: '50%' }}
-            helperText="Auto-generated from English title"
+            sx={{ width: { xs: '100%', sm: '50%' } }}
+            helperText={t('labels.slugHelper')}
          />
-         <Box sx={{ display: 'flex', gap: 2 }}>
-            <FormControl size="small" sx={{ minWidth: 120 }}>
-                <InputLabel>Status</InputLabel>
+         <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+            <FormControl size="small" sx={{ minWidth: 120, flex: 1 }}>
+                <InputLabel>{t('labels.status')}</InputLabel>
                 <Select 
                     value={formData.status} 
-                    label="Status" 
+                    label={t('labels.status')}
                     onChange={(e) => setFormData(prev => ({...prev, status: e.target.value as any}))}
                 >
-                    <MenuItem value="draft">Draft</MenuItem>
-                    <MenuItem value="published">Published</MenuItem>
+                    <MenuItem value="draft">{t('statusOptions.draft')}</MenuItem>
+                    <MenuItem value="published">{t('statusOptions.published')}</MenuItem>
                 </Select>
             </FormControl>
             <Button 
@@ -198,49 +208,66 @@ export default function EditArticleForm({ article }: { article: Article }) {
                 color="primary" 
                 disabled={loading}
                 startIcon={loading && <CircularProgress size={20} color="inherit" />}
+                sx={{ whiteSpace: 'nowrap', flex: { xs: 1, sm: 'initial' } }}
             >
-                {loading ? 'Saving...' : 'Save Changes'}
+                {loading ? t('buttons.saving') : t('buttons.save')}
             </Button>
          </Box>
       </Box>
 
       {/* COVER IMAGE */}
       <Box sx={{ border: '1px solid', borderColor: 'divider', borderRadius: 2, p: 2 }}>
-         <Typography variant="subtitle2" sx={{ mb: 1, fontWeight: 'bold' }}>Cover Image</Typography>
+         <Typography variant="subtitle2" sx={{ mb: 1, fontWeight: 'bold' }}>{t('labels.coverImage')}</Typography>
          
          {previewUrl ? (
              <Box sx={{ position: 'relative', width: '100%', maxWidth: 400, height: 250, borderRadius: 2, overflow: 'hidden', mb: 2, border: '1px solid #eee' }}>
-   <Image 
-      src={previewUrl} 
-      alt="Cover Preview" 
-      fill 
-      style={{ objectFit: 'cover' }}
-      priority // Loads immediately since it's the main image
-      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
-    />                 <Box sx={{ position: 'absolute', inset: 0, bgcolor: 'rgba(0,0,0,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: 0, transition: '0.2s', '&:hover': { opacity: 1 } }}>
+               <Image 
+                  src={previewUrl} 
+                  alt="Cover Preview" 
+                  fill 
+                  style={{ objectFit: 'cover' }}
+                  priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                />
+                 <Box sx={{ position: 'absolute', inset: 0, bgcolor: 'rgba(0,0,0,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: 0, transition: '0.2s', '&:hover': { opacity: 1 } }}>
                     <Button variant="contained" component="label" size="small" startIcon={<CloudUpload />}>
-                        Change Image
+                        {t('labels.changeImage')}
                         <input type="file" hidden accept="image/*" onChange={handleFileChange} />
                     </Button>
                  </Box>
              </Box>
          ) : (
             <Button variant="outlined" component="label" fullWidth sx={{ height: 100, borderStyle: 'dashed' }}>
-                Upload Cover Image
+                {t('labels.uploadImage')}
                 <input type="file" hidden accept="image/*" onChange={handleFileChange} />
             </Button>
          )}
          
          {newImageFile ? (
-             <Typography variant="caption" color="success.main">✅ New image selected (will upload on save)</Typography>
+             <Typography variant="caption" color="success.main">✅ {t('labels.newSelected')}</Typography>
          ) : (
-             <Typography variant="caption" color="text.secondary">Using saved image</Typography>
+             <Typography variant="caption" color="text.secondary">{t('labels.usingSaved')}</Typography>
          )}
       </Box>
 
       {/* TABS WITH TOOLS */}
-      <Box sx={{ borderBottom: 1, borderColor: 'divider', display: 'flex', justifyContent: 'space-between', alignItems: 'center', pr: 1 }}>
-        <Tabs value={currentTab} onChange={(e, newValue) => setCurrentTab(newValue)}>
+      <Box sx={{ 
+          borderBottom: 1, 
+          borderColor: 'divider', 
+          display: 'flex', 
+          flexDirection: { xs: 'column', sm: 'row' },
+          justifyContent: 'space-between', 
+          alignItems: { xs: 'flex-start', sm: 'center' }, 
+          pr: 1,
+          gap: 2
+      }}>
+        <Tabs 
+            value={currentTab} 
+            onChange={(e, newValue) => setCurrentTab(newValue)}
+            variant="scrollable"
+            scrollButtons="auto"
+            sx={{ maxWidth: { xs: '100%', sm: '60%' } }}
+        >
             <Tab label="English" value="en" />
             <Tab label="Français" value="fr" />
             <Tab label="Español" value="es" />
@@ -248,13 +275,13 @@ export default function EditArticleForm({ article }: { article: Article }) {
 
         {/* COPY & CLEAR TOOLS */}
         {currentTab !== 'en' && (
-            <Box sx={{ display: 'flex', gap: 1 }}>
+            <Box sx={{ display: 'flex', gap: 1, mb: { xs: 1, sm: 0 } }}>
                 <Button 
                     size="small" 
                     startIcon={<DeleteSweep />}
                     color="error"
                     onClick={() => {
-                        if(!confirm("Are you sure you want to clear this language?")) return;
+                        if(!confirm(t('messages.confirmClear'))) return;
                         setFormData(prev => ({
                             ...prev,
                             translations: {
@@ -262,10 +289,10 @@ export default function EditArticleForm({ article }: { article: Article }) {
                                 [currentTab]: { title: '', content: '' }
                             }
                         }));
-                        toast.success(`Cleared ${currentTab.toUpperCase()} content.`);
+                        toast.success(t('messages.cleared', { lang: currentTab.toUpperCase() }));
                     }}
                 >
-                    Clear
+                    {t('buttons.clear')}
                 </Button>
                 <Button 
                     size="small" 
@@ -276,11 +303,11 @@ export default function EditArticleForm({ article }: { article: Article }) {
                         const enTitle = formData.translations.en.title;
                         
                         if (!enContent) {
-                            toast.error("No English content to copy!");
+                            toast.error(t('messages.copyError'));
                             return;
                         }
 
-                        // Deep copy to prevent linking
+                        // Deep copy
                         const deepClone = JSON.parse(JSON.stringify(enContent));
 
                         setFormData(prev => ({
@@ -293,10 +320,10 @@ export default function EditArticleForm({ article }: { article: Article }) {
                                 }
                             }
                         }));
-                        toast.success(`Copied English layout to ${currentTab.toUpperCase()}!`);
+                        toast.success(t('messages.copied', { lang: currentTab.toUpperCase() }));
                     }}
                 >
-                    Copy from English
+                    {isMobile ? t('buttons.copyFromEn').replace('English', 'EN') : t('buttons.copyFromEn')}
                 </Button>
             </Box>
         )}
@@ -306,7 +333,7 @@ export default function EditArticleForm({ article }: { article: Article }) {
       <Box sx={{ pt: 2, display: 'flex', flexDirection: 'column', gap: 3 }}>
         <TextField 
             required={currentTab === 'en'} 
-            label={`Article Title (${currentTab.toUpperCase()})`} 
+            label={`${t('labels.title')} (${currentTab.toUpperCase()})`}
             name="title" 
             value={formData.translations[currentTab].title} 
             onChange={handleTranslationChange} 
@@ -314,10 +341,8 @@ export default function EditArticleForm({ article }: { article: Article }) {
         />
         
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-            <InputLabel sx={{ fontWeight: 'bold' }}>Article Content</InputLabel>
+            <InputLabel sx={{ fontWeight: 'bold' }}>{t('labels.content')}</InputLabel>
             
-            {/* 🟢 THE MAGIC FIX: key={currentTab} */}
-            {/* This forces React to destroy the editor and build a new one when you switch tabs */}
             <TipTapEditor
                 key={currentTab} 
                 content={formData.translations[currentTab].content}
